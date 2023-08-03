@@ -27,7 +27,7 @@ function POPInNumbers() {
                 <div className={`${khand.className}  text-center text-6xl pt-16 pb-12`}>Our POPpin' Numbers</div>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                     {popInNumbers?.map((i, index) => (
-                        <Fragment>
+                        <Fragment key={index}>
                             <div className={`text-center ${manrope.className}`}>
                                 <div className={`text-[#F56651] text-6xl font-extrabold ${khand.className}`}>{i?.value}</div>
                                 <div className='text-2xl py-1 font-medium'>{i?.title}</div>
