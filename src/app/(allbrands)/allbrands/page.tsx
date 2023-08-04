@@ -49,7 +49,7 @@ function AllBrands() {
                     <div className={`text-center text-3xl ${manrope.className} font-bold py-10`}>Unmatched Offers & Discount Highlights</div>
                     <div className="grid grid-cols-1 lg:grid-cols-3 max-w-6xl mx-auto gap-14 justify-items-center">
                         {allBrands?.map((i, index) => (
-                            <div key={index}>
+                            <div key={index} className="drop-shadow-xl transition-transform hover:scale-105">
                                 <Link href={i.pathToUrl}>
                                     <Image
                                         src={i.imageRelativeLink}

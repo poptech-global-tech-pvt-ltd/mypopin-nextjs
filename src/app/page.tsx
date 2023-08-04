@@ -5,9 +5,13 @@ import { HeroPartners } from '@/components/HeroPartners'
 import { HowItWorks } from '@/components/HowItWorks'
 import { POPInNumbers } from '@/components/POPInNumbers'
 import { PopBenefits } from '@/components/PopBenefits'
+import dynamic from "next/dynamic"
+// const ShoppingDealsCarousel = dynamic(() => import('@/components/ShoppingDealsCarousel'), { ssr: false })
+import ShoppingDealsCarousel from "@/components/ShoppingDealsCarousel"
+import Spotlight from '@/components/Spotlight'
+import TopBrands from "@/components/TopBrands"
 
 // search params is not working properly
-
 export default function Home({
   params,
   searchParams,
@@ -16,22 +20,18 @@ export default function Home({
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
 
-  // const isDesktopOrLaptop = useMediaQuery({
-  //   query: '(min-width: 1000px)'
-  // })
-
-  // const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1000px)' })
-  console.log({params, searchParams })
   return (
     <main>
-      {/* {isDesktopOrLaptop ? <Header /> : <MobileHeader />} */}
       <Layout>
         <Hero />
         <HeroPartners />
         {/* <HowItWorks /> */}
         <POPInNumbers />
       </Layout>
+      {/* <ShoppingDealsCarousel /> */}
+      <Spotlight />
       <PopBenefits />
+      <TopBrands />
       {/* <Footer /> */}
     </main>
   )

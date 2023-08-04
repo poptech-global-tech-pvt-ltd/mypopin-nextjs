@@ -48,7 +48,7 @@ function MobileHeader() {
                                     <AccordionTrigger className="bg-[#F5F5F5] p-3">Our POPWorld</AccordionTrigger>
                                     <AccordionContent className="p-[0px] pb-0">
                                         <div className="bg-[#fff4f3] p-3 rounded-b-lg">
-                                            POP Shop
+                                            Our POP World
                                         </div>
                                     </AccordionContent>
                                 </AccordionItem>

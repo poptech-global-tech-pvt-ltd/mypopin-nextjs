@@ -2,14 +2,16 @@
 import Image from "next/image"
 import { NavigationMenuDemo as NavigationMenu } from '@/components/NavigationMenu'
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 function Header() {
+   const pathName = usePathname()
+   console.log({pathName})
     return (
         <main className="fixed w-full z-[999999999]">
-            <div className="bg-red-500 h-24 flex items-center justify-center">
+            <div className="bg-white h-24 flex items-center justify-center">
                 <div className="max-w-[1350px] w-full">
-
                     <div className="flex justify-between">
                         {/* //logo section */}
                         <div className="flex items-center">
@@ -29,7 +31,7 @@ function Header() {
                             </div>
                         </div>
                         <div className="flex items-center">
-                            <div className="flex">
+                            {/* <div className="flex">
                                 <div>100</div>
                                 <Image
                                     src="/popcoin.svg"
@@ -45,12 +47,12 @@ function Header() {
                                 height={25}
                                 alt="avatar"
                                 className="ml-3"
-                            />
+                            /> */}
                             <Link href="/">
-                                <Button className="ml-3" variant="outline">I am a Customer</Button>
+                                <Button className={`ml-3 ${pathName === "/" ? `bg-[#F56651] text-white hover:bg-[#F56651] hover:text-white` : `bg-white text-black`}`} variant="outline">I am a Customer</Button>
                             </Link>
                             <Link href="/partner-with-pop">
-                                <Button className="ml-3" variant="outline">I am a Brand</Button>
+                                <Button className={`ml-3 ${pathName === "/partner-with-pop" ? `bg-[#F56651] text-white  hover:bg-[#F56651] hover:text-white` : `bg-[white] text-black` }`} variant="outline">I am a Brand</Button>
                             </Link>
                         </div>
                     </div>

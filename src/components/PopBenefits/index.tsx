@@ -54,7 +54,7 @@ function PopBenefits() {
                     <div className='grid grid-cols-2 gap-4 px-14'>
                         {benefits?.map((itm, index) => (
                             <div key={index}>
-                                <div className='bg-white p-10 rounded-lg drop-shadow-sm h-full hover:scale-105 cursor-pointer'>
+                                <div className='bg-white p-10 rounded-lg drop-shadow-sm h-full cursor-pointer transition-transform hover:scale-105'>
                                     <div className='text-3xl font-bold flex'>
                                         <Image
                                             src={itm?.iconRelativePath}
