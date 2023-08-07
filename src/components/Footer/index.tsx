@@ -113,15 +113,19 @@ function Footer() {
                                         </div>
                                     </Fragment>
                                 ))}
-                                {/* <div className="py-1">
-                                    Saaki
-                                </div>
-                                <div className="py-1">
-                                    Teetrunk
-                                </div>
-                                <div className="py-1">
-                                    Anveshan
-                                </div> */}
+                                {allBrands?.data?.length === 0 && (
+                                    <div>
+                                        <div className="py-1">
+                                            Saaki
+                                        </div>
+                                        <div className="py-1">
+                                            Teetrunk
+                                        </div>
+                                        <div className="py-1">
+                                            Anveshan
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                             <Link href="/allbrands">
                                 <div className="underline underline-offset-2">View All</div>
