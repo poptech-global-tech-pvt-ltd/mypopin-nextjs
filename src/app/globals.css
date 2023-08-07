@@ -105,3 +105,9 @@ p, h1, h2, h3, h4, h5, h6 {
     @apply bg-background text-foreground;
   }
 }
+
+.b2b-section-bg-img{
+  background-image: url('../../public/partner-withpopcoins-bg.png');
+  background-size: cover;
+  background-attachment: fixed;
+}

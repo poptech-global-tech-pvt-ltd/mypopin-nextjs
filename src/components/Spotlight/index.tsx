@@ -15,17 +15,19 @@ const spolightBrands = [
     { relativeImageURL: "/spotlight/spotlight-product-boyo-zoh.png" },
     { relativeImageURL: "/spotlight/spotlight-product-boyo.png" },
     { relativeImageURL: "/spotlight/spotlight-product-saaki.png" },
-    { relativeImageURL: "/spotlight/spotlight-product-snakible.png" },
+    // { relativeImageURL: "/spotlight/spotlight-product-snakible.png" },
     { relativeImageURL: "/spotlight/spotlight-product-zoh.png" },
 ]
 
 var settings = {
     dots: true,
-    infinite: false,
-    speed: 500,
+    infinite: true,
     slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
+    slidesToScroll: 1,
+    // autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
     responsive: [
       {
         breakpoint: 1024,
@@ -57,17 +59,18 @@ var settings = {
 function Spotlight() {
     return (
         <>
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-6xl mx-auto mb-12">
                 <div className={`${khand.className}  text-center text-6xl py-16`}>Spotlight Brands Offering Discounts</div>
                 <div>
                     <Slider {...settings}>
                         {spolightBrands?.map(((i, index) => (
-                            <div key={index}>
+                            <div className='p-2' key={index}>
                                 <Image
                                     src={i?.relativeImageURL}
                                     width={255}
                                     height={274}
                                     alt={i?.relativeImageURL}
+                                    // className='p-2'
                                 />
                             </div>
                         )))}

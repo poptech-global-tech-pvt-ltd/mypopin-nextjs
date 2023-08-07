@@ -85,7 +85,7 @@ export function NavigationMenuDemo() {
           <NavigationMenuTrigger style={{ all: "unset", display: "flex", cursor: "pointer", alignItems: "center" }}
           >Our POP World</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-1 lg:w-[600px] ">
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-1 lg:w-[200px] ">
               {components.map((component) => (
                 <ListItem
                   key={component.title}
