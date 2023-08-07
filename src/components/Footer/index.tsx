@@ -20,7 +20,7 @@ function Footer() {
         getBrandNames()
     }, [])
 
-    console.log(allBrands)
+    console.log(allBrands?.data?.length)
 
     return (
         <>
@@ -113,7 +113,7 @@ function Footer() {
                                         </div>
                                     </Fragment>
                                 ))}
-                                {allBrands?.data?.length === 0 && (
+                                {allBrands && allBrands?.data?.length === 0 && (
                                     <div>
                                         <div className="py-1">
                                             Saaki
