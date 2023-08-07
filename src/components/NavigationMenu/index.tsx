@@ -52,6 +52,40 @@ export function NavigationMenuDemo() {
 
   console.log(brandData)
 
+  const isBrandDataAvailable = Object.keys(brandData).length !== 0
+
+  const staticBrandData = {
+    "Beauty": [
+      "Body Tales",
+      "BraavoKing",
+      "Femisafe",
+      "Khadi Essentials",
+      "Mai Sknn",
+      "Makeup Eraser",
+      "Man Theory",
+      "Paul Penders",
+      "Tatha",
+      "The Skin Story"
+    ],
+    "Fashion": [
+      "Bacca Bucci"
+    ],
+    "Food & Drinks": [
+      "Anveshan"
+    ],
+    "Health": [
+      "Zoh Probiotics"
+    ],
+    "Home & Living": [
+      "Dusaan",
+      "Klotthe",
+      "Saga Jaipur"
+    ],
+    "Stationary": [
+      "Doodle Collection"
+    ]
+  }
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -62,7 +96,9 @@ export function NavigationMenuDemo() {
           >POP Partners</NavigationMenuTrigger>
           <NavigationMenuContent>
             <div className="grid gap-3 pb-6 pt-2 pl-6 pr-6 md:w-[400px] lg:w-[1100px] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr]">
-              {Object.keys(brandData).map((category: string) => (
+
+              {/* // if data is in STRAPI */}
+              {isBrandDataAvailable && Object.keys(brandData).map((category: string) => (
                 <div key={category} className="pr-2">
                   <div className="font-bold text-lg pt-3">{category}</div>
                   <div className="font-medium">
@@ -74,6 +110,23 @@ export function NavigationMenuDemo() {
                   </div>
                 </div>
               ))}
+                {/* // if data is not in strapi */}
+              {!isBrandDataAvailable && Object.keys(staticBrandData).map((category: string) => (
+                <div key={category} className="pr-2">
+                  <div className="font-bold text-lg pt-3">{category}</div>
+                  <div className="font-medium">
+                    {/* @ts-ignore */}
+                    {staticBrandData[category].map((brand: string, index: number) => (
+                      <div key={index} className="py-1">
+                        {brand}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+
+
+
             </div>
             <Link href="/allbrands">
               <div className="text-right pb-4 pr-4 underline underline-offset-2">See All</div>
