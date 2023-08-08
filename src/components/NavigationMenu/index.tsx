@@ -103,11 +103,13 @@ export function NavigationMenuDemo() {
                   <div className="font-bold text-lg pt-3">{category}</div>
                   <div className="font-medium">
                     {brandData[category].map((brand: string, index: number) => (
-                      <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
-                        <div key={index} className="py-1">
-                          {brand}
-                        </div>
-                      </Link>
+                      <div key={index}>
+                        <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
+                          <div key={index} className="py-1">
+                            {brand}
+                          </div>
+                        </Link>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -119,11 +121,13 @@ export function NavigationMenuDemo() {
                   <div className="font-medium">
                     {/* @ts-ignore */}
                     {staticBrandData[category].map((brand: string, index: number) => (
-                      <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
-                        <div key={index} className="py-1">
-                          {brand}
-                        </div>
-                      </Link>
+                      <div key={index}>
+                        <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
+                          <div key={index} className="py-1">
+                            {brand}
+                          </div>
+                        </Link>
+                      </div>
                     ))}
                   </div>
                 </div>
