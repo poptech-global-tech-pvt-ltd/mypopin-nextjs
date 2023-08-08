@@ -103,23 +103,27 @@ export function NavigationMenuDemo() {
                   <div className="font-bold text-lg pt-3">{category}</div>
                   <div className="font-medium">
                     {brandData[category].map((brand: string, index: number) => (
-                      <div key={index} className="py-1">
-                        {brand}
-                      </div>
+                      <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
+                        <div key={index} className="py-1">
+                          {brand}
+                        </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
               ))}
-                {/* // if data is not in strapi */}
+              {/* // if data is not in strapi */}
               {!isBrandDataAvailable && Object.keys(staticBrandData).map((category: string) => (
                 <div key={category} className="pr-2">
                   <div className="font-bold text-lg pt-3">{category}</div>
                   <div className="font-medium">
                     {/* @ts-ignore */}
                     {staticBrandData[category].map((brand: string, index: number) => (
-                      <div key={index} className="py-1">
-                        {brand}
-                      </div>
+                      <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
+                        <div key={index} className="py-1">
+                          {brand}
+                        </div>
+                      </Link>
                     ))}
                   </div>
                 </div>

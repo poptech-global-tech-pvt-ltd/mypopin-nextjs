@@ -8,10 +8,17 @@ const khand = Khand({
 })
 function POPShop() {
 
+    // == desktop & large devices ==
     const [isFirstActive, setIsFirstActive] = useState(false)
     const [two, settwo] = useState("-1050px")
     const [three, setThree] = useState("-1050px")
     const [four, setFour] = useState("-1050px")
+
+    // == mobile & small devices ==
+    const [isMobileFirstActive, setMobileFirstActive] = useState(false)
+    const [mobileTwo, setMobileTwo] = useState("-500px");
+    const [mobileThree, setMobileThree] = useState("-580px");
+    const [mobileFour, setMobileFour] = useState("-665px");
 
     //to toggle between desktop & mobile
     const isDesktopOrLaptop = useMediaQuery({
@@ -55,6 +62,38 @@ function POPShop() {
         setThree("-1050px")
         settwo("-1050px")
     }
+
+    // == handle mobile ==
+    const handleOneMobileClick = () => {
+
+        setMobileFirstActive((prev) => !prev)
+        if (isMobileFirstActive === true) {
+            // reset everything
+            setMobileTwo("-500px")
+            setMobileThree("-580px")
+            setMobileFour("-665px")
+        }
+        else if (isMobileFirstActive === false) {
+            setMobileTwo("-20px")
+        }
+    }
+
+    const handleTwoMobileClick = () => {
+        setMobileThree("-20px")
+
+    }
+    const handleThreeMobileClick = () => {
+        setMobileFour("-20px")
+    }
+    const handleFourMobileClick = () => {
+        // reset everything
+        setMobileTwo("-500px")
+        setMobileThree("-580px")
+        setMobileFour("-665px")
+    }
+
+
+
     return (
         <>
             {isDesktopOrLaptop && (
@@ -72,11 +111,18 @@ function POPShop() {
             )}
 
             {isTabletOrMobile && (
-                <div>
-                    tablet or mobile
-                </div>
+                <>
+                    <div className={`${khand.className} text-center text-3xl lg:text-6xl py-6 lg:py-16`}>Introducing the POPshop</div>
+                    <div className='max-w-[400px] mx-auto'>
+                        <div className='flex flex-col'>
+                            <img className='transition-all' width="1120" height="auto" onClick={handleOneMobileClick} src="/popshop/popshop-mobile-1.png" alt="Slide Image" />
+                            <img style={{ marginTop: mobileTwo }} className='transition-all' width="1120" height="auto" onClick={handleTwoMobileClick} src="/popshop/popshop-mobile-2.png" alt="Slide Image" />
+                            <img style={{ marginTop: mobileThree }} className='transition-all' width="1120" height="auto" onClick={handleThreeMobileClick} src="/popshop/popshop-mobile-3.png" alt="Slide Image" />
+                            <img style={{ marginTop: mobileFour }} className='transition-all' width="1120" height="auto" onClick={handleFourMobileClick} src="/popshop/popshop-mobile-4.png" alt="Slide Image" />
+                        </div>
+                    </div>
+                </>
             )}
-
         </>
     )
 }
