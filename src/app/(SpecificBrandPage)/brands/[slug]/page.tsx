@@ -2,7 +2,12 @@ function BrandPage() {
     return (
         <>
             <div className="pt-24">
-                <div>This is a bradn page</div>
+                <div className="grid grid-cols-1">
+                    <div>sdf</div>
+                    <div>efwsf</div>
+                    <div>ws</div>
+                    <div>gdfc</div>
+                </div>
             </div>
         </>
     )
