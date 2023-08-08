@@ -12,7 +12,6 @@ import Spotlight from '@/components/Spotlight'
 import TopBrands from "@/components/TopBrands"
 import { POPShop } from "@/components/POPShop"
 import { ShoppingDeals } from "@/components/ShoppingDeals"
-import { useState } from "react"
 
 // search params is not working properly
 export default function Home({
