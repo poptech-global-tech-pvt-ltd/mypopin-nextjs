@@ -51,7 +51,7 @@ function PopBenefits() {
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr]">
                     <div className={`text-6xl ${khand.className} font-medium flex items-center`}>Optimise Your Shopping Benefits With POPCoins</div>
                     {/* // card container */}
-                    <div className='grid grid-cols-2 gap-4 px-14'>
+                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 px-14'>
                         {benefits?.map((itm, index) => (
                             <div key={index}>
                                 <div className='bg-white p-10 rounded-lg drop-shadow-sm h-full cursor-pointer transition-transform hover:scale-105'>

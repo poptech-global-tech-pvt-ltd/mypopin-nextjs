@@ -10,6 +10,9 @@ import dynamic from "next/dynamic"
 import ShoppingDealsCarousel from "@/components/ShoppingDealsCarousel"
 import Spotlight from '@/components/Spotlight'
 import TopBrands from "@/components/TopBrands"
+import { POPShop } from "@/components/POPShop"
+import { ShoppingDeals } from "@/components/ShoppingDeals"
+import { useState } from "react"
 
 // search params is not working properly
 export default function Home({
@@ -19,6 +22,8 @@ export default function Home({
   params: { slug: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
+
+
 
   return (
     <main>
@@ -31,8 +36,9 @@ export default function Home({
       {/* <ShoppingDealsCarousel /> */}
       <Spotlight />
       <PopBenefits />
+      <ShoppingDeals />
       <TopBrands />
-      {/* <Footer /> */}
+      <POPShop />
     </main>
   )
 }

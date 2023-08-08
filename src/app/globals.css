@@ -111,3 +111,75 @@ p, h1, h2, h3, h4, h5, h6 {
   background-size: cover;
   background-attachment: fixed;
 }
+
+.react-slick-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.react-slick-logo {
+  justify-self: end;
+}
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .react-slick-footer {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .react-slick-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+
+.react-slick-texts-container > ul {
+  list-style-type: "✅  ";
+  font-size: 22px;
+}
+
+
+.react-slick-texts-container > ul > li {
+  padding: 10px;
+  color : #621E45;
+}
+
+.react-slick-texts-container > ul > li > span {
+  color : #621E45;
+  font-weight: bold;
+}
+
+.react-slick-one {
+  background-color: #DDCCD3;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+.react-slick-two {
+  background-color: #DDCCD3;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+.react-slick-three {
+  background-color: #DDCCD3;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+/* // move the slider dots up a bit */
+.case-studies-container .slick-dots {
+  bottom: 20px !important;
+}
+
+

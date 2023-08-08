@@ -8,6 +8,7 @@ import { BrandPartners } from '@/components/BrandPartners'
 import { B2BPopInNumbers } from '@/components/B2BPopInNumbers'
 import { B2BIntegrations } from '@/components/B2BIntegrations'
 import { B2BCaseStudies } from '@/components/B2BCaseStudies'
+import { ScheduleDemo } from '@/components/ScheduleDemo'
 const LeadingBrandsCarousel = dynamic(() => import('@/components/LeadingBrandsCarousel'), { ssr: false })
 const TestimonialsCarousel = dynamic(() => import('@/components/TestimonialsCarousel'), { ssr: false })
 
@@ -23,12 +24,12 @@ const manrope = Manrope({
 function PartnerWithPOP() {
     return (
         <>
-            <div className="pt-24">
+            <div className="pt-10 lg:pt-24">
                 <div>
                     <B2BHero />
                 </div>
-                <div>
-                    <div className={`${khand.className} text-7xl text-center font-bold py-10`}>Trusted By Leading Brands</div>
+                <div className='mt-24 lg:mt-0'>
+                    <div className={`${khand.className} text-2xl lg:text-7xl text-center font-bold py-0 lg:py-10`}>Trusted By Leading Brands</div>
                     <div className='py-5 pb-10'>
                         <LeadingBrandsCarousel />
                     </div>
@@ -43,15 +44,17 @@ function PartnerWithPOP() {
                 <div>
                     <B2BIntegrations />
                 </div>
-                {/* <div>
-                    <B2BCaseStudies />
-                </div> */}
                 <div>
-                    <div className={`${khand.className} text-7xl text-center font-bold py-10`}>Brand Testimonials</div>
-                    <div style={{ overflowX: "scroll" }} className='max-w-6xl mx-auto flex'>
+                    <B2BCaseStudies />
+                </div>
+                <div>
+                    <div className={`${khand.className} text-center font-bold py-10 text-3xl lg:text-6xl`}>Brand Testimonials</div>
+                    <div className='max-w-6xl flex justify-center'>
                         <TestimonialsCarousel />
                     </div>
-
+                </div>
+                <div>
+                    <ScheduleDemo />
                 </div>
             </div>
         </>

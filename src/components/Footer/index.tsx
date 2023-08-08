@@ -20,8 +20,6 @@ function Footer() {
         getBrandNames()
     }, [])
 
-    console.log(allBrands?.data?.length)
-
     return (
         <>
             <div className="max-w-[1350px] md:px-4 pt-2 pb-4 mx-auto">
@@ -143,7 +141,7 @@ function Footer() {
                                 <div className="py-1">
                                     Partner with POP
                                 </div>
-                                <div className="py-1">
+                                <div className="py-1 ">
                                     Schedule a Demo
                                 </div>
                             </div>

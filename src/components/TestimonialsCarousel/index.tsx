@@ -1,15 +1,14 @@
 import Slider from "react-slick";
 import Image from "next/image"
-import Link from "next/link"
 
 function TestimonialsCarousel() {
 
-    var settings = {
-        dots: false,
+    const settings = {
+        dots: true,
         infinite: false,
         speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
+        slidesToShow: 4,
+        slidesToScroll: 4,
         initialSlide: 0,
         responsive: [
             {
@@ -46,20 +45,17 @@ function TestimonialsCarousel() {
     ]
 
     return (
-        <>
-            <Slider {...settings}>
-                {testimonials?.map((i, index) => (
-                    <div key={index}>
-                        <Image
-                            src={i.imageRelativePath}
-                            width={600}
-                            height={600}
-                            alt={i.alt}
-                        />
-                    </div>
-                ))}
-            </Slider>
-        </>
+        <Slider {...settings}>
+            <div>
+                <Image width={500} height={500} alt="" src="/testimonials/testimonial-anveshan.svg" />
+            </div>
+            <div>
+                <Image width={100} height={100} alt="" src="/testimonials/testimonial-gramiyaa.svg" />
+            </div>
+            <div>
+                <Image width={100} height={100} alt="" src="/testimonials/testimonial-saaki.svg" />
+            </div>
+        </Slider>
     )
 }
 

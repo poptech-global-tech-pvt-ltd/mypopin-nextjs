@@ -30,7 +30,7 @@ function B2BIntegrations() {
     return (
         <div className="bg-black hover:bg-[#F56651]">
             <div className="max-w-6xl mx-auto">
-                <div className={`${khand.className} text-7xl text-center py-8 text-white`}>Integrations</div>
+                <div className={`${khand.className} text-5xl lg:text-8xl text-center py-8 text-white`}>Integrations</div>
                 {/* <div className='flex'>
                     {integrationLogos?.map((i, index) => (
                         <div key={index}>
@@ -40,7 +40,7 @@ function B2BIntegrations() {
                 </div> */}
 
                 <div className="container mx-auto p-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 items-center justify-items-center">
+                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 items-center justify-items-center">
                         {integrationLogos?.map((i, index) => (
                             <div key={index}>
                                 <Image width="157" height="46" src={i.url} alt={i.url} />
