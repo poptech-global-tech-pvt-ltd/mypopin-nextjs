@@ -25,10 +25,16 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        'pulse-border': {
+          '0%, 100%': { 'border-width': '2px' },
+          '50%': { 'border-width': '4px' },
+        },
+
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        'pulse-border': 'pulse-border 2s infinite',
       },
       colors: {
         border: "hsl(var(--border))",
