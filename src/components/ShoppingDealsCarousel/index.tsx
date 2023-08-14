@@ -19,6 +19,7 @@ function ShoppingDealsCarousel() {
 
     return (
         <>
+        {/* // THIS COMPONENT HAS BEEN DEPRECATED */}
             <div>
                 <div className={`${khand.className} text-center text-6xl py-16`}>Best Shopping Deals Online</div>
                 <Slider {...settings}>

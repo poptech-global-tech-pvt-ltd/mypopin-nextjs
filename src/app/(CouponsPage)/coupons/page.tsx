@@ -44,7 +44,7 @@ const responsive = {
     }
 };
 
-export function Coupons() {
+function Coupons() {
     const numCards = 10; // Number of cards
 
     const initialCards = Array.from({ length: numCards }, () => ({
