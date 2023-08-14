@@ -55,7 +55,7 @@ function MobileHeader() {
                             </Accordion>
                             <div className="py-1" />
                             {/* // Blogs */}
-                            <Link href="/blogs">
+                            <Link href="https://blog.mypop.in/">
                             <div className="bg-[#F5F5F5] p-3">
                                 <div className="text-black font-medium">Blogs</div>
                             </div>

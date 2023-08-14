@@ -2,7 +2,7 @@
 
 import { Khand } from 'next/font/google'
 import { Manrope } from 'next/font/google'
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useRef, useState, useEffect } from 'react'
 import { useIsVisible } from '../../hooks/useIsVisible'
 
 const khand = Khand({
@@ -23,36 +23,63 @@ const popInNumbers = [
 ]
 
 function POPInNumbers() {
+    const [count, setCount] = useState(1);
+    const [custCount, setCustCount] = useState(514915)
+    const [savingsCount, setSavingCount] = useState(1131511);
+    const noOfBrandRef = useRef(null);
+    const noOfCustomers = useRef(null);
+    const noOfSaving = useRef(null)
 
-    const ref = useRef(null);
-    const isVisible = useIsVisible(ref);
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const [entry] = entries;
+                if (entry.isIntersecting) {
+                    // Start the interval when the component is in the viewport
+                    const intervalId = setInterval(() => {
+                        setCount((prev) => (prev < 48 ? prev + 1 : prev));
+                        setCustCount((prev) => (prev < 514995 ? prev + 1 : prev))
+                        setSavingCount((prev) => (prev < 1131561 ? prev + 1 : prev))
+                    }, 1);
+                    return () => {
+                        clearInterval(intervalId); // Stop the interval when the component is out of the viewport
+                    };
+                }
+            },
+            { threshold: 1 } // Customize the threshold as needed
+        );
 
-    const [count, setCount] = useState(0)
+        if (noOfBrandRef.current) {
+            observer.observe(noOfBrandRef.current);
+        }
+        if (noOfCustomers.current) {
+            observer.observe(noOfCustomers.current);
+        }
+        if (noOfSaving.current) {
+            observer.observe(noOfSaving.current);
+        }
 
-    console.log({ isVisible })
+        return () => {
+            observer.disconnect();
+        };
+    }, []);
+
+
     return (
         <>
             <div className="max-w-5xl mx-auto py-14">
                 <div className={`${khand.className}  text-center text-6xl pt-16 pb-12`}>Our POPpin' Numbers</div>
-                <div ref={ref} className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-                    {/* {popInNumbers?.map((i, index) => (
-                        <Fragment key={index}>
-                            <div className={`text-center ${manrope.className}`}>
-                                <div className={`text-[#F56651] text-6xl font-extrabold ${khand.className}`}>{i?.value}</div>
-                                <div className='text-2xl py-1 font-medium'>{i?.title}</div>
-                            </div>
-                        </Fragment>
-                    ))} */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                     <div className={`text-center ${manrope.className}`}>
-                        <div className={`text-[#F56651] text-6xl font-extrabold ${khand.className}`}>36</div>
+                        <div ref={noOfBrandRef} className={`text-[#F56651] text-6xl font-extrabold ${khand.className}`}>{count}</div>
                         <div className='text-2xl py-1 font-medium'>No. of Brands</div>
                     </div>
                     <div className={`text-center ${manrope.className}`}>
-                        <div className={`text-[#F56651] text-6xl font-extrabold ${khand.className}`}>5,14,995</div>
+                        <div className={`text-[#F56651] text-6xl font-extrabold ${khand.className}`}>{custCount}</div>
                         <div className='text-2xl py-1 font-medium'>No. Of Customers</div>
                     </div>
                     <div className={`text-center ${manrope.className}`}>
-                        <div className={`text-[#F56651] text-6xl font-extrabold ${khand.className}`}>11,31,561</div>
+                        <div className={`text-[#F56651] text-6xl font-extrabold ${khand.className}`}>{savingsCount}</div>
                         <div className='text-2xl py-1 font-medium'>Savings Using POPcoins</div>
                     </div>
                 </div>

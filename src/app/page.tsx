@@ -12,6 +12,7 @@ import Spotlight from '@/components/Spotlight'
 import TopBrands from "@/components/TopBrands"
 import { POPShop } from "@/components/POPShop"
 import { ShoppingDeals } from "@/components/ShoppingDeals"
+import { POPBlog } from "@/components/POPBlog"
 
 // search params is not working properly
 export default function Home({
@@ -29,7 +30,7 @@ export default function Home({
       <Layout>
         <Hero />
         <HeroPartners />
-        {/* <HowItWorks /> */}
+        <HowItWorks />
         <POPInNumbers />
       </Layout>
       {/* <ShoppingDealsCarousel /> */}
@@ -38,6 +39,7 @@ export default function Home({
       <ShoppingDeals />
       <TopBrands />
       <POPShop />
+      <POPBlog />
     </main>
   )
 }

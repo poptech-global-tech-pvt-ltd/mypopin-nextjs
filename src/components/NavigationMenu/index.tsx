@@ -12,6 +12,13 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import { Manrope } from 'next/font/google'
+
+const manrope = Manrope({
+  subsets: ['latin'],
+  weight: ['400', '700']
+})
+
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -50,7 +57,6 @@ export function NavigationMenuDemo() {
     getBrandNames();
   }, []);
 
-  console.log(brandData)
 
   const isBrandDataAvailable = Object.keys(brandData).length !== 0
 
@@ -89,23 +95,22 @@ export function NavigationMenuDemo() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-
-        <NavigationMenuItem>
+        <NavigationMenuItem className={`${manrope.className} font-bold text-[16px]`}
+        >
           <NavigationMenuTrigger
             style={{ all: "unset", display: "flex", cursor: "pointer", alignItems: "center" }}
           >POP Partners</NavigationMenuTrigger>
           <NavigationMenuContent>
             <div className="grid gap-3 pb-6 pt-2 pl-6 pr-6 md:w-[400px] lg:w-[1100px] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr]">
-
               {/* // if data is in STRAPI */}
               {isBrandDataAvailable && Object.keys(brandData).map((category: string) => (
                 <div key={category} className="pr-2">
-                  <div className="font-bold text-lg pt-3">{category}</div>
+                  <div className="font-bold text-lg pt-3 text-[14px]">{category}</div>
                   <div className="font-medium">
                     {brandData[category].map((brand: string, index: number) => (
                       <div key={index}>
                         <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
-                          <div key={index} className="py-1">
+                          <div key={index} className={`py-1 text-[14px]`}>
                             {brand}
                           </div>
                         </Link>
@@ -132,9 +137,6 @@ export function NavigationMenuDemo() {
                   </div>
                 </div>
               ))}
-
-
-
             </div>
             <Link href="/allbrands">
               <div className="text-right pb-4 pr-4 underline underline-offset-2">See All</div>
@@ -142,7 +144,7 @@ export function NavigationMenuDemo() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <div className="px-1" />
-        <NavigationMenuItem>
+        <NavigationMenuItem className={`${manrope.className} font-bold text-[16px]`}>
           <NavigationMenuTrigger style={{ all: "unset", display: "flex", cursor: "pointer", alignItems: "center" }}
           >Our POP World</NavigationMenuTrigger>
           <NavigationMenuContent>
@@ -159,24 +161,27 @@ export function NavigationMenuDemo() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
+        <NavigationMenuItem className={`${manrope.className} font-bold`}
+        >
+          <Link href="/" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Rewards
+              <div className={`${manrope.className} font-bold text-[16px]`}>Rewards</div>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
+        <NavigationMenuItem className={`${manrope.className} font-bold`}
+        >
+          <Link href="/coupons" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Coupons
+              <div className={`${manrope.className} font-bold text-[16px]`}>Coupons</div>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
+        <NavigationMenuItem className={`${manrope.className} font-bold`}
+        >
+          <Link href="https://blog.mypop.in/" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Blog
+              <div className={`${manrope.className} font-bold text-[16px]`}>Blog</div>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

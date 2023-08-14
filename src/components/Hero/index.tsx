@@ -17,7 +17,7 @@ function Hero() {
     return (
         <>
             <main>
-                <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 px-16 pt-24">
+                <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 px-16 pt-24 pb-14">
                     <div>
                         <div className={`text-5xl lg:text-[5rem] font-bold leading-none ${khand.className}`}>
                             <div>Shop.</div>

@@ -12,6 +12,7 @@ const khand = Khand({
 
 const manrope = Manrope({
     subsets: ['latin'],
+    weight: ['400', '700'],
 })
 
 const benefits = [
@@ -49,7 +50,7 @@ function PopBenefits() {
         <div className='bg-[#F9F9F9]'>
             <div className="py-10 max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr]">
-                    <div className={`text-6xl ${khand.className} font-medium flex items-center`}>Optimise Your Shopping Benefits With POPCoins</div>
+                    <div className={`text-6xl ${khand.className} flex items-center font-bold`}>Optimise Your Shopping Benefits With POPCoins</div>
                     {/* // card container */}
                     <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 px-14'>
                         {benefits?.map((itm, index) => (

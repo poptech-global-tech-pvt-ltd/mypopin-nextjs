@@ -1,45 +1,99 @@
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/navigation';
+import 'swiper/css/keyboard';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
 import { Khand } from 'next/font/google'
-import Slider from "react-slick";
-
 
 const khand = Khand({
     weight: '700',
     subsets: ['latin'],
 })
 
-function ShoppingDeals() {
-    const settings = {
-        className: "center",
-        centerMode: true,
-        infinite: true,
-        centerPadding: "100px",
-        slidesToShow: 3,
-        speed: 500,
-        dots: true,
-        slidesToScroll: 1,
-        autoplay: false,
-    };
+// Initialize Swiper modules
+import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
 
+function ShoppingDeals() {
     return (
-        <>
-            <div className="max-w-6xl mx-auto">
-                <div className={`text-center text-6xl py-16 ${khand.className} font-bold`}>Best Shopping Deals Online</div>
-                <div className='shopping-deals'>
-                    <Slider {...settings}>
-                        <div>
-                            <img src="/shoppingdeals/shopping-deal-1.svg" />
-                        </div>
-                        <div>
-                            <img src="/shoppingdeals/shopping-deal-2.svg" />
-                        </div>
-                        <div>
-                            <img src="/shoppingdeals/shopping-deal-3.svg" />
-                        </div>
-                    </Slider>
+        <div className="max-w-6xl mx-auto">
+            <div className={`text-center text-6xl py-16 font-bold ${khand.className}`}>Best Shopping Deals Online</div>
+            <div className="shopping-deals">
+                <div className='swiper-container'>
+                    <Swiper
+                        effect="coverflow"
+                        grabCursor={true}
+                        centeredSlides={true}
+                        modules={[EffectCoverflow, Pagination, Autoplay]}
+                        coverflowEffect={{
+                            rotate: 0,
+                            stretch: 0,
+                            depth: 100,
+                            modifier: 4,
+                            slideShadows: true,
+                        }}
+                        loop={true}
+                        autoplay={{
+                            delay: 1500,
+                            disableOnInteraction: false,
+                        }}
+                        navigation={{
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        }}
+                        keyboard={{
+                            enabled: true,
+                        }}
+                        breakpoints={{
+                            360: {
+                                slidesPerView: 1.5,
+                            },
+                            560: {
+                                slidesPerView: 2.5,
+                            },
+                            768: {
+                                slidesPerView: 3,
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                            },
+                        }}
+                    >
+                        <SwiperSlide>
+                            <a href="/brands/anveshan">
+                                <img width="100%" src="/brandscarousel/1.png" alt="Slide 1" />
+                            </a>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <a href="/brands/anveshan">
+                                <img width="100%" src="/brandscarousel/2.png" alt="Slide 2" />
+                            </a>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <a href="/brands/anveshan">
+                                <img width="100%" src="/brandscarousel/3.png" alt="Slide 3" />
+                            </a>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <a href="/brands/anveshan">
+                                <img width="100%" src="/brandscarousel/4.png" alt="Slide 3" />
+                            </a>
+                        </SwiperSlide> <SwiperSlide>
+                            <a href="/brands/anveshan">
+                                <img width="100%" src="/brandscarousel/5.png" alt="Slide 3" />
+                            </a>
+                        </SwiperSlide> <SwiperSlide>
+                            <a href="/brands/anveshan">
+                                <img width="100%" src="/brandscarousel/6.png" alt="Slide 3" />
+                            </a>
+                        </SwiperSlide>
+                    </Swiper>
                 </div>
             </div>
-        </>
-    )
+        </div>
+    );
 }
 
-export { ShoppingDeals }
+export { ShoppingDeals };

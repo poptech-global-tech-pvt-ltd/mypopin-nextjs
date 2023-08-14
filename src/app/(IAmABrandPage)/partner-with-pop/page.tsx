@@ -9,6 +9,7 @@ import { B2BPopInNumbers } from '@/components/B2BPopInNumbers'
 import { B2BIntegrations } from '@/components/B2BIntegrations'
 import { B2BCaseStudies } from '@/components/B2BCaseStudies'
 import { ScheduleDemo } from '@/components/ScheduleDemo'
+import { POPBlog } from '@/components/POPBlog'
 const LeadingBrandsCarousel = dynamic(() => import('@/components/LeadingBrandsCarousel'), { ssr: false })
 const TestimonialsCarousel = dynamic(() => import('@/components/TestimonialsCarousel'), { ssr: false })
 
@@ -49,13 +50,14 @@ function PartnerWithPOP() {
                 </div>
                 <div>
                     <div className={`${khand.className} text-center font-bold py-10 text-3xl lg:text-6xl`}>Brand Testimonials</div>
-                    <div className='max-w-6xl flex justify-center'>
+                    <div className='max-w-6xl flex justify-center mx-auto'>
                         <TestimonialsCarousel />
                     </div>
                 </div>
                 <div>
                     <ScheduleDemo />
                 </div>
+                <POPBlog />
             </div>
         </>
     )

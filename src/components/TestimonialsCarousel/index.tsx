@@ -1,42 +1,30 @@
-import Slider from "react-slick";
 import Image from "next/image"
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
+
 
 function TestimonialsCarousel() {
-
-    const settings = {
-        dots: true,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        initialSlide: 0,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
+    const responsive = {
+        superLargeDesktop: {
+            // the naming can be any, depends on you.
+            breakpoint: { max: 4000, min: 3000 },
+            items: 5
+        },
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 3
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1
+        }
     };
+
 
     const testimonials = [
         { imageRelativePath: '/testimonials/testimonial-anveshan.svg', alt: "anveshan" },
@@ -45,17 +33,41 @@ function TestimonialsCarousel() {
     ]
 
     return (
-        <Slider {...settings}>
-            <div>
-                <Image width={500} height={500} alt="" src="/testimonials/testimonial-anveshan.svg" />
+        <>
+            <div style={{ width: "100%", overflow: "hidden" }}>
+                <div>
+                    <Carousel
+                        arrows={false}
+                        autoPlay={true}
+                        autoPlaySpeed={1800}
+                        centerMode={false}
+                        //   className=""
+                        //   containerClass="container-with-dots"
+                        dotListClass=""
+                        draggable
+                        focusOnSelect={false}
+                        infinite
+                        //   itemClass=""
+                        //   keyBoardControl
+                        minimumTouchDrag={80}
+                        pauseOnHover
+                        renderArrowsWhenDisabled={false}
+                        renderButtonGroupOutside={false}
+                        renderDotsOutside={false}
+                        responsive={responsive}>
+                        <div>
+                            <img alt="" src="/testimonials/testimonial-anveshan.svg" />
+                        </div>
+                        <div>
+                            <img alt="" src="/testimonials/testimonial-gramiyaa.svg" />
+                        </div>
+                        <div>
+                            <img alt="" src="/testimonials/testimonial-saaki.svg" />
+                        </div>
+                    </Carousel>
+                </div>
             </div>
-            <div>
-                <Image width={100} height={100} alt="" src="/testimonials/testimonial-gramiyaa.svg" />
-            </div>
-            <div>
-                <Image width={100} height={100} alt="" src="/testimonials/testimonial-saaki.svg" />
-            </div>
-        </Slider>
+        </>
     )
 }
 

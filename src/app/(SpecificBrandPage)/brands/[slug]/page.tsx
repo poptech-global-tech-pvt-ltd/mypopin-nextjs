@@ -3,137 +3,153 @@
 import { Button } from '@/components/ui/button'
 import { Manrope } from 'next/font/google'
 import Image from "next/image"
-import Slider from "react-slick";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import { BrandRewardsCarousel } from '@/components/BrandRewardsCarousel';
+import { BrandDeals } from '@/components/BrandDeals';
+import { useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 
 const manrope = Manrope({
     subsets: ['latin'],
-    weight: ['400', '700']
+    weight: ['400', '500', '700']
 })
 
 function BrandPage() {
 
-    const responsive = {
-        superLargeDesktop: {
-            // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 3000 },
-            items: 5
-        },
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 3
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 2
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1
+    const [brandData, setBrandData] = useState([]);
+    const [isLoading, setLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        try {
+            setLoading(true)
+            const currentBrandURL = window.location.pathname.split("/")[2]
+            fetch(`http://localhost:1337/api/brand-names?filters[url][$eq]=${currentBrandURL}&populate=*`)
+                .then((res) => res.json())
+                .then((data) =>
+                    setBrandData(data?.data[0]?.attributes)
+                )
+            setLoading(false)
         }
-    };
+        catch (err) {
+            console.log("oops! an error has occured")
+        }
+    }, [])
+
+
     return (
         <>
-            <div className="pt-[12rem]">
+            <div className="pt-[11rem]">
                 {/* // grid container */}
-                <div className="test-container max-w-7xl mx-auto">
-                    <div className="itm1 bg-blue-300 p-6 rounded-2xl">
-                        <div className='flex justify-between'>
-                            <div>
-                                <div className={`uppercase text-5xl ${manrope.className} font-bold`}>Extra 30% off</div>
-                                <div className='uppercase'>With logo</div>
+                {isLoading ? (
+                    <>
+                        <section className='test-container max-w-7xl mx-auto'>
+                            <div className='itm1'>
+                                <Skeleton borderRadius={18} className='h-[280px]' />
                             </div>
-                            <div>
-                                <div style={{ transform: "translateY(-70%)" }} className={`h-[150px] w-[150px] rounded-full flex justify-center items-center ${manrope.className} text-2xl font-bold text-center p-6 border-white text-white bg-blue-400 pulse-border`}>Limited Time Deal</div>
+                            <div className='itm2'>
+                                <Skeleton borderRadius={18} className='h-[280px]' />
                             </div>
-                        </div>
-                        <div>Grooming Essentials At Clean Discounts</div>
-                        <div className='flex justify-between items-center'>
-                            <Button className={`${manrope.className} bg-white text-lg text-blue-500 font-bold rounded-full`}>Shop with POPCoins</Button>
-                            <div>
-                                <img src="/man-theory-featrued-logo.png" />
+                            <div className='itm3'>
+                                <Skeleton borderRadius={18} className='h-[280px]' />
                             </div>
-                        </div>
-                    </div>
-                    <div className="itm2">
-                        <Image
-                            src="/man-theory-product-1.png"
-                            width="0"
-                            height="0"
-                            sizes="100vw"
-                            className="w-auto h-full"
-                            alt=""
-                        />
-                    </div>
-                    <div className="itm3 ">
-                        <Image
-                            src="/man-theory-product-2.png"
-                            width="0"
-                            height="0"
-                            sizes="100vw"
-                            className="w-auto h-full"
-                            alt=""
-                        />
-                    </div>
-                    <div className="itm4">
-                        <Image
-                            src="/man-theory-product-3.png"
-                            width="0"
-                            height="0"
-                            sizes="100vw"
-                            className="w-full h-auto"
-                            alt=""
-                        />
-                    </div>
+                            <div className='itm4'>
+                                <Skeleton borderRadius={18} className='h-[280px]' />
+                            </div>
+                        </section>
+                    </>
+                ) : (
+                    <>
+                        <div className="test-container max-w-7xl mx-auto">
 
-                </div>
+                            <div style={{ backgroundColor: brandData?.primary_color }} className="itm1 p-6 rounded-3xl">
+                                <div className='flex justify-between'>
+                                    <div>
+                                        <div style={{ color: brandData?.text_color }} className={`uppercase text-5xl ${manrope.className} font-bold`}>Extra 30% off</div>
+                                        <div style={{ color: brandData?.text_color }} className={`uppercase text-5xl ${manrope.className} font-bold`}>
+                                            <div className='flex items-center'>
+                                                <div>WITH</div>
+                                                <div className='px-2'><img width="35" height="35" src="/popcoin-icon.svg" /></div>
+                                            </div>
+                                        </div>
+                                        <div style={{ color: brandData?.text_color }} className={`text-xl ${manrope.className}`}>{brandData?.sub_title}</div>
+                                    </div>
+                                    <div>
+                                        <div style={{ transform: "translate(13%, -45%)", backgroundColor: brandData?.primary_color, color: brandData?.text_color }} className={`h-[200px] w-[200px] rounded-full flex justify-center items-center ${manrope.className} text-2xl font-bold text-center p-8 text-white pulsating-border`}>Limited Time Deal</div>
+                                    </div>
+                                </div>
+                                <div className='flex justify-between items-center'>
+                                    <Button className={`${manrope.className} bg-white text-lg text-black hover:text-white font-bold rounded-full`}>Shop with POPCoins</Button>
+                                    <div>
+                                        <img src={brandData?.round_logo?.data?.attributes?.url} />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="itm2">
+                                <Image
+                                    src={brandData?.brand_hero_image_small_1?.data?.attributes?.url}
+                                    // blurDataURL={brandData?.brand_hero_image_small_1?.data?.attributes?.url}
+                                    // placeholder="shimmer"
+                                    width="0"
+                                    height="0"
+                                    sizes="100vw"
+                                    className="w-full h-full rounded-3xl object-cover"
+                                    alt=""
+                                    style={{ objectFit: "cover" }}
+
+                                />
+                            </div>
+                            <div className="itm3 ">
+                                <Image
+                                    src={brandData?.brand_hero_image_large?.data?.attributes?.url}
+                                    width="0"
+                                    height="0"
+                                    sizes="100vw"
+                                    className="w-full h-full rounded-3xl object-cover"
+                                    alt=""
+                                    style={{ objectFit: "cover" }}
+
+                                />
+                            </div>
+                            <div className="itm4">
+                                <Image
+                                    src={brandData?.brand_hero_image_small_2?.data?.attributes?.url}
+                                    width="0"
+                                    height="0"
+                                    sizes="100vw"
+                                    className="w-full h-full rounded-3xl object-cover"
+                                    alt=""
+                                />
+                            </div>
+
+                        </div>
+                    </>
+                )}
                 {/* // about section */}
                 <br />
                 <br />
                 <hr className='max-w-7xl mx-auto' />
                 <br />
                 <div className='max-w-7xl mx-auto'>
-                    <div className={`font-bold ${manrope.className} text-3xl `}>About Man Theory</div>
+                    <div className={`font-bold ${manrope.className} text-3xl `}>About {brandData?.brand_name}</div>
                     <br />
-                    <div className='text-left'>With the increased awareness for grooming for men & a variety of men's face grooming products floating around, grooming is no longer associated with a particular gender but a norm for everyone to pursue. The brand’s well researched and fully dermatologically range of skincare are tested to create a safe and secure experience for men and their specific requirements.</div>
+                    <div className={`text-left ${manrope.className} font-[500] text-[19px]`}>
+                        {brandData?.about_brand}
+                    </div>
                 </div>
                 <br />
                 <br />
                 <hr className='max-w-7xl mx-auto' />
-                {/* // another section carousel */}
+                <BrandRewardsCarousel />
+                <BrandDeals secondaryColor={brandData?.secondary_color} textColor={brandData?.text_color} />
+                <hr className='max-w-7xl mx-auto' />
+                <section className='max-w-7xl mx-auto'>
+                    <div className={`${manrope.className} text-center text-3xl font-bold py-8`}>Earn  5 For Every ₹100</div>
+                    <div className={`${manrope.className} text-center text-2xl font-normal pb-8`}>Keep earning POPcoins with every purchase from Body Tales and other brands on POPcoins</div>
+                    <div className='text-center'><Button className={`rounded-full ${manrope.className} text-xl p-6 drop-shadow-md`}>Shop Body Tales Now</Button></div>
+                </section>
             </div>
-            <Carousel responsive={responsive}>
-                <div>
-                    <Image
-                        src="/discountcarousel/discount-slide-background-1.png"
-                        width="0"
-                        height="0"
-                        sizes="100vw"
-                        className="w-full h-auto"
-                        alt=""
-                    />
-                </div>
-                <div>
-                    <Image
-                        src="/discountcarousel/discount-slide-background-2.png"
-                        width="0"
-                        height="0"
-                        sizes="100vw"
-                        className="w-full h-auto"
-                        alt=""
-                    />
-                </div><div>
-                    <Image
-                        src="/discountcarousel/discount-slide-background-3.png"
-                        width="0"
-                        height="0"
-                        sizes="100vw"
-                        className="w-full h-auto"
-                        alt=""
-                    />
-                </div>
-            </Carousel>
+
         </>
     )
 }
