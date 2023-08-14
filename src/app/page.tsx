@@ -37,7 +37,7 @@ export default function Home({
       <Spotlight />
       <PopBenefits />
       <ShoppingDeals />
-      <TopBrands />
+      {/* <TopBrands /> */}
       <POPShop />
       <POPBlog />
     </main>
