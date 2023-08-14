@@ -1,7 +1,7 @@
 'use client'
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { Khand, Manrope } from 'next/font/google'
 import {
     Sheet,
@@ -13,6 +13,9 @@ import {
 } from "@/components/ui/sheet"
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Label } from "@/components/ui/label"
+import { Checkbox } from "@/components/ui/checkbox"
+
 
 
 const manrope = Manrope({
@@ -45,6 +48,9 @@ const responsive = {
 };
 
 function Coupons() {
+
+    const [couponData, setCouponData] = useState<any>([])
+
     const numCards = 10; // Number of cards
 
     const initialCards = Array.from({ length: numCards }, () => ({
@@ -52,6 +58,8 @@ function Coupons() {
     }));
 
     const [cards, setCards] = useState(initialCards);
+    const [categories, setCategories] = useState<any>([]);
+    const [brandNames, setBrandNames] = useState<any>([]);
 
     const transitionConfig = {
         duration: 0.5
@@ -62,6 +70,29 @@ function Coupons() {
         updatedCards[index].isFlipped = !updatedCards[index].isFlipped;
         setCards(updatedCards);
     };
+
+    useEffect(() => {
+        fetch('https://presentation.popclub.co.in/api/presentation-layer/4b35a8aca9f311840d68051abae50ff5/coupons')
+            .then(response => response.json())
+            .then(data => {
+                if (data.is_success) {
+                    setCouponData(data?.data)
+                    console.log(data?.data)
+                    if (data?.data?.length) {
+                        data?.data?.map((itm: any, index: any) => {
+                            setCategories((prevCategories: any) => [...prevCategories, itm?.category]);
+                        })
+                    }
+                } else {
+                    console.log('API request failed:', data.message);
+                }
+            })
+            .catch(error => {
+                console.log('Error:', error);
+            });
+    }, [])
+
+    const uniqueCategories = Array.from(new Set(categories.map(JSON.stringify))).map(JSON.parse);
 
     return (
         <>
@@ -75,10 +106,18 @@ function Coupons() {
                     </div>
                     <SheetContent className="my-[150px]">
                         <SheetHeader>
-                            <SheetTitle>Are you sure absolutely sure?</SheetTitle>
+                            <SheetTitle>Categories</SheetTitle>
                             <SheetDescription>
-                                This action cannot be undone. This will permanently delete your account
-                                and remove your data from our servers.
+                                {uniqueCategories?.map((itm: any, index: any) => (
+                                    <div key={index} className="flex items-center space-x-2 py-2">
+                                        <Checkbox id={itm.name} />
+                                        <Label htmlFor={itm.name}>{itm?.name}</Label>
+                                    </div>
+                                ))}
+                            </SheetDescription>
+                            <SheetTitle>Brands</SheetTitle>
+                            <SheetDescription>
+                                hello
                             </SheetDescription>
                         </SheetHeader>
                     </SheetContent>

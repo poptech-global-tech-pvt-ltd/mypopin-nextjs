@@ -24,7 +24,7 @@ function BrandPage() {
         try {
             setLoading(true)
             const currentBrandURL = window.location.pathname.split("/")[2]
-            fetch(`http://localhost:1337/api/brand-names?filters[url][$eq]=${currentBrandURL}&populate=*`)
+            fetch(`http://3.111.38.79/api/brand-names?filters[url][$eq]=${currentBrandURL}&populate=*`)
                 .then((res) => res.json())
                 .then((data) =>
                     setBrandData(data?.data[0]?.attributes)
