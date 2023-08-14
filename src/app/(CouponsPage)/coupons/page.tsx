@@ -91,7 +91,7 @@ function Coupons() {
                 console.log('Error:', error);
             });
     }, [])
-
+// @ts-ignore
     const uniqueCategories = Array.from(new Set(categories.map(JSON.stringify))).map(JSON.parse);
 
     return (
