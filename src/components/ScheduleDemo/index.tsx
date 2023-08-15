@@ -30,7 +30,32 @@ function ScheduleDemo() {
                 <img src="/demo/center.png" />
                 <img src="/demo/right.png" />
             </div> */}
-            <section className="bg-black py-8">
+
+            <section className="animated-section-content">
+                    <div className="body-content text-center">
+                        <h2>Schedule Your Demo Today!</h2>
+                        <p>Watch our POPcoins demo to turbocharge your e-commerce conversions and build a scalable retention strategy.</p>
+                        {/* <a href="#" target="_blank" className="btn-style scheduleButton">Schedule Now</a> */}
+                        <Dialog>
+                            <DialogTrigger>
+                                <Button className="btn-style scheduleButton">Schedule Now</Button>
+                            </DialogTrigger>
+                            <DialogContent className="p-0 z-[110]">
+                                <DialogDescription>
+                                    <div className="">
+                                        <iframe className="mx-auto h-[80vh]" width="100%" height="600px" src={`https://form.jotform.com/231904966805464`}></iframe>
+                                    </div>
+                                </DialogDescription>
+                            </DialogContent>
+                        </Dialog>
+                        <div className="logo-group d-flex align-items-center justify-content-center">
+                            <img src="/shopify-logo-animate.png" alt="" />
+                            <img src="/shopifyplus-logo-animate.png" alt="" />
+                        </div>
+                    </div>
+                </section>
+
+            {/* <section className="bg-black py-8">
                 <div className="max-w-6xl mx-auto">
                     <div className={`${khand.className} text-[65px] font-[700] text-white text-center`}>Schedule Your Demo Today!</div>
                     <div className={`${manrope.className} text-[22px] font-[600] text-white text-center`}>Watch our POPcoins demo to turbocharge your e-commerce conversions and build a scalable retention strategy.</div>
@@ -53,7 +78,7 @@ function ScheduleDemo() {
                         <img className='pr-2 max-w-[170px]' src="/shopify-plus-logo-white.png" alt="shopify plus logo" />
                     </div>
                 </div>
-            </section>
+            </section> */}
         </>
     )
 }
