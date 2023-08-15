@@ -250,17 +250,17 @@ function Footer() {
                         </div>
                         <div className="text-center sm:text-center md:text-center lg:text-right xl:text-right">
                             <div className="flex items-center justify-center">
-                                <div>
-                                    <Link href={`/`}>
+                                <div className="px-2">
+                                    <Link href={`/sitemap.xml`}>
                                         Sitemap
                                     </Link>
                                 </div>
-                                <div>
+                                <div className="px-2">
                                     <Link href={`/privacy-policy`}>
                                         Privacy Policy
                                     </Link>
                                 </div>
-                                <div>
+                                <div className="px-2">
                                     <Link href={`/terms-and-condition`}>
                                         Terms and Conditions
                                     </Link>
