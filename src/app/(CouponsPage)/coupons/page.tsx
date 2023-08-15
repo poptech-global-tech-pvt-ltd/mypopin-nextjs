@@ -15,6 +15,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
+import { ScrollArea } from "@/components/ui/scroll-area"
+
 
 
 
@@ -81,6 +83,7 @@ function Coupons() {
                     if (data?.data?.length) {
                         data?.data?.map((itm: any, index: any) => {
                             setCategories((prevCategories: any) => [...prevCategories, itm?.category]);
+                            setBrandNames((prev) => [...prev, itm?.display_name])
                         })
                     }
                 } else {
@@ -91,20 +94,20 @@ function Coupons() {
                 console.log('Error:', error);
             });
     }, [])
-// @ts-ignore
+    // @ts-ignore
     const uniqueCategories = Array.from(new Set(categories.map(JSON.stringify))).map(JSON.parse);
-
+    console.log({ brandNames })
     return (
         <>
-            <div className="py-24 max-w-6xl mx-auto">
+            <div className="py-24 max-w-7xl mx-auto">
                 <div className={`${khand.className}  text-center text-6xl py-16`}>Coupons</div>
-                <Sheet>
+                <Sheet key="bottom">
                     <div className="flex justify-end">
                         <SheetTrigger>
                             <Button variant="outline"><span><img src="/filter-icon.svg" /></span>&nbsp;&nbsp;Filters</Button>
                         </SheetTrigger>
                     </div>
-                    <SheetContent className="my-[150px]">
+                    <SheetContent className="z-[200] h-full">
                         <SheetHeader>
                             <SheetTitle>Categories</SheetTitle>
                             <SheetDescription>
@@ -117,15 +120,78 @@ function Coupons() {
                             </SheetDescription>
                             <SheetTitle>Brands</SheetTitle>
                             <SheetDescription>
-                                hello
+                                <ScrollArea className="h-[420px] w-full">
+                                    {brandNames?.map((itm: any, index: any) => (
+                                        <div key={index} className="flex items-center space-x-2 py-2">
+                                            <Checkbox id={itm} />
+                                            <Label htmlFor={itm}>{itm}</Label>
+                                        </div>
+                                    ))}
+                                </ScrollArea>
                             </SheetDescription>
                         </SheetHeader>
                     </SheetContent>
                 </Sheet>
+                {couponData?.map((itm: any, index: number) => (
+                    <div key={index}>
+                        <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6`}>{itm?.display_name}</div>
+                        <Carousel responsive={responsive}>
+                            {itm?.coupons?.length > 0 && itm?.coupons?.map((j, index ) => (
+                                <motion.div
+                                    key={index}
+                                    className="card__wrapper"
+
+                                >
+                                    <motion.div
+                                        transition={transitionConfig}
+                                        initial={false}
+                                        // animate={{ rotateY: card.isFlipped ? 180 : 0 }}
+                                        className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl shadow-lg card"
+                                    >
+                                        <div className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
+                                            <div>
+                                                <div className='text-center flex items-center justify-center py-2'>
+                                                    <img src={itm?.logo?.image} />
+                                                </div>
+                                                <div className='text-center py-2'>
+                                                    <div className={`text-[1.64431rem] font-extrabold`}>+20% off</div>
+                                                    <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
+                                                </div>
+                                                <div className={`text-[0.67069rem] py-2 font-extrabold`}>Earn extra 30% off with popcoins</div>
+                                                <div className='flex items-center justify-center py-2'><Button className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>REDEEM</Button></div>
+                                                <div className={`text-[0.625rem] text-center font-normal`}>Valid till 03 Aug</div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                    <motion.div
+                                        transition={transitionConfig}
+                                        initial={false}
+                                        // animate={{ rotateY: card.isFlipped ? 0 : -180 }}
+                                        className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl shadow-lg card"
+                                    >
+                                        <div className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
+                                            <div>
+                                                <div className='text-center flex items-center justify-center py-2'>
+                                                    <img src={itm?.logo?.image} />
+                                                </div>
+                                                <div className='text-center py-2'>
+                                                    <div className={`text-[1.64431rem] font-extrabold`}>+20% off</div>
+                                                    <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
+                                                </div>
+                                                <div className={`text-[0.67069rem] py-2 font-extrabold`}>Earn extra 30% off with popcoins</div>
+                                                <div className='flex items-center justify-center py-2'><Button className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>REDEEM</Button></div>
+                                                <div className={`text-[0.625rem] text-center font-normal`}>Valid till 03 Aug</div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                </motion.div>
+                            ))}
+                        </Carousel>
+                    </div>
+                ))}
                 <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6`}>Saaki</div>
                 {/* <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", }}> */}
-                <Carousel responsive={responsive}>
-
+                {/* <Carousel className="z-[90]" responsive={responsive}>
                     {cards.map((card, index) => (
                         <motion.div
                             key={index}
@@ -178,7 +244,7 @@ function Coupons() {
                             </motion.div>
                         </motion.div>
                     ))}
-                </Carousel>
+                </Carousel> */}
             </div>
             {/* </div> */}
 

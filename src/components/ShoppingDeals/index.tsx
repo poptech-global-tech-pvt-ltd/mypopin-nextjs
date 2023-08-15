@@ -15,6 +15,8 @@ const khand = Khand({
 
 // Initialize Swiper modules
 import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
+import { Button } from '../ui/button';
+import Link from 'next/link';
 
 function ShoppingDeals() {
     return (
@@ -90,6 +92,11 @@ function ShoppingDeals() {
                             </a>
                         </SwiperSlide>
                     </Swiper>
+                    <div className='flex items-center justify-center py-8'>
+                        <Link href={`/allbrands`}>
+                        <Button variant="outline">View All</Button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

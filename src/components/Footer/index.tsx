@@ -133,13 +133,19 @@ function Footer() {
                             <div className="font-bold text-lg pt-3">Useful links</div>
                             <div className="font-medium">
                                 <div className="py-1">
-                                    Blogs
+                                    <Link href={`https://blog.mypop.in/`}>
+                                        Blogs
+                                    </Link>
                                 </div>
                                 <div className="py-1">
-                                    Coinledger
+                                    <Link href={`/`}>
+                                        Coinledger
+                                    </Link>
                                 </div>
                                 <div className="py-1">
-                                    Partner with POP
+                                    <Link href={`/partner-with-pop`}>
+                                        Partner with POP
+                                    </Link>
                                 </div>
                                 <div className="py-1 ">
                                     Schedule a Demo
@@ -148,7 +154,9 @@ function Footer() {
                         </div>
                         <div className="pr-2">
                             <div className="font-bold text-lg pt-3">Contact Us</div>
-                            <div>hello@popclub.co</div>
+                            <Link href={`mailto:hello@popclub.co`}>
+                                <div>hello@popclub.co</div>
+                            </Link>
                             <div className="font-bold text-lg pt-3">Address</div>
                             <div className="py-1">
                                 Urban Vault, HSR Layout 6/A-16, 18th Cross Rd, Sector 3, HSR Layout, Bengaluru, Karnataka - 560102
@@ -156,42 +164,58 @@ function Footer() {
                         </div>
                         <div className="pl-0">
                             <div className="font-bold text-xl pt-3">Follow Us</div>
-                            <div className="flex my-2">
-                                <Image
-                                    className="mr-2"
-                                    src="/facebook.svg"
-                                    width={36}
-                                    height={36}
-                                    alt="facebook logo"
-                                />
-                                <Image
-                                    className="m-2"
-                                    src="/instagram.svg"
-                                    width={36}
-                                    height={36}
-                                    alt="instagram logo"
-                                />
-                                <Image
-                                    className="m-2"
-                                    src="/pintrest.svg"
-                                    width={36}
-                                    height={36}
-                                    alt="pinterest logo"
-                                />
-                                <Image
-                                    className="m-2"
-                                    src="/twitter.svg"
-                                    width={36}
-                                    height={36}
-                                    alt="twitter logo"
-                                />
-                                <Image
-                                    className="m-2"
-                                    src="/linkedin.svg"
-                                    width={36}
-                                    height={36}
-                                    alt="linkedin logo"
-                                />
+                            <div className="flex my-2 items-center">
+                                <Link href={`https://www.facebook.com/getpopclub`}>
+                                    <div>
+                                        <Image
+                                            className="mr-2"
+                                            src="/facebook.svg"
+                                            width={36}
+                                            height={36}
+                                            alt="facebook logo"
+                                        />
+                                    </div>
+                                </Link>
+                                <Link href={`https://www.instagram.com/getpopclub/`}>
+                                    <div>
+                                        <Image
+                                            className="m-2"
+                                            src="/instagram.svg"
+                                            width={36}
+                                            height={36}
+                                            alt="instagram logo"
+                                        />
+                                    </div>
+                                </Link>
+                                <Link href={``}>
+                                    <div>
+                                        <Image
+                                            className="m-2"
+                                            src="/pintrest.svg"
+                                            width={36}
+                                            height={36}
+                                            alt="pinterest logo"
+                                        />
+                                    </div>
+                                </Link>
+                                <Link href={`https://twitter.com/getpopclub`}>
+                                    <Image
+                                        className="m-2"
+                                        src="/twitter.svg"
+                                        width={36}
+                                        height={36}
+                                        alt="twitter logo"
+                                    />
+                                </Link>
+                                <Link href={`https://www.linkedin.com/company/getpopcoins`}>
+                                    <Image
+                                        className="m-2"
+                                        src="/linkedin.svg"
+                                        width={36}
+                                        height={36}
+                                        alt="linkedin logo"
+                                    />
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -204,24 +228,44 @@ function Footer() {
                         <div className="text-center">
                             <div className="flex items-center justify-center">
                                 <div>Let’s Try Out</div>
-                                <Image
-                                    className="mx-2"
-                                    src="/apple.svg"
-                                    width={22}
-                                    height={28}
-                                    alt="facebook logo"
-                                />
-                                <Image
-                                    className="mx-2"
-                                    src="/playstore.svg"
-                                    width={25}
-                                    height={28}
-                                    alt="facebook logo"
-                                />
+                                <Link target="_blank" href={`https://apps.apple.com/in/app/popclub-shop-earn-rewards/id6443502397`}>
+                                    <Image
+                                        className="mx-2"
+                                        src="/apple.svg"
+                                        width={22}
+                                        height={28}
+                                        alt="facebook logo"
+                                    />
+                                </Link>
+                                <Link target="_blank" href={`https://play.google.com/store/apps/datasafety?id=com.popclub.android&hl=en_IN&gl=US`}>
+                                    <Image
+                                        className="mx-2"
+                                        src="/playstore.svg"
+                                        width={25}
+                                        height={28}
+                                        alt="facebook logo"
+                                    />
+                                </Link>
                             </div>
                         </div>
                         <div className="text-center sm:text-center md:text-center lg:text-right xl:text-right">
-                            Sitemap | Privacy policy | Terms and Conditions
+                            <div className="flex items-center justify-center">
+                                <div>
+                                    <Link href={`/`}>
+                                        Sitemap
+                                    </Link>
+                                </div>
+                                <div>
+                                    <Link href={`/privacy-policy`}>
+                                        Privacy Policy
+                                    </Link>
+                                </div>
+                                <div>
+                                    <Link href={`/terms-and-condition`}>
+                                        Terms and Conditions
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

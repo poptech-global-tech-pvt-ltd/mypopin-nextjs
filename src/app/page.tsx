@@ -30,13 +30,13 @@ export default function Home({
       <Layout>
         <Hero />
         <HeroPartners />
+        <ShoppingDeals />
         <HowItWorks />
         <POPInNumbers />
       </Layout>
       {/* <ShoppingDealsCarousel /> */}
       <Spotlight />
       <PopBenefits />
-      <ShoppingDeals />
       {/* <TopBrands /> */}
       <POPShop />
       <POPBlog />

@@ -92,6 +92,14 @@ export function NavigationMenuDemo() {
     ]
   }
 
+  const handleScrollToBottom = () => {
+    requestAnimationFrame(() => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
+    });
+  }
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -161,14 +169,7 @@ export function NavigationMenuDemo() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem className={`${manrope.className} font-bold`}
-        >
-          <Link href="/" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <div className={`${manrope.className} font-bold text-[16px]`}>Rewards</div>
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
+
         <NavigationMenuItem className={`${manrope.className} font-bold`}
         >
           <Link href="/coupons" legacyBehavior passHref>
@@ -182,6 +183,14 @@ export function NavigationMenuDemo() {
           <Link href="https://blog.mypop.in/" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               <div className={`${manrope.className} font-bold text-[16px]`}>Blog</div>
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem className={`${manrope.className} font-bold`}
+        >
+          <Link href="/" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <div onClick={handleScrollToBottom} className={`${manrope.className} font-bold text-[16px]`}>Help & Supports</div>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

@@ -15,7 +15,7 @@ export interface POPCardProps {
 function POPCard({ title, description, imageRelativePath }: POPCardProps) {
     return (
         <>
-            <div className="bg-[#FAFAFA] border border-[#E9E9E9] rounded-[40px] min-w-[310px] m-4">
+            <div className="bg-[#FAFAFA] border border-[#E9E9E9] rounded-[40px] w-[310px] h-[380px] m-4">
                 <div>
                     <Image
                         src={imageRelativePath}
@@ -27,7 +27,7 @@ function POPCard({ title, description, imageRelativePath }: POPCardProps) {
                 </div>
                 <div>
                     <div className={`text-center text-2xl ${manrope.className} font-medium`}>{title}</div>
-                    <div className={`text-center pt-3 pb-6 px-4 ${manrope.className}`}>{description}</div>
+                    <div className={`text-center text-[16px] pt-3 pb-6 px-4 ${manrope.className}`}>{description}</div>
                 </div>
             </div>
         </>
