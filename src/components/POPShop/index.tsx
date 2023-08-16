@@ -96,6 +96,7 @@ function POPShop() {
 
     return (
         <>
+
             {isDesktopOrLaptop && (
                 <div>
                     <div className={`${khand.className} text-center text-6xl py-16`}>Introducing the POPshop</div>
@@ -123,6 +124,7 @@ function POPShop() {
                     </div>
                 </>
             )}
+            
         </>
     )
 }

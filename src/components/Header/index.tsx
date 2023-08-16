@@ -88,7 +88,8 @@ function Header() {
     }, [cookieKey])
 
     return (
-        <main className="fixed w-full z-[100]">
+        // if header animation has been removed, add "fixed" class to fix it
+        <main className="w-full fixed z-[100]">
             <div className="bg-white h-24 flex items-center justify-center">
                 <div className="max-w-[1350px] w-full">
                     <div className="flex justify-between">
@@ -111,7 +112,7 @@ function Header() {
                         </div>
                         <div className="flex items-center">
                             <div className="flex">
-                                <div>100</div>
+                                {/* <div>100</div> */}
                                 {/* // popcoins number */}
                                 <Image
                                     src="/popcoin.svg"

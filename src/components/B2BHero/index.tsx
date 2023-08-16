@@ -3,6 +3,7 @@ import { Manrope } from 'next/font/google'
 import { Inter } from 'next/font/google'
 import { Button } from '../ui/button'
 import Image from 'next/image'
+import { Dialog, DialogContent, DialogDescription, DialogTrigger } from '../ui/dialog'
 
 const khand = Khand({
     weight: '700',
@@ -26,8 +27,22 @@ function B2BHero() {
                             <h1>One-Stop Solution<br /> for Rention</h1>
                         </div>
                         <div className={`text-xl ${manrope.className} py-2 text-center lg:text-left`}>Maximise customer engagement by implementing a highly relevant loyalty program. Say 👋 to POPcoins , India’s 1st ecosystem currency focused on d2c brands.</div>
-                        <div className='py-2 text-center lg:text-left'> 
-                            <Button className={`bg-black ${inter.className} rounded-full text-xl font-normal p-7 mx-auto`}>Schedule a Demo</Button>
+                        <div className='py-2 text-center lg:text-left'>
+                            <Dialog>
+                                <DialogTrigger>
+                                    <div className="py-1 ">
+                                        <Button className={`bg-black ${inter.className} rounded-full text-xl font-normal p-7 mx-auto`}>Schedule a Demo</Button>
+
+                                    </div>
+                                </DialogTrigger>
+                                <DialogContent className="p-0 z-[110]">
+                                    <DialogDescription>
+                                        <div className="">
+                                            <iframe className="mx-auto h-[80vh]" width="100%" height="600px" src={`https://form.jotform.com/231904966805464`}></iframe>
+                                        </div>
+                                    </DialogDescription>
+                                </DialogContent>
+                            </Dialog>
                         </div>
                         <div className='flex py-2 justify-center lg:justify-normal'>
                             <Image className='pr-2' width="134" height="39" src="/shopify-logo.svg" alt="shopify logo" />
@@ -36,7 +51,7 @@ function B2BHero() {
                     </section>
                     <section className='mx-auto my-auto'>
                         <div>
-                            <video style={{clipPath : "inset(1px 1px)"}} autoPlay muted loop playsInline>
+                            <video style={{ clipPath: "inset(1px 1px)" }} autoPlay muted loop playsInline>
                                 <source src="https://ik.imagekit.io/wftc9lab0/B2bHero.mp4?updatedAt=1689592126092" type="video/mp4" />
                                 Your browser does not support the video tag.
                             </video>

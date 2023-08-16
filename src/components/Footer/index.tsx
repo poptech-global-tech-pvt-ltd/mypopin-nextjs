@@ -8,6 +8,8 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
+import { Dialog, DialogContent, DialogDescription, DialogTrigger } from "../ui/dialog"
+import { Button } from "../ui/button"
 
 function Footer() {
     // remove this and choose between swr OR tanstack-query
@@ -15,7 +17,7 @@ function Footer() {
 
     useEffect(() => {
         const getBrandNames = async () => {
-            fetch('http://localhost:1337/api/footer-top-brands?populate=*').then((res) => res.json()).then((data) => setAllBrands(data?.data[0].attributes.brand_names))
+            fetch('http://3.111.38.79/api/footer-top-brands?populate=*').then((res) => res.json()).then((data) => setAllBrands(data?.data[0].attributes.brand_names))
         }
         getBrandNames()
     }, [])
@@ -107,24 +109,13 @@ function Footer() {
                             <div className="font-medium">
                                 {allBrands?.data?.length && allBrands?.data?.map((i: any, index: any) => (
                                     <Fragment key={index}>
-                                        <div className="py-1">
-                                            {i?.attributes?.brand_name}
-                                        </div>
+                                        <Link href={`/brands/${i?.attributes?.url}`}>
+                                            <div className="py-1">
+                                                {i?.attributes?.brand_name}
+                                            </div>
+                                        </Link>
                                     </Fragment>
                                 ))}
-                                {allBrands && allBrands?.data?.length === 0 && (
-                                    <div>
-                                        <div className="py-1">
-                                            Saaki
-                                        </div>
-                                        <div className="py-1">
-                                            Teetrunk
-                                        </div>
-                                        <div className="py-1">
-                                            Anveshan
-                                        </div>
-                                    </div>
-                                )}
                             </div>
                             <Link href="/allbrands">
                                 <div className="underline underline-offset-2">View All</div>
@@ -148,9 +139,20 @@ function Footer() {
                                         Partner with POP
                                     </Link>
                                 </div>
-                                <div className="py-1 ">
-                                    Schedule a Demo
-                                </div>
+                                <Dialog>
+                                    <DialogTrigger>
+                                            <div className="py-1 ">
+                                                Schedule a Demo
+                                            </div>
+                                    </DialogTrigger>
+                                    <DialogContent className="p-0 z-[110]">
+                                        <DialogDescription>
+                                            <div className="">
+                                                <iframe className="mx-auto h-[80vh]" width="100%" height="600px" src={`https://form.jotform.com/231904966805464`}></iframe>
+                                            </div>
+                                        </DialogDescription>
+                                    </DialogContent>
+                                </Dialog>
                             </div>
                         </div>
                         <div className="pr-2">

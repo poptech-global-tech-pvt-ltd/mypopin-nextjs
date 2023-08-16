@@ -818,3 +818,9 @@ h6 {
       margin-right: 12px;
   }
 }
+
+.top-brand-itm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
