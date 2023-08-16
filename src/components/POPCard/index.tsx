@@ -15,7 +15,7 @@ export interface POPCardProps {
 function POPCard({ title, description, imageRelativePath }: POPCardProps) {
     return (
         <>
-            <div className="bg-[#FAFAFA] border border-[#E9E9E9] rounded-[40px] w-[310px] h-[380px] m-4">
+            <div className="bg-[#FAFAFA] border border-[#E9E9E9] rounded-[40px] w-[310px] h-[380px] m-4 mx-auto">
                 <div>
                     <Image
                         src={imageRelativePath}

@@ -24,7 +24,7 @@ const benefits = [
 
 export const ExtraFooter = () => {
     return (
-        <div className={`flex items-center ${manrope.className} font-bold text-[20px]`}>
+        <div className={`flex items-center ${manrope.className} font-bold text-[16px] lg:text-[20px]`}>
             <div>1</div>
             <div>
                 <Image
@@ -50,22 +50,24 @@ function PopBenefits() {
         <div className='bg-[#F9F9F9]'>
             <div className="py-10 max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr]">
-                    <div className={`text-6xl ${khand.className} flex items-center font-bold`}>Optimise Your Shopping Benefits With POPCoins</div>
+                    {/* <div className={`text-6xl ${khand.className} flex items-center font-bold`}>Optimise Your Shopping Benefits With POPCoins</div> */}
+                    <div className={`px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 text-center lg:text-6xl py-16 font-bold ${khand.className}`}>Optimise Your Shopping Benefits With POPCoins</div>
                     {/* // card container */}
-                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 px-14'>
+                    <div className='grid grid-cols-2 lg:grid-cols-2 gap-2 lg:gap-4 px-2 lg:px-14'>
                         {benefits?.map((itm, index) => (
                             <div key={index}>
-                                <div className='bg-white p-10 rounded-lg drop-shadow-sm h-full cursor-pointer transition-transform hover:scale-105'>
-                                    <div className='text-3xl font-bold flex'>
-                                        <Image
+                                <div className='bg-white p-[10px] lg:p-10 rounded-lg drop-shadow-sm h-full cursor-pointer transition-transform hover:scale-105'>
+                                    <div className='text-3xl font-bold flex items-center justify-center'>
+                                        <img
+                                        className='w-[22px] lg:w-[32px] h-[22px] lg:h-[32px]'
                                             src={itm?.iconRelativePath}
-                                            width={32}
-                                            height={32}
+                                            // width={32}
+                                            // height={32}
                                             alt="Popcoin"
                                         />
-                                        <div className='px-2'>{itm?.title}</div>
+                                        <div className='text-[17px] lg:text-[20px] px-2'>{itm?.title}</div>
                                     </div>
-                                    <div className='text-[16px] text-[#475569]'>{itm?.description}</div>
+                                    <div className='text-[10px] lg:text-[17px] text-[#475569]'>{itm?.description}</div>
                                     {index === 0 && <ExtraFooter />}
                                 </div>
                             </div>

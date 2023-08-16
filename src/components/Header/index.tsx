@@ -12,9 +12,81 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
+import { useEffect, useState } from "react"
 
 function Header() {
+    const [cookieKey, setCookieKey] = useState("");
+
+    const handleLogin = () => {
+        //get cookie name
+        function getCookie(name: string) {
+            const cookieValue: any = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+            return cookieValue ? decodeURIComponent(cookieValue.pop()) : null;
+        }
+        //set cookie name
+        function setCookie(name: any, value: any, daysToExpire: any) {
+            const expires = new Date();
+            expires.setDate(expires.getDate() + daysToExpire);
+
+            const cookieValue = encodeURIComponent(value) + (daysToExpire ? `; expires=${expires.toUTCString()}` : '');
+
+            document.cookie = `${name}=${cookieValue}; path=/`;
+        }
+        // generate a 32 digit random number
+        function generateRandomNumberString(length: any) {
+            const characters = '0123456789';
+            let randomString = '';
+
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                randomString += characters[randomIndex];
+            }
+
+            return randomString;
+        }
+        const hasCookieAlready = getCookie('cookieKey')
+
+        if (hasCookieAlready) {
+            //from useState
+            setCookieKey(hasCookieAlready)
+        }
+
+        else {
+            let randomNo = generateRandomNumberString(32)
+            //from useState
+            setCookieKey(randomNo)
+
+            // adding cookie to the browser
+            setCookie('cookieKey', randomNo, 7);
+        }
+
+    }
+
     const pathName = usePathname()
+
+    useEffect(() => {
+        if (cookieKey) {
+            if (cookieKey) {
+                try {
+
+
+                    fetch(` https://coins.mypopcoins.com/user-coins?brand=mypopin&key=${cookieKey}`, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Basic cGwtcHJvZDpwbEAyMHR3ZW50eXR3bw=='
+                        }
+                    })
+                        .then((res) => res.json())
+                        .then((data) => {
+                            console.log("data---->", data);
+                        });
+                } catch (err) {
+                    console.log("Oops! An error has occurred");
+                }
+            }
+        }
+    }, [cookieKey])
+
     return (
         <main className="fixed w-full z-[100]">
             <div className="bg-white h-24 flex items-center justify-center">
@@ -57,14 +129,14 @@ function Header() {
                                         height={25}
                                         alt="avatar"
                                         className="ml-3"
-                                        onClick={() => console.log("here")}
+                                        onClick={() => handleLogin()}
                                     />
                                 </DialogTrigger>
-                                <DialogContent className="p-0 z-[110]">
+                                <DialogContent className="p-0 m-0 w-[100px] z-[110]">
                                     <DialogDescription>
                                         <div className="">
                                             {/* // disable z-index from header and it works */}
-                                            <iframe className="mx-auto h-[80vh]" width="100%" height="600px" src="https://coins.mypopcoins.com/"></iframe>
+                                            <iframe className="mx-auto h-[80vh]" width="100%" height="600px" src={`https://coins.mypopcoins.com/?key=${cookieKey}`}></iframe>
                                         </div>
                                     </DialogDescription>
                                 </DialogContent>

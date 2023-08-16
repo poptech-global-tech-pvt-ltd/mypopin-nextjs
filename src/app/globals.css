@@ -360,3 +360,15 @@ h6 {
     grid-row: 3 / 4;
   }
 }
+
+.swiper {
+  width: 100vw;
+  /* margin: 0 auto; */
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.integration-container {
+  background-image: url('/public/Integrations-bg.png');
+}

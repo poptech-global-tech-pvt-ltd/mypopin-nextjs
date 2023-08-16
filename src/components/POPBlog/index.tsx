@@ -5,13 +5,13 @@ import { Button } from '../ui/button'
 import Link from 'next/link'
 
 const khand = Khand({
-    weight: '700',
+    weight: ['700', '400', '500'],
     subsets: ['latin'],
 })
 
 const manrope = Manrope({
     subsets: ['latin'],
-    weight: ['400', '700', '800']
+    weight: ['400','500', '700', '800']
 })
 
 
@@ -21,9 +21,9 @@ function POPBlog() {
             <br />
             <br />
             <section className="bg-[#F7F7F9] max-w-5xl mx-auto rounded-3xl p-8">
-                <div className={`${manrope.className} flex text-[32px] font-[800]`}>
-                    <div className="text-black">POP Circle. </div>
-                    <div className="text-[#6B7280]">Curated Reads For You</div>
+                <div className={`${khand.className} flex flex-col lg:flex-row leading-6 lg:leading-0`}>
+                    <div className={`${khand.className} text-black text-[45px] lg:text-[40px] font-[800]`}>POP Circle. </div>
+                    <div className={`${khand.className} text-[#6B7280] text-[14px] lg:text-[40px] font-[500] lg:font-[800]`}>Curated Reads For You</div>
                 </div>
                 <br />
                 <section className='blog-grid-container'>
@@ -39,7 +39,7 @@ function POPBlog() {
                         </div>
                     </div>
                     <div className='blog-grid-itm-2 px-2'>
-                        <div className='grid grid-cols-[2fr_1fr]'>
+                        <div className='grid grid-cols-[2fr_1fr] items-center lg:items-start'>
                             <div>
                                 <div className='py-4'><Badge className='bg-[#DFE7FF] text-[#3730A3]'>{popBlog[1].category}</Badge></div>
                                 <div className={`${manrope.className} text-[14px] font-bold`}>{popBlog[1].title}</div>
@@ -56,7 +56,7 @@ function POPBlog() {
                         </div>
                     </div>
                     <div className='blog-grid-itm-3 px-2'>
-                        <div className='grid grid-cols-[2fr_1fr]'>
+                        <div className='grid grid-cols-[2fr_1fr] items-center lg:items-start'>
                             <div>
                                 <div className='py-4'><Badge className='bg-[#FEF9C3] text-[#844D0F]'>{popBlog[2].category}</Badge></div>
                                 <div className={`${manrope.className} text-[14px] font-bold`}>{popBlog[2].title}</div>
@@ -73,7 +73,7 @@ function POPBlog() {
                         </div>
                     </div>
                     <div className='blog-grid-itm-4 px-2'>
-                        <div className='grid grid-cols-[2fr_1fr]'>
+                        <div className='grid grid-cols-[2fr_1fr] items-center lg:items-start'>
                             <div>
                                 <div className='py-4'><Badge className='text-[#6B21A8] bg-[#F3E7FF]'>{popBlog[3].category}</Badge></div>
                                 <div className={`${manrope.className} text-[14px] font-bold`}>{popBlog[3].title}</div>

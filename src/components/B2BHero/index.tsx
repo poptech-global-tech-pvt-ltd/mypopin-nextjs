@@ -36,7 +36,7 @@ function B2BHero() {
                     </section>
                     <section className='mx-auto my-auto'>
                         <div>
-                            <video autoPlay muted loop playsInline>
+                            <video style={{clipPath : "inset(1px 1px)"}} autoPlay muted loop playsInline>
                                 <source src="https://ik.imagekit.io/wftc9lab0/B2bHero.mp4?updatedAt=1689592126092" type="video/mp4" />
                                 Your browser does not support the video tag.
                             </video>
