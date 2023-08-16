@@ -12,7 +12,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const manrope = Manrope({
     subsets: ['latin'],
-    weight: ['400', '500', '700']
+    weight: ['400', '500', '700', '800']
 })
 
 function BrandPage() {
@@ -41,7 +41,7 @@ function BrandPage() {
 
     return (
         <>
-            <div className="pt-[11rem]">
+            <div className="pt-[3rem] lg:pt-[11rem] px-2">
                 {/* // grid container */}
                 {isLoading ? (
                     <>
@@ -63,26 +63,25 @@ function BrandPage() {
                 ) : (
                     <>
                         <div className="test-container max-w-7xl mx-auto">
-
                             <div style={{ backgroundColor: brandData?.primary_color }} className="itm1 p-6 rounded-3xl">
                                 <div className='flex justify-between'>
                                     <div>
-                                        <div style={{ color: brandData?.text_color }} className={`uppercase text-5xl ${manrope.className} font-bold`}>Extra 30% off</div>
+                                        <div style={{ color: brandData?.text_color }} className={`uppercase text-[28px] lg:text-5xl ${manrope.className} font-bold`}>Extra 30% off</div>
                                         <div style={{ color: brandData?.text_color }} className={`uppercase text-5xl ${manrope.className} font-bold`}>
                                             <div className='flex items-center'>
-                                                <div>WITH</div>
+                                                <div className='lg:text-5xl text-[28px] font-extrabold'>WITH</div>
                                                 <div className='px-2'><img width="35" height="35" src="/popcoin-icon.svg" /></div>
                                             </div>
                                         </div>
-                                        <div style={{ color: brandData?.text_color }} className={`text-xl ${manrope.className}`}>{brandData?.sub_title}</div>
+                                        <div style={{ color: brandData?.text_color }} className={`lg:text-xl text-[17px] ${manrope.className}`}>{brandData?.sub_title}</div>
                                     </div>
                                     <div>
-                                        <div style={{ transform: "translate(13%, -45%)", backgroundColor: brandData?.primary_color, color: brandData?.text_color }} className={`h-[200px] w-[200px] rounded-full flex justify-center items-center ${manrope.className} text-2xl font-bold text-center p-8 text-white pulsating-border`}>Limited Time Deal</div>
+                                        <div style={{ backgroundColor: brandData?.primary_color, color: brandData?.text_color }} className={`h-[100px] w-[100px] lg:h-[200px] lg:w-[200px] rounded-full flex justify-center items-center translate-x-6 -translate-y-16 lg:translate-x-13 lg:-translate-y-45 ${manrope.className} text-[15px] lg:text-2xl font-bold text-center p-8 text-white pulsating-border`}>Limited Time Deal</div>
                                     </div>
                                 </div>
                                 <div className='flex justify-between items-center'>
                                     <Button className={`${manrope.className} bg-white text-lg text-black hover:text-white font-bold rounded-full`}>Shop with POPCoins</Button>
-                                    <div>
+                                    <div className='hidden lg:block'>
                                         <img src={brandData?.round_logo?.data?.attributes?.url} />
                                     </div>
                                 </div>
@@ -90,15 +89,12 @@ function BrandPage() {
                             <div className="itm2">
                                 <Image
                                     src={brandData?.brand_hero_image_small_1?.data?.attributes?.url}
-                                    // blurDataURL={brandData?.brand_hero_image_small_1?.data?.attributes?.url}
-                                    // placeholder="shimmer"
                                     width="0"
                                     height="0"
                                     sizes="100vw"
                                     className="w-full h-full rounded-3xl object-cover"
                                     alt=""
                                     style={{ objectFit: "cover" }}
-
                                 />
                             </div>
                             <div className="itm3 ">
@@ -110,7 +106,6 @@ function BrandPage() {
                                     className="w-full h-full rounded-3xl object-cover"
                                     alt=""
                                     style={{ objectFit: "cover" }}
-
                                 />
                             </div>
                             <div className="itm4">
@@ -123,7 +118,6 @@ function BrandPage() {
                                     alt=""
                                 />
                             </div>
-
                         </div>
                     </>
                 )}

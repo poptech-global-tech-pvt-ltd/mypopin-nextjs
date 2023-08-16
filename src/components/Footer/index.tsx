@@ -26,7 +26,7 @@ function Footer() {
                 <Accordion type="single" collapsible>
                     <AccordionItem value="item-1">
                         <AccordionTrigger>POP: Shop, Earn Popcoins, Get Rewards & Become our Partner</AccordionTrigger>
-                        <AccordionContent className="p-[0px] pb-0">
+                        <AccordionContent className="p-[0px] pb-0 px-2 lg:px-0">
                             <div className="bg-white">
                                 <h6 className="pt-4 pb-2 font-bold">Comprehensive solutions as to why POPcoins help D2C brands</h6>
                                 <p className="pb-2">In the evolving landscape of direct-to-consumer (D2C) brands, establishing a strong customer base and fostering loyalty is crucial for long-term success. One innovative solution that has emerged to address this challenge is the implementation of a loyalty currency called POPcoins.</p>
@@ -138,11 +138,11 @@ function Footer() {
                                         Blogs
                                     </Link>
                                 </div>
-                                <div className="py-1">
+                                {/* <div className="py-1">
                                     <Link href={`/`}>
                                         Coinledger
                                     </Link>
-                                </div>
+                                </div> */}
                                 <div className="py-1">
                                     <Link href={`/partner-with-pop`}>
                                         Partner with POP
