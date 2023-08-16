@@ -3,6 +3,7 @@ import { Layout } from "@/components/Layout"
 import { Hero } from '@/components/Hero'
 import { HeroPartners } from '@/components/HeroPartners'
 import { HowItWorks } from '@/components/HowItWorks'
+import { TopPOPcoinPartnerBrands } from '@/components/TopPOPcoinPartnerBrands'
 import { POPInNumbers } from '@/components/POPInNumbers'
 import { PopBenefits } from '@/components/PopBenefits'
 import dynamic from "next/dynamic"
@@ -32,6 +33,7 @@ export default function Home({
         <HeroPartners />
         <ShoppingDeals />
         <HowItWorks />
+        <TopPOPcoinPartnerBrands/>
         <POPInNumbers />
       </Layout>
       {/* <ShoppingDealsCarousel /> */}
