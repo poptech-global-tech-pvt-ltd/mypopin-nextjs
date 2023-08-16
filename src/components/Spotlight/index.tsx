@@ -49,7 +49,7 @@ var settings = {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1
         }
       }
@@ -60,7 +60,7 @@ function Spotlight() {
     return (
         <>
             <div className="max-w-6xl mx-auto mb-12">
-                <div className={`${khand.className}  text-center text-6xl py-16`}>Spotlight Brands Offering Discounts</div>
+                <div className={`px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 text-center lg:text-6xl py-16 font-bold ${khand.className}`}>Spotlight Brands Offering Discounts</div>
                 <div>
                     <Slider {...settings}>
                         {spolightBrands?.map(((i, index) => (

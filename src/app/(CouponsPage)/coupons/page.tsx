@@ -83,7 +83,7 @@ function Coupons() {
                     if (data?.data?.length) {
                         data?.data?.map((itm: any, index: any) => {
                             setCategories((prevCategories: any) => [...prevCategories, itm?.category]);
-                            setBrandNames((prev) => [...prev, itm?.display_name])
+                            setBrandNames((prev : any) => [...prev, itm?.display_name])
                         })
                     }
                 } else {
@@ -136,7 +136,7 @@ function Coupons() {
                     <div key={index}>
                         <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6`}>{itm?.display_name}</div>
                         <Carousel responsive={responsive}>
-                            {itm?.coupons?.length > 0 && itm?.coupons?.map((j, index ) => (
+                            {itm?.coupons?.length > 0 && itm?.coupons?.map((j : any, index : any ) => (
                                 <motion.div
                                     key={index}
                                     className="card__wrapper"

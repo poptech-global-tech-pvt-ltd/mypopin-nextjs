@@ -21,7 +21,8 @@ import Link from 'next/link';
 function ShoppingDeals() {
     return (
         <div className="max-w-6xl mx-auto">
-            <div className={`text-center text-6xl py-16 font-bold ${khand.className}`}>Best Shopping Deals Online</div>
+            <div className={`px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 text-center lg:text-6xl py-16 font-bold ${khand.className}`}>Best Shopping Deals Online</div>
+            <div className='py-12 lg:py-24' />
             <div className="shopping-deals">
                 <div className='swiper-container'>
                     <Swiper
@@ -64,37 +65,51 @@ function ShoppingDeals() {
                         }}
                     >
                         <SwiperSlide>
-                            <a href="/brands/anveshan">
-                                <img width="100%" src="/brandscarousel/1.png" alt="Slide 1" />
-                            </a>
+                            <div>
+                                <a href="/brands/anveshan">
+                                    <img width="100%" src="/brandscarousel/1.png" alt="Slide 1" />
+                                </a>
+                            </div>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <a href="/brands/anveshan">
-                                <img width="100%" src="/brandscarousel/2.png" alt="Slide 2" />
-                            </a>
+                            <div>
+                                <a href="/brands/anveshan">
+                                    <img width="100%" src="/brandscarousel/2.png" alt="Slide 2" />
+                                </a>
+                            </div>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <a href="/brands/anveshan">
-                                <img width="100%" src="/brandscarousel/3.png" alt="Slide 3" />
-                            </a>
+                            <div>
+                                <a href="/brands/anveshan">
+                                    <img width="100%" src="/brandscarousel/3.png" alt="Slide 3" />
+                                </a>
+                            </div>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <a href="/brands/anveshan">
-                                <img width="100%" src="/brandscarousel/4.png" alt="Slide 3" />
-                            </a>
-                        </SwiperSlide> <SwiperSlide>
-                            <a href="/brands/anveshan">
-                                <img width="100%" src="/brandscarousel/5.png" alt="Slide 3" />
-                            </a>
-                        </SwiperSlide> <SwiperSlide>
-                            <a href="/brands/anveshan">
-                                <img width="100%" src="/brandscarousel/6.png" alt="Slide 3" />
-                            </a>
+                            <div>
+                                <a href="/brands/anveshan">
+                                    <img width="100%" src="/brandscarousel/4.png" alt="Slide 3" />
+                                </a>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div>
+                                <a href="/brands/anveshan">
+                                    <img width="100%" src="/brandscarousel/5.png" alt="Slide 3" />
+                                </a>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div>
+                                <a href="/brands/anveshan">
+                                    <img width="100%" src="/brandscarousel/6.png" alt="Slide 3" />
+                                </a>
+                            </div>
                         </SwiperSlide>
                     </Swiper>
-                    <div className='flex items-center justify-center py-8'>
+                    <div className='flex items-center justify-center -mt-[50px] lg:-mt-[100px]'>
                         <Link href={`/allbrands`}>
-                        <Button variant="outline">View All</Button>
+                            <Button variant="outline">View All</Button>
                         </Link>
                     </div>
                 </div>

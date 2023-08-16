@@ -361,6 +361,7 @@ h6 {
   }
 }
 
+/* <<<<<<< Schedule_Animation */
 
 .animated-section-content {
   position: relative;
@@ -806,4 +807,16 @@ h6 {
   .slider-popcoins-brands .item {
       margin-right: 12px;
   }
+
+.swiper {
+  width: 100vw;
+  /* margin: 0 auto; */
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.integration-container {
+  background-image: url('/public/Integrations-bg.png');
+/*  */
 }

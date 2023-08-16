@@ -28,9 +28,9 @@ const integrationLogos = [
 
 function B2BIntegrations() {
     return (
-        <div className="bg-black hover:bg-[#F56651]">
+        <div className="bg-[url('/integrations-bg.png')] hover:bg-[#F56651]">
             <div className="max-w-6xl mx-auto">
-                <div className={`${khand.className} text-5xl lg:text-8xl text-center py-8 text-white`}>Integrations</div>
+                <div className={`${khand.className}  text-5xl lg:text-8xl text-center py-8 text-white`}>Integrations</div>
                 {/* <div className='flex'>
                     {integrationLogos?.map((i, index) => (
                         <div key={index}>

@@ -98,6 +98,7 @@ function Footer() {
                     </AccordionItem>
                 </Accordion>
             </div>
+            <hr />
             <footer className="bg-white">
                 <div style={{ margin: "0 auto" }} className="max-w-[1350px] md:px-4 pt-2 pb-4">
                     <div className="grid px-2 md:grid-cols-[1fr] lg:grid-cols-[1fr_1fr_1fr_1fr]">
@@ -250,11 +251,11 @@ function Footer() {
                         </div>
                         <div className="text-center sm:text-center md:text-center lg:text-right xl:text-right">
                             <div className="flex items-center justify-center">
-                                <div className="px-2">
+                                {/* <div className="px-2">
                                     <Link href={`/sitemap.xml`}>
                                         Sitemap
                                     </Link>
-                                </div>
+                                </div> */}
                                 <div className="px-2">
                                     <Link href={`/privacy-policy`}>
                                         Privacy Policy
