@@ -85,13 +85,13 @@ function POPShop() {
         // setMobileThree("-20px")
         setMobileSecondActive((prev) => !prev)
         if (isMobileSecondActive === true) {
-            //reset the rest
-            setMobileTwo("-750px")
             setMobileFour("-600px")
-        }
-        else {
             setMobileThree("-20px")
             setMobileTwo("-750px")
+        }
+        else {
+            setMobileTwo("-750px")
+            setMobileThree("-670px")
             setMobileFour("-600px")
         }
     }
@@ -99,11 +99,11 @@ function POPShop() {
         // setMobileFour("-20px")
         setMobileThirdActive((prev) => !prev)
         if (isMobileThirdActive === true) {
-            // reset the rest
             setMobileTwo("-750px")
-            setMobileFour("-600px")
+            setMobileThree("-670px")
+            setMobileFour("-20px")
         }
-        else if (isMobileThirdActive === false) {
+        else {
             setMobileTwo("-750px")
             setMobileThree("-670px")
             setMobileFour("-600px")
