@@ -122,26 +122,28 @@ function Header() {
                                     className="ml-3"
                                 />
                             </div>
-                            <Dialog>
-                                <DialogTrigger>
-                                    <Image
-                                        src="/user-avatar.svg"
-                                        width={25}
-                                        height={25}
-                                        alt="avatar"
-                                        className="ml-3"
-                                        onClick={() => handleLogin()}
-                                    />
-                                </DialogTrigger>
-                                <DialogContent className="p-0 m-0 w-[100px] z-[110]">
-                                    <DialogDescription>
-                                        <div className="">
-                                            {/* // disable z-index from header and it works */}
-                                            <iframe className="mx-auto h-[80vh]" width="100%" height="600px" src={`https://coins.mypopcoins.com/?key=${cookieKey}`}></iframe>
-                                        </div>
-                                    </DialogDescription>
-                                </DialogContent>
-                            </Dialog>
+                            <div className="btn-container-desktop-modal">
+                                <Dialog>
+                                    <DialogTrigger>
+                                        <Image
+                                            src="/user-avatar.svg"
+                                            width={25}
+                                            height={25}
+                                            alt="avatar"
+                                            className="ml-3"
+                                            onClick={() => handleLogin()}
+                                        />
+                                    </DialogTrigger>
+                                    <DialogContent className="lg:w-[340px!important] lg:p-2 lg:rounded-3xl h-[90vh] z-[110]">
+                                        <DialogDescription>
+                                            <div className="">
+                                                {/* // disable z-index from header and it works */}
+                                                <iframe className="mx-auto h-[80vh] lg:rounded-xl" width="100%" height="600px" src={`https://coins.mypopcoins.com/?key=${cookieKey}`}></iframe>
+                                            </div>
+                                        </DialogDescription>
+                                    </DialogContent>
+                                </Dialog>
+                            </div>
                             <Link href="/">
                                 <Button className={`ml-3 ${pathName === "/" ? `bg-[#F56651] text-white hover:bg-[#F56651] hover:text-white` : `bg-white text-black`}`} variant="outline">I am a Customer</Button>
                             </Link>
