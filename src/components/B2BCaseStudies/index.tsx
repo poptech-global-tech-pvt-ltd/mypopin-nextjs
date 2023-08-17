@@ -163,7 +163,7 @@ function B2BCaseStudies() {
                     {/* // SECOND SLIDE */}
                     <section className="bg-[#DDCCD3] py-10">
                         <div className="flex items-center justify-between max-w-7xl mx-auto px-4 lg:py-0">
-                            <div className={`text-[32px] lg:text-[70px] ${khand.className} text-[#621E45]`}>Case Studies</div>
+                            <div className={`text-[32px] lg:text-[70px] ${khand.className} text-[#1A475A]`}>Case Studies</div>
                             <div>
                                 <img className="w-[80px] h-[80px] lg:w-[170px] lg:h-[170px]" width="170" height="170" src="/casestudies/anveshan-logo.svg" alt="anveshan logo" />
                             </div>
@@ -173,7 +173,7 @@ function B2BCaseStudies() {
                                 <img className="lg:w-[371px] lg:h-[336px] w-[301px] h-[256px]" width="371" height="336" src="/casestudies/anveshan.svg" alt="anveshan logo" />
                             </div>
                             <div className="py-2 lg:py-0" />
-                            <div className="px-4 lg:px-16 text-[#621E45]">
+                            <div className="px-4 lg:px-16 text-[#1A475A]">
                                 <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex`}>
                                     <div><img className="w-[70px] h-[70px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
                                     <div><span className="font-bold"> 16X more customers Signing</span> Up and transacting on the same day, in comparison to incumbents.</div>
