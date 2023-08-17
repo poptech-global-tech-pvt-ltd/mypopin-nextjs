@@ -92,7 +92,7 @@ function BrandPage() {
                                     width="0"
                                     height="0"
                                     sizes="100vw"
-                                    className="w-full h-full rounded-3xl object-cover"
+                                    className="w-full h-full rounded-lg lg:rounded-3xl object-cover"
                                     alt=""
                                     style={{ objectFit: "cover" }}
                                 />
@@ -103,7 +103,7 @@ function BrandPage() {
                                     width="0"
                                     height="0"
                                     sizes="100vw"
-                                    className="w-full h-full rounded-3xl object-cover"
+                                    className="w-full h-full rounded-lg lg:rounded-3xl object-cover"
                                     alt=""
                                     style={{ objectFit: "cover" }}
                                 />
@@ -114,7 +114,7 @@ function BrandPage() {
                                     width="0"
                                     height="0"
                                     sizes="100vw"
-                                    className="w-full h-full rounded-3xl object-cover"
+                                    className="w-full h-full rounded-lg lg:rounded-3xl object-cover"
                                     alt=""
                                 />
                             </div>

@@ -109,7 +109,7 @@ function B2BCaseStudies() {
             </Slider> */}
             <div style={{ width: "100%" }}>
                 <Carousel
-                    arrows={false}
+                    arrows={true}
                     autoPlay={false}
                     autoPlaySpeed={1800}
                     centerMode={false}
@@ -143,18 +143,18 @@ function B2BCaseStudies() {
                             </div>
                             <div className="py-2 lg:py-0" />
                             <div className="px-4 lg:px-16 text-[#621E45]">
-                                <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex`}>
-                                    <div><img className="w-[70px] h-[70px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
+                                <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex items-end lg:items-start`}>
+                                    <div><img className="w-[60px] h-[60px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
                                     <div><span className="font-bold"> 28% increase in New Signup conversion</span> with 35% in the same session</div>
                                 </div>
                                 <br />
-                                <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex`}>
-                                    <div><img className="w-[70px] h-[70px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
+                                <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex items-end lg:items-start`}>
+                                    <div><img className="w-[30px] h-[30px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
                                     <div> <span className="font-bold"> 30% increase in checkout rates</span></div>
                                 </div>
                                 <br />
-                                <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex`}>
-                                    <div><img className="w-[70px] h-[70px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
+                                <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex items-end lg:items-start`}>
+                                    <div><img className="w-[30px] h-[30px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
                                     <div> <span className="font-bold"> 15% increase in returning customers</span></div>
                                 </div>
                             </div>
@@ -174,18 +174,18 @@ function B2BCaseStudies() {
                             </div>
                             <div className="py-2 lg:py-0" />
                             <div className="px-4 lg:px-16 text-[#1A475A]">
-                                <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex`}>
+                                <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex items-end lg:items-start`}>
                                     <div><img className="w-[70px] h-[70px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
                                     <div><span className="font-bold"> 16X more customers Signing</span> Up and transacting on the same day, in comparison to incumbents.</div>
                                 </div>
                                 <br />
-                                <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex`}>
+                                <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex items-end lg:items-start`}>
                                     <div><img className="w-[70px] h-[70px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
                                     <div> <span className="font-bold"> 70X transacting customers per day</span> Up and transacting on the same day, in comparison to incumbents.</div>
                                 </div>
                                 <br />
-                                <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex`}>
-                                    <div><img className="w-[70px] h-[70px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
+                                <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex items-end lg:items-start`}>
+                                    <div><img className="w-[50px] h-[50px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
                                     <div> <span className="font-bold"> The brand is witnessing</span> 12X incremental revenue per day.</div>
                                 </div>
                             </div>

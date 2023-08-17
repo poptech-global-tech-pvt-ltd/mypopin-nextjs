@@ -67,25 +67,27 @@ function LeadingBrandsCarousel() {
 
     return (
         <Carousel
+            additionalTransfrom={0}
             arrows={false}
-            autoPlay={true}
-            autoPlaySpeed={1800}
+            autoPlay
+            autoPlaySpeed={1}
             centerMode={false}
-            //   className=""
-            //   containerClass="container-with-dots"
+            className=""
+            containerClass=""
+            customTransition="all 6s linear"
             dotListClass=""
             draggable
             focusOnSelect={false}
-            infinite={true}
+            infinite
             itemClass=""
-            //   keyBoardControl
+            keyBoardControl
             minimumTouchDrag={80}
-            pauseOnHover={false}
+            pauseOnHover
             renderArrowsWhenDisabled={false}
             renderButtonGroupOutside={false}
             renderDotsOutside={false}
             responsive={responsive}
-            swipeable={false}
+            
         >
             {partnerImages?.map((i, index) => (
                 <div key={index}>

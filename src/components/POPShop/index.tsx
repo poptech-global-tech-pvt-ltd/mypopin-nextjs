@@ -16,6 +16,10 @@ function POPShop() {
 
     // == mobile & small devices ==
     const [isMobileFirstActive, setMobileFirstActive] = useState(false)
+    const [isMobileSecondActive, setMobileSecondActive] = useState(false)
+    const [isMobileThirdActive, setMobileThirdActive] = useState(false)
+    const [isMobileFourthActive, setMobileFourthActive] = useState(false)
+
     const [mobileTwo, setMobileTwo] = useState("-750px");
     const [mobileThree, setMobileThree] = useState("-670px");
     const [mobileFour, setMobileFour] = useState("-600px");
@@ -65,7 +69,6 @@ function POPShop() {
 
     // == handle mobile ==
     const handleOneMobileClick = () => {
-
         setMobileFirstActive((prev) => !prev)
         if (isMobileFirstActive === true) {
             // reset everything
@@ -79,12 +82,34 @@ function POPShop() {
     }
 
     const handleTwoMobileClick = () => {
-        setMobileThree("-20px")
-
+        // setMobileThree("-20px")
+        setMobileSecondActive((prev) => !prev)
+        if (isMobileSecondActive === true) {
+            //reset the rest
+            setMobileTwo("-750px")
+            setMobileFour("-600px")
+        }
+        else {
+            setMobileThree("-20px")
+            setMobileTwo("-750px")
+            setMobileFour("-600px")
+        }
     }
     const handleThreeMobileClick = () => {
-        setMobileFour("-20px")
+        // setMobileFour("-20px")
+        setMobileThirdActive((prev) => !prev)
+        if (isMobileThirdActive === true) {
+            // reset the rest
+            setMobileTwo("-750px")
+            setMobileFour("-600px")
+        }
+        else if (isMobileThirdActive === false) {
+            setMobileTwo("-750px")
+            setMobileThree("-670px")
+            setMobileFour("-600px")
+        }
     }
+
     const handleFourMobileClick = () => {
         // reset everything
         setMobileTwo("-750px")

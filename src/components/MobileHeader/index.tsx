@@ -176,8 +176,14 @@ function MobileHeader() {
         setOpen(false)
     }
 
-    const handleBrandClick = (brandName : any) => {
-        router.push("/brands" + brandName.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, ""))
+    const handleBrandClick = (brandName: any) => {
+        router.push("/brands/" + brandName.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, ""))
+        setOpen(false)
+    }
+
+    const handleMainTopLogoMobileClick = () => {
+        router.push("/")
+        setOpen(false)
     }
 
     return (
@@ -187,9 +193,11 @@ function MobileHeader() {
                     {/* // closed/header */}
                     <div className="h-16 flex items-center">
                         <div className="flex px-4 justify-between w-full">
-                            <Link href="/">
+                            {/* <Link href="/"> */}
+                            <div onClick={handleMainTopLogoMobileClick}>
                                 <Image src="/poplogo.svg" alt="logo" width={69} height={44} />
-                            </Link>
+                            </div>
+                            {/* </Link> */}
                             <div className="flex items-center justify-center">
                                 {/* <div>100</div> */}
                                 <Dialog>
@@ -234,11 +242,11 @@ function MobileHeader() {
                                                         <div className="font-medium">
                                                             {brandData[category].map((brand: string, index: number) => (
                                                                 <div key={index}>
-                                                                    <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
+                                                                    {/* <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}> */}
                                                                         <div onClick={() => handleBrandClick(brand)} key={index} className={`py-1 text-[14px]`}>
                                                                             {brand}
                                                                         </div>
-                                                                    </Link>
+                                                                    {/* </Link> */}
                                                                 </div>
                                                             ))}
                                                         </div>
@@ -252,11 +260,11 @@ function MobileHeader() {
                                                             {/* @ts-ignore */}
                                                             {staticBrandData[category].map((brand: string, index: number) => (
                                                                 <div key={index}>
-                                                                    <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
-                                                                        <div key={index} className="py-1">
+                                                                    {/* <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}> */}
+                                                                        <div onClick={() => handleBrandClick(brand)} key={index} className="py-1">
                                                                             {brand}
                                                                         </div>
-                                                                    </Link>
+                                                                    {/* </Link> */}
                                                                 </div>
                                                             ))}
                                                         </div>
