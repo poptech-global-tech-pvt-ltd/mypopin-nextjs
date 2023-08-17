@@ -11,7 +11,7 @@ const khand = Khand({
 
 const manrope = Manrope({
     subsets: ['latin'],
-    weight: ['400','500', '700', '800']
+    weight: ['400', '500', '700', '800']
 })
 
 
@@ -51,7 +51,7 @@ function POPBlog() {
                                 </div>
                             </div>
                             <div>
-                                <div className='h-full'><img className='rounded-2xl h-full object-cover' src={popBlog[1].post_image} /></div>
+                                <div className=''><img className='rounded-2xl object-cover max-h-[200px]' src={popBlog[1].post_image} /></div>
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@ function POPBlog() {
                                 </div>
                             </div>
                             <div>
-                                <div className='h-full'><img className='rounded-2xl h-full object-cover' src={popBlog[2].post_image} /></div>
+                                <div className=''><img className='rounded-2xl object-cover max-h-[200px]' src={popBlog[2].post_image} /></div>
                             </div>
                         </div>
                     </div>
@@ -85,14 +85,14 @@ function POPBlog() {
                                 </div>
                             </div>
                             <div>
-                                <div className='h-full'><img className='rounded-2xl h-full object-cover' src={popBlog[3].post_image} /></div>
+                                <div className=''><img className='rounded-2xl object-cover max-h-[200px]' src={popBlog[3].post_image} /></div>
                             </div>
                         </div>
                     </div>
                 </section>
                 <div className='flex justify-center py-4'>
                     <Link href="https://blog.mypop.in/">
-                    <Button className='rounded-full bg-white hover:text-white drop-shadow text-black'>Show all blog articles</Button>
+                        <Button className='rounded-full bg-white hover:text-white drop-shadow text-black'>Show all blog articles</Button>
                     </Link>
                 </div>
             </section>

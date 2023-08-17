@@ -3,6 +3,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image"
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const partnerImages = [
     { imgRelativeUrl: "/partner/partner-saaki-logo.png", alt: "saaki" },
@@ -40,32 +42,62 @@ const partnerImages = [
     { imgRelativeUrl: "/partner/partner-weaves-of-tradition-logo.png", alt: "weaves-of-tradition" }
 ];
 
-function LeadingBrandsCarousel() {
-    const settings = {
-        // dots: true,
-        infinite: true,
-        slidesToShow: 6,
-        slidesToScroll: 1,
-        autoplay: true,
-        speed: 2000,
-        autoplaySpeed: 2000,
-        cssEase: "linear",
-        pauseOnHover: false
+const responsive = {
+    superLargeDesktop: {
+        // the naming can be any, depends on you.
+        breakpoint: { max: 4000, min: 3000 },
+        items: 5
+    },
+    desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 6
+    },
+    tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 3
+    },
+    mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 3
     }
+};
+
+function LeadingBrandsCarousel() {
+
 
     return (
-        <Slider {...settings}>
+        <Carousel
+            arrows={false}
+            autoPlay={true}
+            autoPlaySpeed={1800}
+            centerMode={false}
+            //   className=""
+            //   containerClass="container-with-dots"
+            dotListClass=""
+            draggable
+            focusOnSelect={false}
+            infinite={true}
+            itemClass=""
+            //   keyBoardControl
+            minimumTouchDrag={80}
+            pauseOnHover={false}
+            renderArrowsWhenDisabled={false}
+            renderButtonGroupOutside={false}
+            renderDotsOutside={false}
+            responsive={responsive}
+            swipeable={false}
+        >
             {partnerImages?.map((i, index) => (
                 <div key={index}>
-                    <Image
+                    <img
                         src={i.imgRelativeUrl}
-                        width={180}
-                        height={52}
+                        width="auto"
+                        height="20"
                         alt={i.alt}
                     />
                 </div>
             ))}
-        </Slider>
+        </Carousel>
     )
 }
 

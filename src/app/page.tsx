@@ -30,14 +30,15 @@ export default function Home({
     <main>
       <Layout>
         <Hero />
+        {/* // horizontal scroll becasue of <HeroPartners /> */}
         <HeroPartners />
         <ShoppingDeals />
         <HowItWorks />
-        <TopPOPcoinPartnerBrands/>
+        <TopPOPcoinPartnerBrands />
         <POPInNumbers />
       </Layout>
       {/* <ShoppingDealsCarousel /> */}
-      <Spotlight />
+      {/* <Spotlight /> */}
       <PopBenefits />
       {/* <TopBrands /> */}
       <POPShop />

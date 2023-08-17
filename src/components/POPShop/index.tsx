@@ -16,9 +16,9 @@ function POPShop() {
 
     // == mobile & small devices ==
     const [isMobileFirstActive, setMobileFirstActive] = useState(false)
-    const [mobileTwo, setMobileTwo] = useState("-500px");
-    const [mobileThree, setMobileThree] = useState("-580px");
-    const [mobileFour, setMobileFour] = useState("-665px");
+    const [mobileTwo, setMobileTwo] = useState("-750px");
+    const [mobileThree, setMobileThree] = useState("-670px");
+    const [mobileFour, setMobileFour] = useState("-600px");
 
     //to toggle between desktop & mobile
     const isDesktopOrLaptop = useMediaQuery({
@@ -69,9 +69,9 @@ function POPShop() {
         setMobileFirstActive((prev) => !prev)
         if (isMobileFirstActive === true) {
             // reset everything
-            setMobileTwo("-500px")
-            setMobileThree("-580px")
-            setMobileFour("-665px")
+            setMobileTwo("-750px")
+            setMobileThree("-670px")
+            setMobileFour("-600px")
         }
         else if (isMobileFirstActive === false) {
             setMobileTwo("-20px")
@@ -87,9 +87,9 @@ function POPShop() {
     }
     const handleFourMobileClick = () => {
         // reset everything
-        setMobileTwo("-500px")
-        setMobileThree("-580px")
-        setMobileFour("-665px")
+        setMobileTwo("-750px")
+        setMobileThree("-670px")
+        setMobileFour("-600px")
     }
 
 
@@ -116,15 +116,15 @@ function POPShop() {
                     <div className={`${khand.className} text-center text-3xl lg:text-6xl py-6 lg:py-16`}>Introducing the POPshop</div>
                     <div className='max-w-[400px] mx-auto'>
                         <div className='flex flex-col'>
-                            <img className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleOneMobileClick} src="/popshop/popshop-mobile-1.png" alt="Slide Image" />
-                            <img style={{ marginTop: mobileTwo }} className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleTwoMobileClick} src="/popshop/popshop-mobile-2.png" alt="Slide Image" />
-                            <img style={{ marginTop: mobileThree }} className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleThreeMobileClick} src="/popshop/popshop-mobile-3.png" alt="Slide Image" />
-                            <img style={{ marginTop: mobileFour }} className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleFourMobileClick} src="/popshop/popshop-mobile-4.png" alt="Slide Image" />
+                            <img className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleOneMobileClick} src="/popshop/popshop-mobile-4.png" alt="Slide Image" />
+                            <img style={{ marginTop: mobileTwo }} className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleTwoMobileClick} src="/popshop/popshop-mobile-3.png" alt="Slide Image" />
+                            <img style={{ marginTop: mobileThree }} className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleThreeMobileClick} src="/popshop/popshop-mobile-2.png" alt="Slide Image" />
+                            <img style={{ marginTop: mobileFour }} className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleFourMobileClick} src="/popshop/popshop-mobile-1.png" alt="Slide Image" />
                         </div>
                     </div>
                 </>
             )}
-            
+
         </>
     )
 }

@@ -13,12 +13,14 @@ import Link from 'next/link'
 import { Button } from "../ui/button";
 import { usePathname } from 'next/navigation'
 import { Dialog, DialogContent, DialogDescription, DialogTrigger } from "../ui/dialog";
+import { useRouter } from 'next/navigation'
 
 
 function MobileHeader() {
     const [isOpen, setOpen] = useState(false)
     const [brandData, setBrandData] = useState<any>({});
     const pathName = usePathname();
+    const router = useRouter()
 
 
     useEffect(() => {
@@ -79,8 +81,6 @@ function MobileHeader() {
         ]
     }
 
-    console.log("bradn data from mobile", brandData)
-
     const [cookieKey, setCookieKey] = useState("");
 
     const handleLogin = () => {
@@ -125,9 +125,7 @@ function MobileHeader() {
             // adding cookie to the browser
             setCookie('cookieKey', randomNo, 7);
         }
-
     }
-
 
     useEffect(() => {
         if (cookieKey) {
@@ -153,6 +151,31 @@ function MobileHeader() {
     }, [cookieKey])
 
 
+    const handleCouponsClick = () => {
+        router.push("/coupons")
+        setOpen(false)
+    }
+
+    const handleBlogClick = () => {
+        router.push("https://blog.mypop.in/")
+        setOpen(false)
+    }
+
+    const handleHelpSupportClick = () => {
+        router.push("/")
+        setOpen(false)
+    }
+
+    const handleCustomerBtnCLick = () => {
+        router.push("/")
+        setOpen(false)
+    }
+
+    const handleBrandBtnClick = () => {
+        router.push("/partner-with-pop")
+        setOpen(false)
+    }
+
     return (
         <>
             <main>
@@ -164,7 +187,7 @@ function MobileHeader() {
                                 <Image src="/poplogo.svg" alt="logo" width={69} height={44} />
                             </Link>
                             <div className="flex items-center justify-center">
-                                <div>100</div>
+                                {/* <div>100</div> */}
                                 <Dialog>
                                     <DialogTrigger>
                                         <Image
@@ -255,32 +278,32 @@ function MobileHeader() {
 
                             <div className="py-1" />
                             {/* // Blogs */}
-                            <Link href="/coupons">
-                                <div className="bg-[#F5F5F5] p-3">
-                                    <div className="text-black font-medium">Coupons</div>
-                                </div>
-                            </Link>
+                            {/* <Link href="/coupons"> */}
+                            <div onClick={handleCouponsClick} className="bg-[#F5F5F5] p-3">
+                                <div className="text-black font-medium">Coupons</div>
+                            </div>
+                            {/* </Link> */}
                             <div className="py-1" />
                             {/* // Blogs */}
-                            <Link href="https://blog.mypop.in/">
-                                <div className="bg-[#F5F5F5] p-3">
-                                    <div className="text-black font-medium">Blogs</div>
-                                </div>
-                            </Link>
+                            {/* <Link href="https://blog.mypop.in/"> */}
+                            <div onClick={handleBlogClick} className="bg-[#F5F5F5] p-3">
+                                <div className="text-black font-medium">Blogs</div>
+                            </div>
+                            {/* </Link> */}
                             <div className="py-1" />
                             {/* // Help & Support */}
-                            <Link href="#">
-                                <div className="bg-[#F5F5F5] p-3">
-                                    <div className="text-black font-medium">Help & Support</div>
-                                </div>
-                            </Link>
+                            {/* <Link href="#"> */}
+                            <div onClick={handleHelpSupportClick} className="bg-[#F5F5F5] p-3">
+                                <div className="text-black font-medium">Help & Support</div>
+                            </div>
+                            {/* </Link> */}
                             <div className="py-1" />
                             <div className="flex flex-col items-center">
-                                <Link href="/">
-                                    <Button className={`my-2 mt-10 w-[200px] ${pathName === "/" ? `bg-[#F56651] text-white hover:bg-[#F56651] hover:text-white` : `bg-white text-black`}`} variant="outline">I am a Customer</Button>
-                                </Link>
+                                {/* <Link href="/"> */}
+                                <Button onClick={handleCustomerBtnCLick} className={`my-2 mt-10 w-[200px] ${pathName === "/" ? `bg-[#F56651] text-white hover:bg-[#F56651] hover:text-white` : `bg-white text-black`}`} variant="outline">I am a Customer</Button>
+                                {/* </Link> */}
                                 <Link href="/partner-with-pop">
-                                    <Button className={`my-2 w-[200px] ${pathName === "/partner-with-pop" ? `bg-[#F56651] text-white  hover:bg-[#F56651] hover:text-white` : `bg-[white] text-black`}`} variant="outline">I am a Brand</Button>
+                                    <Button onClick={handleBrandBtnClick} className={`my-2 w-[200px] ${pathName === "/partner-with-pop" ? `bg-[#F56651] text-white  hover:bg-[#F56651] hover:text-white` : `bg-[white] text-black`}`} variant="outline">I am a Brand</Button>
                                 </Link>
                             </div>
                         </div>

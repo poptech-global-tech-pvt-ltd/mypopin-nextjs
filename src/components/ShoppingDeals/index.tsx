@@ -50,7 +50,7 @@ function ShoppingDeals() {
                             enabled: true,
                         }}
                         breakpoints={{
-                            360: {
+                            320: {
                                 slidesPerView: 1.5,
                             },
                             560: {
