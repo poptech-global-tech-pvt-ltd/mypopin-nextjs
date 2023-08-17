@@ -203,11 +203,11 @@ function MobileHeader() {
                                             onClick={() => handleLogin()}
                                         />
                                     </DialogTrigger>
-                                    <DialogContent className="p-0 m-0 w-[100px] z-[110]">
+                                    <DialogContent className="p-4 lg:p-0 rounded-lg lg:rounded-none lg:m-2  w-[90vw] lg:[100px] z-[110]">
                                         <DialogDescription>
                                             <div className="">
                                                 {/* // disable z-index from header and it works */}
-                                                <iframe className="mx-auto h-[80vh]" width="100%" height="600px" src={`https://coins.mypopcoins.com/?key=${cookieKey}`}></iframe>
+                                                <iframe className="mx-auto h-[80vh] rounded-lg" width="100%" height="600px" src={`https://coins.mypopcoins.com/?key=${cookieKey}`}></iframe>
                                             </div>
                                         </DialogDescription>
                                     </DialogContent>
