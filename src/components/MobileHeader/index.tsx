@@ -176,6 +176,10 @@ function MobileHeader() {
         setOpen(false)
     }
 
+    const handleBrandClick = (brandName : any) => {
+        router.push("/brands" + brandName.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, ""))
+    }
+
     return (
         <>
             <main>
@@ -231,7 +235,7 @@ function MobileHeader() {
                                                             {brandData[category].map((brand: string, index: number) => (
                                                                 <div key={index}>
                                                                     <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
-                                                                        <div key={index} className={`py-1 text-[14px]`}>
+                                                                        <div onClick={() => handleBrandClick(brand)} key={index} className={`py-1 text-[14px]`}>
                                                                             {brand}
                                                                         </div>
                                                                     </Link>
