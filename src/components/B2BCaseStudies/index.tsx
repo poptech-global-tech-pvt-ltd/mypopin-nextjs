@@ -129,9 +129,10 @@ function B2BCaseStudies() {
                     responsive={responsive}
                     swipeable={true}
                 >
-                    <section>
+                    {/* // FIRST SLIDE */}
+                    <section className="bg-[#DDCCD3] py-10">
                         <div className="flex items-center justify-between max-w-7xl mx-auto px-4 lg:py-0">
-                            <div className={`text-[32px] lg:text-[70px] ${khand.className}`}>Case Studies</div>
+                            <div className={`text-[32px] lg:text-[70px] ${khand.className} text-[#621E45]`}>Case Studies</div>
                             <div>
                                 <img className="w-[80px] h-[80px] lg:w-[170px] lg:h-[170px]" width="170" height="170" src="/casestudies/saaki-logo.svg" alt="anveshan logo" />
                             </div>
@@ -141,19 +142,51 @@ function B2BCaseStudies() {
                                 <img className="lg:w-[371px] lg:h-[336px] w-[301px] h-[256px]" width="371" height="336" src="/casestudies/saaki.svg" alt="anveshan logo" />
                             </div>
                             <div className="py-2 lg:py-0" />
-                            <div className="px-2 lg:px-16">
+                            <div className="px-4 lg:px-16 text-[#621E45]">
                                 <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex`}>
                                     <div><img className="w-[70px] h-[70px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
-                                    <div><span className="font-bold">16X more customers Signing</span> Up and transacting on the same day, in comparison to incumbents.</div>
+                                    <div><span className="font-bold"> 28% increase in New Signup conversion</span> with 35% in the same session</div>
                                 </div>
                                 <br />
                                 <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex`}>
                                     <div><img className="w-[70px] h-[70px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
-                                    <div> <span className="font-bold">16X more customers Signing</span> Up and transacting on the same day, in comparison to incumbents.</div>
-                                </div>                                <br />
+                                    <div> <span className="font-bold"> 30% increase in checkout rates</span></div>
+                                </div>
+                                <br />
                                 <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex`}>
                                     <div><img className="w-[70px] h-[70px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
-                                    <div> <span className="font-bold">16X more customers Signing</span> Up and transacting on the same day, in comparison to incumbents.</div>
+                                    <div> <span className="font-bold"> 15% increase in returning customers</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    {/* // SECOND SLIDE */}
+                    <section className="bg-[#DDCCD3] py-10">
+                        <div className="flex items-center justify-between max-w-7xl mx-auto px-4 lg:py-0">
+                            <div className={`text-[32px] lg:text-[70px] ${khand.className} text-[#621E45]`}>Case Studies</div>
+                            <div>
+                                <img className="w-[80px] h-[80px] lg:w-[170px] lg:h-[170px]" width="170" height="170" src="/casestudies/anveshan-logo.svg" alt="anveshan logo" />
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-1 lg:flex max-w-6xl mx-auto justify-center items-center">
+                            <div className="mx-auto lg:m-0">
+                                <img className="lg:w-[371px] lg:h-[336px] w-[301px] h-[256px]" width="371" height="336" src="/casestudies/anveshan.svg" alt="anveshan logo" />
+                            </div>
+                            <div className="py-2 lg:py-0" />
+                            <div className="px-4 lg:px-16 text-[#621E45]">
+                                <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex`}>
+                                    <div><img className="w-[70px] h-[70px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
+                                    <div><span className="font-bold"> 16X more customers Signing</span> Up and transacting on the same day, in comparison to incumbents.</div>
+                                </div>
+                                <br />
+                                <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex`}>
+                                    <div><img className="w-[70px] h-[70px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
+                                    <div> <span className="font-bold"> 70X transacting customers per day</span> Up and transacting on the same day, in comparison to incumbents.</div>
+                                </div>
+                                <br />
+                                <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex`}>
+                                    <div><img className="w-[70px] h-[70px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
+                                    <div> <span className="font-bold"> The brand is witnessing</span> 12X incremental revenue per day.</div>
                                 </div>
                             </div>
                         </div>

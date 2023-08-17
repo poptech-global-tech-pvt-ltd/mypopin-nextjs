@@ -48,7 +48,8 @@ function B2BIntegrations() {
                         ))}
                     </div>
                 </div>
-                <div className='flex items-center justify-center py-8'><Button className={`rounded-full bg-black]`}>View All</Button></div>
+                {/* // not needed */}
+                {/* <div className='flex items-center justify-center py-8'><Button className={`rounded-full bg-black]`}>View All</Button></div> */}
             </div>
         </div>
     )
