@@ -44,7 +44,7 @@ var settings = {
     ]
 };
 
-// THIS COMPONENT HAS BEEN DEPRECATED
+// =====================THIS COMPONENT HAS BEEN DEPRECATED===================
 function TopBrands() {
     return (
         <>

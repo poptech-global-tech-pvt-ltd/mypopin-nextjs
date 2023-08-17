@@ -1,8 +1,10 @@
+
 import Slider from "react-slick";
 import Image from 'next/image'
 import { Khand } from 'next/font/google'
 import { Manrope } from 'next/font/google'
-
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const khand = Khand({
     weight: '700',
@@ -14,27 +16,41 @@ const manrope = Manrope({
 })
 
 function B2BCaseStudies() {
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-    }
+    const responsive = {
+        superLargeDesktop: {
+            // the naming can be any, depends on you.
+            breakpoint: { max: 4000, min: 3000 },
+            items: 1,
+        },
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 1
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 1
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1
+        }
+    };
     return (
         <div className="case-studies-container">
-            <Slider {...settings}>
+
+
+            {/* <Slider {...settings}>
                 <div className="react-slick-one">
                     <div className="max-w-6xl mx-auto">
                         <div className="react-slick-header">
                             <div className={`text-[#621E45] text-3xl lg:text-6xl font-bold ${khand.className}`}>Case Studies</div>
                             <div className="react-slick-logo">
-                                <Image width="170" height="170" src="/casestudies/saaki-logo.svg" alt="anveshan logo" />
+                                <img className="w-[80px] h-[80px] lg:w-[170px] lg:h-[170px]" width="170" height="170" src="/casestudies/saaki-logo.svg" alt="anveshan logo" />
                             </div>
                         </div>
                         <div className="react-slick-footer">
                             <div>
-                                <Image width="371" height="336" src="/casestudies/saaki.svg" alt="anveshan logo" />
+                                <img className="lg:w-[371px] lg:h-[336px] w-[301px] h-[256px]" width="371" height="336" src="/casestudies/saaki.svg" alt="anveshan logo" />
                             </div>
                             <div className="react-slick-texts-container">
                                 <ul>
@@ -90,7 +106,43 @@ function B2BCaseStudies() {
                         </div>
                     </div>
                 </div>
-            </Slider>
+            </Slider> */}
+            <div style={{ width: "100%" }}>
+                <Carousel
+                    arrows={false}
+                    autoPlay={true}
+                    autoPlaySpeed={1800}
+                    centerMode={false}
+                    //   className=""
+                    //   containerClass="container-with-dots"
+                    dotListClass=""
+                    draggable
+                    focusOnSelect={false}
+                    infinite={true}
+                    itemClass=""
+                    //   keyBoardControl
+                    minimumTouchDrag={80}
+                    pauseOnHover
+                    renderArrowsWhenDisabled={false}
+                    renderButtonGroupOutside={false}
+                    renderDotsOutside={true}
+                    responsive={responsive}
+                    swipeable={true}
+                >
+                    <div>
+                        hello
+                    </div>
+                    <div>
+                        hello
+                    </div>
+                    <div>
+                        hello
+                    </div>
+                    <div>
+                        hello
+                    </div>
+                </Carousel>
+            </div>
         </div>
     )
 }

@@ -26,12 +26,12 @@ function TopPOPcoinPartnerBrands() {
         },
         mobile: {
             breakpoint: { max: 464, min: 0 },
-            items: 1
+            items: 1.5
         }
     };
 
     return (
-        <section className="max-w-5xl mx-auto">
+        <section className="max-w-6xl mx-auto">
             <div className="container-fluid px-0">
                 <div className="row mx-0">
                     <div className="col-md-12">
@@ -57,7 +57,7 @@ function TopPOPcoinPartnerBrands() {
                                     responsive={responsive}>
                                     <POPHoverCard
                                         brandLogoPath="/saga-logo-toppopcoins-brand.png"
-                                        brandBackgroundPath="/topPopCoinPartnerBrands/saga-bg-toppopcoins-brand.png"
+                                        brandBackgroundPath="/topPopCoinPartnerBrands/saga.png"
                                         coinEarningText="Earn 5 POPcoins on every ₹100"
                                         hoverText="A homegrown lifestyle brand trying to make a difference through slow luxury
                             and ethical textile practices while narrating stories, reviving culture and
@@ -65,7 +65,7 @@ function TopPOPcoinPartnerBrands() {
                                     />
                                     <POPHoverCard
                                         brandLogoPath="/saga-logo-toppopcoins-brand.png"
-                                        brandBackgroundPath="/topPopCoinPartnerBrands/saaki-bg-toppopcoins-brand.png"
+                                        brandBackgroundPath="/topPopCoinPartnerBrands/saaki.png"
                                         coinEarningText="Earn 5 POPcoins on every ₹100"
                                         hoverText="A modern Indian brand co-created with Samantha Ruth Prabhu, bringing Indian
                             fashion to women worldwide, with the right blend of an Indian heart and a
@@ -73,7 +73,7 @@ function TopPOPcoinPartnerBrands() {
                                     />
                                     <POPHoverCard
                                         brandLogoPath="/saga-logo-toppopcoins-brand.png"
-                                        brandBackgroundPath="/topPopCoinPartnerBrands/tatha-bg-toppopcoins-brand.png"
+                                        brandBackgroundPath="/topPopCoinPartnerBrands/tatha.png"
                                         coinEarningText="Earn 5 POPcoins on every ₹100"
                                         hoverText="Tatha created pure and natural routines for the skin, devoid of any
                             chemicals, born from ancient roots and built with contemporary ways to meet
@@ -81,7 +81,7 @@ function TopPOPcoinPartnerBrands() {
                                     />
                                     <POPHoverCard
                                         brandLogoPath="/saga-logo-toppopcoins-brand.png"
-                                        brandBackgroundPath="/topPopCoinPartnerBrands/anveshan-bg-toppopcoins-brand.png"
+                                        brandBackgroundPath="/topPopCoinPartnerBrands/anveshan.png"
                                         coinEarningText="Earn 5 POPcoins on every ₹100"
                                         hoverText="With food infused with Ayurvedic and traditional wisdom passed on by our
                             ancestors, Anveshan assures wholesome, chemical-free and preservative-free

@@ -21,6 +21,7 @@ function POPBlog() {
             <br />
             <br />
             <section className="bg-[#F7F7F9] max-w-5xl mx-auto rounded-3xl p-8">
+                <br />
                 <div className={`${khand.className} flex flex-col lg:flex-row leading-6 lg:leading-0`}>
                     <div className={`${khand.className} text-black text-[45px] lg:text-[40px] font-[800]`}>POP Circle. </div>
                     <div className={`${khand.className} text-[#6B7280] text-[14px] lg:text-[40px] font-[500] lg:font-[800]`}>Curated Reads For You</div>
