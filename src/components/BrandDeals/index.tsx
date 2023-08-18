@@ -53,7 +53,7 @@ function BrandDeals({ secondaryColor, textColor }: IBrandDeals) {
     }
 
     console.log({ productImageData })
-
+    
     return (
         <>
             <div>

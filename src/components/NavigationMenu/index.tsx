@@ -23,7 +23,7 @@ const manrope = Manrope({
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "POP Shop",
-    href: "/popshop",
+    href: "https://8mvyk.app.link/dh8SuwQK3wb",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
