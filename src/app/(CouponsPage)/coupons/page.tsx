@@ -37,7 +37,7 @@ const responsive = {
     },
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
-        items: 3
+        items: 4
     },
     tablet: {
         breakpoint: { max: 1024, min: 464 },
@@ -45,7 +45,7 @@ const responsive = {
     },
     mobile: {
         breakpoint: { max: 464, min: 0 },
-        items: 1
+        items: 1.2
     }
 };
 
@@ -83,7 +83,7 @@ function Coupons() {
                     if (data?.data?.length) {
                         data?.data?.map((itm: any, index: any) => {
                             setCategories((prevCategories: any) => [...prevCategories, itm?.category]);
-                            setBrandNames((prev : any) => [...prev, itm?.display_name])
+                            setBrandNames((prev: any) => [...prev, itm?.display_name])
                         })
                     }
                 } else {
@@ -96,100 +96,130 @@ function Coupons() {
     }, [])
     // @ts-ignore
     const uniqueCategories = Array.from(new Set(categories.map(JSON.stringify))).map(JSON.parse);
-    console.log({ brandNames })
+    console.log({ couponData })
+
+    
+    const handleCategoryFilterClick = (itm: any) => {
+        console.log({ itm })
+        const filteredByCategory = couponData.filter((i: any) => i?.category.id === itm?.id)
+        setCouponData(() => filteredByCategory)
+    }
+
+    const handleBrandNameFilterClick = (itm: any) => {
+        console.log("=-==-=-=-=-=-=-=-=")
+        console.log({itm})
+    }
+
+
     return (
         <>
-            <div className="py-24 max-w-7xl mx-auto">
-                <div className={`${khand.className}  text-center text-6xl py-16`}>Coupons</div>
-                <Sheet key="bottom">
-                    <div className="flex justify-end">
-                        <SheetTrigger>
-                            <Button variant="outline"><span><img src="/filter-icon.svg" /></span>&nbsp;&nbsp;Filters</Button>
-                        </SheetTrigger>
-                    </div>
-                    <SheetContent className="z-[200] h-full">
-                        <SheetHeader>
-                            <SheetTitle>Categories</SheetTitle>
-                            <SheetDescription>
-                                {uniqueCategories?.map((itm: any, index: any) => (
-                                    <div key={index} className="flex items-center space-x-2 py-2">
-                                        <Checkbox id={itm.name} />
-                                        <Label htmlFor={itm.name}>{itm?.name}</Label>
-                                    </div>
-                                ))}
-                            </SheetDescription>
-                            <SheetTitle>Brands</SheetTitle>
-                            <SheetDescription>
-                                <ScrollArea className="h-[420px] w-full">
-                                    {brandNames?.map((itm: any, index: any) => (
+            <div className="py-24 mx-auto">
+                <div className={`grid lg:grid-cols-3 max-w-7xl`}>
+                    <div className={`${khand.className}  text-center text-6xl py-16`}></div>
+                    <div className={`${khand.className}  text-center text-6xl py-16`}>Coupons</div>
+                    <Sheet key="bottom">
+                        <div className="flex justify-end px-4 lg:px-0">
+                            <SheetTrigger>
+                                <Button variant="outline"><span><img src="/filter-icon.svg" /></span>&nbsp;&nbsp;Filters</Button>
+                            </SheetTrigger>
+                        </div>
+                        <SheetContent className="z-[200] h-full">
+                            <SheetHeader>
+                                <SheetTitle>Categories</SheetTitle>
+                                <SheetDescription>
+                                    {/* // for CATEGORIES */}
+                                    {uniqueCategories?.map((itm: any, index: any) => (
                                         <div key={index} className="flex items-center space-x-2 py-2">
-                                            <Checkbox id={itm} />
-                                            <Label htmlFor={itm}>{itm}</Label>
+                                            <Checkbox onClick={() => handleCategoryFilterClick(itm)} id={itm.name} />
+                                            <Label htmlFor={itm.name}>{itm?.name}</Label>
                                         </div>
                                     ))}
-                                </ScrollArea>
-                            </SheetDescription>
-                        </SheetHeader>
-                    </SheetContent>
-                </Sheet>
-                {couponData?.map((itm: any, index: number) => (
-                    <div key={index}>
-                        <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6`}>{itm?.display_name}</div>
-                        <Carousel responsive={responsive}>
-                            {itm?.coupons?.length > 0 && itm?.coupons?.map((j : any, index : any ) => (
-                                <motion.div
-                                    key={index}
-                                    className="card__wrapper"
-
-                                >
-                                    <motion.div
-                                        transition={transitionConfig}
-                                        initial={false}
-                                        // animate={{ rotateY: card.isFlipped ? 180 : 0 }}
-                                        className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl shadow-lg card"
-                                    >
-                                        <div className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
-                                            <div>
-                                                <div className='text-center flex items-center justify-center py-2'>
-                                                    <img src={itm?.logo?.image} />
-                                                </div>
-                                                <div className='text-center py-2'>
-                                                    <div className={`text-[1.64431rem] font-extrabold`}>+20% off</div>
-                                                    <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
-                                                </div>
-                                                <div className={`text-[0.67069rem] py-2 font-extrabold`}>Earn extra 30% off with popcoins</div>
-                                                <div className='flex items-center justify-center py-2'><Button className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>REDEEM</Button></div>
-                                                <div className={`text-[0.625rem] text-center font-normal`}>Valid till 03 Aug</div>
+                                </SheetDescription>
+                                <SheetTitle>Brands</SheetTitle>
+                                <SheetDescription>
+                                    <ScrollArea className="h-[420px] w-full">
+                                        {/* // FOR BRAND NAMES */}
+                                        {brandNames?.map((itm: any, index: any) => (
+                                            <div key={index} className="flex items-center space-x-2 py-2">
+                                                <Checkbox onClick={() => handleBrandNameFilterClick(itm)} id={itm} />
+                                                <Label htmlFor={itm}>{itm}</Label>
                                             </div>
-                                        </div>
-                                    </motion.div>
+                                        ))}
+                                    </ScrollArea>
+                                </SheetDescription>
+                            </SheetHeader>
+                        </SheetContent>
+                    </Sheet>
+                </div>
+                {couponData
+                    ?.filter((item: any) => item.hasOwnProperty('coupons'))
+                    ?.map((itm: any, index: number) => (
+                        <div key={index}>
+                            <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6 max-w-7xl mx-auto lg:px-0 px-4`}>{itm?.display_name}</div>
+                            <Carousel responsive={responsive}>
+                                {itm?.coupons?.length > 0 && itm?.coupons?.map((j: any, index: any) => (
                                     <motion.div
-                                        transition={transitionConfig}
-                                        initial={false}
-                                        // animate={{ rotateY: card.isFlipped ? 0 : -180 }}
-                                        className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl shadow-lg card"
+                                        key={index}
+                                        className="card__wrapper"
                                     >
-                                        <div className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
-                                            <div>
-                                                <div className='text-center flex items-center justify-center py-2'>
-                                                    <img src={itm?.logo?.image} />
+                                        <motion.div
+                                            transition={transitionConfig}
+                                            initial={false}
+                                            // animate={{ rotateY: card.isFlipped ? 180 : 0 }}
+                                            className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl shadow-lg card"
+                                        >
+                                            <div className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
+                                                <div>
+                                                    <div className='text-center flex items-center justify-center py-2'>
+                                                        {itm?.logo?.length && <img src={itm?.logo?.image} />}
+                                                    </div>
+                                                    <div className='text-center py-2'>
+                                                        <div className={`text-[1.64431rem] font-extrabold`}>+20% off</div>
+                                                        <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
+                                                    </div>
+                                                    <div className={`text-[0.67069rem] py-2 font-extrabold`}>Earn extra 30% off with popcoins</div>
+                                                    <div className='flex items-center justify-center py-2'><Button className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>REDEEM</Button></div>
+                                                    <div className={`text-[0.625rem] text-center font-normal`}>Valid till 03 Aug</div>
                                                 </div>
-                                                <div className='text-center py-2'>
-                                                    <div className={`text-[1.64431rem] font-extrabold`}>+20% off</div>
-                                                    <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
-                                                </div>
-                                                <div className={`text-[0.67069rem] py-2 font-extrabold`}>Earn extra 30% off with popcoins</div>
-                                                <div className='flex items-center justify-center py-2'><Button className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>REDEEM</Button></div>
-                                                <div className={`text-[0.625rem] text-center font-normal`}>Valid till 03 Aug</div>
                                             </div>
-                                        </div>
+                                        </motion.div>
+                                        <motion.div
+                                            transition={transitionConfig}
+                                            initial={false}
+                                            // animate={{ rotateY: card.isFlipped ? 0 : -180 }}
+                                            className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl shadow-lg card"
+                                        >
+                                            <div className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
+                                                <div>
+                                                    <div className='text-center flex items-center justify-center py-2'>
+                                                        {itm?.logo && <img className="border-[1.5px] rounded-full" src={itm?.logo?.image} />}
+                                                        {!itm?.logo && <div className="border-[1.5px] w-[90px] h-[90px] rounded-full bg-white"></div>}
+                                                    </div>
+                                                    <div className='text-center py-2'>
+                                                        {j?.rules.value?.percentage ? (
+                                                            <>
+                                                                <div className={`text-[1.64431rem] font-extrabold`}>{j?.rules.value?.percentage * 100}%</div>
+                                                            </>
+                                                        ) :
+                                                            (
+                                                                <>
+                                                                    <div className={`text-[1.64431rem] font-extrabold`}>₹{Math.floor(j?.rules.value?.amount?.amount)}</div>
+                                                                </>
+                                                            )
+                                                        }
+                                                        <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
+                                                    </div>
+                                                    <div className={`text-[0.67069rem] py-1 font-extrabold`}>{itm?.discount_percentage_text ? `Earn extra ${itm?.discount_percentage_text} off with popcoins` : null}</div>
+                                                    <div className='flex items-center justify-center py-2'><Button className={`text-[0.67069rem] rounded-full h-0 px-3 py-3`}>REDEEM</Button></div>
+                                                    <div className={`text-[0.625rem] text-center font-normal`}>{j?.endsAt}</div>
+                                                </div>
+                                            </div>
+                                        </motion.div>
                                     </motion.div>
-                                </motion.div>
-                            ))}
-                        </Carousel>
-                    </div>
-                ))}
-                <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6`}>Saaki</div>
+                                ))}
+                            </Carousel>
+                        </div>
+                    ))}
                 {/* <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", }}> */}
                 {/* <Carousel className="z-[90]" responsive={responsive}>
                     {cards.map((card, index) => (

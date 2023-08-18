@@ -295,6 +295,7 @@ h6 {
   height: 340px;
   position: relative;
   perspective: 200px;
+  margin: 0 auto;
 }
 
 .pulsating-border {
