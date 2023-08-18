@@ -52,6 +52,8 @@ function BrandDeals({ secondaryColor, textColor }: IBrandDeals) {
         console.log(itm?.attributes?.product_link)
     }
 
+    console.log({ productImageData })
+
     return (
         <>
             <div>
@@ -74,13 +76,12 @@ function BrandDeals({ secondaryColor, textColor }: IBrandDeals) {
                         pauseOnHover
                         renderArrowsWhenDisabled={false}
                         renderButtonGroupOutside={false}
-                        renderDotsOutside={true}
+                        renderDotsOutside={false}
                         responsive={responsive}
                         swipeable={true}
                     >
                         {productImageData?.length > 0 && productImageData?.map((itm: any, index: number) => (
                             <div key={index}>
-
                                 <div onClick={() => handleProductLink(itm)} className="grid w-full justify-center justify-items-center">
                                     <div className="relative w-[266px] h-[276px] z-10">
                                         <img
@@ -93,31 +94,21 @@ function BrandDeals({ secondaryColor, textColor }: IBrandDeals) {
                                         </div>
                                     </div>
                                     <div style={{ backgroundColor: secondaryColor, transform: "translateY(-8%)" }} className={`w-11/12 rounded-bl-3xl rounded-br-3xl font-bold ${manrope.className} z-5`}>
-                                        <div className="text-center pt-3">{itm?.attributes?.product_name}</div>
-                                        <div className="text-center py-1">Rs {itm?.attributes?.product_mrp}</div>
-                                        <div className="text-center pb-3">or Rs 1019+ 180</div>
+                                        <div className="text-center pt-3">{itm?.attributes?.product_name.slice(0, 20) + ".."}</div>
+                                        <div className="text-center py-1">₹{itm?.attributes?.product_price}&nbsp;<span style={{ textDecoration: "line-through", color: "gray" }}>₹{itm?.attributes?.product_mrp}</span></div>
+                                        <div className="flex items-center justify-center">
+                                            <div>or &nbsp;</div>
+                                            <div>₹ {itm?.attributes?.price_with_coin}</div>
+                                            <div>+&nbsp;</div>
+                                            <img width="20" height="20" src="/popcoin-icon.svg" />
+                                            <div>{itm?.attributes?.burn_coin}</div>
+                                        </div>
+                                        {/* <div className="text-center pb-3">or ₹ {itm?.attributes?.price_with_coin}+ {itm?.attributes?.burn_coin}</div> */}
                                     </div>
                                 </div>
 
                             </div>
                         ))}
-                        {/* <div className="grid w-full justify-center justify-items-center">
-                            <div className="relative w-[266px] h-[276px] z-10">
-                                <img
-                                    src="/brand-test-sample.webp"
-                                    alt="hgfd"
-                                    className="h-full w-auto object-cover rounded-3xl"
-                                />
-                                <div style={{ backgroundColor: textColor }} className={`absolute top-8 right-0 p-2 pl-4 bg-red-500 text-white text-2xl ${manrope.className} font-bold rounded-l-full`}>
-                                    50% off
-                                </div>
-                            </div>
-                            <div style={{ backgroundColor: secondaryColor, transform: "translateY(-8%)" }} className={`w-11/12 rounded-bl-3xl rounded-br-3xl font-bold ${manrope.className} z-5`}>
-                                <div className="text-center pt-3">Skin Lightening Lotion</div>
-                                <div className="text-center py-1">Rs 1199</div>
-                                <div className="text-center pb-3">or Rs 1019+ 180</div>
-                            </div>
-                        </div> */}
                     </Carousel>
                 </div>
             </div>
