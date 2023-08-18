@@ -48,7 +48,7 @@ const responsive = {
     },
     mobile: {
         breakpoint: { max: 464, min: 0 },
-        items: 2.5
+        items: 1.2
     }
 };
 
@@ -119,15 +119,16 @@ function Coupons() {
         console.log({ couponIndex, itemIndex })
         setCouponData((prevData: any) => {
             const newData = [...prevData];
-            newData[itemIndex].coupons[couponIndex].isFlipped = !newData[itemIndex].coupons[couponIndex]?.isFlipped;
+            if (newData[itemIndex]?.coupons && newData[itemIndex]?.coupons[couponIndex]) {
+                newData[itemIndex].coupons[couponIndex].isFlipped = !newData[itemIndex].coupons[couponIndex].isFlipped;
+            }
+            // newData[itemIndex].coupons[couponIndex].isFlipped = !newData[itemIndex]?.coupons[couponIndex]?.isFlipped;
             return newData;
         });
     };
 
     const handleDiscountCodeClick = (event: any, j: any) => {
-        event.preventDefault()
         console.log("hello-backkk")
-        console.log({ j })
     }
 
     return (
@@ -195,18 +196,10 @@ function Coupons() {
                                             <div style={{ borderColor: itm?.color?.bg_color_2 }} className="w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
                                                 <div>
                                                     <div className='text-center flex items-center justify-center py-2'>
-                                                        {itm?.logo && <img className="border-[0px] rounded-full" src={itm?.logo?.image} />}
+                                                        {itm?.logo && <img className="border-[0px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
                                                         {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                     </div>
-                                                    {/* <div className='text-center py-2'>
-                                                        <div className={`text-[1.64431rem] font-extrabold`}>+20% off</div>
-                                                        <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
-                                                    </div>
-                                                    <div className={`text-[0.67069rem] py-2 font-extrabold`}>Earn extra 30% off with popcoins</div>
-                                                    <div className='flex items-center justify-center py-2'><Button className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>REDEEM</Button></div>
-                                                    <div className={`text-[0.625rem] text-center font-normal`}>Valid till 03 Aug</div>
-                                                 */}
-                                                    <div className="text-center text-[0.625rem] py-2">Tap to Copy</div>
+                                                    <div onClick={() => console.log("tap to copy")} className="text-center text-[0.625rem] py-2">Tap to Copy</div>
                                                     <div onClick={(event) => handleDiscountCodeClick(event, j)} className={`text-center border-[1px] rounded-lg py-2 px-12`}>
                                                         <div className="flex items-center justify-center">
                                                             <div>{j?.discountcode}</div>
@@ -232,7 +225,7 @@ function Coupons() {
                                             <div className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
                                                 <div>
                                                     <div className='text-center flex items-center justify-center py-2'>
-                                                        {itm?.logo && <img className="border-[1.5px] rounded-full" src={itm?.logo?.image} />}
+                                                        {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
                                                         {!itm?.logo && <div className="border-[1.5px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                     </div>
                                                     <div className='text-center py-2'>
