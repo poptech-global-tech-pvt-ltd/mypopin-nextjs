@@ -16,6 +16,8 @@ import "react-multi-carousel/lib/styles.css";
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { useMediaQuery } from 'react-responsive'
+
 
 
 
@@ -98,7 +100,7 @@ function Coupons() {
     const uniqueCategories = Array.from(new Set(categories.map(JSON.stringify))).map(JSON.parse);
     console.log({ couponData })
 
-    
+
     const handleCategoryFilterClick = (itm: any) => {
         console.log({ itm })
         const filteredByCategory = couponData.filter((i: any) => i?.category.id === itm?.id)
@@ -106,25 +108,31 @@ function Coupons() {
     }
 
     const handleBrandNameFilterClick = (itm: any) => {
-        console.log({itm})
+        console.log({ itm })
         const filteredByBrandNames = couponData.filter((i: any) => i?.display_name === itm)
         setCouponData(() => filteredByBrandNames)
     }
 
+    const isDesktopOrLaptop = useMediaQuery({
+        query: '(min-width: 1000px)'
+    })
+
+    const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1000px)' })
+
 
     return (
         <>
-            <div className="py-24 mx-auto">
+            <div className="py-1 lg:py-24 mx-auto">
                 <div className={`grid lg:grid-cols-3 max-w-7xl`}>
-                    <div className={`${khand.className}  text-center text-6xl py-16`}></div>
+                    <div className={`${khand.className}  text-center text-6xl py-1 lg:py-16`}></div>
                     <div className={`${khand.className}  text-center text-6xl py-16`}>Coupons</div>
-                    <Sheet key="bottom">
+                    <Sheet>
                         <div className="flex justify-end px-4 lg:px-0">
                             <SheetTrigger>
                                 <Button variant="outline"><span><img src="/filter-icon.svg" /></span>&nbsp;&nbsp;Filters</Button>
                             </SheetTrigger>
                         </div>
-                        <SheetContent className="z-[200] h-full">
+                        <SheetContent side={isTabletOrMobile ? "bottom" : "right"} className="z-[200] h-full">
                             <SheetHeader>
                                 <SheetTitle>Categories</SheetTitle>
                                 <SheetDescription>
