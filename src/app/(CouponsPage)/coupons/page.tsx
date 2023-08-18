@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useMediaQuery } from 'react-responsive'
+import { Copy } from 'lucide-react';
 
 
 
@@ -47,7 +48,7 @@ const responsive = {
     },
     mobile: {
         breakpoint: { max: 464, min: 0 },
-        items: 1.2
+        items: 2.5
     }
 };
 
@@ -115,13 +116,18 @@ function Coupons() {
 
 
     const handleCardClick = (couponIndex: number, itemIndex: number) => {
-        console.log({couponIndex, itemIndex})
+        console.log({ couponIndex, itemIndex })
         setCouponData((prevData: any) => {
             const newData = [...prevData];
             newData[itemIndex].coupons[couponIndex].isFlipped = !newData[itemIndex].coupons[couponIndex]?.isFlipped;
             return newData;
         });
     };
+
+    const handleDiscountCodeClick = (j: any) => {
+        console.log("hello-backkk")
+        console.log({j})
+    }
 
     return (
         <>
@@ -177,32 +183,50 @@ function Coupons() {
                                             handleCardClick(itemIndex, couponIndex);
                                         }}
                                     >
+                                        {/* // BACK SIDE OF THE COUPON CARD */}
                                         <motion.div
                                             transition={transitionConfig}
                                             initial={false}
                                             animate={{ rotateY: j.isFlipped ? 0 : -180 }}
-                                            className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl shadow-lg card"
+                                            style={{ backgroundColor: itm?.color?.bg_color_1 }}
+                                            className="text-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl shadow-lg card"
                                         >
-                                            <div className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
+                                            <div style={{ borderColor: itm?.color?.bg_color_2 }} className="w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
                                                 <div>
                                                     <div className='text-center flex items-center justify-center py-2'>
-                                                        {itm?.logo?.length && <img src={itm?.logo?.image} />}
+                                                        {itm?.logo && <img className="border-[0px] rounded-full" src={itm?.logo?.image} />}
+                                                        {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                     </div>
-                                                    <div className='text-center py-2'>
+                                                    {/* <div className='text-center py-2'>
                                                         <div className={`text-[1.64431rem] font-extrabold`}>+20% off</div>
                                                         <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
                                                     </div>
                                                     <div className={`text-[0.67069rem] py-2 font-extrabold`}>Earn extra 30% off with popcoins</div>
                                                     <div className='flex items-center justify-center py-2'><Button className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>REDEEM</Button></div>
                                                     <div className={`text-[0.625rem] text-center font-normal`}>Valid till 03 Aug</div>
+                                                 */}
+                                                 <div className="text-center text-[0.625rem] py-2">Tap to Copy</div>
+                                                    <div onClick={() => handleDiscountCodeClick(j)} className={`text-center border-[1px] rounded-lg py-2 px-12`}>
+                                                        <div className="flex items-center justify-center">
+                                                        <div>{j?.discountcode}</div>
+                                                        <div className="px-2"><Copy className="w-[15px] h-[15px]" /></div>
+                                                        </div>
+                                                    </div>
+                                                    <div className={`text-center text-[0.625rem] py-4 ${manrope.className}`}>
+                                                        {j?.summary.split('•').map((i: any, index: number) => (
+                                                            <div>{i}</div>
+                                                        ))}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </motion.div>
+                                        {/* // FRONT SIDE OF THE COUPON CARD */}
                                         <motion.div
                                             transition={transitionConfig}
                                             initial={false}
                                             animate={{ rotateY: j.isFlipped ? 180 : 0 }}
-                                            className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl shadow-lg card"
+                                            // style={{ boxShadow: "0px 4px 50px 10px rgba(165, 165, 165, 0.25)" }}
+                                            className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl card shadow-md"
                                         >
                                             <div className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
                                                 <div>
