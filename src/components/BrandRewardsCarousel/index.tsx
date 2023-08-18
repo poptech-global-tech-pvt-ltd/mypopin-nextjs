@@ -52,7 +52,7 @@ function BrandRewardsCarousel() {
                     <div style={{ width: "100%", overflow: "hidden" }}>
                         <Carousel
                             arrows={false}
-                            autoPlay={true}
+                            autoPlay={false}
                             autoPlaySpeed={1800}
                             centerMode={false}
                             //   className=""
@@ -77,7 +77,7 @@ function BrandRewardsCarousel() {
                                     className="w-[200px] h-[auto] lg:w-[300px] lg:h-[auto]"
                                 // style={{ width: "300px", height: "auto" }}
                                 />
-                                <div className={`absolute top-0 left-0 p-4 text-black text-[12px] lg:text-[28px] lg:leading-[32px] font-[600] ${manrope.className}`}>
+                                <div className={`absolute top-0 left-0 pl-6 pr-12 pt-5 text-black text-[12px] lg:text-[28px] lg:leading-[32px] font-[600] ${manrope.className}`}>
                                     Avail additional discounts when shopping from brands powered <br /> by POPcoins <br /> Loyalty
                                 </div>
                             </div>
@@ -88,7 +88,7 @@ function BrandRewardsCarousel() {
                                     className="w-[200px] h-[auto] lg:w-[300px] lg:h-[auto]"
                                 // style={{ width: "300px", height: "auto" }}
                                 />
-                                <div className={`absolute top-0 left-0 p-4 text-black text-[12px] lg:text-[28px] lg:leading-[32px] font-[600] ${manrope.className}`}>
+                                <div className={`absolute top-0 left-0 pl-6 pr-12 pt-5 text-black text-[12px] lg:text-[28px] lg:leading-[32px] font-[600] ${manrope.className}`}>
                                     Explore the Reward Store to grab Free Brand Samples
                                 </div>
                             </div>
@@ -99,7 +99,7 @@ function BrandRewardsCarousel() {
                                     className="w-[200px] h-[auto] lg:w-[300px] lg:h-[auto]"
                                 // style={{ width: "300px", height: "auto" }}
                                 />
-                                <div className={`absolute top-0 left-0 p-4 text-black text-[12px] lg:text-[28px] lg:leading-[32px] font-[600] ${manrope.className}`}>
+                                <div className={`absolute top-0 left-0 pl-6 pr-12 pt-5 text-black text-[12px] lg:text-[28px] lg:leading-[32px] font-[600] ${manrope.className}`}>
                                     Use POPcoins to access offers across brands, movies, events, travel &amp; more&nbsp;
                                 </div>
                             </div>
