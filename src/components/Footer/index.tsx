@@ -17,7 +17,7 @@ function Footer() {
 
     useEffect(() => {
         const getBrandNames = async () => {
-            fetch('http://3.111.38.79/api/footer-top-brands?populate=*').then((res) => res.json()).then((data) => setAllBrands(data?.data[0].attributes.brand_names))
+            fetch('https://mypop-dashboard.popclub.co.in/api/footer-top-brands?populate=*').then((res) => res.json()).then((data) => setAllBrands(data?.data[0].attributes.brand_names))
         }
         getBrandNames()
     }, [])

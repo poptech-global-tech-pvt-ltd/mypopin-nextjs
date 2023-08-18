@@ -36,7 +36,7 @@ export function NavigationMenuDemo() {
   useEffect(() => {
     const getBrandNames = async () => {
       try {
-        const response = await fetch('http://localhost:1337/api/brand-names?populate=*');
+        const response = await fetch('https://mypop-dashboard.popclub.co.in/api/brand-names?populate=*');
         const data = await response.json();
 
         // Transform the data to group brands by category
@@ -128,11 +128,10 @@ export function NavigationMenuDemo() {
                 </div>
               ))}
               {/* // if data is not in strapi */}
-              {!isBrandDataAvailable && Object.keys(staticBrandData).map((category: string) => (
+              {/* {!isBrandDataAvailable && Object.keys(staticBrandData).map((category: string) => (
                 <div key={category} className="pr-2">
                   <div className="font-bold text-lg pt-3">{category}</div>
                   <div className="font-medium">
-                    {/* @ts-ignore */}
                     {staticBrandData[category].map((brand: string, index: number) => (
                       <div key={index}>
                         <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
@@ -144,7 +143,7 @@ export function NavigationMenuDemo() {
                     ))}
                   </div>
                 </div>
-              ))}
+              ))} */}
             </div>
             <Link href="/allbrands">
               <div className="text-right pb-4 pr-4 underline underline-offset-2">See All</div>

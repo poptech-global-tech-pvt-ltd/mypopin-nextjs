@@ -26,7 +26,7 @@ function MobileHeader() {
     useEffect(() => {
         const getBrandNames = async () => {
             try {
-                const response = await fetch('http://localhost:1337/api/brand-names?populate=*');
+                const response = await fetch('https://mypop-dashboard.popclub.co.in/api/brand-names?populate=*');
                 const data = await response.json();
 
                 // Transform the data to group brands by category
