@@ -124,9 +124,10 @@ function Coupons() {
         });
     };
 
-    const handleDiscountCodeClick = (j: any) => {
+    const handleDiscountCodeClick = (event: any, j: any) => {
+        event.preventDefault()
         console.log("hello-backkk")
-        console.log({j})
+        console.log({ j })
     }
 
     return (
@@ -205,16 +206,16 @@ function Coupons() {
                                                     <div className='flex items-center justify-center py-2'><Button className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>REDEEM</Button></div>
                                                     <div className={`text-[0.625rem] text-center font-normal`}>Valid till 03 Aug</div>
                                                  */}
-                                                 <div className="text-center text-[0.625rem] py-2">Tap to Copy</div>
-                                                    <div onClick={() => handleDiscountCodeClick(j)} className={`text-center border-[1px] rounded-lg py-2 px-12`}>
+                                                    <div className="text-center text-[0.625rem] py-2">Tap to Copy</div>
+                                                    <div onClick={(event) => handleDiscountCodeClick(event, j)} className={`text-center border-[1px] rounded-lg py-2 px-12`}>
                                                         <div className="flex items-center justify-center">
-                                                        <div>{j?.discountcode}</div>
-                                                        <div className="px-2"><Copy className="w-[15px] h-[15px]" /></div>
+                                                            <div>{j?.discountcode}</div>
+                                                            <div className="px-2"><Copy className="w-[15px] h-[15px]" /></div>
                                                         </div>
                                                     </div>
                                                     <div className={`text-center text-[0.625rem] py-4 ${manrope.className}`}>
                                                         {j?.summary.split('•').map((i: any, index: number) => (
-                                                            <div>{i}</div>
+                                                            <div key={index}>{i}</div>
                                                         ))}
                                                     </div>
                                                 </div>
