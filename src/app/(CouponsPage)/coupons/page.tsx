@@ -69,12 +69,6 @@ function Coupons() {
         duration: 0.5
     };
 
-    const handleCardClick = (index: any) => {
-        const updatedCards = [...cards];
-        updatedCards[index].isFlipped = !updatedCards[index].isFlipped;
-        setCards(updatedCards);
-    };
-
     useEffect(() => {
         fetch('https://presentation.popclub.co.in/api/presentation-layer/4b35a8aca9f311840d68051abae50ff5/coupons')
             .then(response => response.json())
@@ -120,6 +114,15 @@ function Coupons() {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1000px)' })
 
 
+    const handleCardClick = (couponIndex: number, itemIndex: number) => {
+        console.log({couponIndex, itemIndex})
+        setCouponData((prevData: any) => {
+            const newData = [...prevData];
+            newData[itemIndex].coupons[couponIndex].isFlipped = !newData[itemIndex].coupons[couponIndex]?.isFlipped;
+            return newData;
+        });
+    };
+
     return (
         <>
             <div className="py-1 lg:py-24 mx-auto">
@@ -162,19 +165,22 @@ function Coupons() {
                 </div>
                 {couponData
                     ?.filter((item: any) => item.hasOwnProperty('coupons'))
-                    ?.map((itm: any, index: number) => (
-                        <div key={index}>
+                    ?.map((itm: any, couponIndex: number) => (
+                        <div key={couponIndex}>
                             <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6 max-w-7xl mx-auto lg:px-0 px-4`}>{itm?.display_name}</div>
                             <Carousel responsive={responsive}>
-                                {itm?.coupons?.length > 0 && itm?.coupons?.map((j: any, index: any) => (
+                                {itm?.coupons?.length > 0 && itm?.coupons?.map((j: any, itemIndex: any) => (
                                     <motion.div
-                                        key={index}
+                                        key={itemIndex}
                                         className="card__wrapper"
+                                        onClick={() => {
+                                            handleCardClick(itemIndex, couponIndex);
+                                        }}
                                     >
                                         <motion.div
                                             transition={transitionConfig}
                                             initial={false}
-                                            // animate={{ rotateY: card.isFlipped ? 180 : 0 }}
+                                            animate={{ rotateY: j.isFlipped ? 0 : -180 }}
                                             className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl shadow-lg card"
                                         >
                                             <div className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
@@ -195,7 +201,7 @@ function Coupons() {
                                         <motion.div
                                             transition={transitionConfig}
                                             initial={false}
-                                            // animate={{ rotateY: card.isFlipped ? 0 : -180 }}
+                                            animate={{ rotateY: j.isFlipped ? 180 : 0 }}
                                             className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl shadow-lg card"
                                         >
                                             <div className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
@@ -229,64 +235,7 @@ function Coupons() {
                             </Carousel>
                         </div>
                     ))}
-                {/* <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", }}> */}
-                {/* <Carousel className="z-[90]" responsive={responsive}>
-                    {cards.map((card, index) => (
-                        <motion.div
-                            key={index}
-                            className="card__wrapper"
-                            onClick={() => {
-                                handleCardClick(index);
-                            }}
-                        >
-                            <motion.div
-                                transition={transitionConfig}
-                                initial={false}
-                                animate={{ rotateY: card.isFlipped ? 180 : 0 }}
-                                className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl shadow-[0px_4px_50px_10px_rgba(165,165,165,0.25)] card"
-                            >
-                                <div className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
-                                    <div>
-                                        <div className='text-center flex items-center justify-center py-2'>
-                                            <img src="/anveshan-coupon-logo.svg" />
-                                        </div>
-                                        <div className='text-center py-2'>
-                                            <div className={`text-[1.64431rem] font-extrabold`}>+20% off</div>
-                                            <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
-                                        </div>
-                                        <div className={`text-[0.67069rem] py-2 font-extrabold`}>Earn extra 30% off with popcoins</div>
-                                        <div className='flex items-center justify-center py-2'><Button className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>REDEEM</Button></div>
-                                        <div className={`text-[0.625rem] text-center font-normal`}>Valid till 03 Aug</div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                            <motion.div
-                                transition={transitionConfig}
-                                initial={false}
-                                animate={{ rotateY: card.isFlipped ? 0 : -180 }}
-                                className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl shadow-[0px_4px_50px_10px_rgba(165,165,165,0.25)] card"
-                            >
-                                <div className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
-                                    <div>
-                                        <div className='text-center flex items-center justify-center py-2'>
-                                            <img src="/anveshan-coupon-logo.svg" />
-                                        </div>
-                                        <div className='text-center py-2'>
-                                            <div className={`text-[1.64431rem] font-extrabold`}>+20% off</div>
-                                            <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
-                                        </div>
-                                        <div className={`text-[0.67069rem] py-2 font-extrabold`}>Earn extra 30% off with popcoins</div>
-                                        <div className='flex items-center justify-center py-2'><Button className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>REDEEM</Button></div>
-                                        <div className={`text-[0.625rem] text-center font-normal`}>Valid till 03 Aug</div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        </motion.div>
-                    ))}
-                </Carousel> */}
             </div>
-            {/* </div> */}
-
         </>
     );
 }
