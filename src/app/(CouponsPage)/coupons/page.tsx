@@ -106,8 +106,9 @@ function Coupons() {
     }
 
     const handleBrandNameFilterClick = (itm: any) => {
-        console.log("=-==-=-=-=-=-=-=-=")
         console.log({itm})
+        const filteredByBrandNames = couponData.filter((i: any) => i?.display_name === itm)
+        setCouponData(() => filteredByBrandNames)
     }
 
 
