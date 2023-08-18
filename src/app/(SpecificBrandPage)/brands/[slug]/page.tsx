@@ -8,6 +8,8 @@ import { BrandDeals } from '@/components/BrandDeals';
 import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { useRouter } from 'next/navigation'
+
 
 
 const manrope = Manrope({
@@ -19,6 +21,7 @@ function BrandPage() {
 
     const [brandData, setBrandData] = useState<any>([]);
     const [isLoading, setLoading] = useState<boolean>(true);
+    const router = useRouter()
 
     useEffect(() => {
         try {
@@ -38,6 +41,12 @@ function BrandPage() {
         }
     }, [])
 
+
+    console.log({brandData})
+
+    const handleBrandBtnClick = (brandData : string) => {
+        router.push("/")
+    }
 
     return (
         <>
@@ -142,7 +151,7 @@ function BrandPage() {
                 <section className='max-w-7xl mx-auto'>
                     <div className={`${manrope.className} text-center text-3xl font-bold py-8`}>Earn  5 For Every ₹100</div>
                     <div className={`${manrope.className} text-center text-2xl font-normal pb-8`}>Keep earning POPcoins with every purchase from Body Tales and other brands on POPcoins</div>
-                    <div className='text-center'><Button className={`rounded-full ${manrope.className} text-xl p-6 drop-shadow-md`}>Shop Body Tales Now</Button></div>
+                    <div className='text-center'><Button onClick={() => handleBrandBtnClick(brandData)} className={`rounded-full ${manrope.className} text-xl p-6 drop-shadow-md`}>Show {brandData?.brand_name} Now</Button></div>
                 </section>
             </div>
 
