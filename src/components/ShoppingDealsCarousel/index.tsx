@@ -19,21 +19,29 @@ function ShoppingDealsCarousel() {
 
     return (
         <>
-        {/* // THIS COMPONENT HAS BEEN DEPRECATED */}
+            {/* // THIS COMPONENT HAS BEEN DEPRECATED */}
             <div>
                 <div className={`${khand.className} text-center text-6xl py-16`}>Best Shopping Deals Online</div>
                 <Slider {...settings}>
+
+                    {/* // THIS COMPONENT HAS BEEN DEPRECATED */}
                     <div>
                         <h3>1</h3>
                     </div>
                     <div>
                         <h3>2</h3>
                     </div>
+                    {/* // THIS COMPONENT HAS BEEN DEPRECATED */}
+
                     <div>
                         <h3>3</h3>
+                        {/* // THIS COMPONENT HAS BEEN DEPRECATED */}
+
                     </div>
                     <div>
                         <h3>4</h3>
+                        {/* // THIS COMPONENT HAS BEEN DEPRECATED */}
+
                     </div>
                     <div>
                         <h3>5</h3>

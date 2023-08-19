@@ -7,6 +7,7 @@ import { MobileHeader } from '@/components/MobileHeader'
 // import { Footer } from '@/components/Footer'
 import { Footer } from '@/components'
 import { useScrollDirection } from '../hooks/useScrollDirection'
+import Transition from '@/components/Transition/Transition'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const isDesktopOrLaptop = useMediaQuery({
@@ -17,17 +18,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const scrollDirection = useScrollDirection();
 
   return (
+
     <html lang="en">
       <body>
-        {isDesktopOrLaptop ?
-          // <div className={`sticky ${scrollDirection === "down" ? "-top-24" : "top-0"} h-24 bg-blue-200 transition-all duration-500`}>
-          <Header />
-          // </div>
-          :
-          <MobileHeader />
-        }
-        {children}
-        <Footer />
+        <Transition>
+          {isDesktopOrLaptop ? <Header /> : <MobileHeader />}
+          {children}
+          <Footer />
+        </Transition>
       </body>
     </html>
   )
