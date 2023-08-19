@@ -13,6 +13,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { useEffect, useState } from "react"
+import { User2 } from 'lucide-react';
 
 function Header() {
     const [cookieKey, setCookieKey] = useState("");
@@ -90,7 +91,7 @@ function Header() {
     return (
         // if header animation has been removed, add "fixed" class to fix it
         <main className="w-full fixed z-[100]">
-            <div className="bg-[rgba(255,255,255,0.8)] backdrop-blur h-20 flex items-center justify-center ">
+            <div className="bg-[rgba(255,255,255,0.8)] backdrop-blur h-[8vh] flex items-center justify-center ">
                 <div className="max-w-[1350px] w-full">
                     <div className="flex justify-between">
                         {/* //logo section */}
@@ -114,25 +115,26 @@ function Header() {
                             <div className="flex">
                                 {/* <div>100</div> */}
                                 {/* // popcoins number */}
-                                <Image
+                                {/* <Image
                                     src="/popcoin.svg"
                                     width={25}
                                     height={25}
                                     alt="Popcoin"
                                     className="ml-3"
-                                />
+                                /> */}
                             </div>
                             <div className="btn-container-desktop-modal">
                                 <Dialog>
                                     <DialogTrigger>
-                                        <Image
+                                        {/* <Image
                                             src="/user-avatar.svg"
                                             width={25}
                                             height={25}
                                             alt="avatar"
                                             className="ml-3"
                                             onClick={() => handleLogin()}
-                                        />
+                                        /> */}
+                                        <User2 className="mt-[4px]" onClick={() => handleLogin()} />
                                     </DialogTrigger>
                                     <DialogContent className="lg:w-[340px!important] lg:p-2 lg:rounded-3xl h-[90vh] z-[110]">
                                         <DialogDescription>

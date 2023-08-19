@@ -62,9 +62,9 @@ function Coupons() {
         isFlipped: false
     }));
 
-    const [cards, setCards] = useState(initialCards);
     const [categories, setCategories] = useState<any>([]);
     const [brandNames, setBrandNames] = useState<any>([]);
+    const [discountCode, setDiscountCode] = useState<string>("");
 
     const transitionConfig = {
         duration: 0.5
@@ -75,8 +75,7 @@ function Coupons() {
             .then(response => response.json())
             .then(data => {
                 if (data.is_success) {
-                    setCouponData(data?.data)
-                    console.log(data?.data)
+                    setCouponData(data?.data ?.filter((item: any) => item.hasOwnProperty('coupons')))
                     if (data?.data?.length) {
                         data?.data?.map((itm: any, index: any) => {
                             setCategories((prevCategories: any) => [...prevCategories, itm?.category]);
@@ -93,17 +92,14 @@ function Coupons() {
     }, [])
     // @ts-ignore
     const uniqueCategories = Array.from(new Set(categories.map(JSON.stringify))).map(JSON.parse);
-    console.log({ couponData })
 
 
     const handleCategoryFilterClick = (itm: any) => {
-        console.log({ itm })
         const filteredByCategory = couponData.filter((i: any) => i?.category.id === itm?.id)
         setCouponData(() => filteredByCategory)
     }
 
     const handleBrandNameFilterClick = (itm: any) => {
-        console.log({ itm })
         const filteredByBrandNames = couponData.filter((i: any) => i?.display_name === itm)
         setCouponData(() => filteredByBrandNames)
     }
@@ -115,21 +111,22 @@ function Coupons() {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1000px)' })
 
 
-    const handleCardClick = (couponIndex: number, itemIndex: number) => {
-        console.log({ couponIndex, itemIndex })
+    const handleCardClick = (itemIndex: number, couponIndex: number) => {
+        console.log("clicked")
+        // coupon is the row number
+        console.log({ itemIndex, couponIndex })
         setCouponData((prevData: any) => {
             const newData = [...prevData];
-            if (newData[itemIndex]?.coupons && newData[itemIndex]?.coupons[couponIndex]) {
-                newData[itemIndex].coupons[couponIndex].isFlipped = !newData[itemIndex].coupons[couponIndex].isFlipped;
+            if (newData[couponIndex]?.coupons && newData[couponIndex]?.coupons[itemIndex]) {
+                newData[couponIndex].coupons[itemIndex].isFlipped = !newData[couponIndex]?.coupons[itemIndex]?.isFlipped;
             }
-            // newData[itemIndex].coupons[couponIndex].isFlipped = !newData[itemIndex]?.coupons[couponIndex]?.isFlipped;
             return newData;
         });
+        setDiscountCode(couponData[couponIndex]?.coupons[itemIndex]?.discountcode)
+        navigator.clipboard.writeText(discountCode);
     };
 
-    const handleDiscountCodeClick = (event: any, j: any) => {
-        console.log("hello-backkk")
-    }
+    console.log({discountCode})
 
     return (
         <>
@@ -200,7 +197,7 @@ function Coupons() {
                                                         {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                     </div>
                                                     <div onClick={() => console.log("tap to copy")} className="text-center text-[0.625rem] py-2">Tap to Copy</div>
-                                                    <div onClick={(event) => handleDiscountCodeClick(event, j)} className={`text-center border-[1px] rounded-lg py-2 px-12`}>
+                                                    <div className={`text-center border-[1px] rounded-lg py-2 px-12`}>
                                                         <div className="flex items-center justify-center">
                                                             <div>{j?.discountcode}</div>
                                                             <div className="px-2"><Copy className="w-[15px] h-[15px]" /></div>

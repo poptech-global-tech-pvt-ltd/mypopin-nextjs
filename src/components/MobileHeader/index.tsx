@@ -191,7 +191,7 @@ function MobileHeader() {
             <main>
                 <nav>
                     {/* // closed/header */}
-                    <div className="h-16 flex items-center">
+                    <div className="h-[10vh] flex items-center">
                         <div className="flex px-4 justify-between w-full">
                             {/* <Link href="/"> */}
                             <div onClick={handleMainTopLogoMobileClick}>
@@ -226,7 +226,7 @@ function MobileHeader() {
                     </div>
                     <Separator />
                     {/* // dropdown menu */}
-                    <div className={`${!isOpen ? `hidden` : `block h-[100vh]`}`}>
+                    <div className={`${!isOpen ? `hidden` : `block h-[90vh]`}`}>
                         <div className="p-4">
                             {/* // POP Partners */}
                             <Accordion type="single" collapsible>
