@@ -90,7 +90,7 @@ function Header() {
     return (
         // if header animation has been removed, add "fixed" class to fix it
         <main className="w-full fixed z-[100]">
-            <div className="bg-white h-24 flex items-center justify-center">
+            <div className="bg-[rgba(255,255,255,0.8)] backdrop-blur h-20 flex items-center justify-center ">
                 <div className="max-w-[1350px] w-full">
                     <div className="flex justify-between">
                         {/* //logo section */}
@@ -154,7 +154,7 @@ function Header() {
                     </div>
                 </div>
             </div>
-            <hr />
+            {/* <hr /> */}
         </main>
     )
 }
