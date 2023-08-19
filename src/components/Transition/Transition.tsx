@@ -1,6 +1,20 @@
 'use client'
 import { motion, AnimatePresence } from 'framer-motion'
+import { LayoutRouterContext } from 'next/dist/shared/lib/app-router-context';
 import { usePathname } from 'next/navigation'
+import { PropsWithChildren, useContext, useRef } from 'react';
+
+// AS OF AUG 2023 - Nextjs13 has no out-of-the-box support for framer motion. Here is a hack to freeze the router before transitoning, otherwise there would be a flash of navigated page befrore the animation
+function FrozenRouter(props: PropsWithChildren<{}>) {
+    const context = useContext(LayoutRouterContext);
+    const frozen = useRef(context).current;
+
+    return (
+        <LayoutRouterContext.Provider value={frozen}>
+            {props.children}
+        </LayoutRouterContext.Provider>
+    );
+}
 
 function Transition({ children }: any) {
     const pathname = usePathname()
@@ -9,16 +23,16 @@ function Transition({ children }: any) {
             opacity: 1,
             y: 0,
             transition: {
-                duration: 1,
+                duration: 0.5,
                 ease: 'easeInOut'
             }
         },
 
         out: {
             opacity: 0,
-            y: -100,
+            y: -15,
             transition: {
-                duration: 1,
+                duration: 0.5,
                 ease: 'easeInOut'
             }
         },
@@ -26,7 +40,7 @@ function Transition({ children }: any) {
             opacity: 100,
             y: 0,
             transition: {
-                duration: 1,
+                duration: 0.5,
                 ease: 'easeInOut'
             }
         }
@@ -45,7 +59,7 @@ function Transition({ children }: any) {
                     initial="out"
                     exit="out"
                 >
-                    {children}
+                    <FrozenRouter>{children}</FrozenRouter>
                 </motion.div>
             </AnimatePresence>
         </>
