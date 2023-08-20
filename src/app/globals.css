@@ -276,8 +276,8 @@ h6 {
 }
 
 .card {
-  user-select: none;
-  pointer-events: none;
+  /* user-select: none; */
+  /* pointer-events: none; */
   position: absolute;
   top: 0;
   left: 0;
@@ -294,8 +294,7 @@ h6 {
   width: 340px;
   height: 340px;
   position: relative;
-  perspective: 200px;
-  margin: 0 auto;
+  perspective: 600px;
 }
 
 .pulsating-border {

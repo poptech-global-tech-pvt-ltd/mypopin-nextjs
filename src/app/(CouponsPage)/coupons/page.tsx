@@ -75,7 +75,7 @@ function Coupons() {
             .then(response => response.json())
             .then(data => {
                 if (data.is_success) {
-                    setCouponData(data?.data ?.filter((item: any) => item.hasOwnProperty('coupons')))
+                    setCouponData(data?.data?.filter((item: any) => item.hasOwnProperty('coupons')))
                     if (data?.data?.length) {
                         data?.data?.map((itm: any, index: any) => {
                             setCategories((prevCategories: any) => [...prevCategories, itm?.category]);
@@ -123,15 +123,19 @@ function Coupons() {
             return newData;
         });
         setDiscountCode(couponData[couponIndex]?.coupons[itemIndex]?.discountcode)
-        navigator.clipboard.writeText(discountCode);
     };
 
-    console.log({discountCode})
+    const handleCopyClick = (event: any, itemIndex: any, couponIndex: any) => {
+        event?.stopPropagation()
+        console.log({ event, itemIndex, couponIndex })
+        navigator.clipboard.writeText(discountCode);
+    }
+
 
     return (
         <>
-            <div className="py-1 lg:py-24 mx-auto">
-                <div className={`grid lg:grid-cols-3 max-w-7xl`}>
+            <div className="py-1 lg:py-24 mx-auto max-w-7xl">
+                <div className={`grid lg:grid-cols-3 `}>
                     <div className={`${khand.className}  text-center text-6xl py-1 lg:py-16`}></div>
                     <div className={`${khand.className}  text-center text-6xl py-16`}>Coupons</div>
                     <Sheet>
@@ -173,7 +177,7 @@ function Coupons() {
                     ?.map((itm: any, couponIndex: number) => (
                         <div key={couponIndex}>
                             <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6 max-w-7xl mx-auto lg:px-0 px-4`}>{itm?.display_name}</div>
-                            <Carousel responsive={responsive}>
+                            <Carousel className="z-[50]" responsive={responsive}>
                                 {itm?.coupons?.length > 0 && itm?.coupons?.map((j: any, itemIndex: any) => (
                                     <motion.div
                                         key={itemIndex}
@@ -196,11 +200,13 @@ function Coupons() {
                                                         {itm?.logo && <img className="border-[0px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
                                                         {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                     </div>
-                                                    <div onClick={() => console.log("tap to copy")} className="text-center text-[0.625rem] py-2">Tap to Copy</div>
-                                                    <div className={`text-center border-[1px] rounded-lg py-2 px-12`}>
+                                                    <div className="flex">
+                                                        <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} className="text-center mx-auto" onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)}>Tap to copy</Button>
+                                                    </div>
+                                                    {/* <div onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)} className="text-center text-[0.625rem] py-2">Tap to Copy</div> */}
+                                                    <div className={`text-center border-[1px] rounded-lg`}>
                                                         <div className="flex items-center justify-center">
-                                                            <div>{j?.discountcode}</div>
-                                                            <div className="px-2"><Copy className="w-[15px] h-[15px]" /></div>
+                                                            <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)} className="">{j?.discountcode}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
                                                         </div>
                                                     </div>
                                                     <div className={`text-center text-[0.625rem] py-4 ${manrope.className}`}>
