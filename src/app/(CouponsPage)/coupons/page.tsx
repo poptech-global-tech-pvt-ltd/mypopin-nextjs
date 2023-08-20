@@ -137,7 +137,7 @@ function Coupons() {
             <div className="py-1 lg:py-24 mx-auto max-w-7xl">
                 <div className={`grid lg:grid-cols-3 `}>
                     <div className={`${khand.className}  text-center text-6xl py-1 lg:py-16`}></div>
-                    <div className={`${khand.className}  text-center text-6xl py-16`}>Coupons</div>
+                    <div className={`${khand.className}  text-center text-6xl py-6`}>Coupons</div>
                     <Sheet>
                         <div className="flex justify-end px-4 lg:px-0">
                             <SheetTrigger>
@@ -177,7 +177,7 @@ function Coupons() {
                     ?.map((itm: any, couponIndex: number) => (
                         <div key={couponIndex}>
                             <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6 max-w-7xl mx-auto lg:px-0 px-4`}>{itm?.display_name}</div>
-                            <Carousel className="z-[50]" responsive={responsive}>
+                            <Carousel className="z-[50] px-4" responsive={responsive}>
                                 {itm?.coupons?.length > 0 && itm?.coupons?.map((j: any, itemIndex: any) => (
                                     <motion.div
                                         key={itemIndex}
@@ -192,7 +192,7 @@ function Coupons() {
                                             initial={false}
                                             animate={{ rotateY: j.isFlipped ? 0 : -180 }}
                                             style={{ backgroundColor: itm?.color?.bg_color_1 }}
-                                            className="text-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl shadow-lg card"
+                                            className="text-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl border-[1px] shadow-lg card"
                                         >
                                             <div style={{ borderColor: itm?.color?.bg_color_2 }} className="w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
                                                 <div>
@@ -222,8 +222,8 @@ function Coupons() {
                                             transition={transitionConfig}
                                             initial={false}
                                             animate={{ rotateY: j.isFlipped ? 180 : 0 }}
-                                            // style={{ boxShadow: "0px 4px 50px 10px rgba(165, 165, 165, 0.25)" }}
-                                            className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl card shadow-md"
+                                            // style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"  }}
+                                            className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl border-[1px] card shadow-lg"
                                         >
                                             <div className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
                                                 <div>
