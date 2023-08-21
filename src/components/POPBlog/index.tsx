@@ -20,7 +20,7 @@ function POPBlog() {
     const [blogData, setBlogData] = useState<any>();
 
     useEffect(() => {
-        fetch(`http://localhost:1337/api/blog-widgets?populate=*`).then((res) => res.json()).then((data) => setBlogData(data?.data))
+        fetch(`https://mypop-dashboard.popclub.co.in/api/blog-widgets?populate=*`).then((res) => res.json()).then((data) => setBlogData(data?.data))
     }, [])
 
     console.log({ blogData })
