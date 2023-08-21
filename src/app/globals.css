@@ -290,6 +290,7 @@ h6 {
   height: 340px;
   position: relative;
   perspective: 600px;
+  margin: 0 auto;
 }
 
 .pulsating-border {
@@ -818,4 +819,26 @@ h6 {
   align-items: center;
   justify-content: center;
 }
+
+/* // hiding coupons page slider arrow on mobile */
+/* MOBILE */
+@media only screen and (max-width: 600px) {
+  .coupon-carousel-container .react-multiple-carousel__arrow--left{
+    display: none;
+  }
+  .coupon-carousel-container .react-multiple-carousel__arrow--right{
+    display: none;
+  }
+}
+
+/* DESKTOP */
+@media only screen and (min-width: 600px) {
+  .coupon-carousel-container .react-multiple-carousel__arrow--left{
+    display: block;
+  }
+  .coupon-carousel-container .react-multiple-carousel__arrow--right{
+    display: block;
+  }
+}
+
 

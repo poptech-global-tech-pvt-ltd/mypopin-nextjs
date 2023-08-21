@@ -1,6 +1,6 @@
 'use client'
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
 import { useState, useEffect, Fragment } from "react";
 import { Khand, Manrope } from 'next/font/google'
 import {
@@ -17,7 +17,8 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useMediaQuery } from 'react-responsive'
-import { Copy } from 'lucide-react';
+import { Copy, ArrowRightCircle } from 'lucide-react';
+
 
 const manrope = Manrope({
     subsets: ['latin'],
@@ -44,7 +45,7 @@ const responsive = {
     },
     mobile: {
         breakpoint: { max: 464, min: 0 },
-        items: 1.2
+        items: 1
     }
 };
 
@@ -54,7 +55,6 @@ function Coupons() {
     const [categories, setCategories] = useState<any>([]);
     const [brandNames, setBrandNames] = useState<any>([]);
     const [discountCode, setDiscountCode] = useState<string>("");
-
 
     const transitionConfig = {
         duration: 0.5
@@ -68,8 +68,8 @@ function Coupons() {
                     setCouponData(data?.data?.filter((item: any) => item.hasOwnProperty('coupons')))
                     if (data?.data?.length) {
                         data?.data?.map((itm: any, index: any) => {
-                            console.log({itm})
-                            if(itm?.coupons){
+                            console.log({ itm })
+                            if (itm?.coupons) {
                                 setCategories((prevCategories: any) => [...prevCategories, itm?.category]);
                                 setBrandNames((prev: any) => [...prev, itm?.display_name])
                             }
@@ -132,9 +132,6 @@ function Coupons() {
         navigator.clipboard.writeText(discountCode);
     }
 
-    console.log({categories})
-
-
     return (
         <>
             <div className="py-1 lg:py-24 mx-auto max-w-7xl">
@@ -164,13 +161,13 @@ function Coupons() {
                                     <ScrollArea className="h-[420px] w-full">
                                         {/* // FOR BRAND NAMES */}
                                         {brandNames
-                                        // ?.filter((item: any) => item.hasOwnProperty('coupons'))
-                                        ?.map((itm: any, index: any) => (
-                                            <div key={index} className="flex items-center space-x-2 py-2">
-                                                <Checkbox onClick={() => handleBrandNameFilterClick(itm)} id={itm} />
-                                                <Label htmlFor={itm}>{itm}</Label>
-                                            </div>
-                                        ))}
+                                            // ?.filter((item: any) => item.hasOwnProperty('coupons'))
+                                            ?.map((itm: any, index: any) => (
+                                                <div key={index} className="flex items-center space-x-2 py-2">
+                                                    <Checkbox onClick={() => handleBrandNameFilterClick(itm)} id={itm} />
+                                                    <Label htmlFor={itm}>{itm}</Label>
+                                                </div>
+                                            ))}
                                     </ScrollArea>
                                 </SheetDescription>
                             </SheetHeader>
@@ -182,7 +179,10 @@ function Coupons() {
                     ?.map((itm: any, couponIndex: number) => (
                         <div key={couponIndex}>
                             <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6 max-w-7xl mx-auto lg:px-0 px-4`}>{itm?.display_name}</div>
-                            <Carousel className="z-[50] px-4" responsive={responsive}>
+                            <div className="coupon-carousel-container">
+                            <Carousel
+                                responsive={responsive}
+                                className="z-[50] px-4">
                                 {itm?.coupons?.length > 0 && itm?.coupons?.map((j: any, itemIndex: any) => (
                                     <motion.div
                                         key={itemIndex}
@@ -201,8 +201,8 @@ function Coupons() {
                                         >
                                             <div style={{ borderColor: itm?.color?.bg_color_2 }} className="w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
                                                 <div>
-                                                    <div className='text-center flex items-center justify-center py-2'>
-                                                        {itm?.logo && <img className="border-[0px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
+                                                    <div className='text-center flex items-center justify-center py-1'>
+                                                        {itm?.logo && <img className="border-[1px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
                                                         {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                     </div>
                                                     <div className="flex">
@@ -213,7 +213,14 @@ function Coupons() {
                                                             <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)} className="">{j?.discountcode}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
                                                         </div>
                                                     </div>
-                                                    <div className={`text-center text-[0.625rem] py-4 ${manrope.className}`}>
+                                                    <div className='flex items-center justify-center py-1'>
+                                                        <a href={itm?.redirection_url}>
+                                                            <Button 
+                                                                // style={{backgroundColor : itm?.color?.bg_color_1 , color : itm?.color?.text_color_1}}
+                                                                onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-4`}>REDEEM&nbsp;&nbsp;<ArrowRightCircle className="w-5 h-5" /></Button>
+                                                        </a>
+                                                    </div>
+                                                    <div className={`text-center text-[0.625rem] py-1 ${manrope.className}`}>
                                                         {j?.summary.split('•').map((i: any, index: number) => (
                                                             <div key={index}>{i}</div>
                                                         ))}
@@ -229,7 +236,7 @@ function Coupons() {
                                             // style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"  }}
                                             className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl border-[1px] card shadow-lg"
                                         >
-                                            <div className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
+                                            <div style={{borderColor : itm?.color?.bg_color_1}} className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
                                                 <div>
                                                     <div className='text-center flex items-center justify-center py-2'>
                                                         {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
@@ -250,7 +257,11 @@ function Coupons() {
                                                         <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
                                                     </div>
                                                     <div className={`text-[0.67069rem] py-1 font-extrabold`}>{itm?.discount_percentage_text ? `Earn extra ${itm?.discount_percentage_text} off with popcoins` : null}</div>
-                                                    <div className='flex items-center justify-center py-2'><Button className={`text-[0.67069rem] rounded-full h-0 px-3 py-3`}>REDEEM</Button></div>
+                                                    <div className='flex items-center justify-center py-2'>
+                                                        <a href={itm?.redirection_url}>
+                                                            <Button style={{backgroundColor  : itm?.color?.bg_color_1}} onClick={(e) => e.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3`}>REDEEM</Button>
+                                                        </a>
+                                                    </div>
                                                     <div className={`text-[0.625rem] text-center font-normal`}>{j?.endsAt}</div>
                                                 </div>
                                             </div>
@@ -258,6 +269,7 @@ function Coupons() {
                                     </motion.div>
                                 ))}
                             </Carousel>
+                            </div>
                         </div>
                     ))}
             </div>
