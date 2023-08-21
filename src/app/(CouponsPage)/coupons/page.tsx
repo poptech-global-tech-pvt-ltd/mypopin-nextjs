@@ -50,12 +50,10 @@ const responsive = {
 };
 
 function Coupons() {
-
     const [couponData, setCouponData] = useState<any>([])
     const [categories, setCategories] = useState<any>([]);
     const [brandNames, setBrandNames] = useState<any>([]);
     const [discountCode, setDiscountCode] = useState<string>("");
-
     const transitionConfig = {
         duration: 0.5
     };
@@ -133,6 +131,8 @@ function Coupons() {
         navigator.clipboard.writeText(discountCode);
     }
 
+    console.log({couponData})
+
     return (
         <>
             <div className="py-1 lg:py-24 mx-auto max-w-7xl">
@@ -181,95 +181,98 @@ function Coupons() {
                         <div key={couponIndex}>
                             <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6 max-w-7xl mx-auto lg:px-0 px-4`}>{itm?.display_name}</div>
                             <div className="coupon-carousel-container">
-                            <Carousel
-                                responsive={responsive}
-                                className="z-[50] px-4">
-                                {itm?.coupons?.length > 0 && itm?.coupons?.map((j: any, itemIndex: any) => (
-                                    <motion.div
-                                        key={itemIndex}
-                                        className="card__wrapper"
-                                        onClick={() => {
-                                            handleCardClick(itemIndex, couponIndex);
-                                        }}
-                                    >
-                                        {/* // BACK SIDE OF THE COUPON CARD */}
+                                <Carousel
+                                    responsive={responsive}
+                                    className="z-[50] px-4">
+                                    {itm?.coupons?.length > 0 && itm?.coupons?.map((j: any, itemIndex: any) => (
                                         <motion.div
-                                            transition={transitionConfig}
-                                            initial={false}
-                                            animate={{ rotateY: j.isFlipped ? 0 : -180 }}
-                                            style={{ backgroundColor: itm?.color?.bg_color_1 }}
-                                            className="text-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl border-[1px] shadow-lg card"
+                                            key={itemIndex}
+                                            className="card__wrapper"
+                                            onClick={() => {
+                                                handleCardClick(itemIndex, couponIndex);
+                                            }}
                                         >
-                                            <div style={{ borderColor: itm?.color?.bg_color_2 }} className="w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
-                                                <div>
-                                                    <div className='text-center flex items-center justify-center py-1'>
-                                                        {itm?.logo && <img className="border-[1px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
-                                                        {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
-                                                    </div>
-                                                    <div className="flex">
-                                                        <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} className="text-center mx-auto" onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)}>{j?.isCopied ? 'Copied' : 'Tap to copy'}</Button>
-                                                    </div>
-                                                    <div className={`text-center border-[1px] rounded-lg`}>
-                                                        <div className="flex items-center justify-center">
-                                                            <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)} className="">{j?.discountcode}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
+                                            {/* // BACK SIDE OF THE COUPON CARD */}
+                                            <motion.div
+                                                transition={transitionConfig}
+                                                initial={false}
+                                                animate={{ rotateY: j.isFlipped ? 0 : -180 }}
+                                                style={{ backgroundColor: itm?.color?.bg_color_1 }}
+                                                className="text-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl border-[1px] shadow-lg card"
+                                            >
+                                                <div style={{ borderColor: itm?.color?.bg_color_2 }} className="w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
+                                                    <div>
+                                                        <div className='text-center flex items-center justify-center py-1'>
+                                                            {itm?.logo && <img className="border-[1px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
+                                                            {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
+                                                        </div>
+                                                        <div className="flex">
+                                                            <Button 
+                                                                style={{ backgroundColor: itm?.color?.bg_color_1 ? itm?.color?.bg_color_1 : "white" , color : itm?.color?.bg_color_1 ? "white" : "black" }} className="text-center mx-auto" onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)}>{j?.isCopied ? 'Copied' : 'Tap to copy'}</Button>
+                                                        </div>
+                                                        <div className={`text-center border-[1px] rounded-lg`}>
+                                                            <div className="flex items-center justify-center">
+                                                                <Button
+                                                                 style={{ backgroundColor: itm?.color?.bg_color_1 ? itm?.color?.bg_color_1 : "white" , color : itm?.color?.bg_color_1 ? "white" : "black" }}
+                                                                 onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)} className="h-7">{j?.discountcode.length > 10 ? j?.discountcode.slice(0, 10) + ".." : j?.discountcode}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
+                                                            </div>
+                                                        </div>
+                                                        <div className='flex items-center justify-center py-1'>
+                                                            <a href={itm?.redirection_url}>
+                                                                <Button
+                                                                    style={{backgroundColor : itm?.color?.bg_color_2 , color : itm?.color?.text_color_2}}
+                                                                    onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3 my-2`}>REDEEM&nbsp;&nbsp;<ArrowRightCircle className="w-4 h-4" /></Button>
+                                                            </a>
+                                                        </div>
+                                                        <div className={`text-center text-[0.625rem] py-1 ${manrope.className}`}>
+                                                            {j?.summary.split('•').map((i: any, index: number) => (
+                                                                <div key={index}>{i}</div>
+                                                            ))}
                                                         </div>
                                                     </div>
-                                                    <div className='flex items-center justify-center py-1'>
-                                                        <a href={itm?.redirection_url}>
-                                                            <Button 
-                                                                // style={{backgroundColor : itm?.color?.bg_color_1 , color : itm?.color?.text_color_1}}
-                                                                onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-4`}>REDEEM&nbsp;&nbsp;<ArrowRightCircle className="w-5 h-5" /></Button>
-                                                        </a>
-                                                    </div>
-                                                    <div className={`text-center text-[0.625rem] py-1 ${manrope.className}`}>
-                                                        {j?.summary.split('•').map((i: any, index: number) => (
-                                                            <div key={index}>{i}</div>
-                                                        ))}
-                                                    </div>
                                                 </div>
-                                            </div>
-                                        </motion.div>
-                                        {/* // FRONT SIDE OF THE COUPON CARD */}
-                                        <motion.div
-                                            transition={transitionConfig}
-                                            initial={false}
-                                            animate={{ rotateY: j.isFlipped ? 180 : 0 }}
-                                            // style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"  }}
-                                            className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl border-[1px] card shadow-lg"
-                                        >
-                                            <div style={{borderColor : itm?.color?.bg_color_1}} className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
-                                                <div>
-                                                    <div className='text-center flex items-center justify-center py-2'>
-                                                        {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
-                                                        {!itm?.logo && <div className="border-[1.5px] w-[90px] h-[90px] rounded-full bg-white"></div>}
-                                                    </div>
-                                                    <div className='text-center py-2'>
-                                                        {j?.rules.value?.percentage ? (
-                                                            <>
-                                                                <div className={`text-[1.64431rem] font-extrabold`}>{j?.rules.value?.percentage * 100}%</div>
-                                                            </>
-                                                        ) :
-                                                            (
+                                            </motion.div>
+                                            {/* // FRONT SIDE OF THE COUPON CARD */}
+                                            <motion.div
+                                                transition={transitionConfig}
+                                                initial={false}
+                                                animate={{ rotateY: j.isFlipped ? 180 : 0 }}
+                                                // style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"  }}
+                                                className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl border-[1px] card shadow-lg"
+                                            >
+                                                <div style={{ borderColor: itm?.color?.bg_color_1 }} className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
+                                                    <div>
+                                                        <div className='text-center flex items-center justify-center py-2'>
+                                                            {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
+                                                            {!itm?.logo && <div className="border-[1.5px] w-[90px] h-[90px] rounded-full bg-white"></div>}
+                                                        </div>
+                                                        <div className='text-center py-2'>
+                                                            {j?.rules.value?.percentage ? (
                                                                 <>
-                                                                    <div className={`text-[1.64431rem] font-extrabold`}>₹{Math.floor(j?.rules.value?.amount?.amount)}</div>
+                                                                    <div className={`text-[1.64431rem] font-extrabold`}>{j?.rules.value?.percentage * 100}%</div>
                                                                 </>
-                                                            )
-                                                        }
-                                                        <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
+                                                            ) :
+                                                                (
+                                                                    <>
+                                                                        <div className={`text-[1.64431rem] font-extrabold`}>₹{Math.floor(j?.rules.value?.amount?.amount)}</div>
+                                                                    </>
+                                                                )
+                                                            }
+                                                            <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
+                                                        </div>
+                                                        <div className={`text-[0.67069rem] py-1 font-extrabold`}>{itm?.discount_percentage_text ? `Earn extra ${itm?.discount_percentage_text} off with popcoins` : null}</div>
+                                                        <div className='flex items-center justify-center py-2'>
+                                                            <a href={itm?.redirection_url}>
+                                                                <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} onClick={(e) => e.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3`}>REDEEM</Button>
+                                                            </a>
+                                                        </div>
+                                                        <div className={`text-[0.625rem] text-center font-normal`}>{j?.endsAt}</div>
                                                     </div>
-                                                    <div className={`text-[0.67069rem] py-1 font-extrabold`}>{itm?.discount_percentage_text ? `Earn extra ${itm?.discount_percentage_text} off with popcoins` : null}</div>
-                                                    <div className='flex items-center justify-center py-2'>
-                                                        <a href={itm?.redirection_url}>
-                                                            <Button style={{backgroundColor  : itm?.color?.bg_color_1}} onClick={(e) => e.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3`}>REDEEM</Button>
-                                                        </a>
-                                                    </div>
-                                                    <div className={`text-[0.625rem] text-center font-normal`}>{j?.endsAt}</div>
                                                 </div>
-                                            </div>
+                                            </motion.div>
                                         </motion.div>
-                                    </motion.div>
-                                ))}
-                            </Carousel>
+                                    ))}
+                                </Carousel>
                             </div>
                         </div>
                     ))}
