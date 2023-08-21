@@ -14,18 +14,10 @@ import TopBrands from "@/components/TopBrands"
 import { POPShop } from "@/components/POPShop"
 import { ShoppingDeals } from "@/components/ShoppingDeals"
 import { POPBlog } from "@/components/POPBlog"
-
-// search params is not working properly
-export default function Home({
-  params,
-  searchParams,
-}: {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}) {
+import type { Metadata } from 'next'
 
 
-
+export default function Home(){
   return (
     <main>
       <Layout>

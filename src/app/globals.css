@@ -205,11 +205,6 @@ h6 {
   bottom: 20px !important;
 }
 
-/* // for shopping deals react-slick  */
-.shopping-deals .slick-center>div>div>img {
-  /* width: 950px !important;
-  height: auto !important; */
-}
 
 .test-container {
   display: grid;
@@ -362,11 +357,10 @@ h6 {
 }
 
 .swiper {
-  width: 100vw;
-  /* margin: 0 auto; */
+  /* width: 100vw;
   left: 50%;
   right: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 }
 
 .integration-container {

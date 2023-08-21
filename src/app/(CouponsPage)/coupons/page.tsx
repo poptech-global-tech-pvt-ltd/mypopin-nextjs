@@ -19,10 +19,6 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { useMediaQuery } from 'react-responsive'
 import { Copy } from 'lucide-react';
 
-
-
-
-
 const manrope = Manrope({
     subsets: ['latin'],
     weight: ['400', '700', '800']
@@ -55,16 +51,10 @@ const responsive = {
 function Coupons() {
 
     const [couponData, setCouponData] = useState<any>([])
-
-    const numCards = 10; // Number of cards
-
-    const initialCards = Array.from({ length: numCards }, () => ({
-        isFlipped: false
-    }));
-
     const [categories, setCategories] = useState<any>([]);
     const [brandNames, setBrandNames] = useState<any>([]);
     const [discountCode, setDiscountCode] = useState<string>("");
+
 
     const transitionConfig = {
         duration: 0.5
@@ -78,8 +68,11 @@ function Coupons() {
                     setCouponData(data?.data?.filter((item: any) => item.hasOwnProperty('coupons')))
                     if (data?.data?.length) {
                         data?.data?.map((itm: any, index: any) => {
-                            setCategories((prevCategories: any) => [...prevCategories, itm?.category]);
-                            setBrandNames((prev: any) => [...prev, itm?.display_name])
+                            console.log({itm})
+                            if(itm?.coupons){
+                                setCategories((prevCategories: any) => [...prevCategories, itm?.category]);
+                                setBrandNames((prev: any) => [...prev, itm?.display_name])
+                            }
                         })
                     }
                 } else {
@@ -119,6 +112,7 @@ function Coupons() {
             const newData = [...prevData];
             if (newData[couponIndex]?.coupons && newData[couponIndex]?.coupons[itemIndex]) {
                 newData[couponIndex].coupons[itemIndex].isFlipped = !newData[couponIndex]?.coupons[itemIndex]?.isFlipped;
+                newData[couponIndex].coupons[itemIndex].isCopied = false;
             }
             return newData;
         });
@@ -127,9 +121,18 @@ function Coupons() {
 
     const handleCopyClick = (event: any, itemIndex: any, couponIndex: any) => {
         event?.stopPropagation()
+        setCouponData((prevData: any) => {
+            const newData = [...prevData];
+            if (newData[couponIndex]?.coupons && newData[couponIndex]?.coupons[itemIndex]) {
+                newData[couponIndex].coupons[itemIndex].isCopied = true;
+            }
+            return newData;
+        });
         console.log({ event, itemIndex, couponIndex })
         navigator.clipboard.writeText(discountCode);
     }
+
+    console.log({categories})
 
 
     return (
@@ -160,7 +163,9 @@ function Coupons() {
                                 <SheetDescription>
                                     <ScrollArea className="h-[420px] w-full">
                                         {/* // FOR BRAND NAMES */}
-                                        {brandNames?.map((itm: any, index: any) => (
+                                        {brandNames
+                                        // ?.filter((item: any) => item.hasOwnProperty('coupons'))
+                                        ?.map((itm: any, index: any) => (
                                             <div key={index} className="flex items-center space-x-2 py-2">
                                                 <Checkbox onClick={() => handleBrandNameFilterClick(itm)} id={itm} />
                                                 <Label htmlFor={itm}>{itm}</Label>
@@ -201,9 +206,8 @@ function Coupons() {
                                                         {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                     </div>
                                                     <div className="flex">
-                                                        <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} className="text-center mx-auto" onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)}>Tap to copy</Button>
+                                                        <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} className="text-center mx-auto" onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)}>{j?.isCopied ? 'Copied' : 'Tap to copy'}</Button>
                                                     </div>
-                                                    {/* <div onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)} className="text-center text-[0.625rem] py-2">Tap to Copy</div> */}
                                                     <div className={`text-center border-[1px] rounded-lg`}>
                                                         <div className="flex items-center justify-center">
                                                             <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)} className="">{j?.discountcode}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
