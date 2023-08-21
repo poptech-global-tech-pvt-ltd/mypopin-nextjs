@@ -189,7 +189,7 @@ export function NavigationMenuDemo() {
         >
           <Link href="/" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <div onClick={handleScrollToBottom} className={`${manrope.className} font-bold text-[16px]`}>Help & Supports</div>
+              <div onClick={handleScrollToBottom} className={`${manrope.className} font-bold text-[16px]`}>Contact Us</div>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

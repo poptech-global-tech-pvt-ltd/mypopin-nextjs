@@ -43,7 +43,11 @@ function POPBlog() {
                             <div className='blog-grid-itm-1 px-2'>
                                 <div><img className='rounded-2xl' src={blogData[0]?.attributes?.post_image?.data?.attributes?.url} /></div>
                                 <div className='py-4'><Badge className='text-[#981B1B] bg-[#FEE2E1]'>{blogData[0]?.attributes.category}</Badge></div>
-                                <div className={`${manrope.className} text-[20px] font-bold`}>{blogData[0]?.attributes.title}</div>
+                                <div className={`${manrope.className} text-[20px] font-bold`}>
+                                    <a target="_blank" href={blogData[0]?.attributes?.external_link}>
+                                        {blogData[0]?.attributes.title}
+                                    </a>
+                                </div>
                                 <div className={`${manrope.className} text-[14px] font-normal text-[#475569]`}>{blogData[0]?.attributes.description}</div>
                                 <div className='flex items-center py-1'>
                                     <div><img width="22" height="22" src="/popcoin-icon.svg" /></div>
@@ -57,7 +61,11 @@ function POPBlog() {
                                 <div className='grid grid-cols-[2fr_1fr] items-center lg:items-start'>
                                     <div>
                                         <div className='py-4'><Badge className='bg-[#DFE7FF] text-[#3730A3]'>{blogData[1]?.attributes.category}</Badge></div>
-                                        <div className={`${manrope.className} text-[14px] font-bold`}>{blogData[1]?.attributes.title}</div>
+                                        <div className={`${manrope.className} text-[14px] font-bold`}>
+                                            <a target="_blank" href={blogData[1]?.attributes?.external_link}>
+                                                {blogData[1]?.attributes.title}
+                                            </a>
+                                        </div>
                                         <div className={`${manrope.className} text-[14px] font-normal text-[#475569]`}>{blogData[1]?.attributes.description.slice(0, 64) + "..."}</div>
                                         <div className='flex items-center py-1'>
                                             <div><img width="22" height="22" src="/popcoin-icon.svg" /></div>
@@ -74,7 +82,11 @@ function POPBlog() {
                                 <div className='grid grid-cols-[2fr_1fr] items-center lg:items-start'>
                                     <div>
                                         <div className='py-4'><Badge className='bg-[#FEF9C3] text-[#844D0F]'>{blogData[2]?.attributes.category}</Badge></div>
-                                        <div className={`${manrope.className} text-[14px] font-bold`}>{blogData[2]?.attributes.title}</div>
+                                        <div className={`${manrope.className} text-[14px] font-bold`}>
+                                            <a target="_blank" href={blogData[2]?.attributes?.external_link}>
+                                                {blogData[2]?.attributes.title}
+                                            </a>
+                                        </div>
                                         <div className={`${manrope.className} text-[14px] font-normal text-[#475569]`}>{blogData[2]?.attributes?.description?.slice(0, 64) + "..."}</div>
                                         <div className='flex items-center py-1'>
                                             <div><img width="22" height="22" src="/popcoin-icon.svg" /></div>
@@ -91,7 +103,11 @@ function POPBlog() {
                                 <div className='grid grid-cols-[2fr_1fr] items-center lg:items-start'>
                                     <div>
                                         <div className='py-4'><Badge className='text-[#6B21A8] bg-[#F3E7FF]'>{blogData[3]?.attributes.category}</Badge></div>
-                                        <div className={`${manrope.className} text-[14px] font-bold`}>{blogData[3]?.attributes.title}</div>
+                                        <div className={`${manrope.className} text-[14px] font-bold`}>
+                                            <a target="_blank" href={blogData[2]?.attributes?.external_link}>
+                                                {blogData[3]?.attributes.title}
+                                            </a>
+                                        </div>
                                         <div className={`${manrope.className} text-[14px] font-normal text-[#475569]`}>{blogData[3]?.attributes.description.slice(0, 64) + "..."}</div>
                                         <div className='flex items-center py-1'>
                                             <div><img width="22" height="22" src="/popcoin-icon.svg" /></div>
