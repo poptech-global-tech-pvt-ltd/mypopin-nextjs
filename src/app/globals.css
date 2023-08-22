@@ -358,10 +358,11 @@ h6 {
 }
 
 .swiper {
-  /* width: 100vw;
+  width: 100vw;
+  /* margin: 0 auto; */
   left: 50%;
   right: 50%;
-  transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%);
 }
 
 .integration-container {

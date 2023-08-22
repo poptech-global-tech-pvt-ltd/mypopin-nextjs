@@ -153,16 +153,7 @@ function Coupons() {
         navigator.clipboard.writeText(discountCode);
     }
 
-    useEffect(() => {
-        console.log({ filteredBrandData })
-        if (filteredBrandData != undefined) {
-            setCouponData(() => {
-                let result = filteredBrandData
-                return result
-            })
-        }
-        console.log({ filteredBrandData })
-    }, [filteredBrandData])
+    console.log({filteredBrandData})
 
     return (
         <>
@@ -208,6 +199,10 @@ function Coupons() {
                         </SheetContent>
                     </Sheet>
                 </div>
+                {/* // if brand data filter logic begins */}
+                {/* // NOT SURE */}
+                {/* // if brand data filter logic ends*/}
+
                 {couponData
                     // ?.filter((item: any) => item.hasOwnProperty('coupons'))
                     ?.map((itm: any, couponIndex: number) => (
