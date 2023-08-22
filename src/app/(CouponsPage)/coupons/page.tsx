@@ -53,6 +53,7 @@ function Coupons() {
     const [couponData, setCouponData] = useState<any>([])
     const [categories, setCategories] = useState<any>([]);
     const [brandNames, setBrandNames] = useState<any>([]);
+    const [filteredBrandData, setFilteredBrandData] = useState<any>();
     const [discountCode, setDiscountCode] = useState<string>("");
     const transitionConfig = {
         duration: 0.5
@@ -66,10 +67,9 @@ function Coupons() {
                     setCouponData(data?.data?.filter((item: any) => item.hasOwnProperty('coupons')))
                     if (data?.data?.length) {
                         data?.data?.map((itm: any, index: any) => {
-                            console.log({ itm })
                             if (itm?.coupons) {
                                 setCategories((prevCategories: any) => [...prevCategories, itm?.category]);
-                                setBrandNames((prev: any) => [...prev, itm?.display_name])
+                                setBrandNames((prev: any) => [...prev, { isChecked: false, title: itm?.display_name }])
                             }
                         })
                     }
@@ -87,14 +87,40 @@ function Coupons() {
 
 
     const handleCategoryFilterClick = (itm: any) => {
+        // setCouponData((prevData : any) => {
+        //     const newData = [...prevData]
+        //     newData[couponIndex].coupons[itemIndex].isChecked = !newData[couponIndex].coupons[itemIndex]?.isChecked
+        //     return newData
+        // })
+
+
         const filteredByCategory = couponData.filter((i: any) => i?.category.id === itm?.id)
         setCouponData(() => filteredByCategory)
     }
 
     const handleBrandNameFilterClick = (itm: any) => {
-        const filteredByBrandNames = couponData.filter((i: any) => i?.display_name === itm)
-        setCouponData(() => filteredByBrandNames)
+        const index = brandNames?.findIndex((i: any) => i?.title === itm?.title)
+        console.log({ index })
+        setBrandNames((prevData: any) => {
+            const newData = [...prevData]
+            newData[index].isChecked = !newData[index].isChecked
+            return newData
+        })
+
+        const test1 = couponData.filter((item: any) => {
+            return brandNames.some((j: any) => j.title === item.display_name && j.isChecked);
+        });
+
+        setFilteredBrandData(test1)
+
+
+        // setCouponData((prevData : any) => 
+        //     prevData?.filter((item : any) => brandNames.some((j : any) => j.title === item.display_name && j.isChecked))            
+        // )
     }
+
+
+
 
     const isDesktopOrLaptop = useMediaQuery({
         query: '(min-width: 1000px)'
@@ -102,11 +128,8 @@ function Coupons() {
 
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1000px)' })
 
-
     const handleCardClick = (itemIndex: number, couponIndex: number) => {
-        console.log("clicked")
         // coupon is the row number
-        console.log({ itemIndex, couponIndex })
         setCouponData((prevData: any) => {
             const newData = [...prevData];
             if (newData[couponIndex]?.coupons && newData[couponIndex]?.coupons[itemIndex]) {
@@ -127,11 +150,19 @@ function Coupons() {
             }
             return newData;
         });
-        console.log({ event, itemIndex, couponIndex })
         navigator.clipboard.writeText(discountCode);
     }
 
-    console.log({couponData})
+    useEffect(() => {
+        console.log({ filteredBrandData })
+        if (filteredBrandData != undefined) {
+            setCouponData(() => {
+                let result = filteredBrandData
+                return result
+            })
+        }
+        console.log({ filteredBrandData })
+    }, [filteredBrandData])
 
     return (
         <>
@@ -149,13 +180,15 @@ function Coupons() {
                             <SheetHeader>
                                 <SheetTitle>Categories</SheetTitle>
                                 <SheetDescription>
-                                    {/* // for CATEGORIES */}
-                                    {uniqueCategories?.map((itm: any, index: any) => (
-                                        <div key={index} className="flex items-center space-x-2 py-2">
-                                            <Checkbox onClick={() => handleCategoryFilterClick(itm)} id={itm.name} />
-                                            <Label htmlFor={itm.name}>{itm?.name}</Label>
-                                        </div>
-                                    ))}
+                                    <ScrollArea className="h-[420px] w-full">
+                                        {/* // for CATEGORIES */}
+                                        {couponData?.map((itm: any, index: any) => (
+                                            <div key={index} className="flex items-center space-x-2 py-2">
+                                                <Checkbox checked={itm?.checked} onClick={() => handleCategoryFilterClick(itm)} id={itm.category.name} />
+                                                <Label htmlFor={itm?.category?.name}>{itm?.category?.name}</Label>
+                                            </div>
+                                        ))}
+                                    </ScrollArea>
                                 </SheetDescription>
                                 <SheetTitle>Brands</SheetTitle>
                                 <SheetDescription>
@@ -165,8 +198,8 @@ function Coupons() {
                                             // ?.filter((item: any) => item.hasOwnProperty('coupons'))
                                             ?.map((itm: any, index: any) => (
                                                 <div key={index} className="flex items-center space-x-2 py-2">
-                                                    <Checkbox onClick={() => handleBrandNameFilterClick(itm)} id={itm} />
-                                                    <Label htmlFor={itm}>{itm}</Label>
+                                                    <Checkbox checked={itm?.isChecked} onClick={() => handleBrandNameFilterClick(itm)} id={itm?.title} />
+                                                    <Label htmlFor={itm?.display_name}>{itm?.title}</Label>
                                                 </div>
                                             ))}
                                     </ScrollArea>
@@ -176,7 +209,7 @@ function Coupons() {
                     </Sheet>
                 </div>
                 {couponData
-                    ?.filter((item: any) => item.hasOwnProperty('coupons'))
+                    // ?.filter((item: any) => item.hasOwnProperty('coupons'))
                     ?.map((itm: any, couponIndex: number) => (
                         <div key={couponIndex}>
                             <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6 max-w-7xl mx-auto lg:px-0 px-4`}>{itm?.display_name}</div>
@@ -207,22 +240,27 @@ function Coupons() {
                                                             {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                         </div>
                                                         <div className="flex">
-                                                            <Button 
-                                                                style={{ backgroundColor: itm?.color?.bg_color_1 ? itm?.color?.bg_color_1 : "white" , color : itm?.color?.bg_color_1 ? "white" : "black" }} className="text-center mx-auto" onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)}>{j?.isCopied ? 'Copied' : 'Tap to copy'}</Button>
+                                                            <Button
+                                                                style={{ backgroundColor: itm?.color?.bg_color_1 ? itm?.color?.bg_color_1 : "white", color: itm?.color?.bg_color_1 ? "white" : "black" }} className="text-center mx-auto" onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)}>{j?.isCopied ? 'Copied' : 'Tap to copy'}</Button>
                                                         </div>
                                                         <div className={`text-center border-[1px] rounded-lg`}>
                                                             <div className="flex items-center justify-center">
                                                                 <Button
-                                                                 style={{ backgroundColor: itm?.color?.bg_color_1 ? itm?.color?.bg_color_1 : "white" , color : itm?.color?.bg_color_1 ? "white" : "black" }}
-                                                                 onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)} className="h-7">{j?.discountcode.length > 10 ? j?.discountcode.slice(0, 10) + ".." : j?.discountcode}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
+                                                                    style={{ backgroundColor: itm?.color?.bg_color_1 ? itm?.color?.bg_color_1 : "white", color: itm?.color?.bg_color_1 ? "white" : "black" }}
+                                                                    onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)} className="h-7">{j?.discountcode.length > 10 ? j?.discountcode.slice(0, 10) + ".." : j?.discountcode}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
                                                             </div>
                                                         </div>
                                                         <div className='flex items-center justify-center py-1'>
-                                                            <a href={itm?.redirection_url}>
-                                                                <Button
-                                                                    style={{backgroundColor : itm?.color?.bg_color_2 , color : itm?.color?.text_color_2}}
-                                                                    onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3 my-2`}>REDEEM&nbsp;&nbsp;<ArrowRightCircle className="w-4 h-4" /></Button>
-                                                            </a>
+                                                            {j?.isCopied && (
+                                                                <>
+                                                                    <a href={itm?.redirection_url}>
+                                                                        <Button
+                                                                            style={{ backgroundColor: itm?.color?.bg_color_2, color: itm?.color?.text_color_2 }}
+                                                                            onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3 my-2`}>REDEEM&nbsp;&nbsp;<ArrowRightCircle className="w-4 h-4" /></Button>
+                                                                    </a>
+                                                                </>
+                                                            )}
+
                                                         </div>
                                                         <div className={`text-center text-[0.625rem] py-1 ${manrope.className}`}>
                                                             {j?.summary.split('•').map((i: any, index: number) => (
@@ -262,9 +300,9 @@ function Coupons() {
                                                         </div>
                                                         <div className={`text-[0.67069rem] py-1 font-extrabold`}>{itm?.discount_percentage_text ? `Earn extra ${itm?.discount_percentage_text} off with popcoins` : null}</div>
                                                         <div className='flex items-center justify-center py-2'>
-                                                            <a href={itm?.redirection_url}>
+                                                            {/* <a href={itm?.redirection_url}>
                                                                 <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} onClick={(e) => e.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3`}>REDEEM</Button>
-                                                            </a>
+                                                            </a> */}
                                                         </div>
                                                         <div className={`text-[0.625rem] text-center font-normal`}>{j?.endsAt}</div>
                                                     </div>

@@ -37,20 +37,20 @@ export function NavigationMenuDemo() {
     const getBrandNames = async () => {
       try {
         const response = await fetch('https://mypop-dashboard.popclub.co.in/api/brand-names?populate=*');
-        const data = await response.json();
-
+        const data = await response?.json();
         // Transform the data to group brands by category
-        const transformedData = data.data.reduce((acc: any, item: any) => {
-          const category = item.attributes.brand_categories.data[0].attributes.categoryname;
+        const transformedData = data?.data?.reduce((acc: any, item: any) => {
+          const category = item?.attributes?.brand_categories.data[0]?.attributes?.categoryname;
           if (!acc[category]) {
             acc[category] = [];
           }
-          acc[category].push(item.attributes.brand_name);
+          acc[category]?.push(item?.attributes?.brand_name);
           return acc;
         }, {});
-
+        console.log({ transformedData })
         setBrandData(transformedData);
-      } catch (error) {
+      }
+      catch (error) {
         console.error('Error fetching brand names:', error);
       }
     };
@@ -58,7 +58,7 @@ export function NavigationMenuDemo() {
   }, []);
 
 
-  const isBrandDataAvailable = Object.keys(brandData).length !== 0
+  const isBrandDataAvailable = Object.keys(brandData)?.length !== 0
 
   const staticBrandData = {
     "Beauty": [
@@ -100,6 +100,8 @@ export function NavigationMenuDemo() {
       });
     });
   }
+
+  console.log({ brandData })
   return (
     <NavigationMenu>
       <NavigationMenuList>
