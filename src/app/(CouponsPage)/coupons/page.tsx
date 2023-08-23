@@ -202,7 +202,7 @@ function Coupons() {
                             <SheetTitle>
                                 <br />
                                 <div className="flex justify-end">
-                                <Button onClick={handleClearAll} variant="ghost">Clear All</Button>
+                                {/* <Button onClick={handleClearAll} variant="ghost">Clear All</Button> */}
                                 </div>
                             </SheetTitle>
                                 <SheetTitle>Categories</SheetTitle>

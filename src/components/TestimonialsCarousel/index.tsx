@@ -1,10 +1,14 @@
+'use client'
 import Image from "next/image"
+import { Fragment, useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 
 
 function TestimonialsCarousel() {
+    const [testimonialData, setTestimonialData] = useState<any>();
+
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -26,11 +30,15 @@ function TestimonialsCarousel() {
     };
 
 
-    const testimonials = [
-        { imageRelativePath: '/testimonials/testimonial-anveshan.svg', alt: "anveshan" },
-        { imageRelativePath: '/testimonials/testimonial-gramiyaa.svg', alt: "gramiyaa" },
-        { imageRelativePath: '/testimonials/testimonial-saaki.svg', alt: "saaki" }
-    ]
+    // const testimonials = [
+    //     { imageRelativePath: '/testimonials/testimonial-anveshan.svg', alt: "anveshan" },
+    //     { imageRelativePath: '/testimonials/testimonial-gramiyaa.svg', alt: "gramiyaa" },
+    //     { imageRelativePath: '/testimonials/testimonial-saaki.svg', alt: "saaki" }
+    // ]
+
+    useEffect(() => {
+        fetch(`https://mypop-dashboard.popclub.co.in/api/testimonials-widgets?populate=*`).then((res) => res.json()).then((data) => setTestimonialData(data?.data))
+    }, [])
 
     return (
         <>
@@ -55,15 +63,14 @@ function TestimonialsCarousel() {
                         renderButtonGroupOutside={false}
                         renderDotsOutside={false}
                         responsive={responsive}>
-                        <div>
-                            <img alt="" src="/testimonials/testimonial-anveshan.svg" />
-                        </div>
-                        <div>
-                            <img alt="" src="/testimonials/testimonial-gramiyaa.svg" />
-                        </div>
-                        <div>
-                            <img alt="" src="/testimonials/testimonial-saaki.svg" />
-                        </div>
+
+                        {testimonialData?.length > 0 && testimonialData?.map((itm: any, index: number) => (
+                            <Fragment key={index}>
+                                <div>
+                                    <img alt="" src={itm?.attributes?.image?.data?.attributes?.url} />
+                                </div>
+                            </Fragment>
+                        ))}
                     </Carousel>
                 </div>
             </div>
