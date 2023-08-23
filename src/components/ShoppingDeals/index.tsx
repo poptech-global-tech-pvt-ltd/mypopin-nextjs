@@ -70,12 +70,14 @@ function ShoppingDeals() {
                             },
                         }}
                     >
-                        {widgetData?.map((itm: any) => (
-                            <SwiperSlide>
-                                <div>
-                                    <img width="100%" src={itm?.attributes?.image_url?.data?.attributes?.url} alt="Slide 1" />
-                                </div>
-                            </SwiperSlide>
+                        {widgetData?.map((itm: any, index: number) => (
+                            <div key={index}>
+                                <SwiperSlide>
+                                    <div>
+                                        <img width="100%" src={itm?.attributes?.image_url?.data?.attributes?.url} alt="Slide 1" />
+                                    </div>
+                                </SwiperSlide>
+                            </div>
                         ))}
                     </Swiper>
                     <div className='flex items-center justify-center -mt-[50px] lg:-mt-[100px]'>
