@@ -89,9 +89,6 @@ function Coupons() {
             });
     }, [])
 
-    // @ts-ignore
-    const uniqueCategories = Array.from(new Set(categories.map(JSON.stringify))).map(JSON.parse);
-
     // TOP FILTER
     const handleCategoryFilterClick = (itm: any) => {
         console.log({ itm })
@@ -172,6 +169,22 @@ function Coupons() {
 
     console.log({ categories, brandNames })
 
+    const handleClearAll = () => {
+        
+        // setBrandNames((prevData : any) => {
+        //     const newData = [...prevData]
+        //     newData.map((i) => i.isChecked = false)
+        //     return newData
+        // })
+        // setCategories((prevData : any) => {
+        //     const newData = [...prevData]
+        //     newData.map((i) => i.isChecked = false)
+        // })
+       
+    }
+
+    console.log({categories})
+
     return (
         <>
             <div className="py-1 lg:py-24 mx-auto max-w-7xl">
@@ -181,11 +194,17 @@ function Coupons() {
                     <Sheet>
                         <div className="flex justify-end px-4 lg:px-0">
                             <SheetTrigger>
-                                <Button variant="outline"><span><img src="/filter-icon.svg" /></span>&nbsp;&nbsp;Filters</Button>
+                                <Button variant="secondary"><span><img src="/filter-icon.svg" /></span>&nbsp;&nbsp;Filters</Button>
                             </SheetTrigger>
                         </div>
                         <SheetContent side={isTabletOrMobile ? "bottom" : "right"} className="z-[200] h-full">
                             <SheetHeader>
+                            <SheetTitle>
+                                <br />
+                                <div className="flex justify-end">
+                                <Button onClick={handleClearAll} variant="ghost">Clear All</Button>
+                                </div>
+                            </SheetTitle>
                                 <SheetTitle>Categories</SheetTitle>
                                 <SheetDescription>
                                     <ScrollArea className="h-[40vh] w-full">

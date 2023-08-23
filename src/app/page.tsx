@@ -15,13 +15,21 @@ import { POPShop } from "@/components/POPShop"
 import { ShoppingDeals } from "@/components/ShoppingDeals"
 import { POPBlog } from "@/components/POPBlog"
 import type { Metadata } from 'next'
+import { HeroBanner } from "@/components/HeroBanner"
+import { HeroBannerMobile } from "@/components/HeroBannerMobile"
+import { useMediaQuery } from 'react-responsive'
 
 
-export default function Home(){
+
+export default function Home() {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 430px)'
+  })
+
   return (
     <main>
+      {isDesktopOrLaptop ? <HeroBanner /> : <HeroBannerMobile />}
       <Layout>
-        <Hero />
         {/* // horizontal scroll becasue of <HeroPartners /> */}
         <HeroPartners />
         <ShoppingDeals />

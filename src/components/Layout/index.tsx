@@ -1,3 +1,4 @@
+'use client'
 import { ReactNode } from "react"
 
 export interface LayoutProps {
@@ -5,6 +6,7 @@ export interface LayoutProps {
 }
 
 function Layout({ children }: LayoutProps) {
+    console.log({children})
     return (
         <main className="pt-2 lg:pt-24 max-w-[1350px] mx-auto">
             {children}
