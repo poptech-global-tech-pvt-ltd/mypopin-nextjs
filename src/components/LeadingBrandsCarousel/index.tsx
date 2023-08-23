@@ -1,8 +1,4 @@
 'use client'
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Image from "next/image"
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -63,14 +59,12 @@ const responsive = {
 };
 
 function LeadingBrandsCarousel() {
-
-
     return (
         <Carousel
             additionalTransfrom={0}
             arrows={false}
             autoPlay
-            autoPlaySpeed={1}
+            autoPlaySpeed={3000}
             centerMode={false}
             className=""
             containerClass=""
@@ -80,14 +74,13 @@ function LeadingBrandsCarousel() {
             focusOnSelect={false}
             infinite
             itemClass=""
-            keyBoardControl
+            keyBoardControl={false}
             minimumTouchDrag={80}
-            pauseOnHover
+            pauseOnHover={false}
             renderArrowsWhenDisabled={false}
             renderButtonGroupOutside={false}
             renderDotsOutside={false}
             responsive={responsive}
-            
         >
             {partnerImages?.map((i, index) => (
                 <div key={index}>
