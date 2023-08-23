@@ -1,11 +1,11 @@
 'use client'
+
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image"
 
 const responsive = {
     superLargeDesktop: {
-        // the naming can be any, depends on you.
         breakpoint: { max: 4000, min: 3000 },
         items: 1
     },
@@ -28,8 +28,8 @@ function HeroBannerMobile() {
         <>
             <section className="">
                 {/* <div className="h-[10vh] bg-white"></div> */}
-                <div className="h-[90vh] relative w-[100vw!important] max-w-[1500px]  mx-auto">
-                    <div className="banner-carousel-container" style={{ width: "100%", overflow: "hidden" }}>
+                <div className="h-[90vh] w-[100vw!important] max-w-[1500px]  mx-auto">
+                    <div className="banner-carousel-container">
                         <Carousel
                             arrows={true}
                             autoPlay={false}
@@ -51,26 +51,24 @@ function HeroBannerMobile() {
                             responsive={responsive}>
                             <div>
                                 <a href="">
-                                    <Image
+                                    <img
                                         src="/herobanner/banner-popcoin-mobile.svg"
                                         width="0"
                                         height="0"
                                         sizes="100vw"
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-[90vh] object-cover"
                                         alt=""
-                                        style={{ objectFit: "cover" }}
-
                                     />
                                 </a>
                             </div>
                             <div>
                                 <a href="">
-                                    <Image
+                                    <img
                                         src="/herobanner/banner-anveshan-mobile.svg"
                                         width="0"
                                         height="0"
                                         sizes="100vw"
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-[90vh] object-cover"
                                         alt=""
                                         style={{ objectFit: "cover" }}
                                     />
@@ -78,12 +76,12 @@ function HeroBannerMobile() {
                             </div>
                             <div>
                                 <a href="">
-                                    <Image
+                                    <img
                                         src="/herobanner/banner-khadi-mobile.svg"
                                         width="0"
                                         height="0"
                                         sizes="100vw"
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-[90vh] object-cover"
                                         alt=""
                                         style={{ objectFit: "cover" }}
                                     />
@@ -91,12 +89,12 @@ function HeroBannerMobile() {
                             </div>
                             <div>
                                 <a href="">
-                                    <Image
+                                    <img
                                         src="/herobanner/banner-klotthe-mobile.svg"
                                         width="0"
                                         height="0"
                                         sizes="100vw"
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-[90vh] object-cover"
                                         alt=""
                                         style={{ objectFit: "cover" }}
                                     />
@@ -104,12 +102,12 @@ function HeroBannerMobile() {
                             </div>
                             <div>
                                 <a href="">
-                                    <Image
+                                    <img
                                         src="/herobanner/banner-rubans-mobile.svg"
                                         width="0"
                                         height="0"
                                         sizes="100vw"
-                                        className="w-full h-full  object-cover"
+                                        className="w-full h-[90vh] object-cover"
                                         alt=""
                                         style={{ objectFit: "cover" }}
                                     />

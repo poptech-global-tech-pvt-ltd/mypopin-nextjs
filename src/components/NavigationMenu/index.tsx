@@ -38,6 +38,7 @@ export function NavigationMenuDemo() {
       try {
         const response = await fetch('https://mypop-dashboard.popclub.co.in/api/brand-names?populate=*');
         const data = await response?.json();
+        console.log({data})
         // Transform the data to group brands by category
         const transformedData = data?.data?.reduce((acc: any, item: any) => {
           const category = item?.attributes?.brand_categories.data[0]?.attributes?.categoryname;
