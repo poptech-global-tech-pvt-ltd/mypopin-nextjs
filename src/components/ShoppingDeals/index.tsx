@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -19,6 +19,12 @@ import { Button } from '../ui/button';
 import Link from 'next/link';
 
 function ShoppingDeals() {
+    const [widgetData, setWidgetData] = useState<any>();
+    useEffect(() => {
+        fetch(`https://mypop-dashboard.popclub.co.in/api/shopping-deals-widgets?populate=*`).then((res) => res.json()).then((data) => setWidgetData(data?.data))
+    }, [])
+
+    console.log({ widgetData })
     return (
         <div className="max-w-6xl mx-auto">
             <div className={`px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 text-center lg:text-6xl py-16 font-bold ${khand.className}`}>Best Shopping Deals Online</div>
@@ -64,48 +70,13 @@ function ShoppingDeals() {
                             },
                         }}
                     >
-                        <SwiperSlide>
-                            <div>
-                                <a href="/brands/anveshan">
-                                    <img width="100%" src="/brandscarousel/1.png" alt="Slide 1" />
-                                </a>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div>
-                                <a href="/brands/anveshan">
-                                    <img width="100%" src="/brandscarousel/2.png" alt="Slide 2" />
-                                </a>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div>
-                                <a href="/brands/anveshan">
-                                    <img width="100%" src="/brandscarousel/3.png" alt="Slide 3" />
-                                </a>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div>
-                                <a href="/brands/anveshan">
-                                    <img width="100%" src="/brandscarousel/4.png" alt="Slide 3" />
-                                </a>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div>
-                                <a href="/brands/anveshan">
-                                    <img width="100%" src="/brandscarousel/5.png" alt="Slide 3" />
-                                </a>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div>
-                                <a href="/brands/anveshan">
-                                    <img width="100%" src="/brandscarousel/6.png" alt="Slide 3" />
-                                </a>
-                            </div>
-                        </SwiperSlide>
+                        {widgetData?.map((itm: any) => (
+                            <SwiperSlide>
+                                <div>
+                                    <img width="100%" src={itm?.attributes?.image_url?.data?.attributes?.url} alt="Slide 1" />
+                                </div>
+                            </SwiperSlide>
+                        ))}
                     </Swiper>
                     <div className='flex items-center justify-center -mt-[50px] lg:-mt-[100px]'>
                         <Link href={`/allbrands`}>
