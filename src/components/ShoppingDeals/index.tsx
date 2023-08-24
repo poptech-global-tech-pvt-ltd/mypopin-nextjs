@@ -35,7 +35,7 @@ function ShoppingDeals() {
                     <Swiper
                         effect="coverflow"
                         grabCursor={true}
-                        centeredSlides={true}
+                        centeredSlides={false}
                         modules={[EffectCoverflow, Pagination, Autoplay]}
                         coverflowEffect={{
                             rotate: 0,
@@ -71,6 +71,15 @@ function ShoppingDeals() {
                             },
                         }}
                     >
+                        {widgetData?.map((itm: any, index: number) => (
+                            // <div key={index}>
+                                <SwiperSlide key={index}>
+                                    <div>
+                                        <img width="100%" src={itm?.attributes?.image_url?.data?.attributes?.url} alt="Slide 1" />
+                                    </div>
+                                </SwiperSlide>
+                            // </div>
+                        ))}
                         {widgetData?.map((itm: any, index: number) => (
                             // <div key={index}>
                                 <SwiperSlide key={index}>
