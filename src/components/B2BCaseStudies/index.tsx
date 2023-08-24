@@ -1,4 +1,4 @@
-
+'use client'
 import Slider from "react-slick";
 import Image from 'next/image'
 import { Khand } from 'next/font/google'

@@ -1,3 +1,5 @@
+'use client'
+
 import { Khand } from 'next/font/google'
 import Image from "next/image"
 import Slider from "react-slick";

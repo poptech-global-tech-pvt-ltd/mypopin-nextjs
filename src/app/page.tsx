@@ -22,7 +22,7 @@ import { HeroBannerMobile } from "@/components/HeroBannerMobile"
 export default function Home() {
   return (
     <main>
-      <div className="hidden custom-450px:block">
+      <div className="hidden custom-450px:block md:block lg:block">
         <HeroBanner />
       </div>
       <div className="block custom-450px:hidden">
@@ -40,7 +40,8 @@ export default function Home() {
       {/* <Spotlight /> */}
       <PopBenefits />
       {/* <TopBrands /> */}
-      <POPShop />
+      {/* TODO remove error in popshop */}
+      {/* <POPShop /> */}
       <POPBlog />
     </main>
   )

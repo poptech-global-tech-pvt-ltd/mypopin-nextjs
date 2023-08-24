@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import Image from "next/image"
 import { NavigationMenuDemo as NavigationMenu } from '@/components/NavigationMenu'
 import { Button } from "@/components/ui/button"
@@ -17,7 +17,6 @@ import { User2 } from 'lucide-react';
 
 function Header() {
     const [cookieKey, setCookieKey] = useState("");
-
     const handleLogin = () => {
         //get cookie name
         function getCookie(name: string) {
@@ -28,11 +27,10 @@ function Header() {
         function setCookie(name: any, value: any, daysToExpire: any) {
             const expires = new Date();
             expires.setDate(expires.getDate() + daysToExpire);
-
             const cookieValue = encodeURIComponent(value) + (daysToExpire ? `; expires=${expires.toUTCString()}` : '');
-
             document.cookie = `${name}=${cookieValue}; path=/`;
         }
+
         // generate a 32 digit random number
         function generateRandomNumberString(length: any) {
             const characters = '0123456789';
@@ -42,7 +40,6 @@ function Header() {
                 const randomIndex = Math.floor(Math.random() * characters.length);
                 randomString += characters[randomIndex];
             }
-
             return randomString;
         }
         const hasCookieAlready = getCookie('cookieKey')
@@ -69,9 +66,7 @@ function Header() {
         if (cookieKey) {
             if (cookieKey) {
                 try {
-
-
-                    fetch(` https://coins.mypopcoins.com/user-coins?brand=mypopin&key=${cookieKey}`, {
+                    fetch(`https://coins.mypopcoins.com/user-coins?brand=mypopin&key=${cookieKey}`, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': 'Basic cGwtcHJvZDpwbEAyMHR3ZW50eXR3bw=='

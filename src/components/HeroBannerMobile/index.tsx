@@ -51,66 +51,62 @@ function HeroBannerMobile() {
                             responsive={responsive}>
                             <div>
                                 <a href="">
-                                    <img
-                                        src="/herobanner/banner-popcoin-mobile.svg"
-                                        width="0"
-                                        height="0"
-                                        sizes="100vw"
-                                        className="w-full h-[90vh] object-cover"
-                                        alt=""
-                                    />
+                                    <div className="h-[90vh] w-[100vw]">
+                                        <Image
+                                            src="/herobanner/banner-popcoin-mobile.svg"
+                                            fill
+                                            className="w-full h-full object-cover"
+                                            alt=""
+                                        />
+                                    </div>
                                 </a>
                             </div>
                             <div>
                                 <a href="">
-                                    <img
-                                        src="/herobanner/banner-anveshan-mobile.svg"
-                                        width="0"
-                                        height="0"
-                                        sizes="100vw"
-                                        className="w-full h-[90vh] object-cover"
-                                        alt=""
-                                        style={{ objectFit: "cover" }}
-                                    />
+                                    <div className="h-[90vh] w-[100vw]">
+                                        <Image
+                                            src="/herobanner/banner-anveshan-mobile.svg"
+                                            fill
+                                            className="w-full h-full object-cover"
+                                            alt=""
+                                        />
+                                    </div>
                                 </a>
                             </div>
                             <div>
                                 <a href="">
-                                    <img
-                                        src="/herobanner/banner-khadi-mobile.svg"
-                                        width="0"
-                                        height="0"
-                                        sizes="100vw"
-                                        className="w-full h-[90vh] object-cover"
-                                        alt=""
-                                        style={{ objectFit: "cover" }}
-                                    />
+                                    <div className="h-[90vh] w-[100vw]">
+                                        <Image
+                                            src="/herobanner/banner-khadi-mobile.svg"
+                                            fill
+                                            className="w-full h-full object-cover"
+                                            alt=""
+                                        />
+                                    </div>
                                 </a>
                             </div>
                             <div>
                                 <a href="">
-                                    <img
-                                        src="/herobanner/banner-klotthe-mobile.svg"
-                                        width="0"
-                                        height="0"
-                                        sizes="100vw"
-                                        className="w-full h-[90vh] object-cover"
-                                        alt=""
-                                        style={{ objectFit: "cover" }}
-                                    />
+                                    <div className="h-[90vh] w-[100vw]">
+                                        <Image
+                                            src="/herobanner/banner-klotthe-mobile.svg"
+                                            fill
+                                            className="w-full h-full object-cover"
+                                            alt=""
+                                        />
+                                    </div>
                                 </a>
                             </div>
                             <div>
                                 <a href="">
-                                    <img
-                                        src="/herobanner/banner-rubans-mobile.svg"
-                                        width="0"
-                                        height="0"
-                                        sizes="100vw"
-                                        className="w-full h-[90vh] object-cover"
-                                        alt=""
-                                        style={{ objectFit: "cover" }}
-                                    />
+                                    <div className="h-[90vh] w-[100vw]">
+                                        <Image
+                                            src="/herobanner/banner-rubans-mobile.svg"
+                                            fill
+                                            className="w-full h-full object-cover"
+                                            alt=""
+                                        />
+                                    </div>
                                 </a>
                             </div>
                         </Carousel>

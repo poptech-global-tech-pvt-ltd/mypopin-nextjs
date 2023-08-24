@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { PropsWithChildren, useContext, useRef } from 'react';
 
 // AS OF AUG 2023 - Nextjs13 has no out-of-the-box support for framer motion. Here is a hack to freeze the router before transitoning, otherwise there would be a flash of navigated page befrore the animation
-function FrozenRouter(props: PropsWithChildren<{}>) {
+export function FrozenRouter(props: PropsWithChildren<{}>) {
     const context = useContext(LayoutRouterContext);
     const frozen = useRef(context).current;
 
