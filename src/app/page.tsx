@@ -29,7 +29,6 @@ export default function Home() {
         <HeroBannerMobile />
       </div>
       <Layout>
-        {/* // horizontal scroll becasue of <HeroPartners /> */}
         <HeroPartners />
         <ShoppingDeals />
         <HowItWorks />
@@ -41,7 +40,7 @@ export default function Home() {
       <PopBenefits />
       {/* <TopBrands /> */}
       {/* TODO remove error in popshop */}
-      {/* <POPShop /> */}
+      <POPShop />
       <POPBlog />
     </main>
   )

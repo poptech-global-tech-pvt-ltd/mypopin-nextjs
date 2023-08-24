@@ -1,4 +1,5 @@
 'use client'
+import { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -59,6 +60,14 @@ const responsive = {
 };
 
 function LeadingBrandsCarousel() {
+    const [brandLogos, setBrandLogos] = useState<any>()
+
+    useEffect(() => {
+        fetch(`https://mypop-dashboard.popclub.co.in/api/popcoin-partners-widgets?populate=*`).then((res) => res.json()).then((data) => setBrandLogos(data?.data))
+    }, [])
+
+    console.log({ brandLogos })
+
     return (
         <Carousel
             additionalTransfrom={0}
@@ -82,10 +91,21 @@ function LeadingBrandsCarousel() {
             renderDotsOutside={false}
             responsive={responsive}
         >
-            {partnerImages?.map((i, index) => (
+            {brandLogos && brandLogos?.length && brandLogos?.map((i: any, index: number) => (
                 <div key={index}>
                     <img
-                        src={i.imgRelativeUrl}
+                        src={i?.attributes.image.data.attributes.url}
+                        width="auto"
+                        height="20"
+                        alt={i.alt}
+                    />
+                </div>
+            ))}
+            {/* // TODO remove this repeative loop when more data is in strapi */}
+            {brandLogos && brandLogos?.length && brandLogos?.map((i: any, index: number) => (
+                <div key={index}>
+                    <img
+                        src={i?.attributes.image.data.attributes.url}
                         width="auto"
                         height="20"
                         alt={i.alt}
