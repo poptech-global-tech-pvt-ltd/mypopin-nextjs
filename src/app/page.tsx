@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import { Layout } from "@/components/Layout"
 import { Hero } from '@/components/Hero'
 import { HeroPartners } from '@/components/HeroPartners'
@@ -17,18 +17,18 @@ import { POPBlog } from "@/components/POPBlog"
 import type { Metadata } from 'next'
 import { HeroBanner } from "@/components/HeroBanner"
 import { HeroBannerMobile } from "@/components/HeroBannerMobile"
-import { useMediaQuery } from 'react-responsive'
 
 
 
 export default function Home() {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 430px)'
-  })
-
   return (
     <main>
-      {isDesktopOrLaptop ? <HeroBanner /> : <HeroBannerMobile />}
+      <div className="hidden custom-450px:block">
+        <HeroBanner />
+      </div>
+      <div className="block custom-450px:hidden">
+        <HeroBannerMobile />
+      </div>
       <Layout>
         {/* // horizontal scroll becasue of <HeroPartners /> */}
         <HeroPartners />

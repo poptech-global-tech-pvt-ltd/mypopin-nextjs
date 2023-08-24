@@ -40,6 +40,7 @@ function TestimonialsCarousel() {
         fetch(`https://mypop-dashboard.popclub.co.in/api/testimonials-widgets?populate=*`).then((res) => res.json()).then((data) => setTestimonialData(data?.data))
     }, [])
 
+    console.log({testimonialData})
     return (
         <>
             <div style={{ width: "100%", overflow: "hidden" }}>

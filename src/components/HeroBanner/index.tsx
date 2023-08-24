@@ -52,14 +52,15 @@ function HeroBanner() {
                             <div>
                                 <a href="">
                                     <Image
-                                        src="/herobanner/banner-popcoin.svg"
+                                        src="/herobanner/banner-popcoin.png"
                                         width="0"
                                         height="0"
                                         sizes="100vw"
+                                        // placeholder="blur"
+                                        // blurDataURL=""
                                         className="w-full h-full object-cover"
                                         alt=""
                                         style={{ objectFit: "cover" }}
-
                                     />
                                 </a>
                             </div>

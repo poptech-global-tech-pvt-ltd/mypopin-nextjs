@@ -12,10 +12,15 @@ module.exports = {
       center: true,
       padding: "2rem",
       screens: {
+        "custom-450px" : "450px",
         "2xl": "1400px",
+        
       },
     },
     extend: {
+      screens: {
+        "custom-450px" : "450px",        
+      },
       keyframes: {
         "accordion-down": {
           from: { height: 0 },

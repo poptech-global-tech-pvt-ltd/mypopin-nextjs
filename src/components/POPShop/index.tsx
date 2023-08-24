@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import { Khand } from 'next/font/google'
 import { useMediaQuery } from 'react-responsive'
