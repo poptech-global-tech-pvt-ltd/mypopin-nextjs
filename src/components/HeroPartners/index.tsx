@@ -1,3 +1,4 @@
+'use client'
 import { Khand } from 'next/font/google'
 import dynamic from 'next/dynamic'
 const LeadingBrandsCarousel = dynamic(() => import('@/components/LeadingBrandsCarousel'), { ssr: false })

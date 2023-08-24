@@ -14,7 +14,6 @@ import TopBrands from "@/components/TopBrands"
 import { POPShop } from "@/components/POPShop"
 import { ShoppingDeals } from "@/components/ShoppingDeals"
 import { POPBlog } from "@/components/POPBlog"
-import type { Metadata } from 'next'
 import { HeroBanner } from "@/components/HeroBanner"
 import { HeroBannerMobile } from "@/components/HeroBannerMobile"
 
