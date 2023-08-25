@@ -27,14 +27,14 @@ function BrandPage() {
         try {
             setLoading(true)
             const currentBrandURL = window.location.pathname.split("/")[2]
-            
+
             fetch(`https://mypop-dashboard.popclub.co.in/api/brand-names?filters[url][$eq]=${currentBrandURL}&populate=*`)
                 .then((res) => res.json())
                 .then((data) =>
                     setBrandData(data?.data[0]?.attributes)
                 )
             setLoading(false)
-            
+
         }
         catch (err) {
             console.log("oops! an error has occured")
@@ -42,9 +42,9 @@ function BrandPage() {
     }, [])
 
 
-    console.log({brandData})
+    console.log({ brandData })
 
-    const handleBrandBtnClick = (brandData : string) => {
+    const handleBrandBtnClick = (brandData: string) => {
         router.push("/")
     }
 
@@ -89,7 +89,9 @@ function BrandPage() {
                                     </div>
                                 </div>
                                 <div className='flex justify-between items-center'>
-                                    <Button className={`${manrope.className} bg-white text-lg text-black hover:text-white font-bold rounded-full`}>Shop with POPCoins</Button>
+                                    <a href={brandData?.redirection_url}>
+                                        <Button className={`${manrope.className} bg-white text-lg text-black hover:text-white font-bold rounded-full`}>Shop with POPCoins</Button>
+                                    </a>
                                     <div className='hidden lg:block'>
                                         <img src={brandData?.round_logo?.data?.attributes?.url} />
                                     </div>
@@ -151,7 +153,11 @@ function BrandPage() {
                 <section className='max-w-7xl mx-auto'>
                     <div className={`${manrope.className} text-center text-3xl font-bold py-8`}>Earn  5 For Every ₹100</div>
                     <div className={`${manrope.className} text-center text-2xl font-normal pb-8`}>Keep earning POPcoins with every purchase from Body Tales and other brands on POPcoins</div>
-                    <div className='text-center'><Button onClick={() => handleBrandBtnClick(brandData)} className={`rounded-full ${manrope.className} text-xl p-6 drop-shadow-md`}>Show {brandData?.brand_name} Now</Button></div>
+                    <div className='text-center'>
+                        <a href={brandData?.redirection_url}>
+                            <Button onClick={() => handleBrandBtnClick(brandData)} className={`rounded-full ${manrope.className} text-xl p-6 drop-shadow-md`}>Shop {brandData?.brand_name} Now</Button>
+                        </a>
+                    </div>
                 </section>
             </div>
 
