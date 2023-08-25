@@ -864,4 +864,27 @@ h6 {
   color: black;
 }
 
+.banner-carousel-container .react-multi-carousel-dot-list {
+  bottom: 20px;
+}
+
+
+.banner-carousel-container .react-multi-carousel-dot-list .react-multi-carousel-dot--active button{
+  background-color: white;
+  color: green;
+}
+
+.banner-carousel-container .react-multi-carousel-dot button {
+  border-width: 1px;
+}
+
+/* // hide baner arrows on mobile */
+.banner-carousel-container .react-multiple-carousel__arrow--left {
+  display: none;
+}
+.banner-carousel-container .react-multiple-carousel__arrow--right {
+  display: none;
+}
+
+
 

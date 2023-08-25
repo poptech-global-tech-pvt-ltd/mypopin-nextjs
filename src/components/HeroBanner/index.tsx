@@ -36,17 +36,16 @@ function HeroBanner() {
                             autoPlay={false}
                             autoPlaySpeed={1800}
                             centerMode={false}
-
-                            dotListClass=""
+                            dotListClass="hero-banner-desktop-dots"
                             draggable
                             focusOnSelect={false}
                             infinite
-
                             minimumTouchDrag={80}
                             pauseOnHover
                             renderArrowsWhenDisabled={false}
                             renderButtonGroupOutside={false}
                             renderDotsOutside={false}
+                            showDots
                             responsive={responsive}>
                             <div>
                                 <a href="">
@@ -61,7 +60,7 @@ function HeroBanner() {
                                 </a>
                             </div>
                             <div>
-                                <a href="">
+                                <a href="https://www.anveshan.farm/?%24web_only=true&_branch_match_id=1212631108629519337&utm_source=MyPOP&utm_campaign=POP_website&utm_medium=marketing&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8nRK8gvSM4pTdJLztfLzNNP1U%2FMK0stzkjMMwIAsIjwMSQAAAA%3D">
                                     <div className="h-[90vh] w-[100vw]">
                                         <Image
                                             src="/herobanner/banner-anveshan.svg"
@@ -73,7 +72,7 @@ function HeroBanner() {
                                 </a>
                             </div>
                             <div>
-                                <a href="">
+                                <a href="https://khadiessentials.com/?%24web_only=true&_branch_match_id=1212631108629519337&utm_source=WhatsApp_POP&utm_campaign=Coalition_Txn_WhatsApp&utm_medium=marketing&_branch_referrer=H4sIAAAAAAAAAwXBwQkAIAgAwInSf9tYCkpigrZ%2Fd9qdNRHZIW9ufwv2BQsUPErENqRKoo28PlbHhFMsAAAA">
                                     <div className="h-[90vh] w-[100vw]">
                                         <Image
                                             src="/herobanner/banner-khadi.svg"
@@ -85,7 +84,7 @@ function HeroBanner() {
                                 </a>
                             </div>
                             <div>
-                                <a href="">
+                                <a href="https://www.klotthe.com/?%24web_only=true&_branch_match_id=1212631108629519337&utm_source=WhatsApp_POP&utm_campaign=Coalition_Txn_WhatsApp&utm_medium=marketing&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8nRK8gvSM4pTdJLztfLzNNP1ffOyS8pyUgFAEqNW6YiAAAA">
                                     <div className="h-[90vh] w-[100vw]">
                                         <Image
                                             src="/herobanner/banner-klotthe.svg"
@@ -98,7 +97,7 @@ function HeroBanner() {
                                 </a>
                             </div>
                             <div>
-                                <a href="">
+                                <a href="https://www.rubans.in/?%24web_only=true&_branch_match_id=1212631108629519337&utm_source=MyPOP&utm_campaign=POP_website&utm_medium=marketing&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8nRK8gvSM4pTdJLztfLzNNP1S8qTUrMKzYCAO90pm0iAAAA">
                                     <div className="h-[90vh] w-[100vw]">
                                         <Image
                                             src="/herobanner/banner-rubans.svg"
