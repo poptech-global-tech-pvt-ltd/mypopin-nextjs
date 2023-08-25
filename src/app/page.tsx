@@ -36,7 +36,7 @@ export default function Home() {
         <POPInNumbers />
       </Layout>
       {/* <ShoppingDealsCarousel /> */}
-      {/* <Spotlight /> */}
+      <Spotlight />
       <PopBenefits />
       {/* <TopBrands /> */}
       {/* TODO remove error in popshop */}
