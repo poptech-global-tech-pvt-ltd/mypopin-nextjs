@@ -35,7 +35,7 @@ function ShoppingDeals() {
                     <Swiper
                         effect="coverflow"
                         grabCursor={true}
-                        centeredSlides={false}
+                        centeredSlides={true}
                         modules={[EffectCoverflow, Pagination, Autoplay]}
                         coverflowEffect={{
                             rotate: 0,
