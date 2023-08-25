@@ -43,14 +43,6 @@ function BrandDeals({ secondaryColor, textColor }: IBrandDeals) {
         }
     };
 
-    // useEffect(() => {
-    //     console.log("hello")
-    //     const currentBrandURL = window.location.pathname.split("/")[2]
-    //     fetch(`https://mypop-dashboard.popclub.co.in/api/product-images?filters[$and][0][brand_names][brand_name][$contains]=${currentBrandURL}`)
-    //         .then((res) => res.json())
-    //         .then((data) => setProductImageData(data.data))
-    // }, [])
-
     useEffect(() => {
         fetch(`https://mypop-dashboard.popclub.co.in/api/new-product-images?filters[storeuuid][$eq]=${pathname.split("/")[2]}`).then((res) => res.json()).then((data) => setProductImagesData(data?.data))
     }, [])
@@ -91,11 +83,11 @@ function BrandDeals({ secondaryColor, textColor }: IBrandDeals) {
                         {productImagesData?.length > 0 && productImagesData?.map((itm: any, index: number) => (
                             <div key={index}>
                                 <div onClick={() => handleProductLink(itm)} className="grid w-full justify-center justify-items-center">
-                                    <div className="relative w-[266px] h-[276px] z-10">
+                                    <div className="relative w-[266px] h-[276px] z-10 flex items-center justify-center">
                                         <img
                                             src={itm?.attributes?.product_image}
                                             alt="hgfd"
-                                            className="h-full w-auto object-cover rounded-3xl"
+                                            className="h-[276px] w-[266px] object-cover rounded-3xl"
                                         />
                                         <div style={{ backgroundColor: "black" }} className={`absolute top-8 right-0 p-2 pl-4 bg-red-500 text-white text-2xl ${manrope.className} font-bold rounded-l-full`}>
                                             {Math.floor(itm?.attributes?.discount_percentage)}%
