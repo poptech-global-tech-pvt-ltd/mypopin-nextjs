@@ -36,7 +36,8 @@ export function NavigationMenuDemo() {
   useEffect(() => {
     const getBrandNames = async () => {
       try {
-        const response = await fetch('https://mypop-dashboard.popclub.co.in/api/brand-names?populate=*');
+        // TODO - not a good solution, heavy paginated request
+        const response = await fetch('https://mypop-dashboard.popclub.co.in/api/brand-names?pagination[page]=1&pagination[pageSize]=50&populate=*');
         const data = await response?.json();
         // Transform the data to group brands by category
         const transformedData = data?.data?.reduce((acc: any, item: any) => {
@@ -59,38 +60,6 @@ export function NavigationMenuDemo() {
 
 
   const isBrandDataAvailable = Object.keys(brandData)?.length !== 0
-
-  const staticBrandData = {
-    "Beauty": [
-      "Body Tales",
-      "BraavoKing",
-      "Femisafe",
-      "Khadi Essentials",
-      "Mai Sknn",
-      "Makeup Eraser",
-      "Man Theory",
-      "Paul Penders",
-      "Tatha",
-      "The Skin Story"
-    ],
-    "Fashion": [
-      "Bacca Bucci"
-    ],
-    "Food & Drinks": [
-      "Anveshan"
-    ],
-    "Health": [
-      "Zoh Probiotics"
-    ],
-    "Home & Living": [
-      "Dusaan",
-      "Klotthe",
-      "Saga Jaipur"
-    ],
-    "Stationary": [
-      "Doodle Collection"
-    ]
-  }
 
   const handleScrollToBottom = () => {
     requestAnimationFrame(() => {
@@ -129,23 +98,6 @@ export function NavigationMenuDemo() {
                   </div>
                 </div>
               ))}
-              {/* // if data is not in strapi */}
-              {/* {!isBrandDataAvailable && Object.keys(staticBrandData).map((category: string) => (
-                <div key={category} className="pr-2">
-                  <div className="font-bold text-lg pt-3">{category}</div>
-                  <div className="font-medium">
-                    {staticBrandData[category].map((brand: string, index: number) => (
-                      <div key={index}>
-                        <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
-                          <div key={index} className="py-1">
-                            {brand}
-                          </div>
-                        </Link>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))} */}
             </div>
             <Link href="/allbrands">
               <div className="text-right pb-4 pr-4 underline underline-offset-2">See All</div>
