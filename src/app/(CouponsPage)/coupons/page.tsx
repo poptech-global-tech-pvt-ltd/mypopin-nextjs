@@ -186,6 +186,7 @@ function Coupons() {
     }
 
     console.log({categories})
+    console.log("testing", couponData.some((item: any) => item?.category?.isChecked && item?.isChecked))
 
     return (
         <>
@@ -591,7 +592,7 @@ function Coupons() {
 
                 {/* ============= */}
                 {/* // render brandnames AND category if both are true in some fields */}
-                {couponData.every((item: any) => !item?.category?.isChecked && !item?.isChecked) ? (
+                {couponData.some((item: any) => !item?.category?.isChecked && !item?.isChecked) ? (
                     couponData
                         ?.filter((item: any) => item?.isChecked)
                         ?.filter((item: any) => item?.category?.isChecked)
