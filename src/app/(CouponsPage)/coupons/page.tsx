@@ -89,7 +89,7 @@ function Coupons() {
             });
     }, [])
 
-    console.log({couponData})
+    console.log({ couponData })
 
     // TOP FILTER
     const handleCategoryFilterClick = (itm: any) => {
@@ -172,20 +172,46 @@ function Coupons() {
     console.log({ categories, brandNames })
 
     const handleClearAll = () => {
-        
-        // setBrandNames((prevData : any) => {
-        //     const newData = [...prevData]
-        //     newData.map((i) => i.isChecked = false)
-        //     return newData
-        // })
-        // setCategories((prevData : any) => {
-        //     const newData = [...prevData]
-        //     newData.map((i) => i.isChecked = false)
-        // })
-       
-    }
+        fetch('https://presentation.popclub.co.in/api/presentation-layer/4b35a8aca9f311840d68051abae50ff5/coupons')
+            .then(response => response.json())
+            .then(data => {
+                if (data.is_success) {
+                    setCouponData(data?.data?.filter((item: any) => item.hasOwnProperty('coupons') && item.is_coupon_enabled))
+                    if (data?.data?.length) {
+                        data?.data
+                            ?.filter((item: any) => item.hasOwnProperty('coupons') && item.is_coupon_enabled)
+                            ?.map((itm: any, index: any) => {
+                                if (itm?.coupons) {
+                                    setCategories((prevCategories: any) => [...prevCategories, { title: itm?.category?.name, isChecked: false, id: itm?.category?.id }]);
+                                    setBrandNames((prev: any) => [...prev, { isChecked: false, title: itm?.display_name }])
+                                }
+                            })
+                    }
+                } else {
+                    console.log('API request failed:', data.message);
+                }
+            })
+            .catch(error => {
+                console.log('Error:', error);
+            });
 
-    console.log({categories})
+            setCategories((prevData : any) => {
+                const newData = [...prevData]
+                newData.map((i) => i.isChecked = false)
+                return newData
+            })
+
+            setBrandNames((prevData : any) => {
+                const newData = [...prevData]
+                newData.map((i) => i.isChecked = false)
+                return newData
+            })
+
+            console.log("new-category", categories)
+            console.log("new-brand", brandNames)
+        }
+
+    console.log({ categories })
     console.log("testing", couponData.some((item: any) => item?.category?.isChecked && item?.isChecked))
 
     return (
@@ -202,15 +228,15 @@ function Coupons() {
                         </div>
                         <SheetContent side={isTabletOrMobile ? "bottom" : "right"} className="z-[200] h-full">
                             <SheetHeader>
-                            <SheetTitle>
-                                <br />
-                                <div className="flex justify-end">
-                                {/* <Button onClick={handleClearAll} variant="ghost">Clear All</Button> */}
-                                </div>
-                            </SheetTitle>
+                                <SheetTitle>
+                                    <br />
+                                    <div className="flex justify-end">
+                                        <Button onClick={handleClearAll} variant="ghost">Clear All</Button>
+                                    </div>
+                                </SheetTitle>
                                 <SheetTitle>Categories</SheetTitle>
                                 <SheetDescription>
-                                    <ScrollArea className="h-[40vh] w-full">
+                                    <ScrollArea className="h-[35vh] w-full">
                                         {/* // for CATEGORIES */}
                                         {categories
                                             ?.filter((item: any, index: any, self: any) => index === self.findIndex((obj: any) => obj.id === item.id))
@@ -224,7 +250,7 @@ function Coupons() {
                                 </SheetDescription>
                                 <SheetTitle>Brands</SheetTitle>
                                 <SheetDescription>
-                                    <ScrollArea className="h-[40vh] w-full">
+                                    <ScrollArea className="h-[35vh] w-full">
                                         {/* // FOR BRAND NAMES */}
                                         {brandNames
                                             // ?.filter((item: any) => item.hasOwnProperty('coupons'))
@@ -347,7 +373,7 @@ function Coupons() {
                                                                     </div>
                                                                     <div className='flex items-center justify-center py-2'>
                                                                         {/* <a href={itm?.redirection_url}> */}
-                                                                            <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>GET CODE</Button>
+                                                                        <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>GET CODE</Button>
                                                                         {/* </a> */}
                                                                     </div>
                                                                     <div className={`text-[0.625rem] text-center font-normal`}>{j?.endsAt}</div>
