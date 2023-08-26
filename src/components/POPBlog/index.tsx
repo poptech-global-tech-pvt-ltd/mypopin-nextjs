@@ -130,6 +130,7 @@ function POPBlog() {
                 </div>
 
             </section>
+            <div className='my-12' />
         </>
     )
 }

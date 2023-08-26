@@ -33,7 +33,7 @@ function HeroBanner() {
                     <div className="banner-carousel-container" style={{ width: "100%", overflow: "hidden" }}>
                         <Carousel
                             arrows={true}
-                            autoPlay={false}
+                            autoPlay={true}
                             autoPlaySpeed={1800}
                             centerMode={false}
                             dotListClass="hero-banner-desktop-dots"

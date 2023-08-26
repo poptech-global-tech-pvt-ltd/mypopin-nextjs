@@ -27,8 +27,10 @@ function Footer() {
             <div className="max-w-[1350px] md:px-4 pt-2 pb-4 mx-auto">
                 <Accordion type="single" collapsible>
                     <AccordionItem value="item-1">
-                        <AccordionTrigger>POP: Shop, Earn Popcoins, Get Rewards & Become our Partner</AccordionTrigger>
-                        <AccordionContent className="p-[0px] pb-0 px-2 lg:px-0">
+                        <AccordionTrigger className="max-w-5xl mx-auto">
+                            <div>POP: Shop, Earn Popcoins, Get Rewards & Become our Partner</div>
+                        </AccordionTrigger>
+                        <AccordionContent className="p-[0px] pb-0 px-2 lg:px-0 max-w-5xl mx-auto">
                             <div className="bg-white">
                                 <h6 className="pt-4 pb-2 font-bold">Comprehensive solutions as to why POPcoins help D2C brands</h6>
                                 <p className="pb-2">In the evolving landscape of direct-to-consumer (D2C) brands, establishing a strong customer base and fostering loyalty is crucial for long-term success. One innovative solution that has emerged to address this challenge is the implementation of a loyalty currency called POPcoins.</p>
@@ -101,9 +103,9 @@ function Footer() {
                 </Accordion>
             </div>
             <hr />
-            <footer className="bg-white">
-                <div style={{ margin: "0 auto" }} className="max-w-[1350px] md:px-4 pt-2 pb-4">
-                    <div className="grid px-2 md:grid-cols-[1fr] lg:grid-cols-[1fr_1fr_1fr_1fr]">
+            <footer className="bg-white max-w-5xl mx-auto">
+                <div style={{ margin: "0 auto" }} className="max-w-[1350px] md:px-0 pt-2 pb-4">
+                    <div className="grid px-2 lg:px-0 md:grid-cols-[1fr] lg:grid-cols-[1fr_1fr_1fr_1fr]">
                         <div className="pr-2">
                             <div className="font-bold text-lg pt-3">Our Top Brands</div>
                             <div className="font-medium">
@@ -141,9 +143,9 @@ function Footer() {
                                 </div>
                                 <Dialog>
                                     <DialogTrigger>
-                                            <div className="py-1 ">
-                                                Schedule a Demo
-                                            </div>
+                                        <div className="py-1 ">
+                                            Schedule a Demo
+                                        </div>
                                     </DialogTrigger>
                                     <DialogContent className="p-0 z-[110]">
                                         <DialogDescription>

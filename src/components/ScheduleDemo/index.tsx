@@ -40,7 +40,7 @@ function ScheduleDemo() {
                         {/* <a href="#" target="_blank" className="btn-style scheduleButton">Schedule Now</a> */}
                         <Dialog>
                             <DialogTrigger>
-                                <Button className="btn-style scheduleButton">Schedule Now</Button>
+                                <Button className="btn-style scheduleButton p-4">Schedule Now</Button>
                             </DialogTrigger>
                             <DialogContent className="p-0 z-[110]">
                                 <DialogDescription>
