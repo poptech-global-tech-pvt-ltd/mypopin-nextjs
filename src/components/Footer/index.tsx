@@ -190,7 +190,7 @@ function Footer() {
                                         />
                                     </div>
                                 </Link>
-                                <Link href={``}>
+                                {/* <Link href={``}>
                                     <div>
                                         <Image
                                             className="m-2"
@@ -200,7 +200,7 @@ function Footer() {
                                             alt="pinterest logo"
                                         />
                                     </div>
-                                </Link>
+                                </Link> */}
                                 <Link href={`https://twitter.com/getpopclub`}>
                                     <Image
                                         className="m-2"

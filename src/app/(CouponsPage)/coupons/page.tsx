@@ -69,10 +69,10 @@ function Coupons() {
             .then(response => response.json())
             .then(data => {
                 if (data.is_success) {
-                    setCouponData(data?.data?.filter((item: any) => item.hasOwnProperty('coupons')))
+                    setCouponData(data?.data?.filter((item: any) => item.hasOwnProperty('coupons') && item.is_coupon_enabled))
                     if (data?.data?.length) {
                         data?.data
-                            ?.filter((item: any) => item.hasOwnProperty('coupons'))
+                            ?.filter((item: any) => item.hasOwnProperty('coupons') && item.is_coupon_enabled)
                             ?.map((itm: any, index: any) => {
                                 if (itm?.coupons) {
                                     setCategories((prevCategories: any) => [...prevCategories, { title: itm?.category?.name, isChecked: false, id: itm?.category?.id }]);
@@ -88,6 +88,8 @@ function Coupons() {
                 console.log('Error:', error);
             });
     }, [])
+
+    console.log({couponData})
 
     // TOP FILTER
     const handleCategoryFilterClick = (itm: any) => {
