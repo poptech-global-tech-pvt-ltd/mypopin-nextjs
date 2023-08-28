@@ -117,10 +117,10 @@ function POPShop() {
                 <div className={`${khand.className} text-center text-6xl py-16`}>Introducing the POPshop</div>
                 <div className='transition-all' style={{ display: "flex", justifyContent: "flex-end" }}>
                     <div className='transition-all' style={{ display: "flex", overflowX: "clip" }}>
-                        <img className='transition-all' width="1120" height="auto" onClick={handleOneClick} src="/popshop1.png" alt="Slide Image" />
-                        <img className='transition-all' width="1120" height="auto" onClick={handleTwoClick} style={{ marginLeft: two }} src="/popshop2.png" alt="Slide Image" />
-                        <img className='transition-all' width="1120" height="auto" onClick={handleThreeClick} style={{ marginLeft: three }} src="/popshop3.png" alt="Slide Image" />
-                        <img className='transition-all' width="1120" height="auto" onClick={handleFourClick} style={{ marginLeft: four }} src="/popshop4.png" alt="Slide Image" />
+                        <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleOneClick} src="/popshop1.png" alt="Slide Image" />
+                        <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleTwoClick} style={{ marginLeft: two }} src="/popshop2.png" alt="Slide Image" />
+                        <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleThreeClick} style={{ marginLeft: three }} src="/popshop3.png" alt="Slide Image" />
+                        <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleFourClick} style={{ marginLeft: four }} src="/popshop4.png" alt="Slide Image" />
                     </div>
                 </div>
             </div>
