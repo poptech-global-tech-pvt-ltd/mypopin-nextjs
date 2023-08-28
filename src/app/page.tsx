@@ -16,34 +16,36 @@ import { ShoppingDeals } from "@/components/ShoppingDeals"
 import { POPBlog } from "@/components/POPBlog"
 import { HeroBanner } from "@/components/HeroBanner"
 import { HeroBannerMobile } from "@/components/HeroBannerMobile"
+import Head from 'next/head'
 
 
 
 export default function Home() {
   return (
-    <main>
-      <div className="hidden custom-450px:block md:block lg:block">
-        <HeroBanner />
-      </div>
-      <div className="block custom-450px:hidden">
-        <HeroBannerMobile />
-      </div>
-      <Layout>
-        <HeroPartners />
-        <ShoppingDeals />
-        <HowItWorks />
-      </Layout>
-      <TopPOPcoinPartnerBrands />
-      <Layout>
-        <POPInNumbers />
-      </Layout>
-      {/* <ShoppingDealsCarousel /> */}
-      <Spotlight />
-      <PopBenefits />
-      {/* <TopBrands /> */}
-      {/* TODO remove error in popshop */}
-      <POPShop />
-      <POPBlog />
-    </main>
+    <>
+      <main>
+        <div className="hidden custom-450px:block md:block lg:block">
+          <HeroBanner />
+        </div>
+        <div className="block custom-450px:hidden">
+          <HeroBannerMobile />
+        </div>
+        <Layout>
+          <HeroPartners />
+          <ShoppingDeals />
+          {/* <HowItWorks /> */}
+        </Layout>
+        <TopPOPcoinPartnerBrands />
+        <Layout>
+          <POPInNumbers />
+        </Layout>
+        {/* <ShoppingDealsCarousel /> */}
+        <Spotlight />
+        <PopBenefits />
+        {/* <TopBrands /> */}
+        <POPShop />
+        <POPBlog />
+      </main>
+    </>
   )
 }
