@@ -209,7 +209,7 @@ function Footer() {
                     </div>
                 </footer>
             </section>
-            <footer style={pathname.split("/")[1] === "brands" ? { backgroundColor: "#F46651", color: "white" } : { backgroundColor: "#F8F8F8", color: "black" }}>
+            <footer id="footer-contact-us" style={pathname.split("/")[1] === "brands" ? { backgroundColor: "#F46651", color: "white" } : { backgroundColor: "#F8F8F8", color: "black" }}>
                 <div style={pathname.split("/")[1] === "brands" ? { backgroundColor: "#F46651", color: "white", margin: "0 auto" } : { backgroundColor: "white", color: "black", margin: "0 auto" }} className="max-w-[1350px] md:px-4">
                     <div className="grid py-4 h-[214px] lg:h-[68px] items-center px-2 md:grid-cols-[1fr] lg:grid-cols-[1fr_1fr_1fr]">
                         <div className="text-center sm:text-center md:text-center lg:text-left xl:text-left">Copyright © {new Date().getFullYear()} POPclub Vision Tech Pvt. Ltd.</div>

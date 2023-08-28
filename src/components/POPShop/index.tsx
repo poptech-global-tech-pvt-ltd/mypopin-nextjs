@@ -112,30 +112,32 @@ function POPShop() {
 
     return (
         <>
-            {/* // desktop */}
-            <div className='hidden lg:block'>
-                <div className={`${khand.className} text-center text-6xl py-16`}>Introducing the POPshop</div>
-                <div className='transition-all' style={{ display: "flex", justifyContent: "flex-end" }}>
-                    <div className='transition-all' style={{ display: "flex", overflowX: "clip" }}>
-                        <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleOneClick} src="/popshop1.png" alt="Slide Image" />
-                        <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleTwoClick} style={{ marginLeft: two }} src="/popshop2.png" alt="Slide Image" />
-                        <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleThreeClick} style={{ marginLeft: three }} src="/popshop3.png" alt="Slide Image" />
-                        <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleFourClick} style={{ marginLeft: four }} src="/popshop4.png" alt="Slide Image" />
+            <section id="popshop">
+                {/* // desktop */}
+                <div className='hidden lg:block'>
+                    <div className={`${khand.className} text-center text-6xl py-16`}>Introducing the POPshop</div>
+                    <div className='transition-all' style={{ display: "flex", justifyContent: "flex-end" }}>
+                        <div className='transition-all' style={{ display: "flex", overflowX: "clip" }}>
+                            <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleOneClick} src="/popshop1.png" alt="Slide Image" />
+                            <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleTwoClick} style={{ marginLeft: two }} src="/popshop2.png" alt="Slide Image" />
+                            <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleThreeClick} style={{ marginLeft: three }} src="/popshop3.png" alt="Slide Image" />
+                            <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleFourClick} style={{ marginLeft: four }} src="/popshop4.png" alt="Slide Image" />
+                        </div>
                     </div>
                 </div>
-            </div>
-            {/* // mobile */}
-            <div className='block lg:hidden'>
-                <div className={`${khand.className} text-center text-3xl lg:text-6xl py-6 lg:py-16`}>Introducing the POPshop</div>
-                <div className='max-w-[400px] mx-auto'>
-                    <div className='flex flex-col'>
-                        <img className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleOneMobileClick} src="/popshop/popshop-mobile-4.png" alt="Slide Image" />
-                        <img style={{ marginTop: mobileTwo }} className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleTwoMobileClick} src="/popshop/popshop-mobile-3.png" alt="Slide Image" />
-                        <img style={{ marginTop: mobileThree }} className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleThreeMobileClick} src="/popshop/popshop-mobile-2.png" alt="Slide Image" />
-                        <img style={{ marginTop: mobileFour }} className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleFourMobileClick} src="/popshop/popshop-mobile-1.png" alt="Slide Image" />
+                {/* // mobile */}
+                <div className='block lg:hidden'>
+                    <div className={`${khand.className} text-center text-3xl lg:text-6xl py-6 lg:py-16`}>Introducing the POPshop</div>
+                    <div className='max-w-[400px] mx-auto'>
+                        <div className='flex flex-col'>
+                            <img className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleOneMobileClick} src="/popshop/popshop-mobile-4.png" alt="Slide Image" />
+                            <img style={{ marginTop: mobileTwo }} className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleTwoMobileClick} src="/popshop/popshop-mobile-3.png" alt="Slide Image" />
+                            <img style={{ marginTop: mobileThree }} className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleThreeMobileClick} src="/popshop/popshop-mobile-2.png" alt="Slide Image" />
+                            <img style={{ marginTop: mobileFour }} className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleFourMobileClick} src="/popshop/popshop-mobile-1.png" alt="Slide Image" />
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </>
     )
 }

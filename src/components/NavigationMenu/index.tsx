@@ -13,6 +13,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { Manrope } from 'next/font/google'
+import ScrollLink from "@/utils/ScrollLink"
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -61,14 +62,14 @@ export function NavigationMenuDemo() {
 
   const isBrandDataAvailable = Object.keys(brandData)?.length !== 0
 
-  const handleScrollToBottom = () => {
-    requestAnimationFrame(() => {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: 'smooth',
-      });
-    });
-  }
+  // const handleScrollToBottom = () => {
+  //   requestAnimationFrame(() => {
+  //     window.scrollTo({
+  //       top: document.documentElement.scrollHeight,
+  //       behavior: 'smooth',
+  //     });
+  //   });
+  // }
 
   console.log({ brandData })
   return (
@@ -111,13 +112,15 @@ export function NavigationMenuDemo() {
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-1 lg:w-[200px] ">
               {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                >
-                  {/* {component.description} */}
-                </ListItem>
+                <ScrollLink href="#popshop">
+                  <ListItem
+                    key={component.title}
+                    title={component.title}
+                    href={component.href}
+                  >
+                    {/* {component.description} */}
+                  </ListItem>
+                </ScrollLink>
               ))}
             </ul>
           </NavigationMenuContent>
@@ -143,7 +146,11 @@ export function NavigationMenuDemo() {
         >
           <Link href="/" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <div onClick={handleScrollToBottom} className={`${manrope.className} font-bold text-[16px]`}>Contact Us</div>
+              <ScrollLink href="#footer-contact-us">
+                <div 
+                // onClick={handleScrollToBottom}
+                 className={`${manrope.className} font-bold text-[16px]`}>Contact Us</div>
+              </ScrollLink>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
