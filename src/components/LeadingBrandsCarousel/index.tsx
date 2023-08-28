@@ -73,11 +73,11 @@ function LeadingBrandsCarousel() {
             additionalTransfrom={0}
             arrows={false}
             autoPlay
-            autoPlaySpeed={2000}
+            autoPlaySpeed={2}
             centerMode={false}
             className=""
             containerClass=""
-            customTransition="all 6s linear"
+            customTransition="all 2s linear"
             dotListClass=""
             draggable
             focusOnSelect={false}
@@ -102,6 +102,16 @@ function LeadingBrandsCarousel() {
                 </div>
             ))}
             {/* // TODO remove this repeative loop when more data is in strapi */}
+            {brandLogos && brandLogos?.length && brandLogos?.map((i: any, index: number) => (
+                <div key={index}>
+                    <img
+                        src={i?.attributes.image.data.attributes.url}
+                        width="auto"
+                        height="20"
+                        alt={i.alt}
+                    />
+                </div>
+            ))}
             {brandLogos && brandLogos?.length && brandLogos?.map((i: any, index: number) => (
                 <div key={index}>
                     <img
