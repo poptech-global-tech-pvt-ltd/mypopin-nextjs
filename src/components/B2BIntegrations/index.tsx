@@ -30,28 +30,18 @@ const integrationLogos = [
 
 function B2BIntegrations() {
     return (
-        <div className="bg-[url('/integrations-bg.png')] hover:bg-[#F56651]">
+        <div className="bg-[url('/integrations-bg.png')] hover:bg-[#F56651] p-12 lg:p-24">
             <div className="max-w-6xl mx-auto">
-                <div className={`${khand.className}  text-5xl lg:text-8xl text-center py-8 text-white`}>Integrations</div>
-                {/* <div className='flex'>
-                    {integrationLogos?.map((i, index) => (
-                        <div key={index}>
-                            <Image width="157" height="46" src={i.url} alt={i.url} />
-                        </div>
-                    ))}
-                </div> */}
-
+                <div className={`${khand.className}  text-5xl lg:text-[70px] text-center py-8 text-white`}>Integrations</div>
                 <div className="container mx-auto p-4">
                     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 items-center justify-items-center">
                         {integrationLogos?.map((i, index) => (
                             <div key={index}>
-                                <Image width="157" height="46" src={i.url} alt={i.url} />
+                                <img width="157" height="100" src={i.url} alt={i.url} />
                             </div>
                         ))}
                     </div>
                 </div>
-                {/* // not needed */}
-                {/* <div className='flex items-center justify-center py-8'><Button className={`rounded-full bg-black]`}>View All</Button></div> */}
             </div>
         </div>
     )
