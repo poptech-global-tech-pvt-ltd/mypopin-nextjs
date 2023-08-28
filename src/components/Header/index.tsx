@@ -61,6 +61,7 @@ function Header() {
     }
 
     const pathName = usePathname()
+    console.log({ pathName })
 
     useEffect(() => {
         if (cookieKey) {
@@ -102,9 +103,12 @@ function Header() {
                                 </Link>
                             </div>
                             {/* // remaining section */}
-                            <div className="px-6">
-                                <NavigationMenu />
-                            </div>
+                            {pathName !== "/partner-with-pop" && (
+                                <div className="px-6">
+                                    <NavigationMenu />
+                                </div>
+                            )}
+
                         </div>
                         <div className="flex items-center">
                             <div className="flex">

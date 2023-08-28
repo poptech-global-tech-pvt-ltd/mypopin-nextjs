@@ -23,12 +23,12 @@ function BrandPartners() {
     const [animationJump, setAnimationJump] = useState<number>(-10)
 
     const handleMouseEnter = () => {
-        console.log("enterrrrr")
+        console.log("entrrrr")
         setAnimationJump(-10)
     }
 
     const handleMouseOut = () => {
-        console.log("existttttt")
+        console.log("exitttt")
         setAnimationJump(0)
     }
 
