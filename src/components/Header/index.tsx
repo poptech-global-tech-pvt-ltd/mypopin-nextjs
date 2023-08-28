@@ -3,7 +3,6 @@ import Image from "next/image"
 import { NavigationMenuDemo as NavigationMenu } from '@/components/NavigationMenu'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import {
     Dialog,
     DialogContent,
@@ -14,9 +13,13 @@ import {
 } from "@/components/ui/dialog"
 import { useEffect, useState } from "react"
 import { User2 } from 'lucide-react';
+import { useRouter, usePathname } from 'next/navigation'
+
 
 function Header() {
     const [cookieKey, setCookieKey] = useState("");
+    const pathname = usePathname()
+
     const handleLogin = () => {
         //get cookie name
         function getCookie(name: string) {
