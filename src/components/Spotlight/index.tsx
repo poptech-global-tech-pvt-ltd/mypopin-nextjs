@@ -46,13 +46,13 @@ const responsive = {
 function Spotlight() {
   return (
     <>
-      <div className="max-w-6xl mx-auto mb-12">
+      <div className="mx-auto mb-12">
         <div className={`px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 text-center lg:text-6xl py-16 font-bold ${khand.className}`}>Spotlight Brands Offering Discounts</div>
         <div>
           <Carousel
             additionalTransfrom={0}
             arrows={false}
-            autoPlay
+            autoPlay={true}
             autoPlaySpeed={2000}
             centerMode={false}
             className=""
@@ -78,7 +78,7 @@ function Spotlight() {
                   width={255}
                   height={274}
                   alt={i?.relativeImageURL}
-                // className='p-2'
+                  className='mx-auto'
                 />
               </div>
             )))}
