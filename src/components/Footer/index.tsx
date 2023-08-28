@@ -181,7 +181,7 @@ function Footer() {
                                     <Link href={`https://www.facebook.com/getpopclub`}>
                                         <div>
                                             <div style={pathname.split("/")[1] === "brands" ? { color: "white", border: "1.5px solid white" } : { color: "black", border: "1.5px solid black" }} className="rounded-full p-2">
-                                                <Facebook style={pathname.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[25px] h-[25px]" />
+                                                <Facebook style={pathname.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[20px] h-[20px]" />
                                             </div>
                                         </div>
 
@@ -189,32 +189,18 @@ function Footer() {
                                     <Link href={`https://www.instagram.com/getpopclub/`}>
                                         <div>
                                             <div style={pathname.split("/")[1] === "brands" ? { color: "white", border: "1.5px solid white" } : { color: "black", border: "1.5px solid black" }} className="rounded-full p-2">
-                                                <Instagram style={pathname.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[25px] h-[25px]" />
+                                                <Instagram style={pathname.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[20px] h-[20px]" />
                                             </div>
                                         </div>
                                     </Link>
                                     <Link href={`https://twitter.com/getpopclub`}>
-                                        {/* <Image
-                                            className="m-2"
-                                            src="/twitter.svg"
-                                            width={36}
-                                            height={36}
-                                            alt="twitter logo"
-                                        /> */}
                                         <div style={pathname.split("/")[1] === "brands" ? { color: "white", border: "1.5px solid white" } : { color: "black", border: "1.5px solid black" }} className="rounded-full p-2">
-                                            <Twitter style={pathname.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[25px] h-[25px]" />
+                                            <Twitter style={pathname.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[20px] h-[20px]" />
                                         </div>
                                     </Link>
                                     <Link href={`https://www.linkedin.com/company/getpopcoins`}>
-                                        {/* <Image
-                                            className="m-2"
-                                            src="/linkedin.svg"
-                                            width={36}
-                                            height={36}
-                                            alt="linkedin logo"
-                                        /> */}
                                         <div style={pathname.split("/")[1] === "brands" ? { color: "white", border: "1.5px solid white" } : { color: "black", border: "1.5px solid black" }} className="rounded-full p-2">
-                                            <Linkedin style={pathname.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[25px] h-[25px]" />
+                                            <Linkedin style={pathname.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[20px] h-[20px]" />
                                         </div>
                                     </Link>
                                 </div>

@@ -73,11 +73,11 @@ function LeadingBrandsCarousel() {
             additionalTransfrom={0}
             arrows={false}
             autoPlay
-            autoPlaySpeed={2}
+            autoPlaySpeed={3}
             centerMode={false}
             className=""
             containerClass=""
-            customTransition="all 2s linear"
+            customTransition="all 3s linear"
             dotListClass=""
             draggable
             focusOnSelect={false}
