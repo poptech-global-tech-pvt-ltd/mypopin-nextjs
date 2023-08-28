@@ -30,7 +30,7 @@ const integrationLogos = [
 
 function B2BIntegrations() {
     return (
-        <div className="bg-[url('/integrations-bg.png')] hover:bg-[#F56651] p-12 lg:p-24">
+        <div className="p-12 lg:p-24 integrations-section">
             <div className="max-w-6xl mx-auto">
                 <div className={`${khand.className}  text-5xl lg:text-[70px] text-center py-8 text-white`}>Integrations</div>
                 <div className="container mx-auto p-4">

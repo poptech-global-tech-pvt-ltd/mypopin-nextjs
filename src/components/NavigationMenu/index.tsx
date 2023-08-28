@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, Fragment } from "react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import {
@@ -111,16 +111,18 @@ export function NavigationMenuDemo() {
           >Our POP World</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-1 lg:w-[200px] ">
-              {components.map((component) => (
-                <ScrollLink href="#popshop">
-                  <ListItem
-                    key={component.title}
-                    title={component.title}
-                    href={component.href}
-                  >
-                    {/* {component.description} */}
-                  </ListItem>
-                </ScrollLink>
+              {components.map((component, index: number) => (
+                <Fragment key={index}>
+                  <ScrollLink href="#popshop">
+                    <ListItem
+                      key={component.title}
+                      title={component.title}
+                      href={component.href}
+                    >
+                      {/* {component.description} */}
+                    </ListItem>
+                  </ScrollLink>
+                </Fragment>
               ))}
             </ul>
           </NavigationMenuContent>
@@ -147,9 +149,9 @@ export function NavigationMenuDemo() {
           <Link href="/" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               <ScrollLink href="#footer-contact-us">
-                <div 
-                // onClick={handleScrollToBottom}
-                 className={`${manrope.className} font-bold text-[16px]`}>Contact Us</div>
+                <div
+                  // onClick={handleScrollToBottom}
+                  className={`${manrope.className} font-bold text-[16px]`}>Contact Us</div>
               </ScrollLink>
             </NavigationMenuLink>
           </Link>

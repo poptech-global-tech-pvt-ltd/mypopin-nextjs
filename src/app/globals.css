@@ -920,3 +920,11 @@ h6 {
     display: block;
   }
 }
+
+.integrations-section {
+  background-image: url("/integrations-bg.png");
+}
+.integrations-section:hover {
+  background-image: none;
+  background-color: #F56651;
+}
