@@ -142,10 +142,10 @@ function Header() {
                                 </Dialog>
                             </div>
                             <Link href="/">
-                                <Button className={`ml-3 ${pathName === "/" ? `bg-[#F56651] text-white hover:bg-[#F56651] hover:text-white` : `bg-white text-black`}`} variant="outline">I am a Customer</Button>
+                                <Button className={`ml-3 ${pathName === "/" ? `bg-[#F56651] text-white hover:bg-[#F56651] hover:text-white border-0` : `bg-white text-black`}`} variant="outline">I am a Customer</Button>
                             </Link>
                             <Link href="/partner-with-pop">
-                                <Button className={`ml-3 ${pathName === "/partner-with-pop" ? `bg-[#F56651] text-white  hover:bg-[#F56651] hover:text-white` : `bg-[white] text-black`}`} variant="outline">I am a Brand</Button>
+                                <Button className={`ml-3 ${pathName === "/partner-with-pop" ? `bg-[#F56651] text-white  hover:bg-[#F56651] hover:text-white border-0` : `bg-[white] text-black`}`} variant="outline">I am a Brand</Button>
                             </Link>
                         </div>
                     </div>

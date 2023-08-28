@@ -13,6 +13,12 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'ik.imagekit.io',
       },
+      {
+        protocol: 'https',
+        hostname: 'stablo-template.vercel.app',
+      },
+
+
     ],
   },
 }
