@@ -32,7 +32,9 @@ export default function Home() {
         <HeroPartners />
         <ShoppingDeals />
         <HowItWorks />
-        <TopPOPcoinPartnerBrands />
+      </Layout>
+      <TopPOPcoinPartnerBrands />
+      <Layout>
         <POPInNumbers />
       </Layout>
       {/* <ShoppingDealsCarousel /> */}

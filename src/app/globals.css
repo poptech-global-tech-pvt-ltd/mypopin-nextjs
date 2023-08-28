@@ -135,6 +135,11 @@ h6 {
   background-attachment: fixed;
 }
 
+.b2b-section-bg-img:hover {
+  background-image: none;
+  background-color: #F56651;
+}
+
 .react-slick-header {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -924,6 +929,7 @@ h6 {
 .integrations-section {
   background-image: url("/integrations-bg.png");
 }
+
 .integrations-section:hover {
   background-image: none;
   background-color: #F56651;
