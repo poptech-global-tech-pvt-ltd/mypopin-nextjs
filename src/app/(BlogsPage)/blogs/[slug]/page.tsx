@@ -16,7 +16,7 @@ function BlogDetail() {
 
     useEffect(() => {
         fetch(`https://mypop-dashboard.popclub.co.in/api/blog-widgets?filters[$and][0][uuid][$eq]=${pathname.split('/')[2]}&populate=*`).then((res) => res.json()).then((data) => setBlogDetailData(data?.data))
-    }, [])
+    }, [pathname])
 
     console.log({ blogDetailData })
 

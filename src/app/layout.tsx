@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta property="og:image:alt" content="India's New Currency POPcoins" />
         <meta property="og:url" content="https://mypop.in" />
         <link rel="canonical" href="https://mypop.in" />
-        <Script type="application/ld+json">
+        <Script id="schemaorg" type="application/ld+json">
           "@context": "https://schema.org",
           "@type": "Organization",
           "name": "My POP",
