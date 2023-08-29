@@ -22,7 +22,7 @@ function BlogDetail() {
 
     return (
         <>
-            <section className="py-24 max-w-6xl mx-auto">
+            <section className="py-8 lg:py-24 max-w-6xl mx-auto">
                 <Container className="!pt-0">
                     <div className="mx-auto max-w-screen-md ">
                         <div className="flex justify-center">
@@ -107,16 +107,18 @@ function BlogDetail() {
                 <div className="container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 lg:py-8">
                     <article className="mx-auto max-w-screen-md ">
                         <div className="mx-auto my-3">
-                            {blogDetailData && blogDetailData.length === 1 ? (
-                                <div className="blog-post-container">
-                                    <ReactMarkdown>
-                                        {blogDetailData[0].attributes.full_description}
-                                    </ReactMarkdown>
-                                </div>
-                            ) :
-                                <div>
-                                    "none here"
-                                </div>}
+                            {
+                                blogDetailData && blogDetailData.length === 1 ? (
+                                    <div className="blog-post-container">
+                                        <ReactMarkdown>
+                                            {blogDetailData[0].attributes.full_description}
+                                        </ReactMarkdown>
+                                    </div>
+                                ) :
+                                    <div>
+                                        <Skeleton borderRadius={10} className='h-[100px]' />
+                                    </div>
+                            }
                         </div>
                     </article>
                 </div>
