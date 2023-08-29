@@ -109,7 +109,9 @@ function BlogDetail() {
                         <div className="mx-auto my-3">
                             {blogDetailData && blogDetailData.length === 1 ? (
                                 <div>
-                                    <ReactMarkdown children={blogDetailData[0].attributes.full_description} />
+                                    <ReactMarkdown>
+                                        {blogDetailData[0].attributes.full_description}
+                                    </ReactMarkdown>
                                 </div>
                             ) :
                                 <div>
