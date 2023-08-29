@@ -121,7 +121,10 @@ function POPShop() {
                             <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleOneClick} src="/popshop1.png" alt="Slide Image" />
                             <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleTwoClick} style={{ marginLeft: two }} src="/popshop2.png" alt="Slide Image" />
                             <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleThreeClick} style={{ marginLeft: three }} src="/popshop3.png" alt="Slide Image" />
-                            <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleFourClick} style={{ marginLeft: four }} src="/popshop4.png" alt="Slide Image" />
+                            <div className='relative'>
+                                <img className='transition-all cursor-pointer absolute' width="1120" height="1000" onClick={handleFourClick} style={{ marginLeft: four }} src="/popshop4.png" alt="Slide Image" />
+                                <div className=''>hello =======-----</div>
+                            </div>
                         </div>
                     </div>
                 </div>
