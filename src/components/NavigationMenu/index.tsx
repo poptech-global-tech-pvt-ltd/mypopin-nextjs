@@ -138,7 +138,7 @@ export function NavigationMenuDemo() {
         </NavigationMenuItem>
         <NavigationMenuItem className={`${manrope.className} font-bold`}
         >
-          <Link href="https://blog.mypop.in/" legacyBehavior passHref>
+          <Link href="/blogs" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               <div className={`${manrope.className} font-bold text-[16px]`}>Blog</div>
             </NavigationMenuLink>
