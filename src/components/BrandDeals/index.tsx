@@ -89,9 +89,11 @@ function BrandDeals({ secondaryColor, textColor }: IBrandDeals) {
                                             alt="hgfd"
                                             className="h-[276px] w-[266px] object-cover rounded-3xl"
                                         />
-                                        <div style={{ backgroundColor: "black" }} className={`absolute top-8 right-0 p-2 pl-4 bg-red-500 text-white text-2xl ${manrope.className} font-bold rounded-l-full`}>
-                                            {Math.floor(itm?.attributes?.discount_percentage)}%
-                                        </div>
+                                        {itm?.attributes?.discount_percentage === "-Infinity" ?
+                                            <div>{null}</div> :
+                                            <div style={{ backgroundColor: "black" }} className={`absolute top-8 right-0 p-2 pl-4 bg-red-500 text-white text-2xl ${manrope.className} font-bold rounded-l-full`}>
+                                                {Math.floor(itm?.attributes?.discount_percentage)}%
+                                            </div>}
                                     </div>
                                     <div style={{ backgroundColor: secondaryColor, transform: "translateY(-8%)" }} className={`w-11/12 rounded-bl-3xl rounded-br-3xl font-bold ${manrope.className} z-5`}>
                                         <div className="text-center pt-3">{itm?.attributes?.product_name.slice(0, 20) + ".."}</div>
