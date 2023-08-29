@@ -18,7 +18,23 @@ function BlogDetail() {
         fetch(`https://mypop-dashboard.popclub.co.in/api/blog-widgets?filters[$and][0][uuid][$eq]=${pathname.split('/')[2]}&populate=*`).then((res) => res.json()).then((data) => setBlogDetailData(data?.data))
     }, [pathname])
 
-    console.log({ blogDetailData })
+    const calculateReadingTime = (descriptionLength: number) => {
+        if (descriptionLength < 500) {
+            return "3"
+        }
+        else if (descriptionLength < 1000) {
+            return "5"
+        }
+        else if (descriptionLength < 1500) {
+            return "9"
+        }
+        else if (descriptionLength < 2000) {
+            return "12"
+        }
+        else if (descriptionLength < 2500) {
+            return "15+"
+        }
+    }
 
     return (
         <>
@@ -80,7 +96,10 @@ function BlogDetail() {
                                             <div>
                                                 <Skeleton borderRadius={1} className='h-[15px]' />
                                             </div>}
-                                        <span>· 8  min read</span>
+                                        {/* <span>· </span> */}
+                                        {/* <span>
+                                            {blogDetailData && blogDetailData.length === 1 ? (<div>  {calculateReadingTime(blogDetailData[0].attributes.full_description)}</div>) : (<div>{null}</div>)}
+                                        </span> */}
                                     </div>
                                 </div>
                             </div>
