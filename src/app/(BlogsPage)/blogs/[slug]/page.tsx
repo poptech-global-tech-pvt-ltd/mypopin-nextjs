@@ -108,7 +108,7 @@ function BlogDetail() {
                     <article className="mx-auto max-w-screen-md ">
                         <div className="mx-auto my-3">
                             {blogDetailData && blogDetailData.length === 1 ? (
-                                <div>
+                                <div className="blog-post-container">
                                     <ReactMarkdown>
                                         {blogDetailData[0].attributes.full_description}
                                     </ReactMarkdown>

@@ -53,6 +53,7 @@ h6 {
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -934,3 +935,9 @@ h6 {
   background-image: none;
   background-color: #F56651;
 }
+
+/* THIS REVERTS STYLES FOR H1 to H6 and rest of the styles overriden by tailwindcss */
+.blog-post-container > * {
+  all: revert;
+}
+
