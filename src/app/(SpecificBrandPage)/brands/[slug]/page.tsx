@@ -75,7 +75,7 @@ function BrandPage() {
                             <div style={{ backgroundColor: brandData?.primary_color }} className="itm1 p-6 rounded-3xl">
                                 <div className='flex justify-between'>
                                     <div>
-                                        <div style={{ color: brandData?.text_color }} className={`uppercase text-[28px] lg:text-5xl ${manrope.className} font-bold`}>Extra 30% off</div>
+                                        <div style={{ color: brandData?.text_color }} className={`uppercase text-[28px] lg:text-5xl ${manrope.className} font-bold`}>EXTRA {brandData?.burn_callout?.split(" ")[1]}&nbsp;off with</div>
                                         <div style={{ color: brandData?.text_color }} className={`uppercase text-5xl ${manrope.className} font-bold`}>
                                             <div className='flex items-center'>
                                                 <div className='lg:text-5xl text-[28px] font-extrabold'>WITH</div>

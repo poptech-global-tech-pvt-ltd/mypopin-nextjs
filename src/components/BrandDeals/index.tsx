@@ -7,8 +7,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from 'next/navigation'
 
-
-
 const manrope = Manrope({
     subsets: ['latin'],
     weight: ['400', '700']
@@ -97,7 +95,7 @@ function BrandDeals({ secondaryColor, textColor }: IBrandDeals) {
                                     </div>
                                     <div style={{ backgroundColor: secondaryColor, transform: "translateY(-8%)" }} className={`w-11/12 rounded-bl-3xl rounded-br-3xl font-bold ${manrope.className} z-5`}>
                                         <div className="text-center pt-3">{itm?.attributes?.product_name.slice(0, 20) + ".."}</div>
-                                        <div className="text-center py-1">₹{itm?.attributes?.product_price}&nbsp;<span style={{ textDecoration: "line-through", color: "gray" }}>₹{itm?.attributes?.product_mrp}</span></div>
+                                        <div className="text-center py-1">₹{itm?.attributes?.product_price}&nbsp;<span style={{ textDecoration: "line-through", color: "gray" }}>{itm?.attributes?.product_mrp ? <span> ₹{itm?.attributes?.product_mrp}</span> : null}  </span></div>
                                         <div className="flex items-center justify-center py-3">
                                             <div>or &nbsp;</div>
                                             <div>₹ {Math.floor(itm?.attributes?.price_with_coin)}</div>
