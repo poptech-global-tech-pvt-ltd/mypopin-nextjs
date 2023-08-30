@@ -195,21 +195,21 @@ function Coupons() {
                 console.log('Error:', error);
             });
 
-            setCategories((prevData : any) => {
-                const newData = [...prevData]
-                newData.map((i) => i.isChecked = false)
-                return newData
-            })
+        setCategories((prevData: any) => {
+            const newData = [...prevData]
+            newData.map((i) => i.isChecked = false)
+            return newData
+        })
 
-            setBrandNames((prevData : any) => {
-                const newData = [...prevData]
-                newData.map((i) => i.isChecked = false)
-                return newData
-            })
+        setBrandNames((prevData: any) => {
+            const newData = [...prevData]
+            newData.map((i) => i.isChecked = false)
+            return newData
+        })
 
-            console.log("new-category", categories)
-            console.log("new-brand", brandNames)
-        }
+        console.log("new-category", categories)
+        console.log("new-brand", brandNames)
+    }
 
     console.log({ categories })
     console.log("testing", couponData.some((item: any) => item?.category?.isChecked && item?.isChecked))
@@ -343,7 +343,7 @@ function Coupons() {
                                                             <div style={{ borderColor: itm?.color?.bg_color_1 }} className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
                                                                 <div>
                                                                     <div className='text-center flex items-center justify-center py-2'>
-                                                                        {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
+                                                                        {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] object-contain rounded-full" src={itm?.logo?.image} />}
                                                                         {!itm?.logo && <div className="border-[1.5px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                                     </div>
                                                                     <div className='text-center py-2'>
@@ -422,7 +422,7 @@ function Coupons() {
                                                         <div style={{ borderColor: itm?.color?.bg_color_2 }} className="w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
                                                             <div>
                                                                 <div className='text-center flex items-center justify-center py-1'>
-                                                                    {itm?.logo && <img className="border-[1px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
+                                                                    {itm?.logo && <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full" src={itm?.logo?.image} />}
                                                                     {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                                 </div>
                                                                 <div className="flex">
@@ -467,7 +467,7 @@ function Coupons() {
                                                         <div style={{ borderColor: itm?.color?.bg_color_1 }} className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
                                                             <div>
                                                                 <div className='text-center flex items-center justify-center py-2'>
-                                                                    {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
+                                                                    {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] object-contain rounded-full" src={itm?.logo?.image} />}
                                                                     {!itm?.logo && <div className="border-[1.5px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                                 </div>
                                                                 <div className='text-center py-2'>
@@ -535,7 +535,7 @@ function Coupons() {
                                                         <div style={{ borderColor: itm?.color?.bg_color_2 }} className="w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
                                                             <div>
                                                                 <div className='text-center flex items-center justify-center py-1'>
-                                                                    {itm?.logo && <img className="border-[1px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
+                                                                    {itm?.logo && <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full" src={itm?.logo?.image} />}
                                                                     {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                                 </div>
                                                                 <div className="flex">
@@ -580,7 +580,7 @@ function Coupons() {
                                                         <div style={{ borderColor: itm?.color?.bg_color_1 }} className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
                                                             <div>
                                                                 <div className='text-center flex items-center justify-center py-2'>
-                                                                    {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
+                                                                    {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] object-contain rounded-full" src={itm?.logo?.image} />}
                                                                     {!itm?.logo && <div className="border-[1.5px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                                 </div>
                                                                 <div className='text-center py-2'>
@@ -649,7 +649,7 @@ function Coupons() {
                                                         <div style={{ borderColor: itm?.color?.bg_color_2 }} className="w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
                                                             <div>
                                                                 <div className='text-center flex items-center justify-center py-1'>
-                                                                    {itm?.logo && <img className="border-[1px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
+                                                                    {itm?.logo && <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full" src={itm?.logo?.image} />}
                                                                     {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                                 </div>
                                                                 <div className="flex">
@@ -694,7 +694,7 @@ function Coupons() {
                                                         <div style={{ borderColor: itm?.color?.bg_color_1 }} className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
                                                             <div>
                                                                 <div className='text-center flex items-center justify-center py-2'>
-                                                                    {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] rounded-full" src={itm?.logo?.image} />}
+                                                                    {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] object-contain rounded-full" src={itm?.logo?.image} />}
                                                                     {!itm?.logo && <div className="border-[1.5px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                                 </div>
                                                                 <div className='text-center py-2'>

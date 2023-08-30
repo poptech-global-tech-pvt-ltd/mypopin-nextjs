@@ -148,7 +148,7 @@ function BrandPage() {
                 <br />
                 <hr className='max-w-7xl mx-auto' />
                 <BrandRewardsCarousel />
-                <BrandDeals secondaryColor={brandData?.secondary_color} textColor={brandData?.text_color} />
+                <BrandDeals discountPercentage={brandData?.discount_percentage} secondaryColor={brandData?.secondary_color} textColor={brandData?.text_color} />
                 <hr className='max-w-7xl mx-auto' />
                 <section className='max-w-7xl mx-auto'>
                     <div className={`${manrope.className} text-center text-3xl font-bold py-8`}>Earn  5 For Every ₹100</div>

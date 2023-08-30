@@ -15,9 +15,10 @@ const manrope = Manrope({
 interface IBrandDeals {
     secondaryColor: string
     textColor: string
+    discountPercentage: any
 }
 
-function BrandDeals({ secondaryColor, textColor }: IBrandDeals) {
+function BrandDeals({ secondaryColor, textColor, discountPercentage }: IBrandDeals) {
     const [productImagesData, setProductImagesData] = useState<any>();
     const router = useRouter()
     const pathname = usePathname()
@@ -52,6 +53,14 @@ function BrandDeals({ secondaryColor, textColor }: IBrandDeals) {
 
     console.log({ productImagesData })
 
+    // let productDiscountPercentage
+    // if (originalPrice) {
+    //     productDiscountPercentage = (Math.floor((originalPrice - mrp - burnCoins) / originalPrice)).toString()
+    // }
+    // else {
+    //     productDiscountPercentage = (Math.floor(((burnCoins / mrp) * 100))).toString()
+    // }
+
     return (
         <>
             <div>
@@ -78,6 +87,7 @@ function BrandDeals({ secondaryColor, textColor }: IBrandDeals) {
                         responsive={responsive}
                         swipeable={true}
                     >
+                        {/* //mapping */}
                         {productImagesData?.length > 0 && productImagesData?.map((itm: any, index: number) => (
                             <div key={index}>
                                 <div onClick={() => handleProductLink(itm)} className="grid w-full justify-center justify-items-center">
@@ -87,10 +97,21 @@ function BrandDeals({ secondaryColor, textColor }: IBrandDeals) {
                                             alt="hgfd"
                                             className="h-[276px] w-[266px] object-cover rounded-3xl"
                                         />
-                                        {itm?.attributes?.discount_percentage === "-Infinity" ?
+                                        {discountPercentage === "-Infinity" ?
                                             <div>{null}</div> :
                                             <div style={{ backgroundColor: "black" }} className={`absolute top-8 right-0 p-2 pl-4 bg-red-500 text-white text-2xl ${manrope.className} font-bold rounded-l-full`}>
-                                                {Math.floor(itm?.attributes?.discount_percentage)}%
+                                                {itm?.attributes?.product_mrp === null ?
+
+                                                    (<div>
+
+                                                        {(Math.trunc((((itm?.attributes?.product_price * discountPercentage) / itm?.attributes?.product_price)))).toString()}%
+
+                                                    </div>)
+                                                    : <div>
+                                                       
+
+                                                        {Math.trunc((((itm?.attributes?.product_mrp - itm?.attributes?.product_price) + (itm?.attributes?.product_price * discountPercentage / 100)) / itm?.attributes?.product_mrp) * 100)}%
+                                                    </div>}
                                             </div>}
                                     </div>
                                     <div style={{ backgroundColor: secondaryColor, transform: "translateY(-8%)" }} className={`w-11/12 rounded-bl-3xl rounded-br-3xl font-bold ${manrope.className} z-5`}>
@@ -98,10 +119,10 @@ function BrandDeals({ secondaryColor, textColor }: IBrandDeals) {
                                         <div className="text-center py-1">₹{itm?.attributes?.product_price}&nbsp;<span style={{ textDecoration: "line-through", color: "gray" }}>{itm?.attributes?.product_mrp ? <span> ₹{itm?.attributes?.product_mrp}</span> : null}  </span></div>
                                         <div className="flex items-center justify-center py-3">
                                             <div>or &nbsp;</div>
-                                            <div>₹ {Math.floor(itm?.attributes?.price_with_coin)}</div>
+                                            <div>₹ {Math.trunc(itm?.attributes?.product_price - ((itm?.attributes?.product_price * discountPercentage) / 100))}</div>
                                             <div>+&nbsp;</div>
                                             <img width="20" height="20" src="/popcoin-icon.svg" />
-                                            <div>{Math.floor(itm?.attributes?.burn_coin)}</div>
+                                            <div>{Math.trunc(itm?.attributes?.product_price * discountPercentage / 100)}</div>
                                         </div>
                                         {/* <div className="text-center pb-3">or ₹ {itm?.attributes?.price_with_coin}+ {itm?.attributes?.burn_coin}</div> */}
                                     </div>

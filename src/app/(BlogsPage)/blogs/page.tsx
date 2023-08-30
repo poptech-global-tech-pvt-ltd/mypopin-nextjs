@@ -25,6 +25,7 @@ function Blogs() {
     return (
         <>
             <section className="py-8 lg:py-24 max-w-5xl mx-auto px-4 lg:px-0">
+                {/* <div className="">test</div> */}
                 <div className="py-10">
                     <div className={`${khand.className}  text-left text-6xl `}>POP Circle</div>
                     <div className={`${khand.className}  text-left text-6xl  text-[#6b7280]`}>Curated Reads for you</div>
