@@ -95,7 +95,7 @@ function BrandDeals({ secondaryColor, textColor, discountPercentage }: IBrandDea
                                         <img
                                             src={itm?.attributes?.product_image}
                                             alt="hgfd"
-                                            className="h-[276px] w-[266px] object-cover rounded-3xl"
+                                            className="h-[276px] w-[266px] object-cover rounded-3xl shadow-sm"
                                         />
                                         {discountPercentage === "-Infinity" ?
                                             <div>{null}</div> :
@@ -108,7 +108,7 @@ function BrandDeals({ secondaryColor, textColor, discountPercentage }: IBrandDea
 
                                                     </div>)
                                                     : <div>
-                                                       
+
 
                                                         {Math.trunc((((itm?.attributes?.product_mrp - itm?.attributes?.product_price) + (itm?.attributes?.product_price * discountPercentage / 100)) / itm?.attributes?.product_mrp) * 100)}%
                                                     </div>}
