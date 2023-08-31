@@ -101,15 +101,10 @@ function BrandDeals({ secondaryColor, textColor, discountPercentage }: IBrandDea
                                             <div>{null}</div> :
                                             <div style={{ backgroundColor: "black" }} className={`absolute top-8 right-0 p-2 pl-4 bg-red-500 text-white text-2xl ${manrope.className} font-bold rounded-l-full`}>
                                                 {itm?.attributes?.product_mrp === null ?
-
                                                     (<div>
-
                                                         {(Math.trunc((((itm?.attributes?.product_price * discountPercentage) / itm?.attributes?.product_price)))).toString()}%
-
                                                     </div>)
                                                     : <div>
-
-
                                                         {Math.trunc((((itm?.attributes?.product_mrp - itm?.attributes?.product_price) + (itm?.attributes?.product_price * discountPercentage / 100)) / itm?.attributes?.product_mrp) * 100)}%
                                                     </div>}
                                             </div>}
@@ -127,7 +122,6 @@ function BrandDeals({ secondaryColor, textColor, discountPercentage }: IBrandDea
                                         {/* <div className="text-center pb-3">or ₹ {itm?.attributes?.price_with_coin}+ {itm?.attributes?.burn_coin}</div> */}
                                     </div>
                                 </div>
-
                             </div>
                         ))}
                     </Carousel>

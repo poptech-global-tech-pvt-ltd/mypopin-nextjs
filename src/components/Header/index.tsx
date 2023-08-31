@@ -73,13 +73,21 @@ function Header() {
                     fetch(`https://coins.mypopcoins.com/user-coins?brand=mypopin&key=${cookieKey}`, {
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': 'Basic cGwtcHJvZDpwbEAyMHR3ZW50eXR3bw=='
+                            'Authorization': 'Basic cGwtcHJvZDpwbEAyMHR3ZW50eXR3bw==',
+                            'Access-Control-Allow-Origin': 'no-cors'
                         }
                     })
-                        .then((res) => res.json())
-                        .then((data) => {
-                            console.log("data---->", data);
-                        });
+                        .then((res) => console.log({ res }))  // Use res.text() to get the HTML content as text
+                    // .then((html) => {
+                    // const parser = new DOMParser();
+                    // const doc = parser.parseFromString(html, 'text/html');
+
+                    // // Now you can use DOM manipulation methods to extract the specific data you need
+                    //     // @ts-ignore
+                    //     const certainData = doc.getElementsByClassName('coin-icon').textContent;
+                    //     console.log("certainData---->", certainData);
+                    // console.log({html})
+                    // });
                 } catch (err) {
                     console.log("Oops! An error has occurred");
                 }
@@ -115,27 +123,19 @@ function Header() {
                         </div>
                         <div className="flex items-center">
                             <div className="flex">
-                                {/* <div>100</div> */}
+                                <div>100</div>
                                 {/* // popcoins number */}
-                                {/* <Image
+                                <Image
                                     src="/popcoin.svg"
                                     width={25}
                                     height={25}
                                     alt="Popcoin"
                                     className="ml-3"
-                                /> */}
+                                />
                             </div>
                             <div className="btn-container-desktop-modal">
                                 <Dialog>
                                     <DialogTrigger>
-                                        {/* <Image
-                                            src="/user-avatar.svg"
-                                            width={25}
-                                            height={25}
-                                            alt="avatar"
-                                            className="ml-3"
-                                            onClick={() => handleLogin()}
-                                        /> */}
                                         <User2 className="mt-[4px]" onClick={() => handleLogin()} />
                                     </DialogTrigger>
                                     <DialogContent className="lg:w-[340px!important] lg:p-2 lg:rounded-3xl h-[90vh] z-[110]">
