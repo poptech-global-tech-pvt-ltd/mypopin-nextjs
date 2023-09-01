@@ -109,6 +109,30 @@ function HeroBannerMobile() {
                                     </div>
                                 </a>
                             </div>
+                            <div>
+                                <a href="https://perforacare.com/">
+                                    <div className="h-[90vh] w-[100vw]">
+                                        <Image
+                                            src="/herobanner/banner-perfora-mobile.svg"
+                                            fill
+                                            className="w-full h-full object-cover"
+                                            alt=""
+                                        />
+                                    </div>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="https://www.bartisans.in/">
+                                    <div className="h-[90vh] w-[100vw]">
+                                        <Image
+                                            src="/herobanner/banner-bartisans-mobile.svg"
+                                            fill
+                                            className="w-full h-full object-cover"
+                                            alt=""
+                                        />
+                                    </div>
+                                </a>
+                            </div>
                         </Carousel>
                     </div>
                 </div>

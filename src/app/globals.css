@@ -941,3 +941,18 @@ h6 {
   all: revert;
 }
 
+
+.case-studies-container .react-multi-carousel-dot-list {
+  bottom: 20px;
+}
+
+.case-studies-container .react-multi-carousel-dot-list .react-multi-carousel-dot--active button {
+  background-color: white;
+  color: green;
+}
+
+.case-studies-container .react-multi-carousel-dot button {
+  border-width: 1px;
+  border-color: white;
+}
+

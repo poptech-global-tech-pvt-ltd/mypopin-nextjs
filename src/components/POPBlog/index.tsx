@@ -29,14 +29,17 @@ function POPBlog() {
         <>
             <br />
             <br />
-            <section className="bg-[#F7F7F9] max-w-5xl mx-auto rounded-3xl p-8">
+            <br />
+            <br />
+            <section className="bg-[#F7F7F9] max-w-[70rem] mx-auto rounded-3xl p-8">
                 <br />
                 <div className={`${khand.className} flex flex-col lg:flex-row leading-6 lg:leading-0`}>
                     <div className={`${khand.className} text-black text-[45px] lg:text-[40px] font-[800]`}>POP Circle. </div>
-                    <div className={`${khand.className} text-[#6B7280] text-[14px] lg:text-[40px] font-[500] lg:font-[800]`}>Curated Reads For You</div>
+                    <div className={`${khand.className} text-[#6B7280] text-[14px] lg:text-[40px] font-[500] lg:font-[800]`}>&nbsp;Curated Reads For You</div>
                 </div>
                 <br />
-                <section className='blog-grid-container'>
+                <br />
+                <section className='blog-grid-container max-w-[58rem] mx-auto'>
                     {blogData && blogData?.length > 0 && (
 
                         <>
@@ -60,7 +63,7 @@ function POPBlog() {
                             <div className='blog-grid-itm-2 px-2'>
                                 <div className='grid grid-cols-[2fr_1fr] items-center lg:items-start'>
                                     <div>
-                                        <div className='py-4'><Badge className='bg-[#DFE7FF] text-[#3730A3]'>{blogData[1]?.attributes.category}</Badge></div>
+                                        <div className='pb-4'><Badge className='bg-[#DFE7FF] text-[#3730A3]'>{blogData[1]?.attributes.category}</Badge></div>
                                         <div className={`${manrope.className} text-[14px] font-bold`}>
                                             <a target="_blank" href={blogData[1]?.attributes?.external_link}>
                                                 {blogData[1]?.attributes.title}
@@ -73,15 +76,15 @@ function POPBlog() {
                                             <div className={`text-[#6B7280] text-[12px] font-[500] ${manrope.className}`}>{blogData[1]?.attributes.date}</div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <div className=''><img className='rounded-2xl object-cover max-h-[200px]' src={blogData[1]?.attributes?.post_image?.data?.attributes?.url} /></div>
+                                    <div className='h-full'>
+                                        <div className='h-full'><img className='rounded-2xl object-cover h-full max-h-[200px]' src={blogData[1]?.attributes?.post_image?.data?.attributes?.url} /></div>
                                     </div>
                                 </div>
                             </div>
                             <div className='blog-grid-itm-3 px-2'>
                                 <div className='grid grid-cols-[2fr_1fr] items-center lg:items-start'>
                                     <div>
-                                        <div className='py-4'><Badge className='bg-[#FEF9C3] text-[#844D0F]'>{blogData[2]?.attributes.category}</Badge></div>
+                                        <div className='pb-4'><Badge className='bg-[#FEF9C3] text-[#844D0F]'>{blogData[2]?.attributes.category}</Badge></div>
                                         <div className={`${manrope.className} text-[14px] font-bold`}>
                                             <a target="_blank" href={blogData[2]?.attributes?.external_link}>
                                                 {blogData[2]?.attributes.title}
@@ -94,15 +97,15 @@ function POPBlog() {
                                             <div className={`text-[#6B7280] text-[12px] font-[500] ${manrope.className}`}>{blogData[2]?.attributes.date}</div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <div className=''><img className='rounded-2xl object-cover max-h-[200px]' src={blogData[2]?.attributes?.post_image?.data?.attributes?.url} /></div>
+                                    <div className='h-full'>
+                                        <div className='h-full'><img className='rounded-2xl h-full object-cover max-h-[200px]' src={blogData[2]?.attributes?.post_image?.data?.attributes?.url} /></div>
                                     </div>
                                 </div>
                             </div>
                             <div className='blog-grid-itm-4 px-2'>
                                 <div className='grid grid-cols-[2fr_1fr] items-center lg:items-start'>
                                     <div>
-                                        <div className='py-4'><Badge className='text-[#6B21A8] bg-[#F3E7FF]'>{blogData[3]?.attributes.category}</Badge></div>
+                                        <div className='pb-4'><Badge className='text-[#6B21A8] bg-[#F3E7FF]'>{blogData[3]?.attributes.category}</Badge></div>
                                         <div className={`${manrope.className} text-[14px] font-bold`}>
                                             <a target="_blank" href={blogData[2]?.attributes?.external_link}>
                                                 {blogData[3]?.attributes.title}
@@ -115,8 +118,8 @@ function POPBlog() {
                                             <div className={`text-[#6B7280] text-[12px] font-[500] ${manrope.className}`}>{blogData[3]?.attributes.date}</div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <div className=''><img className='rounded-2xl object-cover max-h-[200px]' src={blogData[3]?.attributes?.post_image?.data?.attributes?.url} /></div>
+                                    <div className='h-full'>
+                                        <div className='h-full'><img className='rounded-2xl object-cover h-full max-h-[200px]' src={blogData[3]?.attributes?.post_image?.data?.attributes?.url} /></div>
                                     </div>
                                 </div>
                             </div>

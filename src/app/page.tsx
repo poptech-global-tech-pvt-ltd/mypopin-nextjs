@@ -17,6 +17,7 @@ import { POPBlog } from "@/components/POPBlog"
 import { HeroBanner } from "@/components/HeroBanner"
 import { HeroBannerMobile } from "@/components/HeroBannerMobile"
 import Head from 'next/head'
+import { SignupStrip } from "@/components/SignupStrip"
 
 
 
@@ -35,6 +36,7 @@ export default function Home() {
           <ShoppingDeals />
           {/* <HowItWorks /> */}
         </Layout>
+        <SignupStrip />
         <TopPOPcoinPartnerBrands />
         <Layout>
           <POPInNumbers />

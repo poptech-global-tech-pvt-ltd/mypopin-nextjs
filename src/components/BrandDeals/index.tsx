@@ -13,12 +13,13 @@ const manrope = Manrope({
 })
 
 interface IBrandDeals {
+    primaryColor: string
     secondaryColor: string
     textColor: string
     discountPercentage: any
 }
 
-function BrandDeals({ secondaryColor, textColor, discountPercentage }: IBrandDeals) {
+function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentage }: IBrandDeals) {
     const [productImagesData, setProductImagesData] = useState<any>();
     const router = useRouter()
     const pathname = usePathname()
@@ -95,11 +96,11 @@ function BrandDeals({ secondaryColor, textColor, discountPercentage }: IBrandDea
                                         <img
                                             src={itm?.attributes?.product_image}
                                             alt="hgfd"
-                                            className="h-[276px] w-[266px] object-cover rounded-3xl shadow-sm"
+                                            className="h-[276px] w-[266px] object-cover rounded-3xl shadow-lg border-[0.3px]"
                                         />
                                         {discountPercentage === "-Infinity" ?
                                             <div>{null}</div> :
-                                            <div style={{ backgroundColor: "black" }} className={`absolute top-8 right-0 p-2 pl-4 bg-red-500 text-white text-2xl ${manrope.className} font-bold rounded-l-full`}>
+                                            <div style={{ backgroundColor: primaryColor }} className={`absolute top-8 right-0 p-2 pl-4 bg-red-500 text-white text-2xl ${manrope.className} font-bold rounded-l-full`}>
                                                 {itm?.attributes?.product_mrp === null ?
                                                     (<div>
                                                         {(Math.trunc((((itm?.attributes?.product_price * discountPercentage) / itm?.attributes?.product_price)))).toString()}%
@@ -110,7 +111,7 @@ function BrandDeals({ secondaryColor, textColor, discountPercentage }: IBrandDea
                                             </div>}
                                     </div>
                                     <div style={{ backgroundColor: secondaryColor, transform: "translateY(-8%)" }} className={`w-11/12 rounded-bl-3xl rounded-br-3xl font-bold ${manrope.className} z-5`}>
-                                        <div className="text-center pt-3">{itm?.attributes?.product_name.slice(0, 20) + ".."}</div>
+                                        <div className="text-center pt-6 px-2">{ itm?.attributes?.product_name.length > 50 ? itm?.attributes?.product_name.slice(0, 50) + ".." : itm?.attributes?.product_name}</div>
                                         <div className="text-center py-1">₹{itm?.attributes?.product_price}&nbsp;<span style={{ textDecoration: "line-through", color: "gray" }}>{itm?.attributes?.product_mrp ? <span> ₹{itm?.attributes?.product_mrp}</span> : null}  </span></div>
                                         <div className="flex items-center justify-center py-3">
                                             <div>or &nbsp;</div>

@@ -65,34 +65,34 @@ function Header() {
 
     const pathName = usePathname()
     console.log({ pathName })
-
+    console.log({ cookieKey })
     useEffect(() => {
+        console.log("here 1")
         if (cookieKey) {
-            if (cookieKey) {
-                try {
-                    fetch(`https://coins.mypopcoins.com/user-coins?brand=mypopin&key=${cookieKey}`, {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Basic cGwtcHJvZDpwbEAyMHR3ZW50eXR3bw==',
-                            'Access-Control-Allow-Origin': 'no-cors'
-                        }
-                    })
-                        .then((res) => console.log({ res }))  // Use res.text() to get the HTML content as text
-                    // .then((html) => {
-                    // const parser = new DOMParser();
-                    // const doc = parser.parseFromString(html, 'text/html');
+            try {
+                console.log("here 2")
+                fetch(`https://presentation.popclub.co.in/api/get-available-coins?key=${cookieKey}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Basic cGwtcHJvZDpwbEAyMHR3ZW50eXR3bw==',
+                    }
+                })
+                    .then((res) => console.log(res.json()))  // Use res.text() to get the HTML content as text
+                // .then((html) => {
+                // const parser = new DOMParser();
+                // const doc = parser.parseFromString(html, 'text/html');
 
-                    // // Now you can use DOM manipulation methods to extract the specific data you need
-                    //     // @ts-ignore
-                    //     const certainData = doc.getElementsByClassName('coin-icon').textContent;
-                    //     console.log("certainData---->", certainData);
-                    // console.log({html})
-                    // });
-                } catch (err) {
-                    console.log("Oops! An error has occurred");
-                }
+                // // Now you can use DOM manipulation methods to extract the specific data you need
+                //     // @ts-ignore
+                //     const certainData = doc.getElementsByClassName('coin-icon').textContent;
+                //     console.log("certainData---->", certainData);
+                // console.log({html})
+                // });
+            } catch (err) {
+                console.log("Oops! An error has occurred");
             }
         }
+
     }, [cookieKey])
 
     return (
@@ -121,38 +121,44 @@ function Header() {
                             )}
 
                         </div>
-                        <div className="flex items-center">
-                            <div className="flex">
+                        <div className="flex items-center space-x-3">
+                            {pathName !== "/partner-with-pop" && (
                                 <div>100</div>
-                                {/* // popcoins number */}
-                                <Image
-                                    src="/popcoin.svg"
-                                    width={25}
-                                    height={25}
-                                    alt="Popcoin"
-                                    className="ml-3"
-                                />
+                            )}
+                            <div>
+                                {pathName !== "/partner-with-pop" && (
+                                    <Image
+                                        src="/popcoin.svg"
+                                        width={25}
+                                        height={25}
+                                        alt="Popcoin"
+                                    />
+                                )}
+
                             </div>
-                            <div className="btn-container-desktop-modal">
-                                <Dialog>
-                                    <DialogTrigger>
-                                        <User2 className="mt-[4px]" onClick={() => handleLogin()} />
-                                    </DialogTrigger>
-                                    <DialogContent className="lg:w-[340px!important] lg:p-2 lg:rounded-3xl h-[90vh] z-[110]">
-                                        <DialogDescription>
-                                            <div className="">
-                                                {/* // disable z-index from header and it works */}
-                                                <iframe className="mx-auto h-[80vh] lg:rounded-xl" width="100%" height="600px" src={`https://coins.mypopcoins.com/?key=${cookieKey}`}></iframe>
-                                            </div>
-                                        </DialogDescription>
-                                    </DialogContent>
-                                </Dialog>
-                            </div>
+                            {pathName !== "/partner-with-pop" && (
+                                <div className="btn-container-desktop-modal">
+                                    <Dialog>
+                                        <DialogTrigger>
+                                            <User2 className="mt-[4px]" onClick={() => handleLogin()} />
+                                        </DialogTrigger>
+                                        <DialogContent className="lg:w-[340px!important] lg:p-2 lg:rounded-3xl h-[90vh] z-[110]">
+                                            <DialogDescription>
+                                                <div className="">
+                                                    {/* // disable z-index from header and it works */}
+                                                    <iframe className="mx-auto h-[80vh] lg:rounded-xl" width="100%" height="600px" src={`https://coins.mypopcoins.com/?key=${cookieKey}`}></iframe>
+                                                </div>
+                                            </DialogDescription>
+                                        </DialogContent>
+                                    </Dialog>
+                                </div>
+                            )}
+
                             <Link href="/">
-                                <Button className={`ml-3 ${pathName === "/" ? `bg-[#F56651] text-white hover:bg-[#F56651] hover:text-white border-0` : `bg-white text-black`}`} variant="outline">I am a Customer</Button>
+                                <Button className={`${pathName === "/" ? `bg-[#F56651] text-white hover:bg-[#F56651] hover:text-white border-0` : `bg-white text-black`}`} variant="outline">I am a Customer</Button>
                             </Link>
                             <Link href="/partner-with-pop">
-                                <Button className={`ml-3 ${pathName === "/partner-with-pop" ? `bg-[#F56651] text-white  hover:bg-[#F56651] hover:text-white border-0` : `bg-[white] text-black`}`} variant="outline">I am a Brand</Button>
+                                <Button className={`${pathName === "/partner-with-pop" ? `bg-[#F56651] text-white  hover:bg-[#F56651] hover:text-white border-0` : `bg-[white] text-black`}`} variant="outline">I am a Brand</Button>
                             </Link>
                         </div>
                     </div>

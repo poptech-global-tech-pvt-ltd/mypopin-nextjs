@@ -45,6 +45,7 @@ function B2BCaseStudies() {
         <div className="case-studies-container">
             <div style={{ width: "100%" }}>
                 <Carousel
+                    showDots={true}
                     arrows={true}
                     autoPlay={false}
                     autoPlaySpeed={1800}
@@ -61,7 +62,7 @@ function B2BCaseStudies() {
                     pauseOnHover
                     renderArrowsWhenDisabled={false}
                     renderButtonGroupOutside={false}
-                    renderDotsOutside={true}
+                    renderDotsOutside={false}
                     responsive={responsive}
                     swipeable={true}
                 >
@@ -115,7 +116,7 @@ function B2BCaseStudies() {
                                 <img className="lg:w-[371px] lg:h-[336px] w-[301px] h-[256px]" width="371" height="336" src={caseStudiesData[1].attributes?.image?.data?.attributes?.url} alt="anveshan logo" />
                             </div>
                             <div className="py-2 lg:py-0" />
-                            <div className="px-4 lg:px-16 text-[#621E45]">
+                            <div style={{ color: caseStudiesData ? caseStudiesData[1].attributes?.text_color : "black" }} className="px-4 lg:px-16">
                                 <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex items-end lg:items-start`}>
                                     <div><img className="w-[60px] h-[60px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
                                     <div><span className="font-bold">{caseStudiesData[1].attributes?.desc_1.split(',')[0]}</span>{caseStudiesData[1].attributes?.desc_1.split(',')[1]}</div>
@@ -150,7 +151,7 @@ function B2BCaseStudies() {
                                 <img className="lg:w-[371px] lg:h-[336px] w-[301px] h-[256px]" width="371" height="336" src={caseStudiesData[2].attributes?.image?.data?.attributes?.url} alt="anveshan logo" />
                             </div>
                             <div className="py-2 lg:py-0" />
-                            <div className="px-4 lg:px-16 text-[#621E45]">
+                            <div style={{ color: caseStudiesData ? caseStudiesData[2].attributes?.text_color : "black" }} className="px-4 lg:px-16">
                                 <div className={`text-[16px] lg:text-[22px] ${manrope.className} flex items-end lg:items-start`}>
                                     <div><img className="w-[60px] h-[60px] lg:w-[30px] lg:h-[30px]" src="/check.svg" /></div>
                                     <div><span className="font-bold">{caseStudiesData[2].attributes?.desc_1.split(',')[0]}</span>{caseStudiesData[2].attributes?.desc_1.split(',')[1]}</div>

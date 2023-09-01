@@ -24,8 +24,8 @@ const popInNumbers = [
 
 function POPInNumbers() {
     const [count, setCount] = useState(1);
-    const [custCount, setCustCount] = useState(514915)
-    const [savingsCount, setSavingCount] = useState(1131511);
+    const [custCount, setCustCount] = useState(730000)
+    const [savingsCount, setSavingCount] = useState(1703000);
     const noOfBrandRef = useRef(null);
     const noOfCustomers = useRef(null);
     const noOfSaving = useRef(null)
@@ -41,9 +41,9 @@ function POPInNumbers() {
                 if (entry.isIntersecting) {
                     // Start the interval when the component is in the viewport
                     const intervalId = setInterval(() => {
-                        setCount((prev) => (prev < 48 ? prev + 1 : prev));
-                        setCustCount((prev) => (prev < 514995 ? prev + 1 : prev));
-                        setSavingCount((prev) => (prev < 1131561 ? prev + 1 : prev));
+                        setCount((prev) => (prev < 49 ? prev + 1 : prev));
+                        setCustCount((prev) => (prev < 731066 ? prev + 1 : prev));
+                        setSavingCount((prev) => (prev < 1703363 ? prev + 1 : prev));
                     }, 1);
                     return () => {
                         clearInterval(intervalId); // Stop the interval when the component is out of the viewport

@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
+
+// static data has been deprecated- this is now coming from strapi
 const partnerImages = [
     { imgRelativeUrl: "/partner/partner-saaki-logo.png", alt: "saaki" },
     { imgRelativeUrl: "/partner/partner-rubans-logo.png", alt: "rubans" },
@@ -73,18 +75,17 @@ function LeadingBrandsCarousel() {
             additionalTransfrom={0}
             arrows={false}
             autoPlay
-            autoPlaySpeed={3}
+            // autoPlaySpeed={7}
             centerMode={false}
             className=""
             containerClass=""
-            customTransition="all 3s linear"
+            customTransition="all 2s linear"
             dotListClass=""
-            draggable
+            draggable={false}
             focusOnSelect={false}
-            infinite
+            infinite={true}
             itemClass=""
             keyBoardControl={false}
-            minimumTouchDrag={80}
             pauseOnHover={false}
             renderArrowsWhenDisabled={false}
             renderButtonGroupOutside={false}
@@ -102,16 +103,6 @@ function LeadingBrandsCarousel() {
                 </div>
             ))}
             {/* // TODO remove this repeative loop when more data is in strapi */}
-            {brandLogos && brandLogos?.length && brandLogos?.map((i: any, index: number) => (
-                <div key={index}>
-                    <img
-                        src={i?.attributes.image.data.attributes.url}
-                        width="auto"
-                        height="20"
-                        alt={i.alt}
-                    />
-                </div>
-            ))}
             {brandLogos && brandLogos?.length && brandLogos?.map((i: any, index: number) => (
                 <div key={index}>
                     <img

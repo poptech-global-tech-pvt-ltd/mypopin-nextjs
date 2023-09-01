@@ -106,7 +106,7 @@ export function NavigationMenuDemo() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <div className="px-1" />
-        <NavigationMenuItem className={`${manrope.className} font-bold text-[16px]`}>
+        {/* <NavigationMenuItem className={`${manrope.className} font-bold text-[16px]`}>
           <NavigationMenuTrigger style={{ all: "unset", display: "flex", cursor: "pointer", alignItems: "center" }}
           >Our POP World</NavigationMenuTrigger>
           <NavigationMenuContent>
@@ -119,15 +119,22 @@ export function NavigationMenuDemo() {
                       title={component.title}
                       href={component.href}
                     >
-                      {/* {component.description} */}
                     </ListItem>
                   </ScrollLink>
                 </Fragment>
               ))}
             </ul>
           </NavigationMenuContent>
+        </NavigationMenuItem> */}
+        <NavigationMenuItem className={`${manrope.className} font-bold`}>
+          <Link href="/coupons" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <ScrollLink href="#popshop">
+                <div className={`${manrope.className} font-bold text-[16px]`}>POPshop</div>
+              </ScrollLink>
+            </NavigationMenuLink>
+          </Link>
         </NavigationMenuItem>
-
         <NavigationMenuItem className={`${manrope.className} font-bold`}
         >
           <Link href="/coupons" legacyBehavior passHref>
@@ -140,7 +147,7 @@ export function NavigationMenuDemo() {
         >
           <Link href="/blogs" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <div className={`${manrope.className} font-bold text-[16px]`}>Blog</div>
+              <div className={`${manrope.className} font-bold text-[16px]`}>Blogs</div>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

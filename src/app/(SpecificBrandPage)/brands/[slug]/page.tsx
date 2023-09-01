@@ -50,7 +50,7 @@ function BrandPage() {
 
     return (
         <>
-            <div className="pt-[3rem] lg:pt-[11rem] px-2">
+            <div className="pt-[3rem] lg:pt-[7.5rem] px-2">
                 {/* // grid container */}
                 {isLoading ? (
                     <>
@@ -148,14 +148,14 @@ function BrandPage() {
                 <br />
                 <hr className='max-w-7xl mx-auto' />
                 <BrandRewardsCarousel />
-                <BrandDeals discountPercentage={brandData?.discount_percentage} secondaryColor={brandData?.secondary_color} textColor={brandData?.text_color} />
+                <BrandDeals discountPercentage={brandData?.discount_percentage} primaryColor={brandData?.primary_color} secondaryColor={brandData?.secondary_color} textColor={brandData?.text_color} />
                 <hr className='max-w-7xl mx-auto' />
                 <section className='max-w-7xl mx-auto'>
-                    <div className={`${manrope.className} text-center text-3xl font-bold py-8`}>Earn  5 For Every ₹100</div>
-                    <div className={`${manrope.className} text-center text-2xl font-normal pb-8`}>Keep earning POPcoins with every purchase from Body Tales and other brands on POPcoins</div>
+                    <div className={`${manrope.className} text-center text-3xl font-bold py-8`}>Earn 5 For Every ₹100</div>
+                    <div className={`${manrope.className} text-center text-2xl font-normal pb-8`}>Keep earning POPcoins with every purchase from  {brandData?.brand_name} and other brands on POPcoins</div>
                     <div className='text-center'>
                         <a href={brandData?.redirection_url}>
-                            <Button onClick={() => handleBrandBtnClick(brandData)} className={`rounded-full ${manrope.className} text-xl p-6 drop-shadow-md`}>Shop {brandData?.brand_name} Now</Button>
+                            <Button style={{ backgroundColor: brandData?.text_color }} onClick={() => handleBrandBtnClick(brandData)} className={`rounded-full ${manrope.className} text-xl p-6 drop-shadow-md`}>Shop {brandData?.brand_name} Now</Button>
                         </a>
                     </div>
                 </section>

@@ -1,4 +1,5 @@
 'use client'
+// @ts-nocheck
 import './globals.css'
 import { Header } from '@/components/Header'
 import { MobileHeader } from '@/components/MobileHeader'
@@ -22,20 +23,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta property="og:image:alt" content="India's New Currency POPcoins" />
         <meta property="og:url" content="https://mypop.in" />
         <link rel="canonical" href="https://mypop.in" />
-        <Script id="schemaorg" type="application/ld+json">
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "My POP",
-          "url": "https://mypop.in/",
-          "logo": "https://mypop.in/images/pc-logo.png",
-          "sameAs": [
-          "https://www.facebook.com/getpopclub",
-          "https://www.instagram.com/shoponpop/",
-          "https://twitter.com/getpopclub",
-          "https://www.linkedin.com/company/getpopcoins/"
-          ]
-        </Script>
+        {/* // TODO add schema.org script tag */}
         {/* <!-- Facebook Pixel Code --> */}
+        
+
       </head>
 
       <body>

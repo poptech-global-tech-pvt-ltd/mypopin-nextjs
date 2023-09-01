@@ -108,6 +108,30 @@ function HeroBanner() {
                                     </div>
                                 </a>
                             </div>
+                            <div>
+                                <a href="https://perforacare.com/">
+                                    <div className="h-[90vh] w-[100vw]">
+                                        <Image
+                                            src="/herobanner/banner-perfora.svg"
+                                            fill
+                                            className="w-full h-full object-cover"
+                                            alt=""
+                                        />
+                                    </div>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="https://www.bartisans.in/">
+                                    <div className="h-[90vh] w-[100vw]">
+                                        <Image
+                                            src="/herobanner/banner-bartisans.svg"
+                                            fill
+                                            className="w-full h-full object-cover"
+                                            alt=""
+                                        />
+                                    </div>
+                                </a>
+                            </div>
                         </Carousel>
                     </div>
                 </div>

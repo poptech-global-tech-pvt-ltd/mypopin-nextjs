@@ -15,6 +15,7 @@ const manrope = Manrope({
 })
 
 const integrationLogos = [
+    { url: "/integration-shopify.svg" },
     { url: "/integration-appbrew.svg" },
     { url: "/integration-gokwik.svg" },
     { url: "/integration-klaviyo.svg" },
@@ -22,7 +23,6 @@ const integrationLogos = [
     { url: "/integration-razorpay.svg" },
     { url: "/integration-shiprocket.svg" },
     { url: "/integration-shopflo.svg" },
-    { url: "/integration-shopify.svg" },
     { url: "/integration-simpl.svg" },
     { url: "/integration-wigzo.svg" },
     // { url: "/integration-zecpe.svg" },
@@ -30,7 +30,7 @@ const integrationLogos = [
 
 function B2BIntegrations() {
     return (
-        <div className="p-12 lg:p-24 integrations-section">
+        <div className="p-12 lg:p-16 integrations-section">
             <div className="max-w-6xl mx-auto">
                 <div className={`${khand.className}  text-5xl lg:text-[70px] text-center py-8 text-white`}>Integrations</div>
                 <div className="container mx-auto p-4">

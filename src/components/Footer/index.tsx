@@ -187,7 +187,7 @@ function Footer() {
                                         </div>
 
                                     </Link>
-                                    <Link href={`https://www.instagram.com/getpopclub/`}>
+                                    <Link href={`https://www.instagram.com/shoponpop/`}>
                                         <div>
                                             <div style={pathname.split("/")[1] === "brands" ? { color: "white", border: "1.5px solid white" } : { color: "black", border: "1.5px solid black" }} className="rounded-full p-2">
                                                 <Instagram style={pathname.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[20px] h-[20px]" />
