@@ -23,73 +23,92 @@ function Header() {
 
 
     const handleLogin = () => {
-        //get cookie name
-        function getCookie(name: string) {
-            const cookieValue: any = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-            return cookieValue ? decodeURIComponent(cookieValue.pop()) : null;
+        const hasCookieAlready = setSessionCookieOnce('sessionID')
+        console.log({hasCookieAlready})
+        setCookieKey(hasCookieAlready)
+    }
+
+   function fetchUserCoins() {
+        try {
+            var sessionCookie =  getSessionCookie('sessionID');
+            console.log(sessionCookie)
+            fetch(`https://presentation.popclub.co.in/api/get-available-coins?key=${sessionCookie}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Basic cGwtcHJvZDpwbEAyMHR3ZW50eXR3bw==',
+                }
+            }).then((res) => res.json()).then(data => console.log(data))
+        } catch (err) {
+            console.log("Oops! An error has occurred");
         }
-        //set cookie name
-        function setCookie(name: any, value: any, daysToExpire: any) {
-            const expires = new Date();
-            expires.setDate(expires.getDate() + daysToExpire);
-            const cookieValue = encodeURIComponent(value) + (daysToExpire ? `; expires=${expires.toUTCString()}` : '');
-            document.cookie = `${name}=${cookieValue}; path=/`;
+   }
+
+   function setSessionCookieOnce(cookieName: any) {
+        var sessionCookie = getSessionCookie(cookieName);
+        console.log('getSessionCookie')
+        console.log(sessionCookie)
+
+        if (sessionCookie.length == 0) {
+            console.log('setSessionCookie')
+            setSessionCookie(cookieName)
         }
-
-        // generate a 32 digit random number
-        function generateRandomNumberString(length: any) {
-            const characters = '0123456789';
-            let randomString = '';
-
-            for (let i = 0; i < length; i++) {
-                const randomIndex = Math.floor(Math.random() * characters.length);
-                randomString += characters[randomIndex];
-            }
-            return randomString;
-        }
-        const hasCookieAlready = getCookie('cookieKey')
-
-        if (hasCookieAlready) {
-            //from useState
-            setCookieKey(hasCookieAlready)
-        }
-
-        else {
-            let randomNo = generateRandomNumberString(32)
-            //from useState
-            setCookieKey(randomNo)
-
-            // adding cookie to the browser
-            setCookie('cookieKey', randomNo, 7);
+        else{
+            console.log('fetchUserCoins')
+            setCookieKey(sessionCookie)
+            fetchUserCoins();
         }
     }
 
-   
-    // if a cookie already exists
-    useEffect(() => {
-        function getCookie(name: string) {
-            const cookieValue: any = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-            return cookieValue ? decodeURIComponent(cookieValue.pop()) : null;
+   function setSessionCookie(cookieName: any) {
+        var characters = 'abcdefghijklmnopqrstuvwxyz0123456789'
+        var length = 32;
+        var randomString = ''
+        
+        for (var i = 0; i < length; i++) {
+            var randomIndex = Math.floor(Math.random() * characters.length)
+            randomString += characters.charAt(randomIndex)
         }
-        const hasCookieAlready = getCookie('cookieKey')
-        console.log({hasCookieAlready})
-        setCookieKey(hasCookieAlready)
-    }, [])
+        var cookieString = cookieName + '=' + randomString + ';'
+        document.cookie = cookieString
+        setCookieKey(randomString)
+    }
 
-    useEffect(() => {
-        if (cookieKey) {
-            try {
-                fetch(`https://presentation.popclub.co.in/api/get-available-coins?key=${cookieKey}`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Basic cGwtcHJvZDpwbEAyMHR3ZW50eXR3bw==',
-                    }
-                }).then((res) => res.json()).then(data => console.log(data))
-            } catch (err) {
-                console.log("Oops! An error has occurred");
+   function getSessionCookie(name: string) {
+
+        var cookies = document.cookie.split(';');
+
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+    
+            if (cookie.indexOf(name + '=') === 0) {
+                return cookie.substring(name.length + 1, cookie.length);
             }
         }
-    }, [cookieKey])
+        return '';
+    }
+
+    // if a cookie already exists
+    useEffect(() => {
+        console.log('load')
+        setSessionCookieOnce('sessionID')
+    }, [])
+
+    // useEffect(() => {
+    //     if (cookieKey) {
+    //         try {
+    //             console.log('cookieKey')
+    //             console.log(cookieKey)
+    //             fetch(`https://presentation.popclub.co.in/api/get-available-coins?key=${cookieKey}`, {
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                     'Authorization': 'Basic cGwtcHJvZDpwbEAyMHR3ZW50eXR3bw==',
+    //                 }
+    //             }).then((res) => res.json()).then(data => console.log(data))
+    //         } catch (err) {
+    //             console.log("Oops! An error has occurred");
+    //         }
+    //     }
+    // }, [cookieKey])
 
     return (
         // if header animation has been removed, add "fixed" class to fix it
@@ -142,7 +161,7 @@ function Header() {
                                             <DialogDescription>
                                                 <div className="">
                                                     {/* // disable z-index from header and it works */}
-                                                    <iframe className="mx-auto h-[80vh] lg:rounded-xl" width="100%" height="600px" src={`https://coins.mypopcoins.com/?key=${cookieKey}`}></iframe>
+                                                    <iframe className="mx-auto h-[80vh] lg:rounded-xl" width="100%" height="600px" src={`https://coins.mypopcoins.com/?brand=mypopin&key=${cookieKey}`}></iframe>
                                                 </div>
                                             </DialogDescription>
                                         </DialogContent>
