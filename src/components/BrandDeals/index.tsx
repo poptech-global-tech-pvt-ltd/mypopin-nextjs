@@ -27,15 +27,15 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
         superLargeDesktop: {
             // the naming can be any, depends on you.
             breakpoint: { max: 4000, min: 3000 },
-            items: 6,
+            items: 4,
         },
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
-            items: 5
+            items: 4
         },
         tablet: {
             breakpoint: { max: 1024, min: 464 },
-            items: 3
+            items: 2
         },
         mobile: {
             breakpoint: { max: 464, min: 0 },
@@ -66,22 +66,22 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
         <>
             <div>
                 <div className={`uppercase text-3xl text-center font-bold py-16`}>EXPLORE UNLIMITED DEALS</div>
-                <div style={{ width: "100%" }}>
+                <div className="mx-auto">
                     <Carousel
                         arrows={false}
-                        autoPlay={true}
+                        autoPlay={false}
                         autoPlaySpeed={1800}
                         centerMode={false}
                         //   className=""
                         //   containerClass="container-with-dots"
                         dotListClass=""
-                        draggable
+                        draggable={false}
                         focusOnSelect={false}
                         infinite={true}
                         itemClass="unlimiteddeals-item-class"
                         //   keyBoardControl
                         minimumTouchDrag={80}
-                        pauseOnHover
+                        pauseOnHover={false}
                         renderArrowsWhenDisabled={false}
                         renderButtonGroupOutside={false}
                         renderDotsOutside={false}
@@ -90,8 +90,8 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                     >
                         {/* //mapping */}
                         {productImagesData?.length > 0 && productImagesData?.map((itm: any, index: number) => (
-                            <div key={index}>
-                                <div onClick={() => handleProductLink(itm)} className="grid w-full justify-center justify-items-center">
+                            <div key={index} className="mx-auto">
+                                <div onClick={() => handleProductLink(itm)} className="grid w-full justify-center justify-items-center max-w-[285px] mx-auto">
                                     <div className="relative w-[266px] h-[276px] z-10 flex items-center justify-center">
                                         <img
                                             src={itm?.attributes?.product_image}
@@ -110,7 +110,7 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                                                     </div>}
                                             </div>}
                                     </div>
-                                    <div style={{ backgroundColor: secondaryColor, transform: "translateY(-8%)" }} className={`w-11/12 rounded-bl-3xl rounded-br-3xl font-bold ${manrope.className} z-5`}>
+                                    <div style={{ backgroundColor: secondaryColor, transform: "translateY(-8%)" }} className={`w-11/12 rounded-bl-3xl rounded-br-3xl font-bold ${manrope.className} z-5 max-w-[243px]`}>
                                         <div className="text-center pt-6 px-2">{ itm?.attributes?.product_name.length > 50 ? itm?.attributes?.product_name.slice(0, 50) + ".." : itm?.attributes?.product_name}</div>
                                         <div className="text-center py-1">₹{itm?.attributes?.product_price}&nbsp;<span style={{ textDecoration: "line-through", color: "gray" }}>{itm?.attributes?.product_mrp ? <span> ₹{itm?.attributes?.product_mrp}</span> : null}  </span></div>
                                         <div className="flex items-center justify-center py-3">

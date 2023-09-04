@@ -103,7 +103,7 @@ function BrandPage() {
                                     width="0"
                                     height="0"
                                     sizes="100vw"
-                                    className="w-full h-full rounded-lg lg:rounded-3xl object-cover"
+                                    className="w-full h-full rounded-lg lg:rounded-3xl object-cover aspect-square  md:aspect-auto lg:aspect-auto"
                                     alt=""
                                     style={{ objectFit: "cover" }}
                                 />
@@ -114,7 +114,7 @@ function BrandPage() {
                                     width="0"
                                     height="0"
                                     sizes="100vw"
-                                    className="w-full h-full rounded-lg lg:rounded-3xl object-cover"
+                                    className="w-full h-full rounded-lg lg:rounded-3xl object-cover aspect-square md:aspect-auto lg:aspect-auto"
                                     alt=""
                                     style={{ objectFit: "cover" }}
                                 />
@@ -125,7 +125,7 @@ function BrandPage() {
                                     width="0"
                                     height="0"
                                     sizes="100vw"
-                                    className="w-full h-full rounded-lg lg:rounded-3xl object-cover"
+                                    className="w-full h-full rounded-lg lg:rounded-3xl object-cover aspect-square md:aspect-auto lg:aspect-auto"
                                     alt=""
                                 />
                             </div>
@@ -138,9 +138,9 @@ function BrandPage() {
                 <hr className='max-w-7xl mx-auto' />
                 <br />
                 <div className='max-w-7xl mx-auto'>
-                    <div className={`font-bold ${manrope.className} text-3xl `}>About {brandData?.brand_name}</div>
+                    <div className={`font-bold ${manrope.className} text-3xl text-center lg:text-left `}>About {brandData?.brand_name}</div>
                     <br />
-                    <div className={`text-left ${manrope.className} font-[500] text-[19px]`}>
+                    <div className={`text-center lg:text-left ${manrope.className} font-[500] text-[19px]`}>
                         {brandData?.about_brand}
                     </div>
                 </div>
@@ -151,7 +151,16 @@ function BrandPage() {
                 <BrandDeals discountPercentage={brandData?.discount_percentage} primaryColor={brandData?.primary_color} secondaryColor={brandData?.secondary_color} textColor={brandData?.text_color} />
                 <hr className='max-w-7xl mx-auto' />
                 <section className='max-w-7xl mx-auto'>
-                    <div className={`${manrope.className} text-center text-3xl font-bold py-8`}>Earn 5 For Every ₹100</div>
+                    <div className={`${manrope.className} text-center text-3xl font-bold py-8`}>
+                        <div className='flex items-center justify-center'>
+                            <div>Earn&nbsp;</div>
+                            <div><img src="/popcoin-icon.svg" /></div>
+                            <div>&nbsp;5&nbsp;</div>
+                            <div>For&nbsp;</div>
+                            <div>Every&nbsp;</div>
+                            <div>₹100&nbsp;</div>
+                        </div>
+                    </div>
                     <div className={`${manrope.className} text-center text-2xl font-normal pb-8`}>Keep earning POPcoins with every purchase from  {brandData?.brand_name} and other brands on POPcoins</div>
                     <div className='text-center'>
                         <a href={brandData?.redirection_url}>

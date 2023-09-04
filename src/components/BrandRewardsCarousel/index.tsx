@@ -36,7 +36,7 @@ function BrandRewardsCarousel() {
             <div className="py-8" />
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col lg:flex-row">
-                    <div className={`mr-12 flex flex-shrink-0 w-full max-w-[300px] p-9 ${manrope.className}`}>
+                    <div className={`lg:mr-12 mx-auto flex flex-shrink-0 w-full max-w-[300px] p-9 ${manrope.className}`}>
                         <div className="my-auto">
                             <div className={`text-3xl font-bold flex`}>
                                 <Image
@@ -48,7 +48,7 @@ function BrandRewardsCarousel() {
                                 />
                                 <div>1 EQUALS ₹ 1</div>
                             </div>
-                            <div className={`text-xl font-[500] text-[21px] ${manrope.className} font-normal text-[#353535]`}> Maximise Your Savings & Shop More With POPcoins</div>
+                            <div className={`text-xl font-[500] text-[21px] text-center lg:text-left ${manrope.className} font-normal text-[#353535]`}> Maximise Your Savings & Shop More With POPcoins</div>
                         </div>
                     </div>
                     <div style={{ width: "100%", overflow: "hidden" }}>
