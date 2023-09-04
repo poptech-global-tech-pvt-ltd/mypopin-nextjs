@@ -6,7 +6,7 @@ function B2BFooterSEO() {
             <section>
                 <Accordion type="single" collapsible>
                     <AccordionItem value="item-1">
-                        <AccordionTrigger className="max-w-5xl mx-auto">
+                        <AccordionTrigger className="max-w-5xl mx-auto px-2">
                             <div>POP: Shop, Earn Popcoins, Get Rewards & Become our Partner</div>
                         </AccordionTrigger>
                         <AccordionContent className="p-[0px] pb-0 px-2 lg:px-0 max-w-5xl mx-auto">

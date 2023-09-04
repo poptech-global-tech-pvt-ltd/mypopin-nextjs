@@ -908,11 +908,20 @@ h6 {
 /* MOBILE */
 @media only screen and (max-width: 600px) {
   .banner-carousel-container .react-multiple-carousel__arrow--left {
-    display: none;
+    display: block;
+    background-color: white;
+    opacity: 0.3;
   }
 
   .banner-carousel-container .react-multiple-carousel__arrow--right {
-    display: none;
+    display: block;
+    background-color: white;
+    opacity: 0.3;
+  }
+
+  .banner-carousel-container .react-multiple-carousel__arrow::before {
+    color: black;
+
   }
 }
 
@@ -927,9 +936,22 @@ h6 {
   }
 }
 
-.integrations-section {
-  background-image: url("/integrations-bg.png");
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .integrations-section {
+    background-image: url("/integrations-bg.png");
+    background-size: cover;
+  }
 }
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .integrations-section {
+    background-image: url("/integrations-bg.png");
+  }
+}
+
 
 .integrations-section:hover {
   background-image: none;
@@ -937,7 +959,7 @@ h6 {
 }
 
 /* THIS REVERTS STYLES FOR H1 to H6 and rest of the styles overriden by tailwindcss */
-.blog-post-container > * {
+.blog-post-container>* {
   all: revert;
 }
 
@@ -956,3 +978,18 @@ h6 {
   border-color: white;
 }
 
+
+
+.brand-testimonial-container .react-multi-carousel-dot-list {
+  bottom: 20px;
+}
+
+
+.brand-testimonial-container .react-multi-carousel-dot-list .react-multi-carousel-dot--active button {
+  background-color: black;
+}
+
+.brand-testimonial-container .react-multi-carousel-dot button {
+  border-width: 1px;
+  border-color: black;
+}

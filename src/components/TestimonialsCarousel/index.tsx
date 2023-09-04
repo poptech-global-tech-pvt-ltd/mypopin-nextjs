@@ -30,13 +30,6 @@ function TestimonialsCarousel() {
         }
     };
 
-
-    // const testimonials = [
-    //     { imageRelativePath: '/testimonials/testimonial-anveshan.svg', alt: "anveshan" },
-    //     { imageRelativePath: '/testimonials/testimonial-gramiyaa.svg', alt: "gramiyaa" },
-    //     { imageRelativePath: '/testimonials/testimonial-saaki.svg', alt: "saaki" }
-    // ]
-
     useEffect(() => {
         fetch(`https://mypop-dashboard.popclub.co.in/api/testimonials-widgets?populate=*`).then((res) => res.json()).then((data) => setTestimonialData(data?.data))
     }, [])
@@ -45,20 +38,21 @@ function TestimonialsCarousel() {
     return (
         <>
             <div style={{ width: "100%", overflow: "hidden" }}>
-                <div>
+                <div className="brand-testimonial-container">
                     <Carousel
+                        showDots={true}
                         arrows={false}
                         autoPlay={true}
                         autoPlaySpeed={1800}
                         centerMode={false}
-                        //   className=""
-                        //   containerClass="container-with-dots"
+                        //  className=""
+                        //  containerClass="container-with-dots"
                         dotListClass=""
                         draggable
                         focusOnSelect={false}
                         infinite
-                        //   itemClass=""
-                        //   keyBoardControl
+                        // itemClass=""
+                        //  keyBoardControl
                         minimumTouchDrag={80}
                         pauseOnHover
                         renderArrowsWhenDisabled={false}

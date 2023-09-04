@@ -48,7 +48,7 @@ function POPShop() {
             window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
         }
     }
-
+    
     const handleTwoClick = () => {
         setThree("-100px")
         //reset
@@ -56,19 +56,20 @@ function POPShop() {
         setFour("-1050px")
 
     }
+    
     const handleThreeClick = () => {
         setFour("-100px")
         //reset
         setThree("-1050px")
         settwo("-1050px")
     }
+
     const handleFourClick = (event: any) => {
         //resets everything
         const image = event.target;
         const rect = image.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
-        console.log({ x, y })
         if (x < 90) {
             setFour("-1050px")
             setThree("-1050px")
@@ -77,8 +78,6 @@ function POPShop() {
         else {
             window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
         }
-
-
     }
 
     // == handle mobile ==
@@ -87,7 +86,6 @@ function POPShop() {
         const rect = image.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
-        console.log({ x, y })
         if (y < 65) {
             setMobileFirstActive((prev) => !prev)
             if (isMobileFirstActive === true) {
@@ -103,7 +101,6 @@ function POPShop() {
         else {
             window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
         }
-
     }
 
     const handleTwoMobileClick = () => {
@@ -141,7 +138,6 @@ function POPShop() {
         const rect = image.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
-        console.log({ x, y })
         if (y < 65) {
             setMobileTwo("-750px")
             setMobileThree("-670px")

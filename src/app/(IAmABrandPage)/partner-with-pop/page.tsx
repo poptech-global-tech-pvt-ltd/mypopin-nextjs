@@ -49,7 +49,7 @@ function PartnerWithPOP() {
                     <B2BCaseStudies />
                 </div>
                 <div>
-                    <div className={`${khand.className} text-center font-bold py-10 text-3xl lg:text-6xl`}>Brand Testimonials</div>
+                    <div className={`${khand.className} text-center pt-12 font-bold text-3xl lg:text-6xl`}>Brand Testimonials</div>
                     <div className='max-w-6xl flex justify-center mx-auto'>
                         <TestimonialsCarousel />
                     </div>

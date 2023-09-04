@@ -35,6 +35,7 @@ function HeroBannerMobile() {
                             autoPlay={false}
                             autoPlaySpeed={1800}
                             centerMode={false}
+                            showDots
                             //   className=""
                             //   containerClass="container-with-dots"
                             dotListClass=""

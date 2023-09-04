@@ -1,4 +1,5 @@
 'use client'
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -94,23 +95,27 @@ function LeadingBrandsCarousel() {
         >
             {brandLogos && brandLogos?.length && brandLogos?.map((i: any, index: number) => (
                 <div key={index}>
-                    <img
-                        src={i?.attributes.image.data.attributes.url}
-                        width="auto"
-                        height="20"
-                        alt={i.alt}
-                    />
+                    <Link href={`/brands/${i?.attributes?.redirection_url}`}>
+                        <img
+                            src={i?.attributes.image.data.attributes.url}
+                            width="auto"
+                            height="20"
+                            alt={i.alt}
+                        />
+                    </Link>
                 </div>
             ))}
             {/* // TODO remove this repeative loop when more data is in strapi */}
             {brandLogos && brandLogos?.length && brandLogos?.map((i: any, index: number) => (
                 <div key={index}>
-                    <img
-                        src={i?.attributes.image.data.attributes.url}
-                        width="auto"
-                        height="20"
-                        alt={i.alt}
-                    />
+                    <Link href={`/brands/${i?.attributes?.redirection_url}`}>
+                        <img
+                            src={i?.attributes.image.data.attributes.url}
+                            width="auto"
+                            height="20"
+                            alt={i.alt}
+                        />
+                    </Link>
                 </div>
             ))}
         </Carousel>
