@@ -1,5 +1,5 @@
 'use client'
-// TODO building an interface for brandData
+// TODO - building an interface for brandData
 import { Button } from '@/components/ui/button'
 import { Manrope } from 'next/font/google'
 import Image from "next/image"

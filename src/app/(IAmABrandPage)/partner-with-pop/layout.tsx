@@ -22,7 +22,7 @@ export default function BrandLayout({ children }: BrandProps) {
                 <meta property="og:url" content="https://mypop.in/partner-with-pop" />
                 <link rel="canonical" href="https://mypop.in/partner-with-pop" />
                 {/* <!-- Facebook Pixel Code --> */}
-                <Script id="fb-pixel-code">
+                <Script id="fb-pixel-code-new">
                     {`
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -45,7 +45,7 @@ export default function BrandLayout({ children }: BrandProps) {
                 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-                <link rel="manifest" href="/site.webmanifest">
+                <link rel="manifest" href="/site.webmanifest" />
                     {/* <!-- Moengage Code --> */}
                     <Script id="monage-code" type="text/javascript">
                         {`
@@ -57,10 +57,10 @@ export default function BrandLayout({ children }: BrandProps) {
     `}
                     </Script>
                     {/* <!-- End of Moengage Code --> */}
-                </link>
+                
                 {/* <!-- Google tag (gtag.js) --> */}
                 <Script id="google-tag-manager" async src="https://www.googletagmanager.com/gtag/js?id=G-5HQ42CSKWF"></Script>
-                <Script>
+                <Script id="data-layer">
                     {`
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments)}
