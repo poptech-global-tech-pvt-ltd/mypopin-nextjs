@@ -45,7 +45,7 @@ function POPShop() {
             }
         }
         else {
-            window.location.href = "https://8mvyk.app.link/dh8SuwQK3wb"
+            window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
         }
     }
 
@@ -68,31 +68,42 @@ function POPShop() {
         const rect = image.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
-        console.log({x, y})
+        console.log({ x, y })
         if (x < 90) {
             setFour("-1050px")
             setThree("-1050px")
             settwo("-1050px")
         }
         else {
-            window.location.href = "https://8mvyk.app.link/dh8SuwQK3wb" 
+            window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
         }
 
 
     }
 
     // == handle mobile ==
-    const handleOneMobileClick = () => {
-        setMobileFirstActive((prev) => !prev)
-        if (isMobileFirstActive === true) {
-            // reset everything
-            setMobileTwo("-750px")
-            setMobileThree("-670px")
-            setMobileFour("-600px")
+    const handleOneMobileClick = (event: any) => {
+        const image = event.target;
+        const rect = image.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        console.log({ x, y })
+        if (y < 65) {
+            setMobileFirstActive((prev) => !prev)
+            if (isMobileFirstActive === true) {
+                // reset everything
+                setMobileTwo("-750px")
+                setMobileThree("-670px")
+                setMobileFour("-600px")
+            }
+            else if (isMobileFirstActive === false) {
+                setMobileTwo("-20px")
+            }
         }
-        else if (isMobileFirstActive === false) {
-            setMobileTwo("-20px")
+        else {
+            window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
         }
+
     }
 
     const handleTwoMobileClick = () => {
@@ -124,11 +135,22 @@ function POPShop() {
         }
     }
 
-    const handleFourMobileClick = () => {
+    const handleFourMobileClick = (event: any) => {
         // reset everything
-        setMobileTwo("-750px")
-        setMobileThree("-670px")
-        setMobileFour("-600px")
+        const image = event.target;
+        const rect = image.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        console.log({ x, y })
+        if (y < 65) {
+            setMobileTwo("-750px")
+            setMobileThree("-670px")
+            setMobileFour("-600px")
+        }
+        else {
+            window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+        }
+
     }
 
     return (
