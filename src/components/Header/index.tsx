@@ -17,8 +17,10 @@ import { useRouter, usePathname } from 'next/navigation'
 
 
 function Header() {
-    const [cookieKey, setCookieKey] = useState("");
-    const pathname = usePathname()
+    const [cookieKey, setCookieKey] = useState<any>("");
+    const [coinNumber, setCoinNumber] = useState<any>("");
+    const pathName = usePathname()
+
 
     const handleLogin = () => {
         //get cookie name
@@ -60,39 +62,33 @@ function Header() {
             // adding cookie to the browser
             setCookie('cookieKey', randomNo, 7);
         }
-
     }
 
-    const pathName = usePathname()
-    console.log({ pathName })
-    console.log({ cookieKey })
+   
+    // if a cookie already exists
     useEffect(() => {
-        console.log("here 1")
+        function getCookie(name: string) {
+            const cookieValue: any = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+            return cookieValue ? decodeURIComponent(cookieValue.pop()) : null;
+        }
+        const hasCookieAlready = getCookie('cookieKey')
+        console.log({hasCookieAlready})
+        setCookieKey(hasCookieAlready)
+    }, [])
+
+    useEffect(() => {
         if (cookieKey) {
             try {
-                console.log("here 2")
                 fetch(`https://presentation.popclub.co.in/api/get-available-coins?key=${cookieKey}`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Basic cGwtcHJvZDpwbEAyMHR3ZW50eXR3bw==',
                     }
-                })
-                    .then((res) => console.log(res.json()))  // Use res.text() to get the HTML content as text
-                // .then((html) => {
-                // const parser = new DOMParser();
-                // const doc = parser.parseFromString(html, 'text/html');
-
-                // // Now you can use DOM manipulation methods to extract the specific data you need
-                //     // @ts-ignore
-                //     const certainData = doc.getElementsByClassName('coin-icon').textContent;
-                //     console.log("certainData---->", certainData);
-                // console.log({html})
-                // });
+                }).then((res) => res.json()).then(data => console.log(data))
             } catch (err) {
                 console.log("Oops! An error has occurred");
             }
         }
-
     }, [cookieKey])
 
     return (

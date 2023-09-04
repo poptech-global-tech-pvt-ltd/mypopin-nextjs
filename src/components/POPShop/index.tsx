@@ -24,19 +24,28 @@ function POPShop() {
     const [mobileThree, setMobileThree] = useState("-670px");
     const [mobileFour, setMobileFour] = useState("-600px");
 
-    const handleOneClick = () => {
-        setIsFirstActive((prev) => !prev)
-        if (isFirstActive === false) {
-            settwo("-100px")
-            //reset
-            setThree("-1050px")
-            setFour("-1050px")
+    const handleOneClick = (event: any) => {
+        const image = event.target;
+        const rect = image.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        if (x < 80) {
+            setIsFirstActive((prev) => !prev)
+            if (isFirstActive === false) {
+                settwo("-100px")
+                //reset
+                setThree("-1050px")
+                setFour("-1050px")
+            }
+            else if (isFirstActive === true) {
+                //reset everything
+                settwo("-1050px")
+                setThree("-1050px")
+                setFour("-1050px")
+            }
         }
-        else if (isFirstActive === true) {
-            //reset everything
-            settwo("-1050px")
-            setThree("-1050px")
-            setFour("-1050px")
+        else {
+            window.location.href = "https://8mvyk.app.link/dh8SuwQK3wb"
         }
     }
 
@@ -53,11 +62,23 @@ function POPShop() {
         setThree("-1050px")
         settwo("-1050px")
     }
-    const handleFourClick = () => {
+    const handleFourClick = (event: any) => {
         //resets everything
-        setFour("-1050px")
-        setThree("-1050px")
-        settwo("-1050px")
+        const image = event.target;
+        const rect = image.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        console.log({x, y})
+        if (x < 90) {
+            setFour("-1050px")
+            setThree("-1050px")
+            settwo("-1050px")
+        }
+        else {
+            window.location.href = "https://8mvyk.app.link/dh8SuwQK3wb" 
+        }
+
+
     }
 
     // == handle mobile ==
@@ -122,10 +143,10 @@ function POPShop() {
                             <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleTwoClick} style={{ marginLeft: two }} src="/popshop2.png" alt="Slide Image" />
                             <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleThreeClick} style={{ marginLeft: three }} src="/popshop3.png" alt="Slide Image" />
                             <img className='transition-all cursor-pointer' width="1120" height="1000" onClick={handleFourClick} style={{ marginLeft: four }} src="/popshop4.png" alt="Slide Image" />
-                            </div>
                         </div>
                     </div>
-               
+                </div>
+
                 {/* // mobile */}
                 <div className='block lg:hidden'>
                     <div className={`${khand.className} text-center text-3xl lg:text-6xl py-6 lg:py-16`}>Introducing the POPshop</div>

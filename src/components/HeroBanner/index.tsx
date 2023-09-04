@@ -2,6 +2,7 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image"
+import { Fragment, useEffect, useState } from "react";
 
 const responsive = {
     superLargeDesktop: {
@@ -23,7 +24,32 @@ const responsive = {
     }
 };
 
+// const imageKitLoader = ({ src, width, quality } : any) => {
+//     if(src[0] === "/") src = src.slice(1);
+//     const params = [`w-${width}`];
+//     if (quality) {
+//       params.push(`q-${quality}`);
+//     }
+//     const paramsString = params.join(",");
+//     var urlEndpoint = "https://ik.imagekit.io/your_imagekit_id";
+//     if(urlEndpoint[urlEndpoint.length-1] === "/") urlEndpoint = urlEndpoint.substring(0, urlEndpoint.length - 1);
+//     return `${urlEndpoint}/${src}?tr=${paramsString}`
+//   }
+
 function HeroBanner() {
+
+    const [bannerData, setBannerData] = useState<any>()
+
+    useEffect(() => {
+        fetch(`http://localhost:1337/api/hero-banner-images?populate=*`).then((res) => res.json()).then(data => setBannerData(data.data))
+    }, [])
+
+    console.log({bannerData})
+
+    const customLoader = () => {
+        return `https://ik.imagekit.io/t2vt6tx4m/strapi/banner_popcoin_22b154ad9b_b66VCNa7z.png?tr=bl-30`
+    }
+    
     return (
         <>
             <section className="">
@@ -31,6 +57,7 @@ function HeroBanner() {
                 <div className="h-[10vh] bg-white hidden lg:block"></div>
                 <div className="h-[90vh] relative w-[100vw!important] max-w-[1500px]  mx-auto">
                     <div className="banner-carousel-container" style={{ width: "100%", overflow: "hidden" }}>
+                       
                         <Carousel
                             arrows={true}
                             autoPlay={true}
@@ -47,7 +74,28 @@ function HeroBanner() {
                             renderDotsOutside={false}
                             showDots
                             responsive={responsive}>
-                            <div>
+
+                            {bannerData?.length > 0 && bannerData?.map((itm: any, index: number) => (
+                                <Fragment key={index}>
+                                    <div>
+                                        <a href="">
+                                            <div className="h-[90vh] w-[100vw]">
+                                                <Image
+                                                    src={itm?.attributes?.image?.data?.attributes?.url}
+                                                    fill
+                                                    className="w-full h-full object-cover"
+                                                    alt=""
+                                                    priority
+                                                    quality={100}
+                                                        // loader={customLoader}                                        
+                                                    />
+                                            </div>
+                                        </a>
+                                    </div>
+                                </Fragment>
+                            ))}
+                            {/* <div>12</div> */}
+                            {/* <div>
                                 <a href="">
                                     <div className="h-[90vh] w-[100vw]">
                                         <Image
@@ -131,8 +179,9 @@ function HeroBanner() {
                                         />
                                     </div>
                                 </a>
-                            </div>
+                            </div> */}
                         </Carousel>
+                       
                     </div>
                 </div>
             </section>
