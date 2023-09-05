@@ -101,7 +101,7 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                                                     </div>}
                                             </div>}
                                     </div>
-                                    <div style={{ backgroundColor: secondaryColor, transform: "translateY(-8%)" }} className={`w-11/12 rounded-bl-3xl rounded-br-3xl font-bold ${manrope.className} z-5 max-w-[243px]`}>
+                                    <div style={{ backgroundColor: secondaryColor, transform: "translateY(-8%)" }} className={`w-11/12 rounded-bl-3xl rounded-br-3xl font-bold ${manrope.className} z-5 max-w-[243px] min-h-[180px]`}>
                                         <div className="text-center pt-6 px-2">{ itm?.attributes?.product_name.length > 50 ? itm?.attributes?.product_name.slice(0, 50) + ".." : itm?.attributes?.product_name}</div>
                                         <div className="text-center py-1">₹{itm?.attributes?.product_price}&nbsp;<span style={{ textDecoration: "line-through", color: "gray" }}>{itm?.attributes?.product_mrp ? <span> ₹{itm?.attributes?.product_mrp}</span> : null}  </span></div>
                                         <div className="flex items-center justify-center py-3">
