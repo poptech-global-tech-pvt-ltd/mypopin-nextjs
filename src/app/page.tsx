@@ -34,18 +34,16 @@ export default function Home() {
         <Layout>
           <HeroPartners />
           <ShoppingDeals />
-          {/* <HowItWorks /> */}
         </Layout>
         <SignupStrip />
         <TopPOPcoinPartnerBrands />
         <Layout>
           <POPInNumbers />
         </Layout>
-        {/* <ShoppingDealsCarousel /> */}
         <Spotlight />
         <PopBenefits />
         {/* <TopBrands /> */}
-        <POPShop />
+        {/* <POPShop /> */}
         <POPBlog />
       </main>
     </>

@@ -7,7 +7,6 @@ const khand = Khand({
     subsets: ['latin'],
 })
 function POPShop() {
-
     // == desktop & large devices ==
     const [isFirstActive, setIsFirstActive] = useState(false)
     const [two, settwo] = useState("-1050px")
@@ -45,7 +44,10 @@ function POPShop() {
             }
         }
         else {
-            window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+            if (typeof window === "undefined") {
+                // @ts-ignore
+                window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+            }
         }
     }
 
@@ -76,7 +78,10 @@ function POPShop() {
             settwo("-1050px")
         }
         else {
-            window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+            if (typeof window === "undefined") {
+                // @ts-ignore
+                window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+            }
         }
     }
 
@@ -99,7 +104,10 @@ function POPShop() {
             }
         }
         else {
-            window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+            if (typeof window === "undefined") {
+                // @ts-ignore
+                window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+            }
         }
     }
 
@@ -144,9 +152,11 @@ function POPShop() {
             setMobileFour("-600px")
         }
         else {
-            window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+            if (typeof window === "undefined") {
+                // @ts-ignore
+                window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+            }
         }
-
     }
 
     return (

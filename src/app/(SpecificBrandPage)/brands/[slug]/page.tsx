@@ -1,3 +1,4 @@
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 // TODO - building an interface for brandData
 import { Button } from '@/components/ui/button'
 import { Manrope } from 'next/font/google'
@@ -151,22 +152,18 @@ export async function generateMetadata(
     const brandData = res?.data[0]?.attributes
     
     return {
-        title: {
-            default: `${brandData.brand_name} X POPcoins: Get Discounts & Rewards on Body Tales using POPcoins | POP`,
-            template: "default title"
-        },
-        description: `Shop your Favorite Brand ${brandData.brand_name} using POP to Earn Additional Rewards, Discounts and POPcoins. Click here to learn more about POPcoins X Body Tales`,
-
+        title: `${brandData?.brand_name} X POPcoins: Get Discounts & Rewards on Body Tales using POPcoins | POP`,
+        description: `Shop your Favorite Brand ${brandData?.brand_name} using POP to Earn Additional Rewards, Discounts and POPcoins. Click here to learn more about POPcoins X Body Tales`,
         openGraph: {
             type: "website",
             locale: "en_US",
-            url: `https://mypop.in/brands/${brandData.brand_name.toLowerCase()}`,
+            url: `https://mypop.in/brands/${brandData?.brand_name?.toLowerCase()}`,
             title: "Body Tales X POPcoins: Get Discounts & Rewards on Body Tales using POPcoins | POP",
-            description: `Shop your Favorite Brand ${brandData.brand_name} using POP to Earn Additional Rewards, Discounts and POPcoins. Click here to learn more about POPcoins X Body Tales`,
-            images: `POPcoins for ${brandData.brand_name}`,
+            description: `Shop your Favorite Brand ${brandData?.brand_name} using POP to Earn Additional Rewards, Discounts and POPcoins. Click here to learn more about POPcoins X Body Tales`,
+            images: `POPcoins for ${brandData?.brand_name}`,
         },
         alternates: {
-            canonical: `https://mypop.in/brands/${brandData.brand_name.toLowerCase()}`,
+            canonical: `https://mypop.in/brands/${brandData?.brand_name?.toLowerCase()}`,
             languages: {
                 'en-US': '/en-US',
             },
