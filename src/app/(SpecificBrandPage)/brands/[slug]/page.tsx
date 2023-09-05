@@ -11,7 +11,6 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import { useRouter } from 'next/navigation'
 import type { Metadata } from "next";
 import Script from 'next/script';
-import { Head } from 'next/document';
 
 
 const manrope = Manrope({
