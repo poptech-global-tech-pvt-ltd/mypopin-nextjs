@@ -3,8 +3,7 @@ import { useState, useEffect } from "react"
 import { Blurhash } from 'react-blurhash'
 
 
-function ImageComponent({ src, hash }: any) {
-
+function ImageComponent({ src, hash, width, height }: any) {
     const [imgLoaded, setImgLoaded] = useState(false);
 
     useEffect(() => {

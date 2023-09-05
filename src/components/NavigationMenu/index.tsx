@@ -108,13 +108,13 @@ export function NavigationMenuDemo() {
         <div className="px-1" />
 
         <NavigationMenuItem className={`${manrope.className} font-bold`}>
-            {/* <NavigationMenuLink className={navigationMenuTriggerStyle()}> */}
-              <div className={`${manrope.className} font-bold text-[16px]`}>
-                <ScrollLink href="#popshop">
-                  POPshop
-                </ScrollLink>
-              </div>
-            {/* </NavigationMenuLink> */}
+          {/* <NavigationMenuLink className={navigationMenuTriggerStyle()}> */}
+          <ScrollLink href="#popshop">
+            <div className={`${manrope.className} font-bold text-[16px]`}>
+              POPshop
+            </div>
+          </ScrollLink>
+          {/* </NavigationMenuLink> */}
         </NavigationMenuItem>
 
         <NavigationMenuItem className={`${manrope.className} font-bold`}>
@@ -133,12 +133,11 @@ export function NavigationMenuDemo() {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem className={`${manrope.className} font-bold`}>
-          <Link href="/" legacyBehavior passHref>
-              <ScrollLink href="#footer-contact-us">
-                <div
-                  className={`${manrope.className} font-bold text-[16px]`}>Contact Us</div>
-              </ScrollLink>
-          </Link>
+          {/* <Link href="/" legacyBehavior passHref> */}
+          <ScrollLink href="#footer-contact-us">
+            <div className={`${manrope.className} font-bold text-[16px]`}>Contact Us</div>
+          </ScrollLink>
+          {/* </Link> */}
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

@@ -58,7 +58,6 @@ function HeroBanner() {
                 <div className="h-[10vh] bg-white hidden lg:block"></div>
                 <div className="h-[90vh] relative w-[100vw!important] max-w-[1500px]  mx-auto">
                     <div className="banner-carousel-container" style={{ width: "100%", overflow: "hidden" }}>
-                       
                         <Carousel
                             arrows={true}
                             autoPlay={true}
@@ -84,6 +83,8 @@ function HeroBanner() {
                                                 <ImageComponent
                                                     src={itm?.attributes?.image?.data?.attributes?.url}
                                                     hash={"LVMj5ikDQ-tlNytRVra{y?VsyXSh"}
+                                                    width={"100vw"}
+                                                    height={"90vh"}
                                                     // fill
                                                     // className="w-full h-full object-cover"
                                                     // alt=""
