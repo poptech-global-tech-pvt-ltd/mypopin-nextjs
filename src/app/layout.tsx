@@ -2,7 +2,7 @@
 import './globals.css'
 import { Header } from '@/components/Header'
 import { MobileHeader } from '@/components/MobileHeader'
-import { Footer } from '@/components'
+import { Footer } from '@/components/Footer'
 import Transition from '@/components/Transition/Transition'
 import Script from 'next/script'
 

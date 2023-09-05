@@ -24,13 +24,13 @@ function Header() {
 
     const handleLogin = () => {
         const hasCookieAlready = setSessionCookieOnce('sessionID')
-        console.log({hasCookieAlready})
+        console.log({ hasCookieAlready })
         setCookieKey(hasCookieAlready)
     }
 
-   function fetchUserCoins() {
+    function fetchUserCoins() {
         try {
-            var sessionCookie =  getSessionCookie('sessionID');
+            var sessionCookie = getSessionCookie('sessionID');
             console.log(sessionCookie)
             fetch(`https://presentation.popclub.co.in/api/get-available-coins?key=${sessionCookie}`, {
                 headers: {
@@ -41,9 +41,9 @@ function Header() {
         } catch (err) {
             console.log("Oops! An error has occurred");
         }
-   }
+    }
 
-   function setSessionCookieOnce(cookieName: any) {
+    function setSessionCookieOnce(cookieName: any) {
         var sessionCookie = getSessionCookie(cookieName);
         console.log('getSessionCookie')
         console.log(sessionCookie)
@@ -52,18 +52,18 @@ function Header() {
             console.log('setSessionCookie')
             setSessionCookie(cookieName)
         }
-        else{
+        else {
             console.log('fetchUserCoins')
             setCookieKey(sessionCookie)
             fetchUserCoins();
         }
     }
 
-   function setSessionCookie(cookieName: any) {
+    function setSessionCookie(cookieName: any) {
         var characters = 'abcdefghijklmnopqrstuvwxyz0123456789'
         var length = 32;
         var randomString = ''
-        
+
         for (var i = 0; i < length; i++) {
             var randomIndex = Math.floor(Math.random() * characters.length)
             randomString += characters.charAt(randomIndex)
@@ -73,13 +73,13 @@ function Header() {
         setCookieKey(randomString)
     }
 
-   function getSessionCookie(name: string) {
+    function getSessionCookie(name: string) {
 
         var cookies = document.cookie.split(';');
 
         for (var i = 0; i < cookies.length; i++) {
             var cookie = cookies[i].trim();
-    
+
             if (cookie.indexOf(name + '=') === 0) {
                 return cookie.substring(name.length + 1, cookie.length);
             }
@@ -137,9 +137,6 @@ function Header() {
                         </div>
 
                         <div className="flex items-center space-x-3">
-                            {pathName !== "/partner-with-pop" && (
-                                <div>{coinNumber?.data?.coins ? coinNumber?.data?.coins : null}</div>
-                            )}
                             <div>
                                 {pathName !== "/partner-with-pop" && (
                                     <Image
@@ -151,6 +148,10 @@ function Header() {
                                 )}
 
                             </div>
+                            {pathName !== "/partner-with-pop" && (
+                                <div>{coinNumber?.data?.coins}</div>
+                            )}
+
                             {pathName !== "/partner-with-pop" && (
                                 <div className="btn-container-desktop-modal">
                                     <Dialog>
