@@ -3,6 +3,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image"
 import { Fragment, useEffect, useState } from "react";
+import { ImageComponent } from "../ImageComponent";
 
 const responsive = {
     superLargeDesktop: {
@@ -79,17 +80,18 @@ function HeroBanner() {
                                 <Fragment key={index}>
                                     <div>
                                         <a href="">
-                                            <div className="h-[90vh] w-[100vw]">
-                                                <Image
+                                            {/* <div className="h-[90vh] w-[100vw]"> */}
+                                                <ImageComponent
                                                     src={itm?.attributes?.image?.data?.attributes?.url}
-                                                    fill
-                                                    className="w-full h-full object-cover"
-                                                    alt=""
-                                                    priority
-                                                    quality={100}
+                                                    hash={"LVMj5ikDQ-tlNytRVra{y?VsyXSh"}
+                                                    // fill
+                                                    // className="w-full h-full object-cover"
+                                                    // alt=""
+                                                    // priority
+                                                    // quality={100}
                                                     // loader={customLoader}                                        
                                                     />
-                                            </div>
+                                            {/* </div> */}
                                         </a>
                                     </div>
                                 </Fragment>

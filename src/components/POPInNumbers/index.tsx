@@ -71,7 +71,7 @@ function POPInNumbers() {
 
     return (
         <>
-            <div className="max-w-5xl mx-auto py-14">
+            <div className="max-w-5xl mx-auto lg:pt-4 lg:pb-14">
                 <div className={`px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 text-center lg:text-6xl py-10 lg:py-16 font-bold ${khand.className}`}>Our POPpin' Numbers</div>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                     <div className={`text-center ${manrope.className}`}>

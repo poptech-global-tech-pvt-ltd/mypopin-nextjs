@@ -106,61 +106,38 @@ export function NavigationMenuDemo() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <div className="px-1" />
-        {/* <NavigationMenuItem className={`${manrope.className} font-bold text-[16px]`}>
-          <NavigationMenuTrigger style={{ all: "unset", display: "flex", cursor: "pointer", alignItems: "center" }}
-          >Our POP World</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-1 lg:w-[200px] ">
-              {components.map((component, index: number) => (
-                <Fragment key={index}>
-                  <ScrollLink href="#popshop">
-                    <ListItem
-                      key={component.title}
-                      title={component.title}
-                      href={component.href}
-                    >
-                    </ListItem>
-                  </ScrollLink>
-                </Fragment>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem> */}
+
         <NavigationMenuItem className={`${manrope.className} font-bold`}>
-          <Link href="/coupons" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <ScrollLink href="#popshop">
-                <div className={`${manrope.className} font-bold text-[16px]`}>POPshop</div>
-              </ScrollLink>
-            </NavigationMenuLink>
-          </Link>
+            {/* <NavigationMenuLink className={navigationMenuTriggerStyle()}> */}
+              <div className={`${manrope.className} font-bold text-[16px]`}>
+                <ScrollLink href="#popshop">
+                  POPshop
+                </ScrollLink>
+              </div>
+            {/* </NavigationMenuLink> */}
         </NavigationMenuItem>
-        <NavigationMenuItem className={`${manrope.className} font-bold`}
-        >
+
+        <NavigationMenuItem className={`${manrope.className} font-bold`}>
           <Link href="/coupons" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               <div className={`${manrope.className} font-bold text-[16px]`}>Coupons</div>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem className={`${manrope.className} font-bold`}
-        >
+
+        <NavigationMenuItem className={`${manrope.className} font-bold`}>
           <Link href="/blogs" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               <div className={`${manrope.className} font-bold text-[16px]`}>Blogs</div>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem className={`${manrope.className} font-bold`}
-        >
+        <NavigationMenuItem className={`${manrope.className} font-bold`}>
           <Link href="/" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               <ScrollLink href="#footer-contact-us">
                 <div
-                  // onClick={handleScrollToBottom}
                   className={`${manrope.className} font-bold text-[16px]`}>Contact Us</div>
               </ScrollLink>
-            </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
       </NavigationMenuList>
