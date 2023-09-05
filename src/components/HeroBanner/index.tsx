@@ -41,7 +41,7 @@ function HeroBanner() {
     const [bannerData, setBannerData] = useState<any>()
 
     useEffect(() => {
-        fetch(`http://localhost:1337/api/hero-banner-images?populate=*`).then((res) => res.json()).then(data => setBannerData(data.data))
+        fetch(`https://mypop-dashboard.popclub.co.in/api/hero-banner-images?populate=*`).then((res) => res.json()).then(data => setBannerData(data.data))
     }, [])
 
     console.log({bannerData})
@@ -87,7 +87,7 @@ function HeroBanner() {
                                                     alt=""
                                                     priority
                                                     quality={100}
-                                                        // loader={customLoader}                                        
+                                                    // loader={customLoader}                                        
                                                     />
                                             </div>
                                         </a>
