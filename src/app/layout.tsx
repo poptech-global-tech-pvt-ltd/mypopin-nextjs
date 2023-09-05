@@ -90,7 +90,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
         </Script>
       </head>
-
       <body>
         <Transition>
           <div className="hidden lg:block">

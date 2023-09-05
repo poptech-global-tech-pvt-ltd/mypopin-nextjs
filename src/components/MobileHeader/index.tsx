@@ -14,6 +14,7 @@ import { Button } from "../ui/button";
 import { usePathname } from 'next/navigation'
 import { Dialog, DialogContent, DialogDescription, DialogTrigger } from "../ui/dialog";
 import { useRouter } from 'next/navigation'
+import ScrollLink from "@/utils/ScrollLink";
 
 
 function MobileHeader() {
@@ -243,9 +244,9 @@ function MobileHeader() {
                                                             {brandData[category].map((brand: string, index: number) => (
                                                                 <div key={index}>
                                                                     {/* <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}> */}
-                                                                        <div onClick={() => handleBrandClick(brand)} key={index} className={`py-1 text-[14px]`}>
-                                                                            {brand}
-                                                                        </div>
+                                                                    <div onClick={() => handleBrandClick(brand)} key={index} className={`py-1 text-[14px]`}>
+                                                                        {brand}
+                                                                    </div>
                                                                     {/* </Link> */}
                                                                 </div>
                                                             ))}
@@ -261,9 +262,9 @@ function MobileHeader() {
                                                             {staticBrandData[category].map((brand: string, index: number) => (
                                                                 <div key={index}>
                                                                     {/* <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}> */}
-                                                                        <div onClick={() => handleBrandClick(brand)} key={index} className="py-1">
-                                                                            {brand}
-                                                                        </div>
+                                                                    <div onClick={() => handleBrandClick(brand)} key={index} className="py-1">
+                                                                        {brand}
+                                                                    </div>
                                                                     {/* </Link> */}
                                                                 </div>
                                                             ))}
@@ -277,7 +278,7 @@ function MobileHeader() {
                             </Accordion>
                             <div className="py-1" />
                             {/* //Our POP World */}
-                            <Accordion type="single" collapsible>
+                            {/* <Accordion type="single" collapsible>
                                 <AccordionItem value="item-1">
                                     <AccordionTrigger className="bg-[#F5F5F5] p-3">Our POPWorld</AccordionTrigger>
                                     <AccordionContent className="p-[0px] pb-0">
@@ -286,8 +287,12 @@ function MobileHeader() {
                                         </div>
                                     </AccordionContent>
                                 </AccordionItem>
-                            </Accordion>
-
+                            </Accordion> */}
+                            <ScrollLink href="#popshop">
+                                <div className="bg-[#F5F5F5] p-3">
+                                    <div className="text-black font-medium">POPShop</div>
+                                </div>
+                            </ScrollLink>
                             <div className="py-1" />
                             {/* // Blogs */}
                             {/* <Link href="/coupons"> */}
@@ -305,9 +310,11 @@ function MobileHeader() {
                             <div className="py-1" />
                             {/* // Help & Support */}
                             {/* <Link href="#"> */}
-                            <div onClick={handleHelpSupportClick} className="bg-[#F5F5F5] p-3">
-                                <div className="text-black font-medium">Help & Support</div>
-                            </div>
+                            <ScrollLink href="#footer-contact-us">
+                                <div className="bg-[#F5F5F5] p-3">
+                                    <div className="text-black font-medium">Contact Us</div>
+                                </div>
+                            </ScrollLink>
                             {/* </Link> */}
                             <div className="py-1" />
                             <div className="flex flex-col items-center">

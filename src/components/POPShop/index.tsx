@@ -48,7 +48,7 @@ function POPShop() {
             window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
         }
     }
-    
+
     const handleTwoClick = () => {
         setThree("-100px")
         //reset
@@ -56,7 +56,7 @@ function POPShop() {
         setFour("-1050px")
 
     }
-    
+
     const handleThreeClick = () => {
         setFour("-100px")
         //reset
@@ -169,11 +169,11 @@ function POPShop() {
                 <div className='block lg:hidden'>
                     <div className={`${khand.className} text-center text-3xl lg:text-6xl py-6 lg:py-16`}>Introducing the POPshop</div>
                     <div className='max-w-[400px] mx-auto'>
-                        <div className='flex flex-col'>
-                            <img className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleOneMobileClick} src="/popshop/popshop-mobile-4.png" alt="Slide Image" />
-                            <img style={{ marginTop: mobileTwo }} className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleTwoMobileClick} src="/popshop/popshop-mobile-3.png" alt="Slide Image" />
-                            <img style={{ marginTop: mobileThree }} className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleThreeMobileClick} src="/popshop/popshop-mobile-2.png" alt="Slide Image" />
-                            <img style={{ marginTop: mobileFour }} className='transition-all shadow-2xl' width="1120" height="auto" onClick={handleFourMobileClick} src="/popshop/popshop-mobile-1.png" alt="Slide Image" />
+                        <div style={{ overflowY: "clip" }} className='flex flex-col'>
+                            <img className='transition-all' width="1120" height="auto" onClick={handleOneMobileClick} src="/popshop/popshop-mobile-4.png" alt="Slide Image" />
+                            <img style={{ marginTop: mobileTwo }} className='transition-all' width="1120" height="auto" onClick={handleTwoMobileClick} src="/popshop/popshop-mobile-3.png" alt="Slide Image" />
+                            <img style={{ marginTop: mobileThree }} className='transition-all ' width="1120" height="auto" onClick={handleThreeMobileClick} src="/popshop/popshop-mobile-2.png" alt="Slide Image" />
+                            <img style={{ marginTop: mobileFour }} className='transition-all ' width="1120" height="auto" onClick={handleFourMobileClick} src="/popshop/popshop-mobile-1.png" alt="Slide Image" />
                         </div>
                     </div>
                 </div>

@@ -9,7 +9,8 @@ import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { useRouter } from 'next/navigation'
-
+import type { Metadata } from "next";
+import Script from 'next/script';
 
 
 const manrope = Manrope({
@@ -34,7 +35,6 @@ function BrandPage() {
                     setBrandData(data?.data[0]?.attributes)
                 )
             setLoading(false)
-
         }
         catch (err) {
             console.log("oops! an error has occured")
@@ -50,6 +50,52 @@ function BrandPage() {
 
     return (
         <>
+            <head>
+                {/* <!-- Required meta tags --> */}
+                <meta charSet="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+                <title>Body Tales X POPcoins: Get Discounts & Rewards on Body Tales using POPcoins | POP</title>
+                <meta property="og:title" content="Body Tales X POPcoins: Get Discounts & Rewards on Body Tales
+  using POPcoins | POP" />
+
+                <meta name="description" content="Shop your Favorite Brand Body Tales
+  using POP to Earn Additional Rewards, Discounts and POPcoins. Click here to learn more about POPcoins X Body Tales" />
+                <meta property="og:description" content="Shop your Favorite Brand Body Tales
+  using POP to Earn Additional Rewards, Discounts and POPcoins. Click here to learn more about POPcoins X Body Tales" />
+
+                <meta property="og:image" content="" />
+                <meta property="og:image:alt" content="POPcoins for Body Tales" />
+
+                <meta property="og:url" content="https://mypop.in/brands/bodytales" />
+                <link rel="canonical" href="https://mypop.in/brands/bodytales" />
+                <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+                <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+                <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+                <link rel="manifest" href="/site.webmanifest" />
+                {/* <!-- Moengage Code --> */}
+                <Script type="text/javascript">
+                    {`
+    !function(e,n,i,t,a,r,o,d){var s=e[a]=e[a]||[];if(s.invoked=0,s.initialised>0||s.invoked>0)return console.error("MoEngage Web SDK initialised multiple times. Please integrate the Web SDK only once!"),!1;e.moengage_object=a;var l={},g=function n(i){return function(){for(var n=arguments.length,t=Array(n),a=0;a<n;a++)t[a]=arguments[a];(e.moengage_q=e.moengage_q||[]).push({f:i,a:t})}},u=["track_event","add_user_attribute","add_first_name","add_last_name","add_email","add_mobile","add_user_name","add_gender","add_birthday","destroy_session","add_unique_user_id","moe_events","call_web_push","track","location_type_attribute"],m={onsite:["getData","registerCallback"]};for(var c in u)l[u[c]]=g(u[c]);for(var v in m)for(var f in m[v])null==l[v]&&(l[v]={}),l[v][m[v][f]]=g(v+"."+m[v][f]);r=n.createElement(i),o=n.getElementsByTagName("head")[0],r.async=1,r.src=t,o.appendChild(r),e.moe=e.moe||function(){return(s.invoked=s.invoked+1,s.invoked>1)?(console.error("MoEngage Web SDK initialised multiple times. Please integrate the Web SDK only once!"),!1):(d=arguments.length<=0?void 0:arguments[0],l)},r.addEventListener("load",function(){if(d)return e[a]=e.moe(d),e[a].initialised=e[a].initialised+1||1,!0}),r.addEventListener("error",function(){return console.error("Moengage Web SDK loading failed."),!1})}(window,document,"script","https://cdn.moengage.com/webpush/moe_webSdk.min.latest.js","Moengage");
+    Moengage = moe({
+    app_id:"D6GKDHFZXKZFT142EJF591VI",
+    debug_logs: 0
+    })
+    `}
+                </Script>
+                {/* <!-- End of Moengage Code --> */}
+            </head>
+            {/* <!-- Google tag (gtag.js) --> */}
+            <Script async src="https://www.googletagmanager.com/gtag/js?id=G-5HQ42CSKWF"></Script>
+            <Script>
+                {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-5HQ42CSKWF')
+    `}
+            </Script>
+
             <div className="pt-[3rem] lg:pt-[7.5rem] px-2">
                 {/* // grid container */}
                 {isLoading ? (
@@ -175,3 +221,17 @@ function BrandPage() {
 }
 
 export default BrandPage
+
+
+
+// export async function generateMetadata(): Promise<Metadata> {
+//     const data = fetch(`https://mypop-dashboard.popclub.co.in/api/brand-names?filters[url][$eq]=${currentBrandURL}&populate=*`)
+//     .then((res) => res.json())
+//     .then((data) =>
+//         (data?.data[0]?.attributes)
+//     )
+//     return {
+//         title: "staic title here"
+       
+//     }
+//   }

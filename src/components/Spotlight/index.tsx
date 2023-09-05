@@ -39,7 +39,7 @@ const responsive = {
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 2
+    items: 1
   }
 };
 
@@ -48,7 +48,7 @@ function Spotlight() {
     <>
       <div className="mx-auto mb-12">
         <div className={`px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 text-center lg:text-6xl py-16 font-bold ${khand.className}`}>Spotlight Brands Offering Discounts</div>
-        <div>
+        <div className="mx-auto">
           <Carousel
             additionalTransfrom={0}
             arrows={false}
@@ -72,14 +72,15 @@ function Spotlight() {
             responsive={responsive}
           >
             {spolightBrands?.map(((i, index) => (
-              <div className='p-2' key={index}>
-                <Image
-                  src={i?.relativeImageURL}
-                  width={255}
-                  height={274}
-                  alt={i?.relativeImageURL}
-                  className='mx-auto'
-                />
+              <div key={index} className="mx-auto">
+                <div className="h-[200px] w-auto m-1">
+                  <Image
+                    src={i?.relativeImageURL}
+                    fill
+                    className="w-full h-full mx-auto object-contain"
+                    alt={i?.relativeImageURL}
+                  />
+                </div>
               </div>
             )))}
           </Carousel>
