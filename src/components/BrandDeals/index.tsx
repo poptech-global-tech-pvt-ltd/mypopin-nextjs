@@ -53,19 +53,10 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
     }
 
     console.log({ productImagesData })
-
-    // let productDiscountPercentage
-    // if (originalPrice) {
-    //     productDiscountPercentage = (Math.floor((originalPrice - mrp - burnCoins) / originalPrice)).toString()
-    // }
-    // else {
-    //     productDiscountPercentage = (Math.floor(((burnCoins / mrp) * 100))).toString()
-    // }
-
     return (
         <>
             <div>
-                <div className={`uppercase text-3xl text-center font-bold py-16`}>EXPLORE UNLIMITED DEALS</div>
+                <div className={`uppercase text-[22px] lg:text-3xl text-center font-bold py-16`}>EXPLORE UNLIMITED DEALS</div>
                 <div className="mx-auto">
                     <Carousel
                         arrows={false}

@@ -33,12 +33,12 @@ function BrandRewardsCarousel() {
 
     return (
         <>
-            <div className="py-8" />
+            <div className="py-1 lg:py-8" />
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col lg:flex-row">
-                    <div className={`lg:mr-12 mx-auto flex flex-shrink-0 w-full max-w-[300px] p-9 ${manrope.className}`}>
+                    <div className={`lg:mr-12 mx-auto flex flex-shrink-0 w-full max-w-[300px] p-6 ${manrope.className}`}>
                         <div className="my-auto">
-                            <div className={`text-3xl font-bold flex`}>
+                            <div className={`text-3xl font-bold flex items-center justify-center`}>
                                 <Image
                                     src="/pop-coin-fiat.svg"
                                     width={30}
@@ -46,7 +46,7 @@ function BrandRewardsCarousel() {
                                     alt="Popcoin"
                                     className='mx-1'
                                 />
-                                <div>1 EQUALS ₹ 1</div>
+                                <div className="text-[22px] font-bold">1 EQUALS ₹ 1</div>
                             </div>
                             <div className={`text-xl font-[500] text-[21px] text-center lg:text-left ${manrope.className} font-normal text-[#353535]`}> Maximise Your Savings & Shop More With POPcoins</div>
                         </div>
@@ -79,7 +79,7 @@ function BrandRewardsCarousel() {
                                     className="w-[200px] h-[auto] lg:w-[300px] lg:h-[auto]"
                                 // style={{ width: "300px", height: "auto" }}
                                 />
-                                <div className={`absolute top-0 left-0 pl-6 pr-12 pt-5 text-black text-[12px] lg:text-[28px] lg:leading-[32px] font-[600] ${manrope.className}`}>
+                                <div className={`absolute top-0 left-0 pl-6 pr-12 pt-5 text-black text-[14px] lg:text-[28px] lg:leading-[32px] font-[600] ${manrope.className}`}>
                                     Avail additional discounts when shopping from brands powered <br /> by POPcoins <br /> Loyalty
                                 </div>
                             </div>
@@ -90,7 +90,7 @@ function BrandRewardsCarousel() {
                                     className="w-[200px] h-[auto] lg:w-[300px] lg:h-[auto]"
                                 // style={{ width: "300px", height: "auto" }}
                                 />
-                                <div className={`absolute top-0 left-0 pl-6 pr-12 pt-5 text-black text-[12px] lg:text-[28px] lg:leading-[32px] font-[600] ${manrope.className}`}>
+                                <div className={`absolute top-0 left-0 pl-6 pr-12 pt-5 text-black text-[14px] lg:text-[28px] lg:leading-[32px] font-[600] ${manrope.className}`}>
                                     Explore the Reward Store to grab Free Brand Samples
                                 </div>
                             </div>
@@ -101,7 +101,7 @@ function BrandRewardsCarousel() {
                                     className="w-[200px] h-[auto] lg:w-[300px] lg:h-[auto]"
                                 // style={{ width: "300px", height: "auto" }}
                                 />
-                                <div className={`absolute top-0 left-0 pl-6 pr-12 pt-5 text-black text-[12px] lg:text-[28px] lg:leading-[32px] font-[600] ${manrope.className}`}>
+                                <div className={`absolute top-0 left-0 pl-6 pr-12 pt-5 text-black text-[14px] lg:text-[28px] lg:leading-[32px] font-[600] ${manrope.className}`}>
                                     Use POPcoins to access offers across brands, movies, events, travel &amp; more&nbsp;
                                 </div>
                             </div>
