@@ -110,6 +110,8 @@ function Header() {
     //     }
     // }, [cookieKey])
 
+    console.log({coinNumber})
+
     return (
         // if header animation has been removed, add "fixed" class to fix it
         <main className="w-full fixed z-[100]">

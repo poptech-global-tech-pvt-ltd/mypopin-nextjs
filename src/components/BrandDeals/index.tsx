@@ -94,10 +94,10 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                                             <div style={{ backgroundColor: primaryColor }} className={`absolute top-8 right-0 p-2 pl-4 bg-red-500 text-white text-2xl ${manrope.className} font-bold rounded-l-full`}>
                                                 {itm?.attributes?.product_mrp === null ?
                                                     (<div>
-                                                        {(Math.trunc((((itm?.attributes?.product_price * discountPercentage) / itm?.attributes?.product_price)))).toString()}%
+                                                        {(Math.trunc((((itm?.attributes?.product_price * discountPercentage) / itm?.attributes?.product_price)))).toString()}% off
                                                     </div>)
                                                     : <div>
-                                                        {Math.trunc((((itm?.attributes?.product_mrp - itm?.attributes?.product_price) + (itm?.attributes?.product_price * discountPercentage / 100)) / itm?.attributes?.product_mrp) * 100)}%
+                                                        {Math.trunc((((itm?.attributes?.product_mrp - itm?.attributes?.product_price) + (itm?.attributes?.product_price * discountPercentage / 100)) / itm?.attributes?.product_mrp) * 100)}% off
                                                     </div>}
                                             </div>}
                                     </div>

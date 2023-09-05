@@ -28,7 +28,7 @@ function Footer() {
         getBrandNames()
     }, [])
 
-    console.log(pathname)
+    console.log({pathname})
 
     return (
         <>
