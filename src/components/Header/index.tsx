@@ -93,22 +93,20 @@ function Header() {
         setSessionCookieOnce('sessionID')
     }, [])
 
-    // useEffect(() => {
-    //     if (cookieKey) {
-    //         try {
-    //             console.log('cookieKey')
-    //             console.log(cookieKey)
-    //             fetch(`https://presentation.popclub.co.in/api/get-available-coins?key=${cookieKey}`, {
-    //                 headers: {
-    //                     'Content-Type': 'application/json',
-    //                     'Authorization': 'Basic cGwtcHJvZDpwbEAyMHR3ZW50eXR3bw==',
-    //                 }
-    //             }).then((res) => res.json()).then(data => console.log(data))
-    //         } catch (err) {
-    //             console.log("Oops! An error has occurred");
-    //         }
-    //     }
-    // }, [cookieKey])
+    useEffect(() => {
+        if (cookieKey) {
+            try {
+                fetch(`https://presentation.popclub.co.in/api/get-available-coins?key=${cookieKey}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Basic cGwtcHJvZDpwbEAyMHR3ZW50eXR3bw==',
+                    }
+                }).then((res) => res.json()).then(data => setCoinNumber(data))
+            } catch (err) {
+                console.log("Oops! An error has occurred");
+            }
+        }
+    }, [cookieKey])
 
     console.log({coinNumber})
 
