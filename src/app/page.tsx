@@ -33,7 +33,7 @@ export default function Home() {
         <meta name="keywords" content="Earn Popcoins, Get Rewards, Earn Rewards, Partner with POP, Popcoins, Popcoin, POP, pop" />
         <meta property="og:title" content="Introducing POP: Shop, Earn Popcoins, Get Rewards & Become our Partner | POP" />
         <meta property="og:description" content="Become our Customer and Shop from Brands integrated with POPcoins and Earn Rewards & Discounts. Partner with us and revolutionize your Business Journey with our Growth Solutions at POP." />
-        <meta property="og:image" content="https://mypop.in/images/pc-logo.png" />
+        <meta property="og:image" content="https://mypop.in/public/pc-logo.png" />
         <meta property="og:image:alt" content="India's New Currency POPcoins" />
         <meta property="og:url" content="https://mypop.in" />
         <link rel="canonical" href="https://mypop.in" />
@@ -125,7 +125,7 @@ export default function Home() {
         <Spotlight />
         <PopBenefits />
         {/* <TopBrands /> */}
-        {/* <POPShop /> */}
+        <POPShop />
         <POPBlog />
       </main>
     </>

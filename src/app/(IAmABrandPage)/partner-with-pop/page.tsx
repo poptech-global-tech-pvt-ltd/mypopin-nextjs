@@ -35,7 +35,7 @@ function PartnerWithPOP() {
                 <meta name="keywords" content="partner with POP, Join POP, Sign up as a partner with Pop, become a partner" />
                 <meta property="og:title" content="Partner with Pop: A Collaborative Platform to help improve your D2C Brand's Loyalty | POP" />
                 <meta property="og:description" content="Become our Partner and unlock endless opportunities for your D2C brand. Connect with us and amplify your brand's retention. Discover the power of collaboration with Pop. Schedule your Demo today!" />
-                <meta property="og:image" content="https://mypop.in/images/dashboard-placeholder.png" />
+                <meta property="og:image" content="https://mypop.in/public/dashboard-placeholder.png" />
                 <meta property="og:image:alt" content="POP Partner's Dashboard Placeholder" />
                 <meta property="og:url" content="https://mypop.in/partner-with-pop" />
                 <link rel="canonical" href="https://mypop.in/partner-with-pop" />

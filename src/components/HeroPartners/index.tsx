@@ -13,7 +13,7 @@ function HeroPartners() {
     return (
         <>
             <div>
-                <div className={`${khand.className} text-center px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 lg:text-6xl py-10 lg:py-16`}>Meet The POPCoins Partners</div>
+                <h1 className={`${khand.className} text-center px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 lg:text-6xl py-10 lg:py-16`}>Meet The POPCoins Partners</h1>
                 <div>
                     <LeadingBrandsCarousel />
                 </div>
