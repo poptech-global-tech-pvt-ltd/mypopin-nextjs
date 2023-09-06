@@ -25,7 +25,6 @@ const integrationLogos = [
     { url: "/integration-shopflo.svg" },
     { url: "/integration-simpl.svg" },
     { url: "/integration-wigzo.svg" },
-    // { url: "/integration-zecpe.svg" },
 ]
 
 function B2BIntegrations() {
