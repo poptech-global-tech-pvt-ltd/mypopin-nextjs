@@ -38,7 +38,7 @@ function TopPOPcoinPartnerBrands() {
                 <div className="row mx-0">
                     <div className="col-md-12">
                         {/* <h2 className={`${khand.className}  text-center text-6xl py-16`}>Top POPcoin partner brands</h2> */}
-                        <h1 className={`px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 text-center lg:text-6xl py-16 font-bold ${khand.className}`}>Top POPcoin partner brands</h1>
+                        <h1 className={`px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 text-center lg:text-6xl pt-10 pb-4 font-bold ${khand.className}`}>Top POPcoin partner brands</h1>
                         <div className="slider-popcoins-brands">
                             <div style={{ width: "100%", overflow: "hidden" }}>
                                 <Carousel

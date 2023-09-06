@@ -43,6 +43,9 @@ async function BrandPage({ params }: any) {
                             <div style={{ backgroundColor: brandData?.primary_color }} className="itm1 p-6 rounded-3xl">
                                 <div className='flex justify-between'>
                                     <div>
+                                    <div className='block lg:hidden'>
+                                        <img width={50} height={"auto"} src={brandData?.round_logo?.data?.attributes?.url} />
+                                    </div>
                                         <div style={{ color: brandData?.text_color }} className={`uppercase text-[28px] lg:text-5xl ${manrope.className} font-bold`}>EXTRA {brandData?.burn_callout?.split(" ")[1]}&nbsp;off with</div>
                                         <div style={{ color: brandData?.text_color }} className={`uppercase text-5xl ${manrope.className} font-bold`}>
                                             <div className='flex items-center'>
@@ -50,7 +53,7 @@ async function BrandPage({ params }: any) {
                                                 <div className='px-2'><img width="35" height="35" src="/popcoin-icon.svg" /></div>
                                             </div>
                                         </div>
-                                        <div style={{ color: brandData?.text_color }} className={`lg:text-xl text-[17px] ${manrope.className}`}>{brandData?.sub_title}</div>
+                                        <div style={{ color: brandData?.text_color }} className={`lg:text-xl text-[17px] py-2 lg:py-0 ${manrope.className}`}>{brandData?.sub_title}</div>
                                     </div>
                                     <div>
                                         <div style={{ backgroundColor: brandData?.primary_color, color: brandData?.text_color }} className={`h-[100px] w-[100px] lg:h-[200px] lg:w-[200px] rounded-full flex justify-center items-center translate-x-6 -translate-y-16 lg:translate-x-13 lg:-translate-y-45 ${manrope.className} text-[15px] lg:text-2xl font-bold text-center p-8 text-white pulsating-border`}>Limited Time Deal</div>
@@ -58,7 +61,7 @@ async function BrandPage({ params }: any) {
                                 </div>
                                 <div className='flex justify-between items-center'>
                                     <a href={brandData?.redirection_url}>
-                                        <Button className={`${manrope.className} bg-white text-lg text-black hover:text-white font-bold rounded-full`}>Shop with POPCoins</Button>
+                                        <Button className={`${manrope.className} bg-white text-sm lg:text-lg px-8 text-black hover:text-white font-bold rounded-full`}>Shop with POPCoins</Button>
                                     </a>
                                     <div className='hidden lg:block'>
                                         <img src={brandData?.round_logo?.data?.attributes?.url} />
@@ -132,7 +135,7 @@ async function BrandPage({ params }: any) {
                         <h1 className={`${manrope.className} text-center text-[16px] lg:text-2xl font-normal pb-8`}>Keep earning POPcoins with every purchase from  {brandData?.brand_name} and other brands on POPcoins</h1>
                         <div className='text-center'>
                             <a href={brandData?.redirection_url}>
-                                <Button style={{ backgroundColor: brandData?.text_color }} className={`rounded-full ${manrope.className} text-xl p-6 drop-shadow-md`}>Shop {brandData?.brand_name} Now</Button>
+                                <Button style={{ backgroundColor: brandData?.primary_color, color : brandData?.text_color }} className={`rounded-full ${manrope.className} text-xl p-6 drop-shadow-md font-bold`}>Shop {brandData?.brand_name} Now</Button>
                             </a>
                         </div>
                     </section>

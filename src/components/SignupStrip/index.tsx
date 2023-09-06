@@ -49,17 +49,10 @@ function SignupStrip() {
         }
     }
 
-
-
     return (
         <>
             <section>
                 <div className="mt-10">
-
-
-
-
-
                     <Dialog>
                         <DialogTrigger>
                             <Image
@@ -67,9 +60,8 @@ function SignupStrip() {
                                 width="0"
                                 height="0"
                                 sizes="100vw"
-                                className="w-full h-auto object-cover cursor-pointer"
+                                className="w-full h-auto object-cover cursor-pointer min-h-[70px]"
                                 alt="signup"
-                                style={{ objectFit: "cover" }}
                                 onClick={handleLogin}
                             />
                         </DialogTrigger>
@@ -82,12 +74,6 @@ function SignupStrip() {
                             </DialogDescription>
                         </DialogContent>
                     </Dialog>
-
-
-
-
-
-
                 </div>
             </section>
         </>

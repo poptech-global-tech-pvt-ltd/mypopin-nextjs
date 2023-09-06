@@ -54,8 +54,6 @@ function POPBlog() {
                                     <div className={`text-[#6B7280] text-[12px] font-[500] ${manrope.className}`}>{blogData[0]?.attributes.date}</div>
                                 </div>
                             </div>
-
-
                             <div className='blog-grid-itm-2 px-2'>
                                 <div className='grid grid-cols-[2fr_1fr] items-center lg:items-start'>
                                     <div>

@@ -11,10 +11,10 @@ import {
 import { Separator } from "@/components/ui/separator"
 import Link from 'next/link'
 import { Button } from "../ui/button";
-import { usePathname } from 'next/navigation'
 import { Dialog, DialogContent, DialogDescription, DialogTrigger } from "../ui/dialog";
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import ScrollLink from "@/utils/ScrollLink";
+
 
 
 function MobileHeader() {
@@ -230,91 +230,85 @@ function MobileHeader() {
                     <div className={`${!isOpen ? `hidden` : `block h-[90vh]`}`}>
                         <div className="p-4">
                             {/* // POP Partners */}
-                            <Accordion type="single" collapsible>
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger className="bg-[#F5F5F5] p-3">POP Partners</AccordionTrigger>
-                                    <AccordionContent className="p-[0px] pb-0">
-                                        <div className="bg-[#fff4f3] p-3 rounded-b-lg">
-                                            <nav className="h-[50vh] overflow-scroll">
-                                                {/* // if data is in STRAPI */}
-                                                {isBrandDataAvailable && Object.keys(brandData).map((category: string) => (
-                                                    <div key={category} className="pr-2">
-                                                        <div className="font-bold text-lg pt-3 text-[14px]">{category}</div>
-                                                        <div className="font-medium">
-                                                            {brandData[category].map((brand: string, index: number) => (
-                                                                <div key={index}>
-                                                                    {/* <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}> */}
-                                                                    <div onClick={() => handleBrandClick(brand)} key={index} className={`py-1 text-[14px]`}>
-                                                                        {brand}
-                                                                    </div>
-                                                                    {/* </Link> */}
+                            {pathName != "/partner-with-pop" && (
+                                <>
+                                    <Accordion type="single" collapsible>
+                                        <AccordionItem value="item-1">
+                                            <AccordionTrigger className="bg-[#F5F5F5] p-3">POP Partners</AccordionTrigger>
+                                            <AccordionContent className="p-[0px] pb-0">
+                                                <div className="bg-[#fff4f3] p-3 rounded-b-lg">
+                                                    <nav className="h-[50vh] overflow-scroll">
+                                                        {/* // if data is in STRAPI */}
+                                                        {isBrandDataAvailable && Object.keys(brandData).map((category: string) => (
+                                                            <div key={category} className="pr-2">
+                                                                <div className="font-bold text-lg pt-3 text-[14px]">{category}</div>
+                                                                <div className="font-medium">
+                                                                    {brandData[category].map((brand: string, index: number) => (
+                                                                        <div key={index}>
+                                                                            {/* <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}> */}
+                                                                            <div onClick={() => handleBrandClick(brand)} key={index} className={`py-1 text-[14px]`}>
+                                                                                {brand}
+                                                                            </div>
+                                                                            {/* </Link> */}
+                                                                        </div>
+                                                                    ))}
                                                                 </div>
-                                                            ))}
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                                {/* // if data is not in strapi */}
-                                                {!isBrandDataAvailable && Object.keys(staticBrandData).map((category: string) => (
-                                                    <div key={category} className="pr-2">
-                                                        <div className="font-bold text-lg pt-3">{category}</div>
-                                                        <div className="font-medium">
-                                                            {/* @ts-ignore */}
-                                                            {staticBrandData[category].map((brand: string, index: number) => (
-                                                                <div key={index}>
-                                                                    {/* <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}> */}
-                                                                    <div onClick={() => handleBrandClick(brand)} key={index} className="py-1">
-                                                                        {brand}
-                                                                    </div>
-                                                                    {/* </Link> */}
+                                                            </div>
+                                                        ))}
+                                                        {/* // if data is not in strapi */}
+                                                        {!isBrandDataAvailable && Object.keys(staticBrandData).map((category: string) => (
+                                                            <div key={category} className="pr-2">
+                                                                <div className="font-bold text-lg pt-3">{category}</div>
+                                                                <div className="font-medium">
+                                                                    {/* @ts-ignore */}
+                                                                    {staticBrandData[category].map((brand: string, index: number) => (
+                                                                        <div key={index}>
+                                                                            {/* <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}> */}
+                                                                            <div onClick={() => handleBrandClick(brand)} key={index} className="py-1">
+                                                                                {brand}
+                                                                            </div>
+                                                                            {/* </Link> */}
+                                                                        </div>
+                                                                    ))}
                                                                 </div>
-                                                            ))}
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                            </nav>
+                                                            </div>
+                                                        ))}
+                                                    </nav>
+                                                </div>
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                    </Accordion>
+                                    <div className="py-1" />
+                                    <ScrollLink href="#popshop">
+                                        <div className="bg-[#F5F5F5] p-3">
+                                            <div className="text-black font-medium">POPShop</div>
                                         </div>
-                                    </AccordionContent>
-                                </AccordionItem>
-                            </Accordion>
-                            <div className="py-1" />
-                            {/* //Our POP World */}
-                            {/* <Accordion type="single" collapsible>
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger className="bg-[#F5F5F5] p-3">Our POPWorld</AccordionTrigger>
-                                    <AccordionContent className="p-[0px] pb-0">
-                                        <div className="bg-[#fff4f3] p-3 rounded-b-lg">
-                                            POPShop
+                                    </ScrollLink>
+                                    <div className="py-1" />
+                                    {/* // Blogs */}
+                                    {/* <Link href="/coupons"> */}
+                                    <div onClick={handleCouponsClick} className="bg-[#F5F5F5] p-3">
+                                        <div className="text-black font-medium">Coupons</div>
+                                    </div>
+                                    {/* </Link> */}
+                                    <div className="py-1" />
+                                    {/* // Blogs */}
+                                    {/* <Link href="https://blog.mypop.in/"> */}
+                                    <div onClick={handleBlogClick} className="bg-[#F5F5F5] p-3">
+                                        <div className="text-black font-medium">Blogs</div>
+                                    </div>
+                                    {/* </Link> */}
+                                    <div className="py-1" />
+                                    {/* // Help & Support */}
+                                    {/* <Link href="#"> */}
+                                    <ScrollLink href="#footer-contact-us">
+                                        <div className="bg-[#F5F5F5] p-3">
+                                            <div className="text-black font-medium">Contact Us</div>
                                         </div>
-                                    </AccordionContent>
-                                </AccordionItem>
-                            </Accordion> */}
-                            <ScrollLink href="#popshop">
-                                <div className="bg-[#F5F5F5] p-3">
-                                    <div className="text-black font-medium">POPShop</div>
-                                </div>
-                            </ScrollLink>
-                            <div className="py-1" />
-                            {/* // Blogs */}
-                            {/* <Link href="/coupons"> */}
-                            <div onClick={handleCouponsClick} className="bg-[#F5F5F5] p-3">
-                                <div className="text-black font-medium">Coupons</div>
-                            </div>
-                            {/* </Link> */}
-                            <div className="py-1" />
-                            {/* // Blogs */}
-                            {/* <Link href="https://blog.mypop.in/"> */}
-                            <div onClick={handleBlogClick} className="bg-[#F5F5F5] p-3">
-                                <div className="text-black font-medium">Blogs</div>
-                            </div>
-                            {/* </Link> */}
-                            <div className="py-1" />
-                            {/* // Help & Support */}
-                            {/* <Link href="#"> */}
-                            <ScrollLink href="#footer-contact-us">
-                                <div className="bg-[#F5F5F5] p-3">
-                                    <div className="text-black font-medium">Contact Us</div>
-                                </div>
-                            </ScrollLink>
+                                    </ScrollLink>
+                                </>
+                            )}
+
                             {/* </Link> */}
                             <div className="py-1" />
                             <div className="flex flex-col items-center">
@@ -327,6 +321,8 @@ function MobileHeader() {
                             </div>
                         </div>
                     </div>
+
+
                 </nav>
             </main>
         </>

@@ -19,9 +19,13 @@ function POPShop() {
     const [isMobileThirdActive, setMobileThirdActive] = useState(false)
     const [isMobileFourthActive, setMobileFourthActive] = useState(false)
 
-    const [mobileTwo, setMobileTwo] = useState("-750px");
-    const [mobileThree, setMobileThree] = useState("-670px");
-    const [mobileFour, setMobileFour] = useState("-600px");
+    // const [mobileTwo, setMobileTwo] = useState("-765px");
+    // const [mobileThree, setMobileThree] = useState("-685px");
+    // const [mobileFour, setMobileFour] = useState("-610px");
+
+    const [mobileTwo, setMobileTwo] = useState("-765px");
+    const [mobileThree, setMobileThree] = useState("-685px");
+    const [mobileFour, setMobileFour] = useState("-610px");
 
     const handleOneClick = (event: any) => {
         const image = event.target;
@@ -95,9 +99,9 @@ function POPShop() {
             setMobileFirstActive((prev) => !prev)
             if (isMobileFirstActive === true) {
                 // reset everything
-                setMobileTwo("-750px")
-                setMobileThree("-670px")
-                setMobileFour("-600px")
+                setMobileTwo("-765px")
+                setMobileThree("-685px")
+                setMobileFour("-610px")
             }
             else if (isMobileFirstActive === false) {
                 setMobileTwo("-20px")
@@ -115,28 +119,28 @@ function POPShop() {
         // setMobileThree("-20px")
         setMobileSecondActive((prev) => !prev)
         if (isMobileSecondActive === true) {
-            setMobileFour("-600px")
+            setMobileFour("-610px")
             setMobileThree("-20px")
-            setMobileTwo("-750px")
+            setMobileTwo("-765px")
         }
         else {
-            setMobileTwo("-750px")
-            setMobileThree("-670px")
-            setMobileFour("-600px")
+            setMobileTwo("-765px")
+            setMobileThree("-685px")
+            setMobileFour("-610px")
         }
     }
     const handleThreeMobileClick = () => {
         // setMobileFour("-20px")
         setMobileThirdActive((prev) => !prev)
         if (isMobileThirdActive === true) {
-            setMobileTwo("-750px")
-            setMobileThree("-670px")
+            setMobileTwo("-765px")
+            setMobileThree("-685px")
             setMobileFour("-20px")
         }
         else {
-            setMobileTwo("-750px")
-            setMobileThree("-670px")
-            setMobileFour("-600px")
+            setMobileTwo("-765px")
+            setMobileThree("-685px")
+            setMobileFour("-610px")
         }
     }
 
@@ -147,9 +151,9 @@ function POPShop() {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         if (y < 65) {
-            setMobileTwo("-750px")
-            setMobileThree("-670px")
-            setMobileFour("-600px")
+            setMobileTwo("-765px")
+            setMobileThree("-685px")
+            setMobileFour("-610px")
         }
         else {
             if (typeof window === "undefined") {

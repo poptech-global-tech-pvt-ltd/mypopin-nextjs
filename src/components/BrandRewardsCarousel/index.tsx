@@ -46,9 +46,9 @@ function BrandRewardsCarousel() {
                                     alt="Popcoin"
                                     className='mx-1'
                                 />
-                                <div className="text-[22px] font-bold">1 EQUALS ₹ 1</div>
+                                <div className="text-[22px] font-bold">1 EQUALS ₹1</div>
                             </div>
-                            <div className={`text-xl font-[500] text-[21px] text-center lg:text-left ${manrope.className} font-normal text-[#353535]`}> Maximise Your Savings & Shop More With POPcoins</div>
+                            <div className={`font-[500] text-[18px] text-center lg:text-left ${manrope.className} font-normal text-[#353535]`}> Maximise Your Savings & Shop More With POPcoins</div>
                         </div>
                     </div>
                     <div style={{ width: "100%", overflow: "hidden" }}>
