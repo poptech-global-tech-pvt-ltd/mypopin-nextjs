@@ -46,10 +46,6 @@ function HeroBanner() {
     }, [])
 
     console.log({bannerData})
-
-    const customLoader = () => {
-        return `https://ik.imagekit.io/t2vt6tx4m/strapi/banner_popcoin_22b154ad9b_b66VCNa7z.png?tr=bl-30`
-    }
     
     return (
         <>
@@ -78,7 +74,7 @@ function HeroBanner() {
                             {bannerData?.length > 0 && bannerData?.map((itm: any, index: number) => (
                                 <Fragment key={index}>
                                     <div>
-                                        <a href="">
+                                        <a href={itm?.attributes?.image?.data?.attributes?.redirection_url}>
                                             {/* <div className="h-[90vh] w-[100vw]"> */}
                                                 <ImageComponent
                                                     src={itm?.attributes?.image?.data?.attributes?.url}
