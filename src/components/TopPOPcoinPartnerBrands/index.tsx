@@ -38,14 +38,14 @@ function TopPOPcoinPartnerBrands() {
                 <div className="row mx-0">
                     <div className="col-md-12">
                         {/* <h2 className={`${khand.className}  text-center text-6xl py-16`}>Top POPcoin partner brands</h2> */}
-                        <div className={`px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 text-center lg:text-6xl pt-10 pb-4 font-bold ${khand.className}`}>Top POPcoin partner brands</div>
+                        <div className={`px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 text-center lg:text-6xl pt-10 pb-4 font-bold ${khand.className}`}>Top POPcoins partner brands</div>
                         <div className="slider-popcoins-brands">
                             <div style={{ width: "100%", overflow: "hidden" }}>
                                 <Carousel
                                     itemClass="top-brand-itm"
                                     arrows={false}
                                     autoPlay={true}
-                                    autoPlaySpeed={1800}
+                                    autoPlaySpeed={2500}
                                     centerMode={false}
                                     dotListClass=""
                                     draggable
@@ -64,6 +64,7 @@ function TopPOPcoinPartnerBrands() {
                                         hoverText="A homegrown lifestyle brand trying to make a difference through slow luxury
                             and ethical textile practices while narrating stories, reviving culture and
                             doing good by sustaining livelihoods."
+                                        link="https://www.sagajaipur.com/"
                                     />
                                     <POPHoverCard
                                         brandLogoPath="/saga-logo-toppopcoins-brand.png"
@@ -72,6 +73,7 @@ function TopPOPcoinPartnerBrands() {
                                         hoverText="A modern Indian brand co-created with Samantha Ruth Prabhu, bringing Indian
                             fashion to women worldwide, with the right blend of an Indian heart and a
                             global outlook."
+                                        link="https://saaki.co/"
                                     />
                                     <POPHoverCard
                                         brandLogoPath="/saga-logo-toppopcoins-brand.png"
@@ -80,6 +82,8 @@ function TopPOPcoinPartnerBrands() {
                                         hoverText="Tatha created pure and natural routines for the skin, devoid of any
                             chemicals, born from ancient roots and built with contemporary ways to meet
                             modern needs."
+                            link="https://tatha.co.in/"
+
                                     />
                                     <POPHoverCard
                                         brandLogoPath="/saga-logo-toppopcoins-brand.png"
@@ -88,6 +92,8 @@ function TopPOPcoinPartnerBrands() {
                                         hoverText="With food infused with Ayurvedic and traditional wisdom passed on by our
                             ancestors, Anveshan assures wholesome, chemical-free and preservative-free
                             food straight from the farms."
+                            link="https://www.anveshan.farm/"
+
                                     />
                                 </Carousel>
                             </div>
