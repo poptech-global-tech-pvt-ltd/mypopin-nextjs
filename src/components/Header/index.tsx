@@ -94,9 +94,13 @@ function Header() {
     }, [])
 
     useEffect(() => {
-        if (cookieKey) {
+        var sessionCookie = getSessionCookie('sessionID');
+        console.log(sessionCookie)
+
+        if (sessionCookie) {
+            setCookieKey(sessionCookie)
             try {
-                fetch(`https://presentation.popclub.co.in/api/get-available-coins?key=${cookieKey}`, {
+                fetch(`https://presentation.popclub.co.in/api/get-available-coins?key=${sessionCookie}`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Basic cGwtcHJvZDpwbEAyMHR3ZW50eXR3bw==',
