@@ -13,7 +13,7 @@ export default function NotFound() {
         <div className="flex items-center justify-center text-[#999999] text-[20px]">The page you're looking for has been moved, renamed or doesn't exist</div>
         <div className="flex items-center justify-center">
           <Link href={"/"}>
-            <Button className="rounded-full text-[#F46651] bg-white">Go to Home</Button>
+            <Button className="rounded-full text-white bg-[#F46651] shadow-md">Go to Home</Button>
           </Link>
         </div>
       </section>
