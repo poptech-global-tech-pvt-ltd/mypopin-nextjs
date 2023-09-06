@@ -13,7 +13,7 @@ const khand = Khand({
 
 const spolightBrands = [
   { relativeImageURL: "/spotlight/spotlight-product-anveshan.png" },
-  { relativeImageURL: "/spotlight/spotlight-product-boyo-paul penders.png" },
+  { relativeImageURL: "/spotlight/spotlight-product-boyo-paul.png" },
   { relativeImageURL: "/spotlight/spotlight-product-boyo-saga-jaipur.png" },
   { relativeImageURL: "/spotlight/spotlight-product-boyo-tatha.png" },
   // { relativeImageURL: "/spotlight/spotlight-product-boyo-zoh.png" },
@@ -30,7 +30,7 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 4
+    items: 5
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },

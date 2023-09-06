@@ -6,6 +6,7 @@ import { Manrope } from 'next/font/google'
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from 'next/navigation'
+import { Button } from "../ui/button";
 
 const manrope = Manrope({
     subsets: ['latin'],
@@ -21,6 +22,7 @@ interface IBrandDeals {
 
 function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentage }: IBrandDeals) {
     const [productImagesData, setProductImagesData] = useState<any>();
+    const [showMore, setShowMore] = useState<boolean>(false)
     const router = useRouter()
     const pathname = usePathname()
     const responsive = {
@@ -31,7 +33,7 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
         },
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
-            items: 4
+            items: 4.5
         },
         tablet: {
             breakpoint: { max: 1024, min: 464 },
@@ -53,20 +55,111 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
     }
 
     console.log({ productImagesData })
+
+    const onlyFour = productImagesData?.slice(0, 4)
+    const restData = productImagesData?.slice(5)
+
     return (
         <>
             <div>
+
                 <div className={`uppercase text-[22px] lg:text-3xl text-center font-bold py-16`}>EXPLORE UNLIMITED DEALS</div>
-                <div className="mx-auto">
+                {/* // mobile */}
+                <section className="grid grid-cols-2 grid-rows-2 gap-2 lg:hidden">
+                    {onlyFour?.slice(0, 4)?.length > 0 && onlyFour?.map((itm: any, index: number) => (
+                        <div key={index}>
+                            <div onClick={() => handleProductLink(itm)} className="grid w-full justify-center justify-items-center max-w-[285px] mx-auto">
+                                <div className="relative z-10 flex items-center justify-center">
+                                    <img
+                                        src={itm?.attributes?.product_image}
+                                        alt="hgfd"
+                                        className="object-cover rounded-xl shadow-lg border-[0.3px]"
+                                    />
+                                    {discountPercentage === "-Infinity" ?
+                                        <div>{null}</div> :
+                                        <div style={{ backgroundColor: primaryColor }} className={`absolute top-8 right-0 p-1 pl-4 bg-red-500 text-white text-xl ${manrope.className} font-bold rounded-l-full`}>
+                                            {itm?.attributes?.product_mrp === null ?
+                                                (<div>
+                                                    {(Math.trunc((((itm?.attributes?.product_price * discountPercentage) / itm?.attributes?.product_price)))).toString()}% off
+                                                </div>)
+                                                : <div>
+                                                    {Math.trunc((((itm?.attributes?.product_mrp - itm?.attributes?.product_price) + (itm?.attributes?.product_price * discountPercentage / 100)) / itm?.attributes?.product_mrp) * 100)}% off
+                                                </div>}
+                                        </div>}
+                                </div>
+                                <div style={{ backgroundColor: secondaryColor, transform: "translateY(-8%)" }} className={`w-11/12 rounded-bl-3xl rounded-br-3xl font-bold ${manrope.className} z-5 max-w-[243px] min-h-[120px] text-[10px]`}>
+                                    <div className="text-center pt-6 px-2">{itm?.attributes?.product_name.length > 50 ? itm?.attributes?.product_name.slice(0, 50) + ".." : itm?.attributes?.product_name}</div>
+                                    <div className="text-center py-1">₹{itm?.attributes?.product_price}&nbsp;<span style={{ textDecoration: "line-through", color: "gray" }}>{itm?.attributes?.product_mrp ? <span> ₹{itm?.attributes?.product_mrp}</span> : null}  </span></div>
+                                    <div className="flex items-center justify-center py-3">
+                                        <div>or &nbsp;</div>
+                                        <div>₹ {Math.trunc(itm?.attributes?.product_price - ((itm?.attributes?.product_price * discountPercentage) / 100))}</div>
+                                        <div>+&nbsp;</div>
+                                        <img width="20" height="20" src="/popcoin-icon.svg" />
+                                        <div>{Math.trunc(itm?.attributes?.product_price * discountPercentage / 100)}</div>
+                                    </div>
+                                    {/* <div className="text-center pb-3">or ₹ {itm?.attributes?.price_with_coin}+ {itm?.attributes?.burn_coin}</div> */}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </section>
+
+                <div className="flex items-center justify-center py-2 lg:hidden">
+                    <Button variant="outline" onClick={() => setShowMore((prev) => !prev)}>See More Products</Button>
+                </div>
+
+                <section className={`${!showMore ? `hidden` : `block`} grid grid-cols-2 grid-rows-2 gap-2`}>
+                    {restData?.slice(0, 4)?.length > 0 && restData?.map((itm: any, index: number) => (
+                        <div key={index}>
+                            <div onClick={() => handleProductLink(itm)} className="grid w-full justify-center justify-items-center max-w-[285px] mx-auto">
+                                <div className="relative z-10 flex items-center justify-center">
+                                    <img
+                                        src={itm?.attributes?.product_image}
+                                        alt="hgfd"
+                                        className="object-cover rounded-xl shadow-lg border-[0.3px]"
+                                    />
+                                    {discountPercentage === "-Infinity" ?
+                                        <div>{null}</div> :
+                                        <div style={{ backgroundColor: primaryColor }} className={`absolute top-8 right-0 p-1 pl-4 bg-red-500 text-white text-xl ${manrope.className} font-bold rounded-l-full`}>
+                                            {itm?.attributes?.product_mrp === null ?
+                                                (<div>
+                                                    {(Math.trunc((((itm?.attributes?.product_price * discountPercentage) / itm?.attributes?.product_price)))).toString()}% off
+                                                </div>)
+                                                : <div>
+                                                    {Math.trunc((((itm?.attributes?.product_mrp - itm?.attributes?.product_price) + (itm?.attributes?.product_price * discountPercentage / 100)) / itm?.attributes?.product_mrp) * 100)}% off
+                                                </div>}
+                                        </div>}
+                                </div>
+                                <div style={{ backgroundColor: secondaryColor, transform: "translateY(-8%)" }} className={`w-11/12 rounded-bl-3xl rounded-br-3xl font-bold ${manrope.className} z-5 max-w-[243px] min-h-[120px] text-[10px]`}>
+                                    <div className="text-center pt-6 px-2">{itm?.attributes?.product_name.length > 50 ? itm?.attributes?.product_name.slice(0, 50) + ".." : itm?.attributes?.product_name}</div>
+                                    <div className="text-center py-1">₹{itm?.attributes?.product_price}&nbsp;<span style={{ textDecoration: "line-through", color: "gray" }}>{itm?.attributes?.product_mrp ? <span> ₹{itm?.attributes?.product_mrp}</span> : null}  </span></div>
+                                    <div className="flex items-center justify-center py-3">
+                                        <div>or &nbsp;</div>
+                                        <div>₹ {Math.trunc(itm?.attributes?.product_price - ((itm?.attributes?.product_price * discountPercentage) / 100))}</div>
+                                        <div>+&nbsp;</div>
+                                        <img width="20" height="20" src="/popcoin-icon.svg" />
+                                        <div>{Math.trunc(itm?.attributes?.product_price * discountPercentage / 100)}</div>
+                                    </div>
+                                    {/* <div className="text-center pb-3">or ₹ {itm?.attributes?.price_with_coin}+ {itm?.attributes?.burn_coin}</div> */}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </section>
+
+
+
+                {/* // desktop */}
+                <div className="mx-auto hidden lg:block">
                     <Carousel
                         arrows={false}
-                        autoPlay={false}
+                        autoPlay={true}
                         autoPlaySpeed={1800}
                         centerMode={false}
                         //   className=""
                         //   containerClass="container-with-dots"
                         dotListClass=""
-                        draggable={false}
+                        draggable={true}
                         focusOnSelect={false}
                         infinite={true}
                         itemClass="unlimiteddeals-item-class"
@@ -102,7 +195,7 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                                             </div>}
                                     </div>
                                     <div style={{ backgroundColor: secondaryColor, transform: "translateY(-8%)" }} className={`w-11/12 rounded-bl-3xl rounded-br-3xl font-bold ${manrope.className} z-5 max-w-[243px] min-h-[180px]`}>
-                                        <div className="text-center pt-6 px-2">{ itm?.attributes?.product_name.length > 50 ? itm?.attributes?.product_name.slice(0, 50) + ".." : itm?.attributes?.product_name}</div>
+                                        <div className="text-center pt-6 px-2">{itm?.attributes?.product_name.length > 50 ? itm?.attributes?.product_name.slice(0, 50) + ".." : itm?.attributes?.product_name}</div>
                                         <div className="text-center py-1">₹{itm?.attributes?.product_price}&nbsp;<span style={{ textDecoration: "line-through", color: "gray" }}>{itm?.attributes?.product_mrp ? <span> ₹{itm?.attributes?.product_mrp}</span> : null}  </span></div>
                                         <div className="flex items-center justify-center py-3">
                                             <div>or &nbsp;</div>
