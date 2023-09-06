@@ -28,7 +28,7 @@ function ShoppingDeals() {
     console.log({ widgetData })
     return (
         <div className="max-w-6xl mx-auto">
-            <div className={`px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 text-center lg:text-6xl py-16 font-bold lg:mb-[150px] ${khand.className}`}>Best Shopping Deals Online</div>
+            <div className={`lg:pb-0 px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 text-center lg:text-6xl py-16 font-bold lg:mb-[150px] ${khand.className}`}>Best Shopping Deals Online</div>
             <div className='py-12 lg:py-12' />
             <div className="shopping-deals">
                 <div className='swiper-container'>

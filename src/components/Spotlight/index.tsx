@@ -11,13 +11,13 @@ const khand = Khand({
 })
 
 const spolightBrands = [
-  { relativeImageURL: "/spotlight/spotlight-product-anveshan.png"},
-  { relativeImageURL: "/spotlight/spotlight-product-boyo-paul.png" },
-  { relativeImageURL: "/spotlight/spotlight-product-boyo-saga-jaipur.png" },
-  { relativeImageURL: "/spotlight/spotlight-product-boyo-tatha.png" },
-  { relativeImageURL: "/spotlight/spotlight-product-boyo.png" },
-  { relativeImageURL: "/spotlight/spotlight-product-saaki.png" },
-  { relativeImageURL: "/spotlight/spotlight-product-zoh.png" },
+  { relativeImageURL: "/spotlight/spotlight-product-anveshan.png", link: "https://www.anveshan.farm/" },
+  { relativeImageURL: "/spotlight/spotlight-product-boyo-paul.png", link: "https://theboyo.com/" },
+  { relativeImageURL: "/spotlight/spotlight-product-boyo-saga-jaipur.png", link: "https://www.sagajaipur.com/" },
+  { relativeImageURL: "/spotlight/spotlight-product-boyo-tatha.png", link: "https://tatha.co.in/" },
+  { relativeImageURL: "/spotlight/spotlight-product-boyo.png", link: "" },
+  { relativeImageURL: "/spotlight/spotlight-product-saaki.png", link: "https://saaki.co/" },
+  { relativeImageURL: "/spotlight/spotlight-product-zoh.png", link: "https://zohprobiotics.com/" },
 ]
 
 const responsive = {
@@ -70,14 +70,16 @@ function Spotlight() {
           >
             {spolightBrands?.map(((i, index) => (
               <div key={index} className="mx-auto">
-                <div className="h-[200px] w-auto m-1">
-                  <Image
-                    src={i?.relativeImageURL}
-                    fill
-                    className="w-full h-full mx-auto object-contain"
-                    alt={i?.relativeImageURL}
-                  />
-                </div>
+                <a href={i?.link}>
+                  <div className="h-[200px] w-auto m-1">
+                    <Image
+                      src={i?.relativeImageURL}
+                      fill
+                      className="w-full h-full mx-auto object-contain"
+                      alt={i?.relativeImageURL}
+                    />
+                  </div>
+                </a>
               </div>
             )))}
           </Carousel>
