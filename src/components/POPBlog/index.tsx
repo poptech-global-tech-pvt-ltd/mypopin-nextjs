@@ -27,11 +27,8 @@ function POPBlog() {
 
     return (
         <>
-            <br />
-            <br />
-            <br />
-            <br />
-            <section className="bg-[#F7F7F9] max-w-[70rem] mx-auto rounded-3xl p-8 -mt-[100px]">
+        <div className='mt-16'/>
+            <section className="bg-[#F7F7F9] max-w-[70rem] mx-auto rounded-3xl p-8 lg:mt-0 -mt-[60px]">
                 <br />
                 <div className={`${khand.className} flex flex-col lg:flex-row leading-6 lg:leading-0`}>
                     <div className={`${khand.className} text-black text-[45px] lg:text-[40px] font-[800]`}>POP Circle. </div>

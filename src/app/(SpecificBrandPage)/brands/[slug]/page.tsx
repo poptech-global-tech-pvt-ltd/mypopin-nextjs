@@ -32,6 +32,8 @@ async function BrandPage({ params }: any) {
     const res = await getData(brandName)
     const brandData = res?.data[0]?.attributes
 
+    console.log({brandData})
+
     return (
         <>
             <Suspense fallback={<p>Loading Data...</p>}>
@@ -104,7 +106,7 @@ async function BrandPage({ params }: any) {
                     <hr className='max-w-7xl mx-auto' />
                     <br />
                     <div className='max-w-7xl mx-auto'>
-                        <div className={`font-bold ${manrope.className} text-[22px] font-bold text-center lg:text-left `}>About {brandData?.brand_name}</div>
+                        <h1 className={`font-bold ${manrope.className} text-[22px] font-bold text-center lg:text-left `}>About {brandData?.brand_name}</h1>
                         <br />
                         <div className={`text-center lg:text-left ${manrope.className} font-[500] text-[16px]`}>
                             {brandData?.about_brand}
@@ -127,10 +129,10 @@ async function BrandPage({ params }: any) {
                                 <div>₹100&nbsp;</div>
                             </div>
                         </div>
-                        <div className={`${manrope.className} text-center text-[16px] lg:text-2xl font-normal pb-8`}>Keep earning POPcoins with every purchase from  {brandData?.brand_name} and other brands on POPcoins</div>
+                        <h1 className={`${manrope.className} text-center text-[16px] lg:text-2xl font-normal pb-8`}>Keep earning POPcoins with every purchase from  {brandData?.brand_name} and other brands on POPcoins</h1>
                         <div className='text-center'>
                             <a href={brandData?.redirection_url}>
-                                {/* <Button style={{ backgroundColor: brandData?.text_color }} onClick={() => handleBrandBtnClick(brandData)} className={`rounded-full ${manrope.className} text-xl p-6 drop-shadow-md`}>Shop {brandData?.brand_name} Now</Button> */}
+                                <Button style={{ backgroundColor: brandData?.text_color }} className={`rounded-full ${manrope.className} text-xl p-6 drop-shadow-md`}>Shop {brandData?.brand_name} Now</Button>
                             </a>
                         </div>
                     </section>

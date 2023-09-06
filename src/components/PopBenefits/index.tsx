@@ -53,7 +53,7 @@ function PopBenefits() {
             <div className="py-10 max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr]">
                     {/* <div className={`text-6xl ${khand.className} flex items-center font-bold`}>Optimise Your Shopping Benefits With POPCoins</div> */}
-                    <div className={`px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 text-center lg:text-6xl py-16 font-bold ${khand.className}`}>Optimise Your Shopping Benefits With POPCoins</div>
+                    <div className={`px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 lg:text-left lg:text-6xl py-16 font-bold ${khand.className}`}>Optimise Your Shopping Benefits With POPCoins</div>
                     {/* // card container */}
                     <div className='grid grid-cols-2 lg:grid-cols-2 gap-2 lg:gap-4 px-2 lg:px-14'>
                         {benefits?.map((itm, index) => (
