@@ -5,18 +5,16 @@ import Image from "next/image"
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-
 const khand = Khand({
   weight: '700',
   subsets: ['latin'],
 })
 
 const spolightBrands = [
-  { relativeImageURL: "/spotlight/spotlight-product-anveshan.png" },
+  { relativeImageURL: "/spotlight/spotlight-product-anveshan.png"},
   { relativeImageURL: "/spotlight/spotlight-product-boyo-paul.png" },
   { relativeImageURL: "/spotlight/spotlight-product-boyo-saga-jaipur.png" },
   { relativeImageURL: "/spotlight/spotlight-product-boyo-tatha.png" },
-  // { relativeImageURL: "/spotlight/spotlight-product-boyo-zoh.png" },
   { relativeImageURL: "/spotlight/spotlight-product-boyo.png" },
   { relativeImageURL: "/spotlight/spotlight-product-saaki.png" },
   { relativeImageURL: "/spotlight/spotlight-product-zoh.png" },
