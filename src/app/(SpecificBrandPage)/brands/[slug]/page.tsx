@@ -132,7 +132,7 @@ async function BrandPage({ params }: any) {
                                 <div>₹100&nbsp;</div>
                             </div>
                         </div>
-                        <h1 className={`${manrope.className} text-center text-[16px] lg:text-2xl font-normal pb-8`}>Keep earning POPcoins with every purchase from  {brandData?.brand_name} and other brands on POPcoins</h1>
+                        <div className={`${manrope.className} text-center text-[16px] lg:text-2xl font-normal pb-8`}>Keep earning POPcoins with every purchase from  {brandData?.brand_name} and other brands on POPcoins</div>
                         <div className='text-center'>
                             <a href={brandData?.redirection_url}>
                                 <Button style={{ backgroundColor: brandData?.primary_color, color : brandData?.text_color }} className={`rounded-full ${manrope.className} text-xl p-6 drop-shadow-md font-bold`}>Shop {brandData?.brand_name} Now</Button>
