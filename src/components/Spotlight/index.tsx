@@ -12,10 +12,10 @@ const khand = Khand({
 
 const spolightBrands = [
   { relativeImageURL: "/spotlight/spotlight-product-anveshan.png", link: "https://www.anveshan.farm/" },
-  { relativeImageURL: "/spotlight/spotlight-product-boyo-paul.png", link: "https://theboyo.com/" },
+  { relativeImageURL: "/spotlight/spotlight-product-boyo-paul.png", link: "https://paulpenders.com/" },
   { relativeImageURL: "/spotlight/spotlight-product-boyo-saga-jaipur.png", link: "https://www.sagajaipur.com/" },
   { relativeImageURL: "/spotlight/spotlight-product-boyo-tatha.png", link: "https://tatha.co.in/" },
-  { relativeImageURL: "/spotlight/spotlight-product-boyo.png", link: "" },
+  { relativeImageURL: "/spotlight/spotlight-product-boyo.png", link: "https://theboyo.com/" },
   { relativeImageURL: "/spotlight/spotlight-product-saaki.png", link: "https://saaki.co/" },
   { relativeImageURL: "/spotlight/spotlight-product-zoh.png", link: "https://zohprobiotics.com/" },
 ]

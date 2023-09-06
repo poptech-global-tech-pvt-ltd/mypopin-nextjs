@@ -48,10 +48,9 @@ function POPShop() {
             }
         }
         else {
-            if (typeof window === "undefined") {
-                // @ts-ignore
-                window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
-            }
+
+            window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+
         }
     }
 
@@ -82,10 +81,9 @@ function POPShop() {
             settwo("-1050px")
         }
         else {
-            if (typeof window === "undefined") {
-                // @ts-ignore
-                window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
-            }
+
+            window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+
         }
     }
 
@@ -108,10 +106,9 @@ function POPShop() {
             }
         }
         else {
-            if (typeof window === "undefined") {
-                // @ts-ignore
-                window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
-            }
+
+            window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+
         }
     }
 
@@ -156,10 +153,9 @@ function POPShop() {
             setMobileFour("-610px")
         }
         else {
-            if (typeof window === "undefined") {
-                // @ts-ignore
-                window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
-            }
+
+            window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+
         }
     }
 
