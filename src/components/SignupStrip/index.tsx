@@ -2,9 +2,10 @@ import Image from "next/image"
 import { Dialog, DialogContent, DialogDescription, DialogTrigger } from "../ui/dialog"
 import { useState } from "react";
 
-function SignupStrip() {
-    const [cookieKey, setCookieKey] = useState("");
+function SignupStrip({isLoggedIn,setLoggedIn }: any) {
 
+    const [cookieKey, setCookieKey] = useState("");
+    
     const handleLogin = () => {
         //get cookie name
         function getCookie(name: string) {

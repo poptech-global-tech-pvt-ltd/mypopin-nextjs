@@ -27,7 +27,7 @@ function MobileHeader() {
     useEffect(() => {
         const getBrandNames = async () => {
             try {
-                const response = await fetch('https://mypop-dashboard.popclub.co.in/api/brand-names?populate=*');
+                const response = await fetch('https://mypop-dashboard.popclub.co.in/api/brand-names?pagination[page]=1&pagination[pageSize]=50&populate=*')
                 const data = await response.json();
 
                 // Transform the data to group brands by category
@@ -39,7 +39,6 @@ function MobileHeader() {
                     acc[category].push(item.attributes.brand_name);
                     return acc;
                 }, {});
-
                 setBrandData(transformedData);
             } catch (error) {
                 console.error('Error fetching brand names:', error);
@@ -49,38 +48,6 @@ function MobileHeader() {
     }, []);
 
     const isBrandDataAvailable = Object.keys(brandData).length !== 0
-
-    const staticBrandData = {
-        "Beauty": [
-            "Body Tales",
-            "BraavoKing",
-            "Femisafe",
-            "Khadi Essentials",
-            "Mai Sknn",
-            "Makeup Eraser",
-            "Man Theory",
-            "Paul Penders",
-            "Tatha",
-            "The Skin Story"
-        ],
-        "Fashion": [
-            "Bacca Bucci"
-        ],
-        "Food & Drinks": [
-            "Anveshan"
-        ],
-        "Health": [
-            "Zoh Probiotics"
-        ],
-        "Home & Living": [
-            "Dusaan",
-            "Klotthe",
-            "Saga Jaipur"
-        ],
-        "Stationary": [
-            "Doodle Collection"
-        ]
-    }
 
     const [cookieKey, setCookieKey] = useState("");
 
@@ -187,6 +154,8 @@ function MobileHeader() {
         setOpen(false)
     }
 
+    console.log({brandData})
+
     return (
         <>
             <main>
@@ -239,32 +208,14 @@ function MobileHeader() {
                                                 <div className="bg-[#fff4f3] p-3 rounded-b-lg">
                                                     <nav className="h-[50vh] overflow-scroll">
                                                         {/* // if data is in STRAPI */}
-                                                        {isBrandDataAvailable && Object.keys(brandData).map((category: string) => (
-                                                            <div key={category} className="pr-2">
+                                                        {isBrandDataAvailable && Object.keys(brandData).map((category: string, index: number) => (
+                                                            <div key={index} className="pr-2">
                                                                 <div className="font-bold text-lg pt-3 text-[14px]">{category}</div>
                                                                 <div className="font-medium">
                                                                     {brandData[category].map((brand: string, index: number) => (
                                                                         <div key={index}>
                                                                             {/* <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}> */}
                                                                             <div onClick={() => handleBrandClick(brand)} key={index} className={`py-1 text-[14px]`}>
-                                                                                {brand}
-                                                                            </div>
-                                                                            {/* </Link> */}
-                                                                        </div>
-                                                                    ))}
-                                                                </div>
-                                                            </div>
-                                                        ))}
-                                                        {/* // if data is not in strapi */}
-                                                        {!isBrandDataAvailable && Object.keys(staticBrandData).map((category: string) => (
-                                                            <div key={category} className="pr-2">
-                                                                <div className="font-bold text-lg pt-3">{category}</div>
-                                                                <div className="font-medium">
-                                                                    {/* @ts-ignore */}
-                                                                    {staticBrandData[category].map((brand: string, index: number) => (
-                                                                        <div key={index}>
-                                                                            {/* <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}> */}
-                                                                            <div onClick={() => handleBrandClick(brand)} key={index} className="py-1">
                                                                                 {brand}
                                                                             </div>
                                                                             {/* </Link> */}

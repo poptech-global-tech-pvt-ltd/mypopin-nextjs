@@ -19,10 +19,14 @@ import { HeroBannerMobile } from "@/components/HeroBannerMobile"
 import Head from 'next/head'
 import { SignupStrip } from "@/components/SignupStrip"
 import Script from "next/script"
+import { useState } from "react"
 
 
 
 export default function Home() {
+
+  const [isLoggedIn, setLoggedIn] = useState<boolean>()
+
   return (
     <>
     <head>
@@ -117,7 +121,7 @@ export default function Home() {
           <HeroPartners />
           <ShoppingDeals />
         </Layout>
-        <SignupStrip />
+        <SignupStrip isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/>
         <TopPOPcoinPartnerBrands />
         <Layout>
           <POPInNumbers />
