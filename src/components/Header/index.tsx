@@ -19,6 +19,8 @@ import { useRouter, usePathname } from 'next/navigation'
 function Header() {
     const [cookieKey, setCookieKey] = useState<any>("");
     const [coinNumber, setCoinNumber] = useState<any>("");
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+
     const pathName = usePathname()
 
 
@@ -26,6 +28,7 @@ function Header() {
         const hasCookieAlready = setSessionCookieOnce('sessionID')
         console.log({ hasCookieAlready })
         setCookieKey(hasCookieAlready)
+        setIsDialogOpen(true)
     }
 
     function fetchUserCoins() {
@@ -59,6 +62,15 @@ function Header() {
         }
     }
 
+    function handleOpenChange(newOpenState: boolean) {
+        if (newOpenState) {
+            setIsDialogOpen(true)
+        } else {
+            setIsDialogOpen(false)
+            featchCoin()
+        }
+    }
+      
     function setSessionCookie(cookieName: any) {
         var characters = 'abcdefghijklmnopqrstuvwxyz0123456789'
         var length = 32;
@@ -87,13 +99,7 @@ function Header() {
         return '';
     }
 
-    // if a cookie already exists
-    useEffect(() => {
-        console.log('load')
-        setSessionCookieOnce('sessionID')
-    }, [])
-
-    useEffect(() => {
+    function featchCoin() {
         var sessionCookie = getSessionCookie('sessionID');
         console.log(sessionCookie)
 
@@ -110,6 +116,15 @@ function Header() {
                 console.log("Oops! An error has occurred");
             }
         }
+    }
+    // if a cookie already exists
+    useEffect(() => {
+        console.log('load')
+        setSessionCookieOnce('sessionID')
+    }, [])
+
+    useEffect(() => {
+        featchCoin()
     }, [cookieKey])
 
     console.log({coinNumber})
@@ -158,7 +173,7 @@ function Header() {
 
                             {pathName !== "/partner-with-pop" && (
                                 <div className="btn-container-desktop-modal">
-                                    <Dialog>
+                                    <Dialog open={isDialogOpen} onOpenChange={handleOpenChange}>
                                         <DialogTrigger>
                                             <User2 className="mt-[4px]" onClick={() => handleLogin()} />
                                         </DialogTrigger>
