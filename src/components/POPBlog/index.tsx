@@ -126,7 +126,6 @@ function POPBlog() {
                         <Button className='rounded-full bg-white hover:text-white drop-shadow text-black'>Show all blog articles</Button>
                     </Link>
                 </div>
-
             </section>
             <div className='my-12 lg:my-0' />
         </>

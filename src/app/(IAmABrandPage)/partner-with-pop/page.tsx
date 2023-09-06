@@ -107,10 +107,7 @@ gtag('config', 'G-5HQ42CSKWF')
                 </div>
                 <ScheduleDemo />
                 <POPBlog />
-                <br />
-                <br />
-                <br />
-                <br />
+                <div className='lg:py-2' />
             </div>
         </>
     )
