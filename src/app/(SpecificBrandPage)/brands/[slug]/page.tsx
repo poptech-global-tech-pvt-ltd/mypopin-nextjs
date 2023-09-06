@@ -64,7 +64,7 @@ async function BrandPage({ params }: any) {
                                         <Button className={`${manrope.className} bg-white text-sm lg:text-lg px-8 text-black hover:text-white font-bold rounded-full`}>Shop with POPCoins</Button>
                                     </a>
                                     <div className='hidden lg:block'>
-                                        <img src={brandData?.round_logo?.data?.attributes?.url} />
+                                        <img className='max-h-[85px] max-w-[85px]' src={brandData?.round_logo?.data?.attributes?.url} />
                                     </div>
                                 </div>
                             </div>
