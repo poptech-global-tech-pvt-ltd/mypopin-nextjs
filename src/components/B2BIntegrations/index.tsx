@@ -15,16 +15,16 @@ const manrope = Manrope({
 })
 
 const integrationLogos = [
-    { url: "/integration-shopify.svg" },
-    { url: "/integration-appbrew.svg" },
-    { url: "/integration-gokwik.svg" },
-    { url: "/integration-klaviyo.svg" },
-    { url: "/integration-kontlo.svg" },
-    { url: "/integration-razorpay.svg" },
-    { url: "/integration-shiprocket.svg" },
-    { url: "/integration-shopflo.svg" },
-    { url: "/integration-simpl.svg" },
-    { url: "/integration-wigzo.svg" },
+    { url: "/integration-shopify.png" },
+    { url: "/integration-appbrew.png" },
+    { url: "/integration-gokwik.png" },
+    { url: "/integration-klaviyo.png" },
+    { url: "/integration-kontlo.png" },
+    { url: "/integration-razorpay.png" },
+    { url: "/integration-shiprocket.png" },
+    { url: "/integration-shopflo.png" },
+    { url: "/integration-simpl.png" },
+    { url: "/integration-wigzo.png" },
 ]
 
 function B2BIntegrations() {
@@ -36,7 +36,7 @@ function B2BIntegrations() {
                     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 items-center justify-items-center">
                         {integrationLogos?.map((i, index) => (
                             <div key={index}>
-                                <img className='lg:w-[157px] lg:h-[100px] w-[80px] h-auto' width="157" height="100" src={i.url} alt={i.url} />
+                                <img className='lg:w-[157px] lg:h-auto w-[80px] h-auto' width="auto" height="157" src={i.url} alt={i.url} />
                             </div>
                         ))}
                     </div>

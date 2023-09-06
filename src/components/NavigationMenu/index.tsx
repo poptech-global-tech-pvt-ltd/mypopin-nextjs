@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useState, useEffect, Fragment } from "react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
@@ -116,14 +115,14 @@ export function NavigationMenuDemo() {
           </ScrollLink>
           {/* </NavigationMenuLink> */}
         </NavigationMenuItem>
-
+{/* 
         <NavigationMenuItem className={`${manrope.className} font-bold`}>
           <Link href="/coupons" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               <div className={`${manrope.className} font-bold text-[16px]`}>Coupons</div>
             </NavigationMenuLink>
           </Link>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
 
         <NavigationMenuItem className={`${manrope.className} font-bold`}>
           <Link href="/blogs" legacyBehavior passHref>
