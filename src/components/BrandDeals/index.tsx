@@ -57,12 +57,11 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
     console.log({ productImagesData })
 
     const onlyFour = productImagesData?.slice(0, 4)
-    const restData = productImagesData?.slice(5)
+    const restData = productImagesData?.slice(5, 7)
 
     return (
         <>
             <div>
-
                 <div className={`uppercase text-[22px] lg:text-3xl text-center font-bold py-16`}>EXPLORE UNLIMITED DEALS</div>
                 {/* // mobile */}
                 <section className="grid grid-cols-2 grid-rows-2 gap-2 lg:hidden">
