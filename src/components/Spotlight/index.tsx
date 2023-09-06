@@ -16,10 +16,9 @@ const spolightBrands = [
   { relativeImageURL: "/spotlight/spotlight-product-boyo-paul penders.png" },
   { relativeImageURL: "/spotlight/spotlight-product-boyo-saga-jaipur.png" },
   { relativeImageURL: "/spotlight/spotlight-product-boyo-tatha.png" },
-  { relativeImageURL: "/spotlight/spotlight-product-boyo-zoh.png" },
+  // { relativeImageURL: "/spotlight/spotlight-product-boyo-zoh.png" },
   { relativeImageURL: "/spotlight/spotlight-product-boyo.png" },
   { relativeImageURL: "/spotlight/spotlight-product-saaki.png" },
-  // { relativeImageURL: "/spotlight/spotlight-product-snakible.png" },
   { relativeImageURL: "/spotlight/spotlight-product-zoh.png" },
 ]
 
