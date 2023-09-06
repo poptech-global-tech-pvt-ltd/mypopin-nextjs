@@ -8,7 +8,7 @@ export interface LayoutProps {
 function Layout({ children }: LayoutProps) {
     console.log({children})
     return (
-        <main className="pt-2 lg:pt-24 max-w-[1350px] mx-auto">
+        <main className="pt-2 lg:pt-12 max-w-[1350px] mx-auto">
             {children}
         </main>
     )

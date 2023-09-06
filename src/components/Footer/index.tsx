@@ -32,7 +32,7 @@ function Footer() {
 
     return (
         <>
-            <div className="max-w-[1350px] md:px-4 pt-2 pb-4 mx-auto">
+            <div className="max-w-[1350px] md:px-4 pt-2 lg:pt-0 pb-4 lg:pb-0 mx-auto">
                 <section style={pathname.split("/")[1] === "brands" ? { display: "none" } : { display: "block" }}>
                     {pathname === "/" ? <B2CFooterSEO /> : <B2BFooterSEO />}
                 </section>
@@ -40,7 +40,7 @@ function Footer() {
             <hr />
             <section style={pathname.split("/")[1] === "brands" ? { backgroundColor: "#F46651", color: "white" } : { backgroundColor: "white", color: "black" }}>
                 <footer style={pathname.split("/")[1] === "brands" ? { backgroundColor: "#F46651", color: "white" } : { backgroundColor: "white", color: "black" }} className="max-w-5xl mx-auto">
-                    <div style={{ margin: "0 auto" }} className="max-w-[1350px] md:px-0 pt-16 pb-4">
+                    <div style={{ margin: "0 auto" }} className="max-w-[1350px] md:px-0 pt-16 lg:pt-4 pb-4">
                         <div className="grid px-2 lg:px-0 md:grid-cols-[1fr] lg:grid-cols-[1fr_1fr_1fr_1fr]">
                             <div className="pr-2">
                                 {pathname === "/partner-with-pop" && (
