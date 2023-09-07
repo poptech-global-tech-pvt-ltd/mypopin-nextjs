@@ -993,3 +993,61 @@ h6 {
   border-width: 1px;
   border-color: black;
 }
+
+
+
+
+/* // slider infinte */
+
+.infinite-container img {
+  display: block;
+  width: 100%;
+}
+
+.infinite-container section {
+  width: 100%;
+  overflow: hidden;
+}
+
+.infinite-container article {
+  display: flex;
+  width: 400%;
+  animation: bannermove 20s linear infinite;
+}
+
+.infinite-container article.paused {
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+.infinite-container div {
+  width: 100%;
+}
+
+.infinite-container ul {
+  display: flex;
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.infinite-container li {
+  width: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.infinite-container li:nth-child(2) {
+}
+
+.infinite-container li:nth-child(3) {
+}
+
+@keyframes bannermove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
