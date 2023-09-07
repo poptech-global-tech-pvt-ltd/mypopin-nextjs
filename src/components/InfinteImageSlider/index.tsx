@@ -17,7 +17,7 @@ function InfiniteImageSlider() {
                     <div>
                         <ul>
                             {brandLogos?.map((i: any, index: number) => (
-                                <li>
+                                <li key={index}>
                                     <Link target="_blank" href={`/brands/${i?.attributes?.redirection_url}`}>
                                         <img className="min-w-[100px] lg:min-w-[200px] h-auto" src={i?.attributes?.image?.data?.attributes?.url} />
                                     </Link>
