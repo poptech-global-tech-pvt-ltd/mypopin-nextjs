@@ -66,13 +66,13 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                 <section className="grid grid-cols-2 grid-rows-2 gap-2 lg:hidden">
                     {onlyFour?.slice(0, 4)?.length > 0 && onlyFour?.map((itm: any, index: number) => (
                         <div key={index}>
-                            <Link target="_blank" href={itm?.attributes?.product_link}>
+                            <Link prefetch={false} target="_blank" href={itm?.attributes?.product_link ? itm?.attributes?.product_link : '/'}>
                                 <div className="grid w-full justify-center justify-items-center max-w-[285px] mx-auto">
                                     <div className="relative z-10 flex items-center justify-center">
                                         <img
                                             src={itm?.attributes?.product_image}
                                             alt="hgfd"
-                                            className="object-cover rounded-xl shadow-lg border-[0.3px]"
+                                            className="object-cover rounded-xl shadow-lg border-[0.3px] aspect-square"
                                         />
                                         {discountPercentage === "-Infinity" ?
                                             <div>{null}</div> :
@@ -105,19 +105,21 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                 </section>
 
                 <div className="flex items-center justify-center py-2 lg:hidden">
-                    <Button variant="outline" onClick={() => setShowMore((prev) => !prev)}>See More Products</Button>
+                    <div style={showMore ? { display: "none" } : { display: "block" }}>
+                        <Button variant="outline" onClick={() => setShowMore((prev) => !prev)}>See More Products</Button>
+                    </div>
                 </div>
 
                 <section className={`${!showMore ? `hidden` : `block`} grid grid-cols-2 grid-rows-2 gap-2`}>
                     {restData?.slice(0, 4)?.length > 0 && restData?.map((itm: any, index: number) => (
                         <div key={index}>
-                            <Link target="_blank" href={itm?.attributes?.product_link}>
+                            <Link prefetch={false} target="_blank" href={itm?.attributes?.product_link ? itm?.attributes?.product_link : '/'}>
                                 <div className="grid w-full justify-center justify-items-center max-w-[285px] mx-auto">
                                     <div className="relative z-10 flex items-center justify-center">
                                         <img
                                             src={itm?.attributes?.product_image}
                                             alt="hgfd"
-                                            className="object-cover rounded-xl shadow-lg border-[0.3px]"
+                                            className="object-cover rounded-xl shadow-lg border-[0.3px] aspect-square"
                                         />
                                         {discountPercentage === "-Infinity" ?
                                             <div>{null}</div> :
@@ -177,7 +179,7 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                         {/* //mapping */}
                         {productImagesData?.length > 0 && productImagesData?.map((itm: any, index: number) => (
                             <div key={index} className="mx-auto">
-                                <Link target="_blank" href={itm?.attributes?.product_link}>
+                                <Link prefetch={false} target="_blank" href={itm?.attributes?.product_link ? itm?.attributes?.product_link : '/'}>
                                     <div className="grid w-full justify-center justify-items-center max-w-[285px] mx-auto">
                                         <div className="relative w-[266px] h-[276px] z-10 flex items-center justify-center">
                                             <img

@@ -40,7 +40,7 @@ function BrandRewardsCarousel() {
                         <div className="my-auto">
                             <div className={`text-3xl font-bold flex items-center justify-center`}>
                                 <Image
-                                    src="/pop-coin-fiat.svg"
+                                    src="/popcoin-icon.svg"
                                     width={30}
                                     height={30}
                                     alt="Popcoin"

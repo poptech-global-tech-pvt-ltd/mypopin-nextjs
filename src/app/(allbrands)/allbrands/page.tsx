@@ -11,11 +11,13 @@ const manrope = Manrope({
 })
 
 function AllBrands() {
-    
+
     const [allBrandsData, setAllBrandsData] = useState<any>();
     useEffect(() => {
         fetch(`https://mypop-dashboard.popclub.co.in/api/brand-names?populate=*`).then((res) => res.json()).then((data) => setAllBrandsData(data?.data))
     }, [])
+
+    console.log({allBrandsData})
 
     return (
         <>
@@ -108,15 +110,15 @@ function AllBrands() {
                             ?.filter((i: any) => i?.attributes?.brand_offer_card?.data?.attributes?.url)
                             ?.map((i: any, index: number) => (
                                 <div key={index} className="drop-shadow-xl transition-transform hover:scale-105">
-                                    {/* <Link href={i?.attributes?.brand_offer_card?.data?.attributes?.url}> */}
-                                    <Image
-                                        src={i?.attributes?.brand_offer_card?.data?.attributes?.url}
-                                        width={362}
-                                        height={256}
-                                        alt={i?.attributes?.brand_offer_card?.data?.attributes?.brand_name}
-                                        className="cursor-pointer"
-                                    />
-                                    {/* </Link> */}
+                                    <Link href={`/brands/${i?.attributes?.url}`}>
+                                        <Image
+                                            src={i?.attributes?.brand_offer_card?.data?.attributes?.url}
+                                            width={362}
+                                            height={256}
+                                            alt={i?.attributes?.brand_offer_card?.data?.attributes?.brand_name}
+                                            className="cursor-pointer"
+                                        />
+                                    </Link>
                                 </div>
                             ))}
                     </div>
