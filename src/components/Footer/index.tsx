@@ -66,7 +66,7 @@ function Footer() {
                                 <div className="font-bold text-lg pt-3">Useful links</div>
                                 <div className="font-medium">
                                     <div className="py-1">
-                                        <Link href={`https://blog.mypop.in/`}>
+                                        <Link href='/blogs'>
                                             Blogs
                                         </Link>
                                     </div>

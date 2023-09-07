@@ -62,7 +62,7 @@ function HeroBannerMobile() {
                             {bannerData?.length > 0 && bannerData?.map((itm: any, index: number) => (
                                 <Fragment key={index}>
                                     <div>
-                                        <a href="">
+                                    <a target="_blank" href={itm?.attributes.redirection_url}>
                                             <div className="h-[90vh] w-[100vw]">
                                                 <Image
                                                     src={itm?.attributes?.image?.data?.attributes?.url}
