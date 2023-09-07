@@ -92,9 +92,10 @@ gtag('config', 'G-5HQ42CSKWF')
                     <B2BHero />
                 </div>
                 <div className='mt-24 lg:mt-0'>
-                    <div className={`${khand.className} text-2xl lg:text-7xl text-center font-bold py-16 lg:py-10`}>Trusted By Leading Brands</div>
+                    <div className={`${khand.className} text-2xl lg:text-7xl text-center font-bold py-10 lg:py-10`}>Trusted By Leading Brands</div>
                     <div className='py-5 pb-10'>
                         <LeadingBrandsCarousel />
+                        <div className='py-0 lg:py-4' />
                     </div>
                 </div>
                 <BrandPartners />
