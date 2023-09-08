@@ -235,12 +235,12 @@ function MobileHeader() {
                                             <div className="text-black font-medium">POPShop</div>
                                         </div>
                                     </ScrollLink>
-                                    <div className="py-1" />
+                                    {/* <div className="py-1" /> */}
                                     {/* // Blogs */}
                                     {/* <Link href="/coupons"> */}
-                                    <div onClick={handleCouponsClick} className="bg-[#F5F5F5] p-3">
+                                    {/* <div onClick={handleCouponsClick} className="bg-[#F5F5F5] p-3">
                                         <div className="text-black font-medium">Coupons</div>
-                                    </div>
+                                    </div> */}
                                     {/* </Link> */}
                                     <div className="py-1" />
                                     {/* // Blogs */}
