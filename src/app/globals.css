@@ -130,6 +130,10 @@ h6 {
   }
 }
 
+.bg-background{}
+.text-foreground{}
+
+
 .b2b-section-bg-img {
   background-image: url('../../public/partner-withpopcoins-bg.png');
   background-size: cover;
