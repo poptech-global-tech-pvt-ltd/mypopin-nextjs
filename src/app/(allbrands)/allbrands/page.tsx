@@ -34,7 +34,7 @@ function AllBrands() {
                 <meta property="og:url" content="https://mypop.in/allbrands/" />
                 <link rel="canonical" href="https://mypop.in/allbrands/" />
                 {/* // schema org */}
-                <Script id="schema-track" strategy="beforeInteractive" type="application/ld+json" dangerouslySetInnerHTML={{
+                <Script id="schema-track" strategy="lazyOnload" type="application/ld+json" dangerouslySetInnerHTML={{
                     __html: JSON.stringify(
                         {
                             "@context": "https://schema.org",

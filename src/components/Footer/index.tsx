@@ -28,7 +28,7 @@ function Footer() {
         getBrandNames()
     }, [])
 
-    console.log({pathname})
+    console.log({ pathname })
 
     return (
         <>
@@ -70,11 +70,11 @@ function Footer() {
                                             Blogs
                                         </Link>
                                     </div>
-                                    {/* <div className="py-1">
-                                    <Link href={`/`}>
-                                        Coinledger
-                                    </Link>
-                                </div> */}
+                                    <div className="py-1">
+                                        <Link href={`/faq`}>
+                                            FAQs
+                                        </Link>
+                                    </div>
                                     <div className="py-1">
                                         <Link href={`/partner-with-pop`}>
                                             Partner with POP
@@ -169,18 +169,18 @@ function Footer() {
                         </div>
                         <div className="text-center sm:text-center md:text-center lg:text-right xl:text-right">
                             <div className="flex items-center justify-center">
-                                {/* <div className="px-2">
-                                    <Link href={`/sitemap.xml`}>
-                                        Sitemap
-                                    </Link>
-                                </div> */}
                                 <div className="px-2">
-                                    <Link href={`/privacy-policy`}>
+                                    <Link className="hover:underline underline-offset-2" href={`/privacy-policy`}>
                                         Privacy Policy
                                     </Link>
                                 </div>
                                 <div className="px-2">
-                                    <Link href={`/terms-and-condition`}>
+                                    <Link className="hover:underline underline-offset-2" href={`/sitemap.xml`}>
+                                        Sitemap
+                                    </Link>
+                                </div>
+                                <div className="px-2">
+                                    <Link className="hover:underline underline-offset-2" href={`/terms-and-condition`}>
                                         Terms and Conditions
                                     </Link>
                                 </div>

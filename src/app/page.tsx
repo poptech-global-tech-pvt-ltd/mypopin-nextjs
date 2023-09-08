@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <>
-    <head>
+      <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Introducing POP: Shop, Earn POPcoins, Get Rewards & Become our Partner | POP</title>
@@ -41,24 +41,24 @@ export default function Home() {
         <meta property="og:image:alt" content="India's New Currency POPcoins" />
         <meta property="og:url" content="https://mypop.in" />
         <link rel="canonical" href="https://mypop.in" />
-        {/* // schema org */}
-        <Script id="schema-track" strategy="beforeInteractive" type="application/ld+json" dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            {
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "My POP",
-              "url": "https://mypop.in/",
-              "logo": "https://mypop.in/images/pc-logo.png",
-              "sameAs": [
-                "https://www.facebook.com/getpopclub",
-                "https://www.instagram.com/shoponpop/",
-                "https://twitter.com/getpopclub",
-                "https://www.linkedin.com/company/getpopcoins/"
-              ]
-            }
-          )
-        }}>
+        {/* // basic schema org */}
+        <Script id="basic-schema-track-1" strategy="lazyOnload" type="application/ld+json" dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "Organization",
+                            "name": "My POP",
+                            "url": "https://mypop.in/",
+                            "logo": "https://mypop.in/images/pc-logo.png",
+                            "sameAs": [
+                                "https://www.facebook.com/getpopclub",
+                                "https://www.instagram.com/shoponpop/",
+                                "https://twitter.com/getpopclub",
+                                "https://www.linkedin.com/company/getpopcoins/"
+                            ]
+                        }
+                    )
+                }}>
         </Script>
 
         {/* <!-- Facebook Pixel Code --> */}

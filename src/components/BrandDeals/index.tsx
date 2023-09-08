@@ -150,9 +150,7 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                         </div>
                     ))}
                 </section>
-
-
-
+                
                 {/* // desktop */}
                 <div className="mx-auto hidden lg:block">
                     <Carousel

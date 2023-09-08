@@ -244,11 +244,11 @@ function MobileHeader() {
                                     {/* </Link> */}
                                     <div className="py-1" />
                                     {/* // Blogs */}
-                                    {/* <Link href="https://blog.mypop.in/"> */}
-                                    <div onClick={handleBlogClick} className="bg-[#F5F5F5] p-3">
+                                    <Link prefetch={false} href="/blogs">
+                                    <div className="bg-[#F5F5F5] p-3">
                                         <div className="text-black font-medium">Blogs</div>
                                     </div>
-                                    {/* </Link> */}
+                                    </Link>
                                     <div className="py-1" />
                                     {/* // Help & Support */}
                                     {/* <Link href="#"> */}

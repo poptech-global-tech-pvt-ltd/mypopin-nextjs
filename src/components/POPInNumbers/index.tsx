@@ -30,43 +30,86 @@ function POPInNumbers() {
     const noOfCustomers = useRef(null);
     const noOfSaving = useRef(null)
 
+    // data from API
+    const [first, setFirst] = useState<any>({
+        title: "",
+        value: ""
+    })
+    const [second, setSecond] = useState<any>({
+        title: "",
+        value: ""
+    })
+    const [third, setThird] = useState<any>({
+        title: "",
+        value: ""
+    })
+
+    const [dataFromAPI, setDataFromAPI] = useState<any>()
+    console.log({ dataFromAPI })
+
+    useEffect(() => {
+        fetch(`https://mypop-dashboard.popclub.co.in/api/pop-in-numbers-b2cs?sort[0]=Rank`).then((res) => res.json()).then((data) => {
+            setDataFromAPI(data.data)
+            if (data.data.length >= 3) {
+                setFirst((prevData: any) => ({
+                    ...prevData,
+                    title: data.data[0].attributes.Title,
+                    value: data.data[0].attributes.Value
+                }));
+                setSecond((prevData: any) => ({
+                    ...prevData,
+                    title: data.data[1].attributes.Title,
+                    value: data.data[1].attributes.Value
+                }));
+                setThird((prevData: any) => ({
+                    ...prevData,
+                    title: data.data[2].attributes.Title,
+                    value: data.data[2].attributes.Value
+                }));
+            }
+        })
+    }, [])
+
+    console.log({ first, second, third })
+
     function formatNumberWithCommas(number: string | number) {
         return number.toLocaleString();
     }
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const [entry] = entries;
-                if (entry.isIntersecting) {
-                    // Start the interval when the component is in the viewport
-                    const intervalId = setInterval(() => {
-                        setCount((prev) => (prev < 49 ? prev + 1 : prev));
-                        setCustCount((prev) => (prev < 731066 ? prev + 1 : prev));
-                        setSavingCount((prev) => (prev < 1703363 ? prev + 1 : prev));
-                    }, 1);
-                    return () => {
-                        clearInterval(intervalId); // Stop the interval when the component is out of the viewport
-                    };
-                }
-            },
-            { threshold: 1 } // Customize the threshold as needed
-        );
+        if (first.value > 0 && second.value > 0 && third.value > 0) {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    const [entry] = entries;
+                    if (entry.isIntersecting) {
+                        // Start the interval when the component is in the viewport
+                        const intervalId = setInterval(() => {
+                            setCount((prev) => (prev < first.value ? prev + 1 : prev));
+                            setCustCount((prev) => (prev < second.value ? prev + 1 : prev));
+                            setSavingCount((prev) => (prev < third.value ? prev + 1 : prev));
+                        }, 1);
+                        return () => {
+                            clearInterval(intervalId); // Stop the interval when the component is out of the viewport
+                        };
+                    }
+                },
+                { threshold: 1 } // Customize the threshold as needed
+            );
 
-        if (noOfBrandRef.current) {
-            observer.observe(noOfBrandRef.current);
+            if (noOfBrandRef.current) {
+                observer.observe(noOfBrandRef.current);
+            }
+            if (noOfCustomers.current) {
+                observer.observe(noOfCustomers.current);
+            }
+            if (noOfSaving.current) {
+                observer.observe(noOfSaving.current);
+            }
+            return () => {
+                observer.disconnect();
+            }
         }
-        if (noOfCustomers.current) {
-            observer.observe(noOfCustomers.current);
-        }
-        if (noOfSaving.current) {
-            observer.observe(noOfSaving.current);
-        }
-
-        return () => {
-            observer.disconnect();
-        };
-    }, []);
+    }, [first.value, second.value, third.value]);
 
 
     return (
@@ -76,15 +119,15 @@ function POPInNumbers() {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                     <div className={`text-center ${manrope.className}`}>
                         <div ref={noOfBrandRef} className={`text-[#F56651] text-[46px] lg:text-6xl font-extrabold ${khand.className}`}>{formatNumberWithCommas(Number(count))}</div>
-                        <div className='text-[16px] lg:text-2xl py-0 lg:py-1 font-medium'>No. of Brands</div>
+                        <div className='text-[16px] lg:text-2xl py-0 lg:py-1 font-medium'>{first.title}</div>
                     </div>
                     <div className={`text-center ${manrope.className}`}>
                         <div className={`text-[#F56651] text-[46px] lg:text-6xl font-extrabold ${khand.className}`}>{formatNumberWithCommas(Number(custCount))}</div>
-                        <div className='text-[16px] lg:text-2xl py-0 lg:py-1 font-medium'>No. Of Customers</div>
+                        <div className='text-[16px] lg:text-2xl py-0 lg:py-1 font-medium'>{second.title}</div>
                     </div>
                     <div className={`text-center ${manrope.className}`}>
                         <div className={`text-[#F56651] text-[46px] lg:text-6xl font-extrabold ${khand.className}`}>{formatNumberWithCommas(Number(savingsCount))}</div>
-                        <div className='text-[16px] lg:text-2xl py-0 lg:py-1 font-medium'>Savings Using POPcoins</div>
+                        <div className='text-[16px] lg:text-2xl py-0 lg:py-1 font-medium'>{third.title}</div>
                     </div>
                 </div>
             </div>

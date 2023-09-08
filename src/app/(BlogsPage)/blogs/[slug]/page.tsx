@@ -1,5 +1,7 @@
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 import CategoryLabel from "@/components/CategoryLabel"
 import Container from "@/components/Container"
+import { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image"
 import ReactMarkdown from "react-markdown";
 
@@ -16,9 +18,12 @@ async function getData(slug: string) {
 }
 
 async function BlogDetail({ params, searchParams }: any) {
+
     const slug = params.slug
     const res = await getData(slug)
-    const blogDetailData = res.data
+    const blogDetailData = res?.data
+
+    console.log("============", blogDetailData[0].attributes)
 
     return (
         <>
@@ -119,3 +124,25 @@ async function BlogDetail({ params, searchParams }: any) {
 }
 
 export default BlogDetail
+
+
+export async function generateMetadata(
+    { params, searchParams }: any,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+
+    const slug = params.slug
+    const res = await getData(slug)
+    const blogDetailData = res?.data
+
+
+    return {
+        title: `${blogDetailData[0].attributes?.meta_title}`,
+        description: `${blogDetailData[0].attributes?.meta_desc}`,
+        alternates: {
+            languages: {
+                'en-US': '/en-US',
+            },
+        },
+    }
+}
