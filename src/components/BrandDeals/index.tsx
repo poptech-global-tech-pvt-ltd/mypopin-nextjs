@@ -109,8 +109,7 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                         <Button variant="outline" onClick={() => setShowMore((prev) => !prev)}>See More Products</Button>
                     </div>
                 </div>
-
-                <section className={`${!showMore ? `hidden` : `block`} grid grid-cols-2 grid-rows-2 gap-2`}>
+                <section className={`${!showMore ? `hidden` : `block`} grid grid-cols-2 grid-rows-1 gap-2`}>
                     {restData?.slice(0, 4)?.length > 0 && restData?.map((itm: any, index: number) => (
                         <div key={index}>
                             <Link prefetch={false} target="_blank" href={itm?.attributes?.product_link ? itm?.attributes?.product_link : '/'}>
