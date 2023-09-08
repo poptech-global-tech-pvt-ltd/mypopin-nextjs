@@ -56,7 +56,7 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
     console.log({ productImagesData })
 
     const onlyFour = productImagesData?.slice(0, 4)
-    const restData = productImagesData?.slice(5, 7)
+    const restData = productImagesData?.slice(4, 7)
 
     return (
         <>
@@ -64,7 +64,7 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                 <div className={`uppercase text-[22px] lg:text-3xl text-center font-bold py-16`}>EXPLORE UNLIMITED DEALS</div>
                 {/* // mobile */}
                 <section className="grid grid-cols-2 grid-rows-2 gap-2 lg:hidden">
-                    {onlyFour?.slice(0, 4)?.length > 0 && onlyFour?.map((itm: any, index: number) => (
+                    {onlyFour?.length > 0 && onlyFour?.map((itm: any, index: number) => (
                         <div key={index}>
                             <Link prefetch={false} target="_blank" href={itm?.attributes?.product_link ? itm?.attributes?.product_link : '/'}>
                                 <div className="grid w-full justify-center justify-items-center max-w-[285px] mx-auto">
@@ -110,7 +110,7 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                     </div>
                 </div>
                 <section className={`${!showMore ? `hidden` : `block`} grid grid-cols-2 grid-rows-1 gap-2`}>
-                    {restData?.slice(0, 4)?.length > 0 && restData?.map((itm: any, index: number) => (
+                    {restData?.length > 0 && restData?.map((itm: any, index: number) => (
                         <div key={index}>
                             <Link prefetch={false} target="_blank" href={itm?.attributes?.product_link ? itm?.attributes?.product_link : '/'}>
                                 <div className="grid w-full justify-center justify-items-center max-w-[285px] mx-auto">
@@ -149,6 +149,7 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                         </div>
                     ))}
                 </section>
+                <div className="py-4"/>
                 
                 {/* // desktop */}
                 <div className="mx-auto hidden lg:block">
