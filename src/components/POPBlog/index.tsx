@@ -122,7 +122,7 @@ function POPBlog() {
                     )}
                 </section>
                 <div className='flex justify-center py-4'>
-                    <Link href="https://blog.mypop.in/">
+                    <Link href="/blogs">
                         <Button className='rounded-full bg-white hover:text-white drop-shadow text-black'>Show all blog articles</Button>
                     </Link>
                 </div>
