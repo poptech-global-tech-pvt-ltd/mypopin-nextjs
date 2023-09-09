@@ -12,8 +12,10 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { useEffect, useState } from "react"
-import { User2 } from 'lucide-react';
+import { UserCircle2 } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
 
 
 function Header() {
@@ -70,7 +72,7 @@ function Header() {
             featchCoin()
         }
     }
-      
+
     function setSessionCookie(cookieName: any) {
         var characters = 'abcdefghijklmnopqrstuvwxyz0123456789'
         var length = 32;
@@ -126,8 +128,7 @@ function Header() {
         featchCoin()
     }, [cookieKey])
 
-    console.log({coinNumber})
-
+    console.log({pathName})
     return (
         // if header animation has been removed, add "fixed" class to fix it
         <main className="w-full fixed z-[100]">
@@ -154,7 +155,9 @@ function Header() {
                             )}
                         </div>
 
-                        <div className="flex items-center space-x-3">
+                        <div className="flex items-center space-x-3 justify-center">
+                        {pathName !== "/partner-with-pop" && (
+                            <div className="flex items-center justify-center space-x-2 py-[5px] px-3 rounded-full bg-slate-200 shadow-sm">
                             <div>
                                 {pathName !== "/partner-with-pop" && (
                                     <Image
@@ -169,12 +172,15 @@ function Header() {
                             {pathName !== "/partner-with-pop" && (
                                 <div>{coinNumber?.data?.coins}</div>
                             )}
+                        </div>
+                        )}
+                            
 
                             {pathName !== "/partner-with-pop" && (
                                 <div className="btn-container-desktop-modal">
                                     <Dialog open={isDialogOpen} onOpenChange={handleOpenChange}>
-                                        <DialogTrigger>
-                                            <User2 className="mt-[4px]" onClick={() => handleLogin()} />
+                                        <DialogTrigger className="flex items-center justify-center">
+                                            <UserCircle2 size={33} strokeWidth={1.2} onClick={() => handleLogin()} />
                                         </DialogTrigger>
                                         <DialogContent className="lg:w-[340px!important] lg:p-2 lg:rounded-3xl h-[90vh] z-[110]">
                                             <DialogDescription>
@@ -188,12 +194,19 @@ function Header() {
                                 </div>
                             )}
 
-                            <Link href="/">
+                            <Tabs value={pathName} className="navbar-container" defaultValue="customer">
+                                <TabsList className="tabslist h-[45px] p-2">
+                                    <TabsTrigger className="tabstrigger h-[35px]" value="/"><Link href="/">I am a Customer</Link></TabsTrigger>
+                                    <TabsTrigger className="tabstrigger h-[35px]" value="/partner-with-pop"> <Link href="/partner-with-pop">I am a Brand</Link></TabsTrigger>
+                                </TabsList>
+                            </Tabs>
+
+                            {/* <Link href="/">
                                 <Button className={`${pathName === "/" ? `bg-[#F56651] text-white hover:bg-[#F56651] hover:text-white border-0` : `bg-white text-black`}`} variant="outline">I am a Customer</Button>
                             </Link>
                             <Link href="/partner-with-pop">
                                 <Button className={`${pathName === "/partner-with-pop" ? `bg-[#F56651] text-white  hover:bg-[#F56651] hover:text-white border-0` : `bg-[white] text-black`}`} variant="outline">I am a Brand</Button>
-                            </Link>
+                            </Link> */}
                         </div>
                     </div>
                 </div>

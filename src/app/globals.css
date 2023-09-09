@@ -1055,3 +1055,17 @@ h6 {
     transform: translateX(-50%);
   }
 }
+
+
+.navbar-container .tabslist{
+  background-color: #e2e8f0;
+}
+
+.navbar-container .tabslist .tabstrigger[data-state='active'] {
+  background-color: #F46651;
+  color: white;
+}
+.navbar-container .tabslist .tabstrigger[data-state='inactive'] {
+  color: black;
+}
+
