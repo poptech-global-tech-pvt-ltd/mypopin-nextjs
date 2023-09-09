@@ -128,7 +128,7 @@ function Header() {
         featchCoin()
     }, [cookieKey])
 
-    console.log({pathName})
+    console.log({ pathName })
     return (
         // if header animation has been removed, add "fixed" class to fix it
         <main className="w-full fixed z-[100]">
@@ -156,25 +156,28 @@ function Header() {
                         </div>
 
                         <div className="flex items-center space-x-3 justify-center">
-                        {pathName !== "/partner-with-pop" && (
-                            <div className="flex items-center justify-center space-x-2 py-[5px] px-3 rounded-full bg-slate-200 shadow-sm">
-                            <div>
-                                {pathName !== "/partner-with-pop" && (
-                                    <Image
-                                        src="/popcoin.svg"
-                                        width={25}
-                                        height={25}
-                                        alt="Popcoin"
-                                    />
-                                )}
-
-                            </div>
                             {pathName !== "/partner-with-pop" && (
-                                <div>{coinNumber?.data?.coins}</div>
+                                <div>
+                                    {coinNumber?.data?.coins > 0 && (
+                                        <div className="flex items-center justify-center space-x-2 py-[5px] px-3 rounded-full bg-slate-200 shadow-sm">
+                                            <div>
+                                                {pathName !== "/partner-with-pop" && (
+                                                    <Image
+                                                        src="/popcoin.svg"
+                                                        width={25}
+                                                        height={25}
+                                                        alt="Popcoin"
+                                                    />
+                                                )}
+                                            </div>
+                                            {pathName !== "/partner-with-pop" && (
+                                                <div>{coinNumber?.data?.coins}</div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
                             )}
-                        </div>
-                        )}
-                            
+
 
                             {pathName !== "/partner-with-pop" && (
                                 <div className="btn-container-desktop-modal">
