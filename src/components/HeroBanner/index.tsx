@@ -76,19 +76,15 @@ function HeroBanner() {
                                     <div className="cursor-pointer">
                                         <a target="_blank" href={itm?.attributes.redirection_url}>
                                             {/* <div className="h-[90vh] w-[100vw]"> */}
-                                                <ImageComponent
+                                                {/* <ImageComponent
                                                     src={itm?.attributes?.image?.data?.attributes?.url}
                                                     hash={"LVMj5ikDQ-tlNytRVra{y?VsyXSh"}
                                                     width={"100vw"}
                                                     height={"90vh"}
-                                                    // fill
-                                                    // className="w-full h-full object-cover"
-                                                    // alt=""
-                                                    // priority
-                                                    // quality={100}
-                                                    // loader={customLoader}                                        
-                                                    />
+                                                                                                                                              /> */}
                                             {/* </div> */}
+
+                                            <img alt="" src={`${itm?.attributes?.image?.data?.attributes?.url}?pr-true`}/>
                                         </a>
                                     </div>
                                 </Fragment>

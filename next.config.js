@@ -20,8 +20,6 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'stablo-template.vercel.app',
       },
-
-
     ],
   },
 }

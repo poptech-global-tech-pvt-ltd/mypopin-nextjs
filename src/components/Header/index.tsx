@@ -147,14 +147,27 @@ function Header() {
                                     />
                                 </Link>
                             </div>
-                            {/* // remaining section */}
+
+                            {/* // ONLY render if url is not "/partner-with-pop" or "/features" */}
                             {pathName !== "/partner-with-pop" && (
-                                <div className="px-6">
-                                    <NavigationMenu />
+                                <>
+                                    {pathName !== '/features' && (
+                                        <div className="px-6">
+                                            <NavigationMenu />
+                                        </div>
+                                    )}
+                                </>
+                            )}
+
+                            {(pathName === "/partner-with-pop" || pathName === "/features") && (
+                                <div className="px-6 flex space-x-3 font-semibold">
+                                    <Link href="/features">
+                                        <div>Features</div>
+                                    </Link>
                                 </div>
                             )}
-                        </div>
 
+                        </div>
                         <div className="flex items-center space-x-3 justify-center">
                             {pathName !== "/partner-with-pop" && (
                                 <div>
@@ -196,20 +209,12 @@ function Header() {
                                     </Dialog>
                                 </div>
                             )}
-
                             <Tabs value={pathName} className="navbar-container" defaultValue="customer">
                                 <TabsList className="tabslist h-[45px] p-2">
                                     <TabsTrigger className="tabstrigger h-[35px]" value="/"><Link href="/">I am a Customer</Link></TabsTrigger>
-                                    <TabsTrigger className="tabstrigger h-[35px]" value="/partner-with-pop"> <Link href="/partner-with-pop">I am a Brand</Link></TabsTrigger>
+                                    <TabsTrigger data-state={(pathName === '/features') || (pathName === "/partner-with-pop") ? "active" : "inactive"} className="tabstrigger h-[35px]" value="/partner-with-pop"> <Link href="/partner-with-pop">I am a Brand</Link></TabsTrigger>
                                 </TabsList>
                             </Tabs>
-
-                            {/* <Link href="/">
-                                <Button className={`${pathName === "/" ? `bg-[#F56651] text-white hover:bg-[#F56651] hover:text-white border-0` : `bg-white text-black`}`} variant="outline">I am a Customer</Button>
-                            </Link>
-                            <Link href="/partner-with-pop">
-                                <Button className={`${pathName === "/partner-with-pop" ? `bg-[#F56651] text-white  hover:bg-[#F56651] hover:text-white border-0` : `bg-[white] text-black`}`} variant="outline">I am a Brand</Button>
-                            </Link> */}
                         </div>
                     </div>
                 </div>

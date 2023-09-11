@@ -61,16 +61,6 @@ export function NavigationMenuDemo() {
 
   const isBrandDataAvailable = Object.keys(brandData)?.length !== 0
 
-  // const handleScrollToBottom = () => {
-  //   requestAnimationFrame(() => {
-  //     window.scrollTo({
-  //       top: document.documentElement.scrollHeight,
-  //       behavior: 'smooth',
-  //     });
-  //   });
-  // }
-
-  console.log({ brandData })
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -105,7 +95,6 @@ export function NavigationMenuDemo() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <div className="px-1" />
-
         <NavigationMenuItem className={`${manrope.className} font-bold`}>
           {/* <NavigationMenuLink className={navigationMenuTriggerStyle()}> */}
           <ScrollLink href="#popshop">
@@ -115,7 +104,7 @@ export function NavigationMenuDemo() {
           </ScrollLink>
           {/* </NavigationMenuLink> */}
         </NavigationMenuItem>
-{/* 
+        {/* 
         <NavigationMenuItem className={`${manrope.className} font-bold`}>
           <Link href="/coupons" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
