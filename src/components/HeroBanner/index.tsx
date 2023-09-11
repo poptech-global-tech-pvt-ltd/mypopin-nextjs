@@ -45,8 +45,8 @@ function HeroBanner() {
         fetch(`https://mypop-dashboard.popclub.co.in/api/hero-banner-images?populate=*`).then((res) => res.json()).then(data => setBannerData(data.data))
     }, [])
 
-    console.log({bannerData})
-    
+    console.log({ bannerData })
+
     return (
         <>
             <section className="">
@@ -70,21 +70,23 @@ function HeroBanner() {
                             renderDotsOutside={false}
                             showDots
                             responsive={responsive}>
-
                             {bannerData?.length > 0 && bannerData?.map((itm: any, index: number) => (
                                 <Fragment key={index}>
                                     <div className="cursor-pointer">
                                         <a target="_blank" href={itm?.attributes.redirection_url}>
-                                            {/* <div className="h-[90vh] w-[100vw]"> */}
-                                                {/* <ImageComponent
-                                                    src={itm?.attributes?.image?.data?.attributes?.url}
-                                                    hash={"LVMj5ikDQ-tlNytRVra{y?VsyXSh"}
-                                                    width={"100vw"}
-                                                    height={"90vh"}
-                                                                                                                                              /> */}
-                                            {/* </div> */}
-
-                                            <img alt="" src={`${itm?.attributes?.image?.data?.attributes?.url}?pr-true`}/>
+                                            <ImageComponent
+                                                src={itm?.attributes?.image?.data?.attributes?.url}
+                                                hash={"LVMj5ikDQ-tlNytRVra{y?VsyXSh"}
+                                                width={"100vw"}
+                                                height={"90vh"}
+                                                // fill
+                                                // className="w-full h-full object-cover"
+                                                // alt=""
+                                                // priority
+                                                // quality={100}
+                                                // loader={customLoader}                                        
+                                            />
+                                            {/* <img alt="" src={`${itm?.attributes?.image?.data?.attributes?.url}?pr-true`} /> */}
                                         </a>
                                     </div>
                                 </Fragment>
@@ -176,7 +178,7 @@ function HeroBanner() {
                                 </a>
                             </div> */}
                         </Carousel>
-                       
+
                     </div>
                 </div>
             </section>
