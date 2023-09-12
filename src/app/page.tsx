@@ -117,15 +117,15 @@ export default function Home() {
         <div className="block custom-450px:hidden">
           <HeroBannerMobile />
         </div>
-        <Layout>
+        {/* <Layout> */}
           <HeroPartners />
           <ShoppingDeals />
-        </Layout>
+        {/* </Layout> */}
         {/* <SignupStrip isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/> */}
         <TopPOPcoinPartnerBrands />
-        <Layout>
+        {/* <Layout> */}
           <POPInNumbers />
-        </Layout>
+        {/* </Layout> */}
         <Spotlight />
         <PopBenefits />
         {/* <TopBrands /> */}

@@ -26,7 +26,6 @@ async function getData(brandName: string) {
     }
 }
 
-
 async function BrandPage({ params }: any) {
     const brandName = params.slug
     const res = await getData(brandName)
