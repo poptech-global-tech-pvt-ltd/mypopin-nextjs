@@ -7,6 +7,7 @@ import { BrandRewardsCarousel } from '@/components/BrandRewardsCarousel';
 import { BrandDeals } from '@/components/BrandDeals';
 import type { Metadata, ResolvingMetadata } from "next";
 import { Suspense } from 'react';
+import { BrandCouponStrip } from '@/components/BrandCouponStrip';
 
 
 const manrope = Manrope({
@@ -31,20 +32,20 @@ async function BrandPage({ params }: any) {
     const res = await getData(brandName)
     const brandData = res?.data[0]?.attributes
 
-    console.log({brandData})
+    console.log({ brandData })
 
     return (
         <>
             <Suspense fallback={<p>Loading Data...</p>}>
-                <div className="pt-[3rem] lg:pt-[7.5rem] px-2">
+                <div className="pt-[3rem] lg:pt-[7.5rem] px-2 lg:px-0">
                     <>
                         <div className="test-container max-w-7xl mx-auto">
                             <div style={{ backgroundColor: brandData?.primary_color }} className="itm1 p-6 rounded-3xl">
                                 <div className='flex justify-between'>
                                     <div>
-                                    <div className='block lg:hidden'>
-                                        <img width={50} height={"auto"} src={brandData?.round_logo?.data?.attributes?.url} />
-                                    </div>
+                                        <div className='block lg:hidden'>
+                                            <img width={50} height={"auto"} src={brandData?.round_logo?.data?.attributes?.url} />
+                                        </div>
                                         <div style={{ color: brandData?.text_color }} className={`uppercase text-[28px] lg:text-5xl ${manrope.className} font-bold`}>EXTRA {brandData?.burn_callout?.split(" ")[1]}&nbsp;off with</div>
                                         <div style={{ color: brandData?.text_color }} className={`uppercase text-5xl ${manrope.className} font-bold`}>
                                             <div className='flex items-center'>
@@ -118,6 +119,7 @@ async function BrandPage({ params }: any) {
                     <br />
                     <hr className='max-w-7xl mx-auto' />
                     <BrandRewardsCarousel />
+                    <BrandCouponStrip url={brandData?.url} brandName={brandData?.brand_name} primaryColor={brandData?.primary_color} secondaryColor={brandData?.secondary_color} textColor={brandData?.text_color} />
                     <BrandDeals discountPercentage={brandData?.discount_percentage} primaryColor={brandData?.primary_color} secondaryColor={brandData?.secondary_color} textColor={brandData?.text_color} />
                     <hr className='max-w-7xl mx-auto' />
                     <section className='max-w-7xl mx-auto'>
@@ -134,7 +136,7 @@ async function BrandPage({ params }: any) {
                         <div className={`${manrope.className} text-center text-[16px] lg:text-2xl font-normal pb-8`}>Keep earning POPcoins with every purchase from {brandData?.brand_name} and other brands on POPcoins</div>
                         <div className='text-center py-10'>
                             <a href={brandData?.redirection_url}>
-                                <Button style={{ backgroundColor: brandData?.primary_color, color : brandData?.text_color }} className={`rounded-full ${manrope.className} text-xl p-6 drop-shadow-md font-bold`}>Shop {brandData?.brand_name} Now</Button>
+                                <Button style={{ backgroundColor: brandData?.primary_color, color: brandData?.text_color }} className={`rounded-full ${manrope.className} text-xl p-6 drop-shadow-md font-bold`}>Shop {brandData?.brand_name} Now</Button>
                             </a>
                         </div>
                     </section>

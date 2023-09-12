@@ -111,7 +111,7 @@ export default function Home() {
         </Script>
       </head>
       <main>
-        <div className="hidden custom-450px:block md:block lg:block">
+        <div className="hidden custom-450px:block md:block lg:block my-auto">
           <HeroBanner />
         </div>
         <div className="block custom-450px:hidden">

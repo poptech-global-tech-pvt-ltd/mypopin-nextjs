@@ -11,7 +11,6 @@ const khand = Khand({
 function HeroPartners() {
     return (
         <div>
-            {/* <div className={`${khand.className} text-center text-[35px]`}>Meet The POPCoins Partners</div> */}
             <LeadingBrandsCarousel />
         </div>
     )

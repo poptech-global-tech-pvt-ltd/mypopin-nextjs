@@ -25,7 +25,7 @@ function B2BHero() {
                 <div className="h-[85vh] grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] max-w-7xl mx-auto">
                     <section className='mx-auto my-auto px-2'>
                         <div className={`text-6xl lg:text-8xl text-center lg:text-left ${khand.className}`}>
-                            <h1>One-Stop Solution<br /> for Rention</h1>
+                            <h1>One-Stop Solution<br /> for Retention</h1>
                         </div>
                         <div className={`text-xl ${manrope.className} py-2 text-center lg:text-left`}>Maximise customer engagement by implementing a highly relevant loyalty program. Say 👋 to POPcoins , India’s 1st ecosystem currency focused on d2c brands.</div>
                         <div className='py-2 text-center lg:text-left'>
