@@ -18,8 +18,8 @@ function InfiniteImageSlider() {
 
     return (
         <>
-            <div className="py-20">
-                <div className={`${khand.className} text-center text-6xl py-12`}>Meet The POPCoins Partners</div>
+            <div className="my-20">
+                <div className={`${khand.className} text-center text-6xl my-12`}>Meet The POPCoins Partners</div>
                 <div className="infinite-container">
                     <section>
                         <article>
