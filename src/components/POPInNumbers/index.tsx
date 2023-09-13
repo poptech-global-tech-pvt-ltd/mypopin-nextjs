@@ -47,25 +47,29 @@ function POPInNumbers() {
     console.log({ dataFromAPI })
 
     useEffect(() => {
-        fetch(`https://mypop-dashboard.popclub.co.in/api/pop-in-numbers-b2cs?sort[0]=Rank`).then((res) => res.json()).then((data) => {
-            setDataFromAPI(data.data)
-            if (data.data.length >= 3) {
-                setFirst((prevData: any) => ({
-                    ...prevData,
-                    title: data.data[0].attributes.Title,
-                    value: data.data[0].attributes.Value
-                }));
-                setSecond((prevData: any) => ({
-                    ...prevData,
-                    title: data.data[1].attributes.Title,
-                    value: data.data[1].attributes.Value
-                }));
-                setThird((prevData: any) => ({
-                    ...prevData,
-                    title: data.data[2].attributes.Title,
-                    value: data.data[2].attributes.Value
-                }));
+        fetch(`https://popcoins.popclub.co.in/api/coins/v1/brand/metrics`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic bXlwb3A6bXlQb1BQcm9kQDIwMjM='
             }
+        }).then((res) => res.json()).then((numbersData) => {
+            setDataFromAPI(numbersData.data)
+            setFirst((prevData: any) => ({
+                ...prevData,
+                title: "No. Of Brands",
+                value: numbersData?.data?.num_brands
+            }));
+            setSecond((prevData: any) => ({
+                ...prevData,
+                title: "No. Of Customers",
+                value: numbersData.data?.total_users
+            }));
+            setThird((prevData: any) => ({
+                ...prevData,
+                title: "Savings Using POPcoins",
+                value: numbersData?.data?.coins_savings
+            }));
+            console.log({ numbersData })
         })
     }, [])
 
