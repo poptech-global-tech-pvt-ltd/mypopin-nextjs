@@ -27,10 +27,11 @@ function ImageComponent({ src, hash, width, height }: any) {
                 />
             </div>
             <img
+                loading="lazy"
                 src={src}
                 alt=""
                 style={{
-                    display: !imgLoaded ? "none" : "inline"
+                    display: !imgLoaded ? "none" : "inline", width: "100vw", height: "90vh"
                 }}
             />
         </>

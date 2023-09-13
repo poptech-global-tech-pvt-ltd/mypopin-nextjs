@@ -1,5 +1,4 @@
 'use client'
-import { Layout } from "@/components/Layout"
 import { Hero } from '@/components/Hero'
 import { HeroPartners } from '@/components/HeroPartners'
 import { HowItWorks } from '@/components/HowItWorks'
@@ -24,8 +23,13 @@ import { useState } from "react"
 
 
 export default function Home() {
-
+  
   const [isLoggedIn, setLoggedIn] = useState<boolean>()
+  if (process.env.NODE_ENV === 'production') {
+    console.error = () => {};
+    console.warn = () => {};
+    console.log = () => {};
+  }
 
   return (
     <>
@@ -80,7 +84,7 @@ export default function Home() {
           `}
         </Script>
         <noscript>
-          <img height="1" width="1" src="https://www.facebook.com/tr?id=1984458878587137&ev=PageView
+          <img loading="lazy" height="1" width="1" src="https://www.facebook.com/tr?id=1984458878587137&ev=PageView
            &noscript=1" />
         </noscript>
         {/* <!-- End Facebook Pixel Code --> */}

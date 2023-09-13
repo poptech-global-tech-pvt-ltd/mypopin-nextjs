@@ -1,5 +1,4 @@
 'use client'
-
 import { Khand } from 'next/font/google'
 import { Manrope } from 'next/font/google'
 import { Fragment, useRef, useState, useEffect } from 'react'
@@ -69,8 +68,6 @@ function POPInNumbers() {
             }
         })
     }, [])
-
-    console.log({ first, second, third })
 
     function formatNumberWithCommas(number: string | number) {
         return number.toLocaleString();

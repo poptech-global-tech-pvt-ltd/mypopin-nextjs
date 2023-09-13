@@ -74,7 +74,7 @@ function ShoppingDeals() {
                         {widgetData?.map((itm: any, index: number) => (
                             // <div key={index}>
                             <SwiperSlide key={index}>
-                                <Link href={`/brands/${itm?.attributes?.redirection_url}`}>
+                                <Link prefetch={false} href={`/brands/${itm?.attributes?.redirection_url}`}>
                                     <div>
                                         <img width="100%" src={itm?.attributes?.image_url?.data?.attributes?.url} alt="Slide 1" />
                                     </div>
@@ -85,7 +85,7 @@ function ShoppingDeals() {
                         {widgetData?.map((itm: any, index: number) => (
                             // <div key={index}>
                             <SwiperSlide key={index}>
-                                <Link href={`/brands/${itm?.attributes?.redirection_url}`}>
+                                <Link prefetch={false} href={`/brands/${itm?.attributes?.redirection_url}`}>
                                     <div>
                                         <img width="100%" src={itm?.attributes?.image_url?.data?.attributes?.url} alt="Slide 1" />
                                     </div>

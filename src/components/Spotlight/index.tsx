@@ -1,5 +1,4 @@
 'use client'
-
 import { Khand } from 'next/font/google'
 import Image from "next/image"
 import Carousel from "react-multi-carousel";
@@ -54,7 +53,6 @@ function Spotlight() {
             centerMode={false}
             className=""
             containerClass=""
-            // customTransition="all 6s linear"
             dotListClass=""
             draggable
             focusOnSelect={false}

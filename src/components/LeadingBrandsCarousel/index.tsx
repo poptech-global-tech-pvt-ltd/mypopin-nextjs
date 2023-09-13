@@ -86,9 +86,7 @@ function LeadingBrandsCarousel() {
         //         </div>
         //     )) : <div>...</div>}
         // </Carousel>
-        <div>
-            <InfiniteImageSlider />
-        </div>
+        <InfiniteImageSlider />
     )
 }
 

@@ -78,7 +78,7 @@ export function NavigationMenuDemo() {
                   <div className="font-medium">
                     {brandData[category].map((brand: string, index: number) => (
                       <div key={index}>
-                        <Link href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
+                        <Link prefetch={false} href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
                           <div key={index} className={`py-1 text-[14px]`}>
                             {brand}
                           </div>
@@ -89,7 +89,7 @@ export function NavigationMenuDemo() {
                 </div>
               ))}
             </div>
-            <Link href="/allbrands">
+            <Link prefetch={false} href="/allbrands">
               <div className="text-right pb-4 pr-4 underline underline-offset-2">See All</div>
             </Link>
           </NavigationMenuContent>
@@ -114,7 +114,7 @@ export function NavigationMenuDemo() {
         </NavigationMenuItem> */}
 
         <NavigationMenuItem className={`${manrope.className} font-bold`}>
-          <Link href="/blogs" legacyBehavior passHref>
+          <Link prefetch={false} href="/blogs" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               <div className={`${manrope.className} font-bold text-[16px]`}>Blogs</div>
             </NavigationMenuLink>

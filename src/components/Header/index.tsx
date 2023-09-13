@@ -132,7 +132,7 @@ function Header() {
     return (
         // if header animation has been removed, add "fixed" class to fix it
         <main className="w-full fixed z-[100]">
-            <div className="bg-[rgba(255,255,255,0.8)] backdrop-blur h-[10vh] flex items-center justify-center ">
+            <div className="bg-[rgba(255,255,255,0.8)] backdrop-blur h-[10vh] max-h-[80px] flex items-center justify-center ">
                 <div className="max-w-[1350px] w-full">
                     <div className="flex justify-between">
                         {/* //logo section */}
@@ -152,17 +152,24 @@ function Header() {
                             {pathName !== "/partner-with-pop" && (
                                 <>
                                     {pathName !== '/features' && (
-                                        <div className="px-6">
-                                            <NavigationMenu />
-                                        </div>
+                                        <>
+                                            {pathName !== '/integrations' && (
+                                                <div className="px-6">
+                                                    <NavigationMenu />
+                                                </div>
+                                            )}
+                                        </>
                                     )}
                                 </>
                             )}
 
-                            {(pathName === "/partner-with-pop" || pathName === "/features") && (
+                            {(pathName === "/partner-with-pop" || pathName === "/features" || pathName === "/integrations") && (
                                 <div className="px-6 flex space-x-3 font-semibold">
                                     <Link href="/features">
                                         <div>Features</div>
+                                    </Link>
+                                    <Link href="/integrations">
+                                        <div>Integrations</div>
                                     </Link>
                                 </div>
                             )}
@@ -191,7 +198,6 @@ function Header() {
                                 </div>
                             )}
 
-
                             {pathName !== "/partner-with-pop" && (
                                 <div className="btn-container-desktop-modal">
                                     <Dialog open={isDialogOpen} onOpenChange={handleOpenChange}>
@@ -211,8 +217,8 @@ function Header() {
                             )}
                             <Tabs value={pathName} className="navbar-container" defaultValue="customer">
                                 <TabsList className="tabslist h-[45px] p-2">
-                                    <TabsTrigger className="tabstrigger h-[35px]" value="/"><Link href="/">I am a Customer</Link></TabsTrigger>
-                                    <TabsTrigger data-state={(pathName === '/features') || (pathName === "/partner-with-pop") ? "active" : "inactive"} className="tabstrigger h-[35px]" value="/partner-with-pop"> <Link href="/partner-with-pop">I am a Brand</Link></TabsTrigger>
+                                    <TabsTrigger data-state={(pathName.split('/')[1] === "brands") || (pathName === "/") || (pathName.split('/')[1] === "coupons") ? "active" : "inactive" } className="tabstrigger h-[35px]" value="/"><Link href="/">I am a Customer</Link></TabsTrigger>
+                                    <TabsTrigger data-state={(pathName === '/features') || (pathName === "/partner-with-pop") || (pathName === "/integrations") || (pathName === "/features") ? "active" : "inactive"} className="tabstrigger h-[35px]" value="/partner-with-pop"> <Link href="/partner-with-pop">I am a Brand</Link></TabsTrigger>
                                 </TabsList>
                             </Tabs>
                         </div>

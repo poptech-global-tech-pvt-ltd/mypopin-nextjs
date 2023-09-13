@@ -78,20 +78,6 @@ function HeroBannerMobile() {
                                     </div>
                                 </Fragment>
                             ))}
-
-                            {/* <div>
-                                <a href="">
-                                    <div className="h-[90vh] w-[100vw]">
-                                        <Image
-                                            src="/herobanner/banner-popcoin-mobile.svg"
-                                            fill
-                                            className="w-full h-full object-cover"
-                                            alt=""
-                                        />
-                                    </div>
-                                </a>
-                            </div> */}
-
                         </Carousel>
                     </div>
                 </div>
