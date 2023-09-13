@@ -163,7 +163,7 @@ function Header() {
                                 </>
                             )}
 
-                            {(pathName === "/partner-with-pop" || pathName === "/features" || pathName === "/integrations") && (
+                            {/* {(pathName === "/partner-with-pop" || pathName === "/features" || pathName === "/integrations") && (
                                 <div className="px-6 flex space-x-3 font-semibold">
                                     <Link href="/features">
                                         <div>Features</div>
@@ -172,7 +172,7 @@ function Header() {
                                         <div>Integrations</div>
                                     </Link>
                                 </div>
-                            )}
+                            )} */}
 
                         </div>
                         <div className="flex items-center space-x-3 justify-center">

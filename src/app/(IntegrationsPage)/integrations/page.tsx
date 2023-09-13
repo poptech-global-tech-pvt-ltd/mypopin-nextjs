@@ -38,7 +38,6 @@ function IntegrationPage() {
                         <img className='max-w-[100px] mx-4' src="/webengage.png" />
                     </div>
                 </div>
-
                 <div className='shadow-md px-1 lg:px-24 py-6 space-y-4 border-[0.5px] rounded-3xl lg:m-0 m-2'>
                     <div className={`text-center ${khand.className} text-5xl text-[#F56651]`}>Checkout</div>
                     <div className={`text-center font-normal ${manrope.className}`}>By integrating this solution, brands on Shopify can boost brand loyalty and customer lifetime value. Customers can earn reward coins for their purchases and use them for enticing discounts, which incentivises repeat purchases and fosters stronger customer relationships.
@@ -51,7 +50,6 @@ function IntegrationPage() {
                         <img className='max-w-[100px] mx-4' src="/zecpe.png" />
                     </div>
                 </div>
-
             </section>
         </>
     )

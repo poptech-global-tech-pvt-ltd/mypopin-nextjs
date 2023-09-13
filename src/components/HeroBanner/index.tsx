@@ -2,7 +2,7 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Fragment, useEffect, useState } from "react";
-import { ImageComponent } from "../ImageComponent";
+// import { ImageComponent } from "../ImageComponent";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
@@ -52,7 +52,6 @@ function HeroBanner() {
                         ) : (
                             <>
                                 <Carousel
-                                    ssr
                                     arrows={true}
                                     autoPlay={true}
                                     autoPlaySpeed={1800}
@@ -75,8 +74,9 @@ function HeroBanner() {
                                                 <a target="_blank" href={itm?.attributes.redirection_url}>
                                                     <div className="h-[90vh] w-[100vw]">
                                                     <img
+                                                        loading="lazy"
                                                         style={{width : "100vw", height : "90vh"}}
-                                                        src={itm?.attributes?.image?.data?.attributes?.url}
+                                                        src={`${itm?.attributes?.image?.data?.attributes?.url}?tr=pr-true,f-jpg`}
                                                         // hash={"LVMj5ikDQ-tlNytRVra{y?VsyXSh"}
                                                         width={"100vw"}
                                                         height={"90vh"}

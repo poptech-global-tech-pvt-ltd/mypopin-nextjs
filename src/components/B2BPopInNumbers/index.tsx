@@ -21,19 +21,19 @@ function B2BPopInNumbers() {
                 <div className={`${khand.className} text-center lg:text-left text-[35px] lg:text-8xl px-4 lg:py-0 leading-1 lg:leading-[100px]`}>Our POPpin’ Numbers</div>
                 <div className='py-4 lg:py-0'>
                     <div className='lg:pt-10'>
-                        <div className={`text-[#F56651] text-center ${khand.className} text-5xl text-center my-auto`}>49</div>
+                        <div className={`text-[#F56651] text-center ${khand.className} text-5xl text-center my-auto`}>57</div>
                         <div className={`text-center ${manrope.className} text-xl lg:text-2xl`}>Brand Partners</div>
                     </div>
                 </div>
                 <div className=' py-4 lg:py-0'>
                     <div className='lg:pt-10'>
-                        <div className={`text-[#F56651] text-center ${khand.className} text-5xl text-center`}>7,31,382</div>
+                        <div className={`text-[#F56651] text-center ${khand.className} text-5xl text-center`}>9,12,866</div>
                         <div className={`text-center ${manrope.className} text-xl lg:text-2xl`}>POP Ecosystem Customers</div>
                     </div>
                 </div>
                 <div className=' py-4 lg:py-0'>
                     <div className='lg:pt-10'>
-                        <div className={`text-[#F56651] text-center ${khand.className} text-5xl text-center`}>6,00,14,942</div>
+                        <div className={`text-[#F56651] text-center ${khand.className} text-5xl text-center`}>7,49,16,799</div>
                         <div className={`text-center ${manrope.className} text-xl lg:text-2xl`}>Coins In Circulation</div>
                     </div>
                 </div>

@@ -1,5 +1,4 @@
 'use client'
-
 import { POPCard } from "../POPCard";
 import { Khand } from 'next/font/google'
 import Carousel from "react-multi-carousel";
