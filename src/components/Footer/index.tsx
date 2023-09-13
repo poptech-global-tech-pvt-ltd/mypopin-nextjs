@@ -34,7 +34,8 @@ function Footer() {
         <>
             <div className="max-w-[1350px] md:px-4 pt-2 lg:pt-0 pb-4 lg:pb-0 mx-auto">
                 <section style={pathname.split("/")[1] === "brands" ? { display: "none" } : { display: "block" }}>
-                    {pathname === "/" ? <B2CFooterSEO /> : <B2BFooterSEO />}
+                    {pathname === "/" && <B2CFooterSEO />}
+                    {pathname === "/partner-with-pop" && <B2BFooterSEO />}
                 </section>
             </div>
             <hr />
