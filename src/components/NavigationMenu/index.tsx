@@ -37,7 +37,7 @@ export function NavigationMenuDemo() {
     const getBrandNames = async () => {
       try {
         // TODO - not a good solution, heavy paginated request
-        const response = await fetch('https://mypop-dashboard.popclub.co.in/api/brand-names?pagination[page]=1&pagination[pageSize]=50&populate=*');
+        const response = await fetch('https://mypop-dashboard.popclub.co.in/api/brand-names?sort[0]=brand_name:asc&pagination[page]=1&pagination[pageSize]=50&populate=*');
         const data = await response?.json();
         // Transform the data to group brands by category
         const transformedData = data?.data?.reduce((acc: any, item: any) => {

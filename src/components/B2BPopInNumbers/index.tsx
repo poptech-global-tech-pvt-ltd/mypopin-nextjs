@@ -1,7 +1,5 @@
 'use client'
-
 import { Khand } from 'next/font/google'
-import Image from 'next/image'
 import { Manrope } from 'next/font/google'
 import { useEffect, useState } from 'react'
 
@@ -29,8 +27,6 @@ function B2BPopInNumbers() {
             }
         }).then((res) => res.json()).then((data) => { setNumbersData(data.data) })
     }, [])
-
-    console.log({ numbersData })
 
     return (
         <div className="max-w-6xl mx-auto">
