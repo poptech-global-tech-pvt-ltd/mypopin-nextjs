@@ -119,7 +119,7 @@ async function BrandPage({ params }: any) {
                     <br />
                     <hr className='max-w-7xl mx-auto' />
                     <BrandRewardsCarousel />
-                    <BrandCouponStrip url={brandData?.url} brandName={brandData?.brand_name} primaryColor={brandData?.primary_color} secondaryColor={brandData?.secondary_color} textColor={brandData?.text_color} />
+                    {/* <BrandCouponStrip url={brandData?.url} brandName={brandData?.brand_name} primaryColor={brandData?.primary_color} secondaryColor={brandData?.secondary_color} textColor={brandData?.text_color} /> */}
                     <BrandDeals discountPercentage={brandData?.discount_percentage} primaryColor={brandData?.primary_color} secondaryColor={brandData?.secondary_color} textColor={brandData?.text_color} />
                     <hr className='max-w-7xl mx-auto' />
                     <section className='max-w-7xl mx-auto'>
