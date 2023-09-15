@@ -54,7 +54,7 @@ function HeroBanner() {
                                 <Carousel
                                     arrows={true}
                                     autoPlay={true}
-                                    autoPlaySpeed={1800}
+                                    autoPlaySpeed={3000}
                                     centerMode={false}
                                     dotListClass="hero-banner-desktop-dots"
                                     draggable
@@ -73,14 +73,14 @@ function HeroBanner() {
                                             <div className="cursor-pointer">
                                                 <a target="_blank" href={itm?.attributes.redirection_url}>
                                                     <div className="h-[90vh] w-[100vw]">
-                                                    <img
-                                                        loading="lazy"
-                                                        style={{width : "100vw", height : "90vh"}}
-                                                        src={`${itm?.attributes?.image?.data?.attributes?.url}?tr=pr-true,f-jpg`}
-                                                        // hash={"LVMj5ikDQ-tlNytRVra{y?VsyXSh"}
-                                                        width={"100vw"}
-                                                        height={"90vh"}
-                                                    />
+                                                        <img
+                                                            loading="lazy"
+                                                            style={{ width: "100vw", height: "90vh" }}
+                                                            src={`${itm?.attributes?.image?.data?.attributes?.url}?tr=pr-true,f-jpg`}
+                                                            // hash={"LVMj5ikDQ-tlNytRVra{y?VsyXSh"}
+                                                            width={"100vw"}
+                                                            height={"90vh"}
+                                                        />
                                                     </div>
                                                 </a>
                                             </div>

@@ -7,7 +7,7 @@ export default function NotFound() {
     <>
       <section className="py-24 max-w-6xl mx-auto">
         <div className="flex items-center justify-center">
-          <Image priority={false} src="/404.png" width={600} height={600} alt="404 image" />
+          <Image loading="lazy" priority={false} src="/404.png" width={600} height={600} alt="404 image" />
         </div>
         <div className="flex items-center justify-center text-[#484848] text-[30px]">Oh-Oh, Looks Like You're Lost!</div>
         <div className="flex items-center justify-center text-[#999999] text-[20px]">The page you're looking for has been moved, renamed or doesn't exist</div>

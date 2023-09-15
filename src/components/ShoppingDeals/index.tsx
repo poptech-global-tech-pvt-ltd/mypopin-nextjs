@@ -76,7 +76,7 @@ function ShoppingDeals() {
                             <SwiperSlide key={index}>
                                 <Link prefetch={false} href={`/brands/${itm?.attributes?.redirection_url}`}>
                                     <div>
-                                        <img width="100%" src={itm?.attributes?.image_url?.data?.attributes?.url} alt="Slide 1" />
+                                        <img loading='lazy' width="100%" src={itm?.attributes?.image_url?.data?.attributes?.url} alt="deals" />
                                     </div>
                                 </Link>
                             </SwiperSlide>
@@ -87,7 +87,7 @@ function ShoppingDeals() {
                             <SwiperSlide key={index}>
                                 <Link prefetch={false} href={`/brands/${itm?.attributes?.redirection_url}`}>
                                     <div>
-                                        <img width="100%" src={itm?.attributes?.image_url?.data?.attributes?.url} alt="Slide 1" />
+                                        <img loading='lazy' width="100%" src={itm?.attributes?.image_url?.data?.attributes?.url} alt="deals" />
                                     </div>
                                 </Link>
                             </SwiperSlide>

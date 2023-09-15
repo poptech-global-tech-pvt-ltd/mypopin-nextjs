@@ -1,11 +1,8 @@
-'use client'
 import './globals.css'
 import { Header } from '@/components/Header'
 import { MobileHeader } from '@/components/MobileHeader'
 import { Footer } from '@/components/Footer'
 import Transition from '@/components/Transition/Transition'
-import Script from 'next/script'
-import { motion } from 'framer-motion'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

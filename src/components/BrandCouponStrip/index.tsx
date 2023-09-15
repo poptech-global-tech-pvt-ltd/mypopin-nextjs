@@ -25,8 +25,8 @@ const khand = Khand({
 function BrandCouponStrip({ primaryColor, secondaryColor, textColor, brandName, url }: IProps) {
     return (
         <>
-            <section className="my-16" style={{ backgroundColor: primaryColor, color: textColor }}>
-                <div className="flex py-20 items-center justify-center">
+            <section className="my-10" style={{ backgroundColor: primaryColor, color: textColor }}>
+                <div className="flex py-12 items-center justify-center">
                     <div className={`text-5xl ${khand.className} w-1/3`}>Unlock Exciting Coupons For {brandName}</div>
                     <div>
                         <Link href={`/coupons/${url}`}>
