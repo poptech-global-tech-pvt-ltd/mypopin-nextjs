@@ -48,7 +48,9 @@ function POPShop() {
             }
         }
         else {
+
             window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+
         }
     }
 
@@ -57,6 +59,7 @@ function POPShop() {
         //reset
         settwo("-1050px")
         setFour("-1050px")
+
     }
 
     const handleThreeClick = () => {
@@ -78,7 +81,9 @@ function POPShop() {
             settwo("-1050px")
         }
         else {
+
             window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+
         }
     }
 
@@ -101,7 +106,9 @@ function POPShop() {
             }
         }
         else {
+
             window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+
         }
     }
 
@@ -146,7 +153,9 @@ function POPShop() {
             setMobileFour("-610px")
         }
         else {
+
             window.open("https://8mvyk.app.link/dh8SuwQK3wb", "_blank");
+
         }
     }
 
@@ -158,10 +167,10 @@ function POPShop() {
                     <div className={`${khand.className} text-center text-6xl py-16`}>Introducing the POPshop</div>
                     <div className='transition-all' style={{ display: "flex", justifyContent: "flex-end" }}>
                         <div className='transition-all' style={{ display: "flex", overflowX: "clip" }}>
-                            <img loading='lazy' className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleOneClick} src="/popshop1.png" alt="Slide Image" />
-                            <img loading='lazy' className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleTwoClick} style={{ marginLeft: two }} src="/popshop2.png" alt="Slide Image" />
-                            <img loading='lazy' className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleThreeClick} style={{ marginLeft: three }} src="/popshop3.png" alt="Slide Image" />
-                            <img loading='lazy' className='transition-all cursor-pointer' width="1120" height="1000" onClick={handleFourClick} style={{ marginLeft: four }} src="/popshop4.png" alt="Slide Image" />
+                            <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleOneClick} src="/popshop1.png" alt="Slide Image" />
+                            <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleTwoClick} style={{ marginLeft: two }} src="/popshop2.png" alt="Slide Image" />
+                            <img className='transition-all cursor-pointer' width="1120" height="auto" onClick={handleThreeClick} style={{ marginLeft: three }} src="/popshop3.png" alt="Slide Image" />
+                            <img className='transition-all cursor-pointer' width="1120" height="1000" onClick={handleFourClick} style={{ marginLeft: four }} src="/popshop4.png" alt="Slide Image" />
                         </div>
                     </div>
                 </div>
@@ -171,10 +180,10 @@ function POPShop() {
                     <div className={`${khand.className} text-center text-3xl lg:text-6xl py-6 lg:py-16`}>Introducing the POPshop</div>
                     <div className='max-w-[400px] mx-auto'>
                         <div style={{ overflowY: "clip" }} className='flex flex-col'>
-                            <img loading='lazy' className='transition-all' width="1120" height="auto" onClick={handleOneMobileClick} src="/popshop/popshop-mobile-4.png" alt="Slide Image" />
-                            <img loading='lazy' style={{ marginTop: mobileTwo }} className='transition-all' width="1120" height="auto" onClick={handleTwoMobileClick} src="/popshop/popshop-mobile-3.png" alt="Slide Image" />
-                            <img loading='lazy' style={{ marginTop: mobileThree }} className='transition-all ' width="1120" height="auto" onClick={handleThreeMobileClick} src="/popshop/popshop-mobile-2.png" alt="Slide Image" />
-                            <img loading='lazy' style={{ marginTop: mobileFour }} className='transition-all ' width="1120" height="auto" onClick={handleFourMobileClick} src="/popshop/popshop-mobile-1.png" alt="Slide Image" />
+                            <img className='transition-all' width="1120" height="auto" onClick={handleOneMobileClick} src="/popshop/popshop-mobile-4.png" alt="Slide Image" />
+                            <img style={{ marginTop: mobileTwo }} className='transition-all' width="1120" height="auto" onClick={handleTwoMobileClick} src="/popshop/popshop-mobile-3.png" alt="Slide Image" />
+                            <img style={{ marginTop: mobileThree }} className='transition-all ' width="1120" height="auto" onClick={handleThreeMobileClick} src="/popshop/popshop-mobile-2.png" alt="Slide Image" />
+                            <img style={{ marginTop: mobileFour }} className='transition-all ' width="1120" height="auto" onClick={handleFourMobileClick} src="/popshop/popshop-mobile-1.png" alt="Slide Image" />
                         </div>
                     </div>
                 </div>
@@ -184,4 +193,3 @@ function POPShop() {
 }
 
 export { POPShop }
-
