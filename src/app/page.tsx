@@ -125,7 +125,7 @@ export default function Home() {
           <HeroPartners />
           <ShoppingDeals />
         {/* </Layout> */}
-        {/* <SignupStrip isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/> */}
+        <SignupStrip isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/>
         <TopPOPcoinPartnerBrands />
         {/* <Layout> */}
           <POPInNumbers />
