@@ -23,8 +23,8 @@ const popInNumbers = [
 
 function POPInNumbers() {
     const [count, setCount] = useState(1);
-    const [custCount, setCustCount] = useState(920500)
-    const [savingsCount, setSavingCount] = useState(2061024);
+    const [custCount, setCustCount] = useState(921300)
+    const [savingsCount, setSavingCount] = useState(2063500);
     const noOfBrandRef = useRef(null);
     const noOfCustomers = useRef(null);
     const noOfSaving = useRef(null)
