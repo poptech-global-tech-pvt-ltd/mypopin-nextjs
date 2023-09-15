@@ -88,7 +88,7 @@ async function BlogDetail({ params, searchParams }: any) {
                     </div>
                 </Container>
 
-                <div className="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg">
+                {/* <div className="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg">
                     {blogDetailData && blogDetailData.length === 1 ? (
                         <Image
                             src={blogDetailData[0].attributes.post_image.data.attributes.url}
@@ -100,7 +100,7 @@ async function BlogDetail({ params, searchParams }: any) {
                         />
                     ) :
                         null}
-                </div>
+                </div> */}
 
                 <div className="container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 lg:py-8">
                     <div className="mx-auto max-w-screen-md ">
