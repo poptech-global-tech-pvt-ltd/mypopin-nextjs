@@ -23,7 +23,7 @@ const popInNumbers = [
 
 function POPInNumbers() {
     const [count, setCount] = useState(1);
-    const [custCount, setCustCount] = useState(936350)
+    const [custCount, setCustCount] = useState(945240)
     const [savingsCount, setSavingCount] = useState(2095470);
     const noOfBrandRef = useRef(null);
     const noOfCustomers = useRef(null);
@@ -74,7 +74,7 @@ function POPInNumbers() {
     }, [])
 
     function formatNumberWithCommas(number: string | number) {
-        return number.toLocaleString();
+        return number?.toLocaleString();
     }
 
     useEffect(() => {
@@ -123,15 +123,18 @@ function POPInNumbers() {
                 <div className={`px-4 lg:px-0 text-[35px] leading-9 lg:leading-0 text-center lg:text-6xl py-10 lg:py-16 font-bold ${khand.className}`}>Our POPpin' Numbers</div>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                     <div className={`text-center ${manrope.className}`}>
-                        <div ref={noOfBrandRef} className={`text-[#F56651] text-[46px] lg:text-6xl font-extrabold ${khand.className}`}>{formatNumberWithCommas(Number(count))}</div>
+                        {/* <div ref={noOfBrandRef} className={`text-[#F56651] text-[46px] lg:text-6xl font-extrabold ${khand.className}`}>{formatNumberWithCommas(Number(count))}</div> */}
+                        <div ref={noOfBrandRef} className={`text-[#F56651] text-[46px] lg:text-6xl font-extrabold ${khand.className}`}>{formatNumberWithCommas(dataFromAPI?.num_brands)}</div>
                         <div className='text-[16px] lg:text-2xl py-0 lg:py-1 font-medium'>{first.title}</div>
                     </div>
                     <div className={`text-center ${manrope.className}`}>
-                        <div className={`text-[#F56651] text-[46px] lg:text-6xl font-extrabold ${khand.className}`}>{formatNumberWithCommas(Number(custCount))}</div>
+                        {/* <div className={`text-[#F56651] text-[46px] lg:text-6xl font-extrabold ${khand.className}`}>{formatNumberWithCommas(Number(custCount))}</div> */}
+                        <div className={`text-[#F56651] text-[46px] lg:text-6xl font-extrabold ${khand.className}`}>{formatNumberWithCommas(dataFromAPI?.total_users)}</div>
                         <div className='text-[16px] lg:text-2xl py-0 lg:py-1 font-medium'>{second.title}</div>
                     </div>
                     <div className={`text-center ${manrope.className}`}>
-                        <div className={`text-[#F56651] text-[46px] lg:text-6xl font-extrabold ${khand.className}`}>{formatNumberWithCommas(Number(savingsCount))}</div>
+                        {/* <div className={`text-[#F56651] text-[46px] lg:text-6xl font-extrabold ${khand.className}`}>{formatNumberWithCommas(Number(savingsCount))}</div> */}
+                        <div className={`text-[#F56651] text-[46px] lg:text-6xl font-extrabold ${khand.className}`}>{formatNumberWithCommas(dataFromAPI?.coins_savings)}</div>
                         <div className='text-[16px] lg:text-2xl py-0 lg:py-1 font-medium'>{third.title}</div>
                     </div>
                 </div>
