@@ -1,5 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/brands/undefined',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/brands/null',
+        destination: '/',
+        permanent: true,
+      },
+    ]
+  },
   experimental: {
     appDir: true,
   },
