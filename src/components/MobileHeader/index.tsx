@@ -185,7 +185,7 @@ function MobileHeader() {
                                         <DialogDescription>
                                             <div className="">
                                                 {/* // disable z-index from header and it works */}
-                                                <iframe className="mx-auto h-[80vh] rounded-lg" width="100%" height="600px" src={`https://coins.mypopcoins.com/?key=${cookieKey}`}></iframe>
+                                                <iframe className="mx-auto h-[80vh] rounded-lg" width="100%" height="600px" src={`https://coins.mypopcoins.com/?brand=mypopin&key=${cookieKey}`}></iframe>
                                             </div>
                                         </DialogDescription>
                                     </DialogContent>
