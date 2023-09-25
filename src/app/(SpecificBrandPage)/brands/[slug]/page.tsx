@@ -18,7 +18,7 @@ const manrope = Manrope({
 
 async function getData(brandName: string) {
     try {
-        const res = await fetch(`https://mypop-dashboard.popclub.co.in/api/brand-names?filters[url][$eq]=${brandName}&populate=*`)
+        const res = await fetch(`https://mypop-dashboard.popclub.co.in/api/brand-names?filters[url][$eq]=${brandName}&populate=*`, { next: { revalidate: 300 } })
         if (!res.ok) {
             throw new Error('Failed to fetch data');
         }
@@ -33,7 +33,7 @@ async function BrandPage({ params }: any) {
     const res = await getData(brandName)
     const brandData = res?.data[0]?.attributes
 
-    console.log({ brandData })
+    console.log("----->", brandData)
 
     return (
         <>
