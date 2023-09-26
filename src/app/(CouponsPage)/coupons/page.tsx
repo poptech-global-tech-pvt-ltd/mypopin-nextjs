@@ -1,23 +1,24 @@
 'use client'
-import { Button } from "@/components/ui/button";
-import { color, motion } from "framer-motion";
-import { useState, useEffect, Fragment } from "react";
+import React, { useEffect, useState, useRef } from 'react';
 import { Khand, Manrope } from 'next/font/google'
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import { extractNumbersAndRest } from '@/utils/extractNumbersAndRest'
+import { Button } from '@/components/ui/button';
+import ReactCardFlip from 'react-card-flip';
+import { ArrowRightCircle, Copy } from 'lucide-react';
 import {
     Sheet,
+    SheetClose,
     SheetContent,
     SheetDescription,
+    SheetFooter,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { useMediaQuery } from 'react-responsive'
-import { Copy, ArrowRightCircle } from 'lucide-react';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 
 const manrope = Manrope({
@@ -29,741 +30,351 @@ const khand = Khand({
     weight: '700',
     subsets: ['latin'],
 })
-const responsive = {
-    superLargeDesktop: {
-        // the naming can be any, depends on you.
-        breakpoint: { max: 4000, min: 3000 },
-        items: 5
-    },
-    desktop: {
-        breakpoint: { max: 3000, min: 1024 },
-        items: 3.5
-    },
-    tablet: {
-        breakpoint: { max: 1024, min: 464 },
-        items: 2
-    },
-    mobile: {
-        breakpoint: { max: 464, min: 0 },
-        items: 1
-    }
-};
 
-function Coupons() {
-    const [couponData, setCouponData] = useState<any>([])
-    const [categories, setCategories] = useState<any>([]);
-    const [brandNames, setBrandNames] = useState<any>([]);
-    const [filteredBrandData, setFilteredBrandData] = useState<any>();
-    const [discountCode, setDiscountCode] = useState<string>("");
-    const transitionConfig = {
-        duration: 0.5
+function CouponsPage() {
+    const [couponData, setCouponData] = useState<any[]>([]);
+    const [filterCouponData, setFilterCouponData] = useState<any[]>([])
+    const [brandData, setBrandData] = useState<any>([]);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+    const containerRef = useRef(null);
+    // const [isFlipped, setIsFlipped] = useState<boolean[]>([]);
+    const [isFlippedRows, setIsFlippedRows] = useState<boolean[][]>([]);
+    const [selectedStoreUuids, setSelectedStoreUuids] = useState<any>()
+    const [filterUrl, setFilterUrl] = useState("");
+
+    // https://mypop-dashboard.popclub.co.in/api/coupons?filters[storeuuid][$in][0]=bodytales&filters[storeuuid][$in][1]=anveshan
+
+    // fetch for ALL coupons table
+    useEffect(() => {
+        if (selectedStoreUuids?.length === 0 || selectedStoreUuids?.length === undefined || selectedStoreUuids?.length === undefined) {
+            const fetchData = async () => {
+                try {
+                    const response = await fetch(`https://mypop-dashboard.popclub.co.in/api/coupons?sort[0]=storeuuid:asc&pagination[page]=${page}`);
+                    const result = await response.json();
+                    // Check if there's more data to load
+                    if (result.data.length === 0) {
+                        setHasMore(false);
+                    } else {
+                        setCouponData(prevData => [...prevData, ...result.data]);
+                        // Initialize card flipping state when new data is fetched
+                        const newIsFlippedRows = new Array(result.data.length).fill(false);
+                        setIsFlippedRows(prevIsFlippedRows => [...prevIsFlippedRows, newIsFlippedRows]);
+                    }
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
+            };
+            if (hasMore) {
+                fetchData();
+            }
+        }
+    }, [page, hasMore, selectedStoreUuids]);
+
+    // fetch for filtered coupon based on filter clicked
+    useEffect(() => {
+        if (selectedStoreUuids?.length > 0 && filterUrl != undefined) {
+            const fetchData = async () => {
+                try {
+                    const response = await fetch(`${filterUrl}&sort[0]=storeuuid:asc&pagination[page]=${page}`);
+                    const result = await response.json();
+                    // Check if there's more data to load
+                    if (result.data.length === 0) {
+                        setHasMore(false);
+                    } else {
+                        // setFilterCouponData(prevData => [...prevData, ...result.data])
+                        setCouponData(prevData => [...prevData, ...result.data]);
+                        // Initialize card flipping state when new data is fetched
+                        const newIsFlippedRows = new Array(result.data.length).fill(false);
+                        setIsFlippedRows(prevIsFlippedRows => [...prevIsFlippedRows, newIsFlippedRows]);
+                    }
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
+            };
+            if (hasMore) {
+                fetchData();
+            }
+        }
+    }, [page, hasMore, selectedStoreUuids]);
+
+    console.log({filterUrl})
+
+    // fetch for brand name table
+    useEffect(() => {
+        fetch('https://mypop-dashboard.popclub.co.in/api/brand-names?pagination[page]=1&pagination[pageSize]=100&populate=*').then((res) => res.json()).then((data) => {
+            // Add the 'isChecked' key to each item in the data array
+            const newData = data.data.map((item: any) => ({
+                ...item,
+                isChecked: false, // Initialize 'isChecked' to false
+            }));
+            // Set the modified data in the state
+            setBrandData({ ...data, data: newData });
+        })
+
+    }, [])
+
+
+
+    const handleScroll = () => {
+        const container = containerRef.current;
+
+        if (container) {
+            const { scrollTop, clientHeight, scrollHeight } = container;
+
+            if (scrollTop + clientHeight >= scrollHeight - 20 && hasMore) {
+                // Load more data when user is near the bottom
+                setPage(prevPage => prevPage + 1);
+            }
+        }
     };
-    const isDesktopOrLaptop = useMediaQuery({
-        query: '(min-width: 1000px)'
-    })
-    const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1000px)' })
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    // Group coupons by 'storeuuid'
+    const groupedCouponData: { [storeuuid: string]: any[] } = {};
+
+    couponData.forEach(coupon => {
+        const storeuuid = coupon?.attributes?.storeuuid;
+        if (!groupedCouponData[storeuuid]) {
+            groupedCouponData[storeuuid] = [];
+        }
+        groupedCouponData[storeuuid].push(coupon);
+    });
+
+    const responsive = {
+        superLargeDesktop: {
+            // the naming can be any, depends on you.
+            breakpoint: { max: 4000, min: 3000 },
+            items: 5
+        },
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 3.5
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1
+        }
+    };
+
+    // Toggle card flip
+    const toggleCardFlip = (rowIndex: number, couponIndex: number) => {
+        setIsFlippedRows(prevIsFlippedRows => {
+            const newIsFlippedRows = [...prevIsFlippedRows];
+            newIsFlippedRows[rowIndex] = newIsFlippedRows[rowIndex] || [];
+            newIsFlippedRows[rowIndex][couponIndex] = !newIsFlippedRows[rowIndex][couponIndex];
+            return newIsFlippedRows;
+        });
+    };
+
+    // Initialize card flipping state for each row
+    useEffect(() => {
+        const newIsFlippedRows = Object.keys(groupedCouponData).map(() => []);
+        setIsFlippedRows(newIsFlippedRows);
+    }, []); // Add an empty dependency array to run this effect only once
+
+
+
+    const handleClick = (item: any) => {
+        // Toggle the 'isChecked' state of the clicked item
+        item.isChecked = !item.isChecked;
+        // If you want to update the state, you can create a copy of the brandData and update the clicked item
+        const updatedBrandData = { ...brandData };
+        const updatedData = updatedBrandData.data.map((brand: any) => {
+            if (brand.id === item.id) {
+                return {
+                    ...brand,
+                    isChecked: item.isChecked,
+                };
+            }
+            return brand;
+        });
+        // Update the state with the modified data
+        setBrandData({ ...updatedBrandData, data: updatedData });
+
+        const newSelectedStoreUuids = brandData.data
+            .filter((item: any) => item.isChecked)
+            .map((item: any) => item.attributes.url);
+
+        // Update the state with the selected storeuuid values
+        setSelectedStoreUuids(newSelectedStoreUuids);
+
+       
+    };
 
 
     useEffect(() => {
-        fetch('https://presentation.popclub.co.in/api/presentation-layer/4b35a8aca9f311840d68051abae50ff5/coupons')
-            .then(response => response.json())
-            .then(data => {
-                if (data.is_success) {
-                    setCouponData(data?.data?.filter((item: any) => item.hasOwnProperty('coupons') && item.is_coupon_enabled))
-                    if (data?.data?.length) {
-                        data?.data
-                            ?.filter((item: any) => item.hasOwnProperty('coupons') && item.is_coupon_enabled)
-                            ?.map((itm: any, index: any) => {
-                                if (itm?.coupons) {
-                                    setCategories((prevCategories: any) => [...prevCategories, { title: itm?.category?.name, isChecked: false, id: itm?.category?.id }]);
-                                    setBrandNames((prev: any) => [...prev, { isChecked: false, title: itm?.display_name }])
-                                }
-                            })
-                    }
-                } else {
-                    console.log('API request failed:', data.message);
-                }
-            })
-            .catch(error => {
-                console.log('Error:', error);
-            });
-    }, [])
+        const apiUrl = 'https://mypop-dashboard.popclub.co.in/api/coupons';
+        const queryParams = selectedStoreUuids?.map((storeuuid: any, index: number) => `filters[storeuuid][$in][${index}]=${storeuuid}`).join('&');
+        const finalUrl = `${apiUrl}?${queryParams}`;
+        setFilterUrl(finalUrl)
+        console.log({ finalUrl })
+    },  [selectedStoreUuids])
 
+
+    console.log({ brandData })
     console.log({ couponData })
-
-    // TOP FILTER
-    const handleCategoryFilterClick = (itm: any) => {
-        console.log({ itm })
-        const index = categories?.findIndex((i: any) => i?.id === itm?.id)
-
-        setCategories((prevData: any) => {
-            const newData = [...prevData]
-            newData[index].isChecked = !newData[index].isChecked
-            return newData
-        })
-
-
-        setCouponData((prevData: any) => {
-            let updatedCategories = categories
-            const newData = prevData.map((item: any) => {
-                const newItem = { ...item };
-                for (const secondItem of updatedCategories) {
-                    if (
-                        secondItem.isChecked &&
-                        newItem.category.id.toString() === secondItem.id &&
-                        newItem.category.name === secondItem.title
-                    ) {
-                        newItem.category.isChecked = true;
-                        break; // No need to continue searching if a match is found
-                    } else {
-                        newItem.category.isChecked = false;
-                    }
-                }
-                return newItem;
-            });
-            return newData;
-        });
-    }
-
-    console.log({ couponData })
-
-    // BOTTOM FILTER
-    const handleBrandNameFilterClick = (itm: any) => {
-        const index = brandNames?.findIndex((i: any) => i?.title === itm?.title)
-        setBrandNames((prevData: any) => {
-            const newData = [...prevData]
-            newData[index].isChecked = !newData[index].isChecked
-            return newData
-        })
-
-        setCouponData((prevData: any) => {
-            let newData = [...prevData]
-            const index = newData.findIndex(item => item?.hasOwnProperty('display_name') && item?.display_name === itm?.title);
-            newData[index].isChecked = !newData[index].isChecked
-            return newData
-        })
-    }
-
-    const handleCardClick = (itemIndex: number, couponIndex: number) => {
-        console.log({ itemIndex, couponIndex })
-        // coupon is the row number
-        setCouponData((prevData: any) => {
-            const newData = [...prevData];
-            if (newData[couponIndex]?.coupons && newData[couponIndex]?.coupons[itemIndex]) {
-                newData[couponIndex].coupons[itemIndex].isFlipped = !newData[couponIndex]?.coupons[itemIndex]?.isFlipped;
-                newData[couponIndex].coupons[itemIndex].isCopied = false;
-            }
-            return newData;
-        });
-        setDiscountCode(couponData[couponIndex]?.coupons[itemIndex]?.discountcode)
-    };
-
-    const handleCopyClick = (event: any, itemIndex: any, couponIndex: any) => {
-        event?.stopPropagation()
-        setCouponData((prevData: any) => {
-            const newData = [...prevData];
-            if (newData[couponIndex]?.coupons && newData[couponIndex]?.coupons[itemIndex]) {
-                newData[couponIndex].coupons[itemIndex].isCopied = true;
-            }
-            return newData;
-        });
-        navigator.clipboard.writeText(discountCode);
-    }
-
-    console.log({ categories, brandNames })
-
-    const handleClearAll = () => {
-        fetch('https://presentation.popclub.co.in/api/presentation-layer/4b35a8aca9f311840d68051abae50ff5/coupons')
-            .then(response => response.json())
-            .then(data => {
-                if (data.is_success) {
-                    setCouponData(data?.data?.filter((item: any) => item.hasOwnProperty('coupons') && item.is_coupon_enabled))
-                    if (data?.data?.length) {
-                        data?.data
-                            ?.filter((item: any) => item.hasOwnProperty('coupons') && item.is_coupon_enabled)
-                            ?.map((itm: any, index: any) => {
-                                if (itm?.coupons) {
-                                    setCategories((prevCategories: any) => [...prevCategories, { title: itm?.category?.name, isChecked: false, id: itm?.category?.id }]);
-                                    setBrandNames((prev: any) => [...prev, { isChecked: false, title: itm?.display_name }])
-                                }
-                            })
-                    }
-                } else {
-                    console.log('API request failed:', data.message);
-                }
-            })
-            .catch(error => {
-                console.log('Error:', error);
-            });
-
-        setCategories((prevData: any) => {
-            const newData = [...prevData]
-            newData.map((i) => i.isChecked = false)
-            return newData
-        })
-
-        setBrandNames((prevData: any) => {
-            const newData = [...prevData]
-            newData.map((i) => i.isChecked = false)
-            return newData
-        })
-
-        console.log("new-category", categories)
-        console.log("new-brand", brandNames)
-    }
-
-    console.log({ categories })
-    console.log("testing", couponData.some((item: any) => item?.category?.isChecked && item?.isChecked))
+    console.log({ filterCouponData })
 
     return (
         <>
-            <div className="py-1 lg:py-24 mx-auto max-w-7xl">
-                <div className={`grid lg:grid-cols-3 `}>
-                    <div className={`${khand.className}  text-center text-6xl py-1 lg:py-16`}></div>
-                    <div className={`${khand.className}  text-center text-6xl py-6`}>Coupons</div>
+            <section className="py-24 max-w-7xl mx-auto">
+                <div className={`text-[60px] text-center font-[700]`}>Coupons</div>
+
+                {/* <div className='flex items-end justify-end'>
                     <Sheet>
-                        <div className="flex justify-end px-4 lg:px-0">
-                            <SheetTrigger>
-                                <Button variant="secondary"><span><img src="/filter-icon.svg" /></span>&nbsp;&nbsp;Filters</Button>
-                            </SheetTrigger>
-                        </div>
-                        <SheetContent side={isTabletOrMobile ? "bottom" : "right"} className="z-[200] h-full">
-                            <SheetHeader>
-                                <SheetTitle>
-                                    <br />
-                                    <div className="flex justify-end">
-                                        <Button onClick={handleClearAll} variant="ghost">Clear All</Button>
-                                    </div>
-                                </SheetTitle>
-                                <SheetTitle>Categories</SheetTitle>
-                                <SheetDescription>
-                                    <ScrollArea className="h-[35vh] w-full">
-                                        {/* // for CATEGORIES */}
-                                        {categories
-                                            ?.filter((item: any, index: any, self: any) => index === self.findIndex((obj: any) => obj.id === item.id))
-                                            ?.map((itm: any, index: any) => (
-                                                <div key={index} className="flex items-center space-x-2 py-2">
-                                                    <Checkbox checked={itm?.isChecked} onClick={() => handleCategoryFilterClick(itm)} id={itm?.title} />
-                                                    <Label htmlFor={itm?.title}>{itm?.title}</Label>
-                                                </div>
-                                            ))}
-                                    </ScrollArea>
-                                </SheetDescription>
-                                <SheetTitle>Brands</SheetTitle>
-                                <SheetDescription>
-                                    <ScrollArea className="h-[35vh] w-full">
-                                        {/* // FOR BRAND NAMES */}
-                                        {brandNames
-                                            // ?.filter((item: any) => item.hasOwnProperty('coupons'))
-                                            ?.map((itm: any, index: any) => (
-                                                <div key={index} className="flex items-center space-x-2 py-2">
-                                                    <Checkbox checked={itm?.isChecked} onClick={() => handleBrandNameFilterClick(itm)} id={itm?.title} />
-                                                    <Label htmlFor={itm?.display_name}>{itm?.title}</Label>
-                                                </div>
-                                            ))}
-                                    </ScrollArea>
-                                </SheetDescription>
-                            </SheetHeader>
+                        <SheetTrigger asChild>
+                            <Button variant="default">Filters</Button>
+                        </SheetTrigger>
+                        <SheetContent>
+                            <ScrollArea className="h-[100vh] w-full">
+                                <div className='mt-[10vh]'>
+                                    <div className='text-2xl py-4'>Brands</div>
+                                    {brandData?.data?.map((itm: any, index: number) => (
+                                        <>
+                                            <Checkbox checked={itm?.isChecked} onClick={() => handleClick(itm)} id={itm?.attributes?.url} />
+                                            <label
+                                                htmlFor={itm?.attributes?.url}
+                                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            >
+                                                &nbsp;&nbsp;{itm?.attributes?.brand_name}
+                                            </label>
+                                            <br />
+                                        </>
+                                    ))}
+                                </div>
+                            </ScrollArea>
                         </SheetContent>
                     </Sheet>
+                </div> */}
+                <div ref={containerRef} style={{ overflowY: 'scroll', maxHeight: '700px' }}>
+                    {Object.keys(groupedCouponData).map((storeuuid, rowIndex) => (
+                        <div key={rowIndex}>
+                            <h2 className='font-bold py-4 text-2xl'>{storeuuid}</h2>
+                            {/* <div className="flex flex-wrap"> */}
+                            <Carousel
+                                responsive={responsive}
+                                className="z-[50] px-4">
+                                {groupedCouponData[storeuuid].map((coupon: any, couponIndex: number) => {
+                                    const brand = brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid);
+                                    return (
+                                        <ReactCardFlip
+                                            isFlipped={isFlippedRows[rowIndex] && isFlippedRows[rowIndex][couponIndex]}
+                                            key={couponIndex} flipDirection="horizontal">
+                                            <div
+                                                onClick={() => toggleCardFlip(rowIndex, couponIndex)}
+                                                className="w-[300px] h-[300px] bg-white rounded-md shadow-md flex items-center justify-center border-[0.3px]">
+                                                <div
+                                                    // onClick={() => handleClick(itm.id)} 
+                                                    style={{ borderColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black" }} className="w-[270px] h-[270px] border-[2px] mx-auto my-auto rounded-md cursor-pointer">
+                                                    <div className='text-center flex items-center justify-center py-1'>
+                                                        {brand?.attributes?.round_logo?.data?.attributes?.url ? <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full bg-white shadow-sm" src={brand?.attributes?.round_logo?.data?.attributes?.url} /> : <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
+                                                    </div>
+
+                                                    <div className="text-center">
+                                                        <div className="font-extrabold text-[1.6rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.value}&nbsp;<span>{coupon?.attributes?.shortSummary ? <span>off</span> : null}</span></div>
+                                                        <div className="font-normal text-[0.8rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.rest?.split("off")[1]}</div>
+                                                    </div>
+                                                    {brand?.attributes?.isDoubleDiscount && (
+                                                        <>
+                                                            <br />
+                                                            <div className="flex items-center justify-center text-[10px]">
+                                                                <div>
+                                                                    <img width="30" height="30" src="/popcoin-icon.svg" />
+                                                                </div>
+                                                                {brandData?.length > 0 ? (
+                                                                    <>
+                                                                        <div className="px-2 py-[3px] rounded-tr-full rounded-br-full font-bold border-t-[1.2px] border-b-[1.2px] border-r-[1.2px] border-[#F5664B]">{`Plus extra ${brand?.attributes?.discount_percentage ? brand?.attributes?.discount_percentage : "30"}% off with popcoins`}</div>
+                                                                    </>
+                                                                ) : null}
+                                                            </div>
+                                                        </>
+                                                    )}
+                                                    <br />
+                                                    <div className="flex items-center justify-center">
+                                                        <Button style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: brand?.attributes?.text_color ? brand?.attributes?.text_color : "white" }} className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>GET CODE</Button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {/* // BACK SIDE */}
+                                            <div>
+                                                <div
+                                                    onClick={() => toggleCardFlip(rowIndex, couponIndex)}
+                                                    style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white" }} className="w-[300px] h-[300px] rounded-md shadow-md flex items-center justify-center border-[0.3px]">
+                                                    <div
+                                                        // onClick={() => handleClick(itm.id)} 
+                                                        className="w-[270px] h-[270px] mx-auto my-auto rounded-md cursor-pointer">
+                                                        <div className='text-center flex items-center justify-center py-1'>
+                                                            {
+                                                                brand?.attributes?.round_logo?.data?.attributes?.url
+                                                                    ?
+                                                                    <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full bg-white"
+                                                                        src={brand?.attributes?.round_logo?.data?.attributes?.url}
+                                                                    />
+                                                                    :
+                                                                    <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white">
+                                                                    </div>
+                                                            }
+                                                        </div>
+
+                                                        <div className="flex">
+                                                            <Button
+                                                                // onClick={(event) => handleCopyClick(event, itm?.attributes?.title, itm?.id)}
+                                                                style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white", color: brand?.attributes?.primary_color ? "white" : "black" }} className="text-center mx-auto rounded-lg"> {coupon?.isChecked ? "Copied!" : "Tap to Copy"}</Button>
+                                                        </div>
+
+                                                        <div style={{ borderColor: "white" }} className={`text-center border-[1px] rounded-lg mx-8`}>
+                                                            <div className="flex items-center justify-center">
+                                                                <Button
+                                                                    style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: "white" }}
+                                                                    // onClick={(event) => handleCopyClick(event, itm?.attributes?.title, itm?.id)}
+                                                                    className="h-7 uppercase">{coupon?.attributes?.title?.length > 10 ? coupon?.attributes?.title?.slice(0, 10) + ".." : coupon?.attributes?.title}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <>
+                                                            {coupon?.isChecked ? (
+                                                                <div className="flex items-center justify-center">
+                                                                    <a target="_blank" href={brand?.attributes?.redirection_url}>
+                                                                        <Button
+                                                                            style={{ backgroundColor: brand?.attributes?.primary_color, color: brand?.attributes?.text_color }}
+                                                                            onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3 my-2 shadow-xl border-[0.01px]`}>REDEEM NOW&nbsp;&nbsp;<ArrowRightCircle className="w-4 h-4" /></Button>
+                                                                    </a>
+                                                                </div>
+                                                            ) : null}
+
+                                                        </>
+                                                        <div className="text-center text-white text-[0.825rem]">
+                                                            <div>{coupon?.attributes?.summary?.split("•")[0] ? coupon?.attributes?.summary?.split("•")[0] : null}</div>
+                                                            <div>{coupon?.attributes?.summary?.split("•")[1] ? coupon?.attributes?.summary?.split("•")[1] : null}</div>
+                                                            <div>{coupon?.attributes?.summary?.split("•")[2] ? coupon?.attributes?.summary?.split("•")[2] : null}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </ReactCardFlip>
+                                    )
+                                })}
+                            </Carousel>
+                        </div>
+                        // </div>
+                    ))}
+                    {hasMore && <p>Loading more...</p>}
                 </div>
-
-                {/* ============ */}
-                {/* // Render the ENTIRE array if all isChecked values are false for category and brand names BOTH */}
-                {couponData.every((item: any) => !item.isChecked && !item.category?.isChecked) ? (
-                    couponData
-                        ?.map((itm: any, couponIndex: number) => (
-                            <div key={couponIndex}>
-                                <div key={couponIndex}>
-                                    <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6 max-w-7xl mx-auto lg:px-0 px-4`}>{itm?.display_name}</div>
-                                    <div className="coupon-carousel-container">
-                                        <Carousel
-                                            responsive={responsive}
-                                            className="z-[50] px-4">
-                                            {itm?.coupons?.length > 0 && itm?.coupons?.map((j: any, itemIndex: any) => (
-                                                <motion.div
-                                                    key={itemIndex}
-                                                    className="card__wrapper"
-                                                    onClick={() => {
-                                                        handleCardClick(itemIndex, couponIndex);
-                                                    }}
-                                                >
-                                                    {/* // BACK SIDE OF THE COUPON CARD */}
-                                                    <motion.div
-                                                        transition={transitionConfig}
-                                                        initial={false}
-                                                        animate={{ rotateY: j.isFlipped ? 0 : -180 }}
-                                                        style={{ backgroundColor: itm?.color?.bg_color_1 }}
-                                                        className="text-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl border-[1px] shadow-lg card"
-                                                    >
-                                                        <div className="w-[270px] h-[270px] rounded-lg flex items-center flex-col">
-                                                            <div>
-                                                                <div className='text-center flex items-center justify-center py-1'>
-                                                                    {itm?.logo && <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full bg-white" src={itm?.logo?.image} />}
-                                                                    {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
-                                                                </div>
-                                                                <div className="flex">
-                                                                    <Button
-                                                                        style={{ backgroundColor: itm?.color?.bg_color_1 ? itm?.color?.bg_color_1 : "white", color: itm?.color?.bg_color_1 ? "white" : "black" }} className="text-center mx-auto" onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)}>{j?.isCopied ? 'Copied' : 'Tap to copy'}</Button>
-                                                                </div>
-                                                                <div className={`text-center border-[1px] rounded-lg`}>
-                                                                    <div className="flex items-center justify-center">
-                                                                        <Button
-                                                                            style={{ backgroundColor: itm?.color?.bg_color_1 ? itm?.color?.bg_color_1 : "white", color: itm?.color?.bg_color_1 ? "white" : "black" }}
-                                                                            onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)} className="h-7">{j?.discountcode.length > 10 ? j?.discountcode.slice(0, 10) + ".." : j?.discountcode}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
-                                                                    </div>
-                                                                </div>
-                                                                <div className='flex items-center justify-center py-1'>
-                                                                    {j?.isCopied && (
-                                                                        <>
-                                                                            <a href={itm?.redirection_url}>
-                                                                                <Button
-                                                                                    style={{ backgroundColor: itm?.color?.bg_color_2, color: itm?.color?.text_color_2 }}
-                                                                                    onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3 my-2`}>REDEEM&nbsp;&nbsp;<ArrowRightCircle className="w-4 h-4" /></Button>
-                                                                            </a>
-                                                                        </>
-                                                                    )}
-
-                                                                </div>
-                                                                <div className={`text-center text-[0.825rem] py-1 ${manrope.className}`}>
-                                                                    {j?.summary.split('•').map((i: any, index: number) => (
-                                                                        <div key={index}>{i}</div>
-                                                                    ))}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </motion.div>
-                                                    {/* // FRONT SIDE OF THE COUPON CARD */}
-                                                    <motion.div
-                                                        transition={transitionConfig}
-                                                        initial={false}
-                                                        animate={{ rotateY: j.isFlipped ? 180 : 0 }}
-                                                        // style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"  }}
-                                                        className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl border-[1px] card shadow-lg"
-                                                    >
-                                                        <div style={{ borderColor: itm?.color?.bg_color_1 }} className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
-                                                            <div>
-                                                                <div className='text-center flex items-center justify-center py-2'>
-                                                                    {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] object-contain rounded-full" src={itm?.logo?.image} />}
-                                                                    {!itm?.logo && <div className="border-[1.5px] w-[90px] h-[90px] rounded-full bg-white"></div>}
-                                                                </div>
-                                                                <div className='text-center py-2'>
-                                                                    {j?.rules.value?.percentage ? (
-                                                                        <>
-                                                                            <div className={`text-[1.64431rem] font-extrabold`}>{j?.rules.value?.percentage * 100}% off</div>
-                                                                        </>
-                                                                    ) :
-                                                                        (
-                                                                            <>
-                                                                                <div className={`text-[1.64431rem] font-extrabold`}>Flat ₹{Math.floor(j?.rules.value?.amount?.amount)} off</div>
-                                                                            </>
-                                                                        )
-                                                                    }
-                                                                    <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
-                                                                </div>
-                                                                <div className={`text-[0.67069rem] py-1 font-extrabold`}>
-                                                                    {itm?.discount_percentage_text
-                                                                        ?
-                                                                        <div className="flex items-center justify-center">
-                                                                            <div>
-                                                                                <img width="30" height="30" src="/popcoin-icon.svg" />
-                                                                            </div>
-                                                                            <div className="px-2 py-[3px] rounded-tr-full rounded-br-full font-bold border-t-[1.2px] border-b-[1.2px] border-r-[1.2px] border-[#F5664B]">{`Earn extra ${itm?.discount_percentage_text} off with popcoins`}</div>
-                                                                        </div>
-                                                                        : null}
-                                                                </div>
-                                                                <div className='flex items-center justify-center py-2'>
-                                                                    {/* <a href={itm?.redirection_url}> */}
-                                                                    <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>GET CODE</Button>
-                                                                    {/* </a> */}
-                                                                </div>
-                                                                <div className={`text-[0.625rem] text-center font-normal`}>{j?.endsAt}</div>
-                                                            </div>
-                                                        </div>
-                                                    </motion.div>
-                                                </motion.div>
-                                            ))}
-                                        </Carousel>
-                                    </div>
-                                </div>
-                            </div>
-                        ))
-                ) : null}
-
-                {/* ============= */}
-                {/* // Render cateogry ONLY if brandnames is unchecked */}
-                {couponData.every((item: any) => !item.isChecked) ? (
-                    couponData
-                        ?.filter((item: any) => item?.category?.isChecked)
-                        ?.map((itm: any, couponIndex: number) => (
-                            <div key={couponIndex}>
-                                <div key={couponIndex}>
-                                    <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6 max-w-7xl mx-auto lg:px-0 px-4`}>{itm?.display_name}</div>
-                                    <div className="coupon-carousel-container">
-                                        <Carousel
-                                            responsive={responsive}
-                                            className="z-[50] px-4">
-                                            {itm?.coupons?.length > 0 && itm?.coupons?.map((j: any, itemIndex: any) => (
-                                                <motion.div
-                                                    key={itemIndex}
-                                                    className="card__wrapper"
-                                                    onClick={() => {
-                                                        handleCardClick(itemIndex, couponIndex);
-                                                    }}
-                                                >
-                                                    {/* // BACK SIDE OF THE COUPON CARD */}
-                                                    <motion.div
-                                                        transition={transitionConfig}
-                                                        initial={false}
-                                                        animate={{ rotateY: j.isFlipped ? 0 : -180 }}
-                                                        style={{ backgroundColor: itm?.color?.bg_color_1 }}
-                                                        className="text-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl border-[1px] shadow-lg card"
-                                                    >
-                                                        <div className="w-[270px] h-[270px] rounded-lg flex items-center flex-col">
-                                                            <div>
-                                                                <div className='text-center flex items-center justify-center py-1'>
-                                                                    {itm?.logo && <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full bg-white" src={itm?.logo?.image} />}
-                                                                    {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
-                                                                </div>
-                                                                <div className="flex">
-                                                                    <Button
-                                                                        style={{ backgroundColor: itm?.color?.bg_color_1 ? itm?.color?.bg_color_1 : "white", color: itm?.color?.bg_color_1 ? "white" : "black" }} className="text-center mx-auto" onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)}>{j?.isCopied ? 'Copied' : 'Tap to copy'}</Button>
-                                                                </div>
-                                                                <div className={`text-center border-[1px] rounded-lg`}>
-                                                                    <div className="flex items-center justify-center">
-                                                                        <Button
-                                                                            style={{ backgroundColor: itm?.color?.bg_color_1 ? itm?.color?.bg_color_1 : "white", color: itm?.color?.bg_color_1 ? "white" : "black" }}
-                                                                            onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)} className="h-7">{j?.discountcode.length > 10 ? j?.discountcode.slice(0, 10) + ".." : j?.discountcode}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
-                                                                    </div>
-                                                                </div>
-                                                                <div className='flex items-center justify-center py-1'>
-                                                                    {j?.isCopied && (
-                                                                        <>
-                                                                            <a href={itm?.redirection_url}>
-                                                                                <Button
-                                                                                    style={{ backgroundColor: itm?.color?.bg_color_2, color: itm?.color?.text_color_2 }}
-                                                                                    onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3 my-2`}>REDEEM&nbsp;&nbsp;<ArrowRightCircle className="w-4 h-4" /></Button>
-                                                                            </a>
-                                                                        </>
-                                                                    )}
-
-                                                                </div>
-                                                                <div className={`text-center text-[0.825rem] py-1 ${manrope.className}`}>
-                                                                    {j?.summary.split('•').map((i: any, index: number) => (
-                                                                        <div key={index}>{i}</div>
-                                                                    ))}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </motion.div>
-                                                    {/* // FRONT SIDE OF THE COUPON CARD */}
-                                                    <motion.div
-                                                        transition={transitionConfig}
-                                                        initial={false}
-                                                        animate={{ rotateY: j.isFlipped ? 180 : 0 }}
-                                                        // style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"  }}
-                                                        className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl border-[1px] card shadow-lg"
-                                                    >
-                                                        <div style={{ borderColor: itm?.color?.bg_color_1 }} className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
-                                                            <div>
-                                                                <div className='text-center flex items-center justify-center py-2'>
-                                                                    {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] object-contain rounded-full" src={itm?.logo?.image} />}
-                                                                    {!itm?.logo && <div className="border-[1.5px] w-[90px] h-[90px] rounded-full bg-white"></div>}
-                                                                </div>
-                                                                <div className='text-center py-2'>
-                                                                    {j?.rules.value?.percentage ? (
-                                                                        <>
-                                                                            <div className={`text-[1.64431rem] font-extrabold`}>{j?.rules.value?.percentage * 100}% off</div>
-                                                                        </>
-                                                                    ) :
-                                                                        (
-                                                                            <>
-                                                                                <div className={`text-[1.64431rem] font-extrabold`}>Flat ₹{Math.floor(j?.rules.value?.amount?.amount)} off</div>
-                                                                            </>
-                                                                        )
-                                                                    }
-                                                                    <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
-                                                                </div>
-                                                                <div className={`text-[0.67069rem] py-1 font-extrabold`}>
-                                                                    {itm?.discount_percentage_text
-                                                                        ?
-                                                                        <div className="flex items-center justify-center">
-                                                                            <div>
-                                                                                <img width="30" height="30" src="/popcoin-icon.svg" />
-                                                                            </div>
-                                                                            <div className="px-2 py-[3px] rounded-tr-full rounded-br-full font-bold border-t-[1.2px] border-b-[1.2px] border-r-[1.2px] border-[#F5664B]">{`Earn extra ${itm?.discount_percentage_text} off with popcoins`}</div>
-                                                                        </div>
-                                                                        : null}
-                                                                </div>
-                                                                <div className='flex items-center justify-center py-2'>
-                                                                    {/* <a href={itm?.redirection_url}> */}
-                                                                    <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>GET CODE</Button>
-                                                                    {/* </a> */}
-                                                                </div>
-                                                                <div className={`text-[0.625rem] text-center font-normal`}>{j?.endsAt}</div>
-                                                            </div>
-                                                        </div>
-                                                    </motion.div>
-                                                </motion.div>
-                                            ))}
-                                        </Carousel>
-                                    </div>
-                                </div>
-                            </div>
-                        ))
-                ) : null}
-
-                {/* ============= */}
-                {/* // Render brandnames ONLY if category is unchecked */}
-                {couponData.every((item: any) => !item?.category?.isChecked) ? (
-                    couponData
-                        ?.filter((item: any) => item?.isChecked)
-                        ?.map((itm: any, couponIndex: number) => (
-                            <div key={couponIndex}>
-                                <div key={couponIndex}>
-                                    <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6 max-w-7xl mx-auto lg:px-0 px-4`}>{itm?.display_name}</div>
-                                    <div className="coupon-carousel-container">
-                                        <Carousel
-                                            responsive={responsive}
-                                            className="z-[50] px-4">
-                                            {itm?.coupons?.length > 0 && itm?.coupons?.map((j: any, itemIndex: any) => (
-                                                <motion.div
-                                                    key={itemIndex}
-                                                    className="card__wrapper"
-                                                    onClick={() => {
-                                                        handleCardClick(itemIndex, couponIndex);
-                                                    }}
-                                                >
-                                                    {/* // BACK SIDE OF THE COUPON CARD */}
-                                                    <motion.div
-                                                        transition={transitionConfig}
-                                                        initial={false}
-                                                        animate={{ rotateY: j.isFlipped ? 0 : -180 }}
-                                                        style={{ backgroundColor: itm?.color?.bg_color_1 }}
-                                                        className="text-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl border-[1px] shadow-lg card"
-                                                    >
-                                                        <div className="w-[270px] h-[270px] rounded-lg flex items-center flex-col">
-                                                            <div>
-                                                                <div className='text-center flex items-center justify-center py-1'>
-                                                                    {itm?.logo && <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full bg-white" src={itm?.logo?.image} />}
-                                                                    {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
-                                                                </div>
-                                                                <div className="flex">
-                                                                    <Button
-                                                                        style={{ backgroundColor: itm?.color?.bg_color_1 ? itm?.color?.bg_color_1 : "white", color: itm?.color?.bg_color_1 ? "white" : "black" }} className="text-center mx-auto" onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)}>{j?.isCopied ? 'Copied' : 'Tap to copy'}</Button>
-                                                                </div>
-                                                                <div className={`text-center border-[1px] rounded-lg`}>
-                                                                    <div className="flex items-center justify-center">
-                                                                        <Button
-                                                                            style={{ backgroundColor: itm?.color?.bg_color_1 ? itm?.color?.bg_color_1 : "white", color: itm?.color?.bg_color_1 ? "white" : "black" }}
-                                                                            onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)} className="h-7">{j?.discountcode.length > 10 ? j?.discountcode.slice(0, 10) + ".." : j?.discountcode}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
-                                                                    </div>
-                                                                </div>
-                                                                <div className='flex items-center justify-center py-1'>
-                                                                    {j?.isCopied && (
-                                                                        <>
-                                                                            <a href={itm?.redirection_url}>
-                                                                                <Button
-                                                                                    style={{ backgroundColor: itm?.color?.bg_color_2, color: itm?.color?.text_color_2 }}
-                                                                                    onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3 my-2`}>REDEEM&nbsp;&nbsp;<ArrowRightCircle className="w-4 h-4" /></Button>
-                                                                            </a>
-                                                                        </>
-                                                                    )}
-
-                                                                </div>
-                                                                <div className={`text-center text-[0.825rem] py-1 ${manrope.className}`}>
-                                                                    {j?.summary.split('•').map((i: any, index: number) => (
-                                                                        <div key={index}>{i}</div>
-                                                                    ))}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </motion.div>
-                                                    {/* // FRONT SIDE OF THE COUPON CARD */}
-                                                    <motion.div
-                                                        transition={transitionConfig}
-                                                        initial={false}
-                                                        animate={{ rotateY: j.isFlipped ? 180 : 0 }}
-                                                        // style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"  }}
-                                                        className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl border-[1px] card shadow-lg"
-                                                    >
-                                                        <div style={{ borderColor: itm?.color?.bg_color_1 }} className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
-                                                            <div>
-                                                                <div className='text-center flex items-center justify-center py-2'>
-                                                                    {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] object-contain rounded-full" src={itm?.logo?.image} />}
-                                                                    {!itm?.logo && <div className="border-[1.5px] w-[90px] h-[90px] rounded-full bg-white"></div>}
-                                                                </div>
-                                                                <div className='text-center py-2'>
-                                                                    {j?.rules.value?.percentage ? (
-                                                                        <>
-                                                                            <div className={`text-[1.64431rem] font-extrabold`}>{j?.rules.value?.percentage * 100}% off</div>
-                                                                        </>
-                                                                    ) :
-                                                                        (
-                                                                            <>
-                                                                                <div className={`text-[1.64431rem] font-extrabold`}>Flat ₹{Math.floor(j?.rules.value?.amount?.amount)} off</div>
-                                                                            </>
-                                                                        )
-                                                                    }
-                                                                    <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
-                                                                </div>
-                                                                <div className={`text-[0.67069rem] py-1 font-extrabold`}>
-                                                                    {itm?.discount_percentage_text
-                                                                        ?
-                                                                        <div className="flex items-center justify-center">
-                                                                            <div>
-                                                                                <img width="30" height="30" src="/popcoin-icon.svg" />
-                                                                            </div>
-                                                                            <div className="px-2 py-[3px] rounded-tr-full rounded-br-full font-bold border-t-[1.2px] border-b-[1.2px] border-r-[1.2px] border-[#F5664B]">{`Earn extra ${itm?.discount_percentage_text} off with popcoins`}</div>
-                                                                        </div>
-                                                                        : null}
-                                                                </div>
-                                                                <div className='flex items-center justify-center py-2'>
-                                                                    {/* <a href={itm?.redirection_url}> */}
-                                                                    <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>GET CODE</Button>
-                                                                    {/* </a> */}
-                                                                </div>
-                                                                <div className={`text-[0.625rem] text-center font-normal`}>{j?.endsAt}</div>
-                                                            </div>
-                                                        </div>
-                                                    </motion.div>
-                                                </motion.div>
-                                            ))}
-                                        </Carousel>
-                                    </div>
-                                </div>
-                            </div>
-                        ))
-                ) : null}
-
-                {/* ============= */}
-                {/* // Render brandnames AND category if both are true in some fields */}
-                {couponData.some((item: any) => !item?.category?.isChecked && !item?.isChecked) ? (
-                    couponData
-                        ?.filter((item: any) => item?.isChecked)
-                        ?.filter((item: any) => item?.category?.isChecked)
-                        ?.map((itm: any, couponIndex: number) => (
-                            <div key={couponIndex}>
-                                <div key={couponIndex}>
-                                    <div className={`text-left ${manrope.className} font-extrabold text-3xl py-6 max-w-7xl mx-auto lg:px-0 px-4`}>{itm?.display_name}</div>
-                                    <div className="coupon-carousel-container">
-                                        <Carousel
-                                            responsive={responsive}
-                                            className="z-[50] px-4">
-                                            {itm?.coupons?.length > 0 && itm?.coupons?.map((j: any, itemIndex: any) => (
-                                                <motion.div
-                                                    key={itemIndex}
-                                                    className="card__wrapper"
-                                                    onClick={() => {
-                                                        handleCardClick(itemIndex, couponIndex);
-                                                    }}
-                                                >
-                                                    {/* // BACK SIDE OF THE COUPON CARD */}
-                                                    <motion.div
-                                                        transition={transitionConfig}
-                                                        initial={false}
-                                                        animate={{ rotateY: j.isFlipped ? 0 : -180 }}
-                                                        style={{ backgroundColor: itm?.color?.bg_color_1 }}
-                                                        className="text-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl border-[1px] shadow-lg card"
-                                                    >
-                                                        <div className="w-[270px] h-[270px] rounded-lg flex items-center flex-col">
-                                                            <div>
-                                                                <div className='text-center flex items-center justify-center py-1'>
-                                                                    {itm?.logo && <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full bg-white" src={itm?.logo?.image} />}
-                                                                    {!itm?.logo && <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
-                                                                </div>
-                                                                <div className="flex">
-                                                                    <Button
-                                                                        style={{ backgroundColor: itm?.color?.bg_color_1 ? itm?.color?.bg_color_1 : "white", color: itm?.color?.bg_color_1 ? "white" : "black" }} className="text-center mx-auto" onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)}>{j?.isCopied ? 'Copied' : 'Tap to copy'}</Button>
-                                                                </div>
-                                                                <div className={`text-center border-[1px] rounded-lg`}>
-                                                                    <div className="flex items-center justify-center">
-                                                                        <Button
-                                                                            style={{ backgroundColor: itm?.color?.bg_color_1 ? itm?.color?.bg_color_1 : "white", color: itm?.color?.bg_color_1 ? "white" : "black" }}
-                                                                            onClick={(e) => handleCopyClick(e, itemIndex, couponIndex)} className="h-7">{j?.discountcode.length > 10 ? j?.discountcode.slice(0, 10) + ".." : j?.discountcode}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
-                                                                    </div>
-                                                                </div>
-                                                                <div className='flex items-center justify-center py-1'>
-                                                                    {j?.isCopied && (
-                                                                        <>
-                                                                            <a href={itm?.redirection_url}>
-                                                                                <Button
-                                                                                    style={{ backgroundColor: itm?.color?.bg_color_2, color: itm?.color?.text_color_2 }}
-                                                                                    onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3 my-2`}>REDEEM&nbsp;&nbsp;<ArrowRightCircle className="w-4 h-4" /></Button>
-                                                                            </a>
-                                                                        </>
-                                                                    )}
-
-                                                                </div>
-                                                                <div className={`text-center text-[0.825rem] py-1 ${manrope.className}`}>
-                                                                    {j?.summary.split('•').map((i: any, index: number) => (
-                                                                        <div key={index}>{i}</div>
-                                                                    ))}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </motion.div>
-                                                    {/* // FRONT SIDE OF THE COUPON CARD */}
-                                                    <motion.div
-                                                        transition={transitionConfig}
-                                                        initial={false}
-                                                        animate={{ rotateY: j.isFlipped ? 180 : 0 }}
-                                                        // style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"  }}
-                                                        className="bg-white w-[300px] h-[300px] flex items-center justify-center mx-auto my-auto rounded-xl border-[1px] card shadow-lg"
-                                                    >
-                                                        <div style={{ borderColor: itm?.color?.bg_color_1 }} className="bg-white w-[270px] h-[270px] rounded-lg border-2 flex items-center flex-col">
-                                                            <div>
-                                                                <div className='text-center flex items-center justify-center py-2'>
-                                                                    {itm?.logo && <img className="border-[1.5px] w-[80px] h-[80px] object-contain rounded-full" src={itm?.logo?.image} />}
-                                                                    {!itm?.logo && <div className="border-[1.5px] w-[90px] h-[90px] rounded-full bg-white"></div>}
-                                                                </div>
-                                                                <div className='text-center py-2'>
-                                                                    {j?.rules.value?.percentage ? (
-                                                                        <>
-                                                                            <div className={`text-[1.64431rem] font-extrabold`}>{j?.rules.value?.percentage * 100}% off</div>
-                                                                        </>
-                                                                    ) :
-                                                                        (
-                                                                            <>
-                                                                                <div className={`text-[1.64431rem] font-extrabold`}>Flat ₹{Math.floor(j?.rules.value?.amount?.amount)} off</div>
-                                                                            </>
-                                                                        )
-                                                                    }
-                                                                    <div className={`text-[0.82719rem] font-normal`}>on selected products</div>
-                                                                </div>
-                                                                <div className={`text-[0.67069rem] py-1 font-extrabold`}>
-                                                                    {itm?.discount_percentage_text
-                                                                        ?
-                                                                        <div className="flex items-center justify-center">
-                                                                            <div>
-                                                                                <img width="30" height="30" src="/popcoin-icon.svg" />
-                                                                            </div>
-                                                                            <div className="px-2 py-[3px] rounded-tr-full rounded-br-full font-bold border-t-[1.2px] border-b-[1.2px] border-r-[1.2px] border-[#F5664B]">{`Earn extra ${itm?.discount_percentage_text} off with popcoins`}</div>
-                                                                        </div>
-                                                                        : null}
-                                                                </div>
-                                                                <div className='flex items-center justify-center py-2'>
-                                                                    {/* <a href={itm?.redirection_url}> */}
-                                                                    <Button style={{ backgroundColor: itm?.color?.bg_color_1 }} className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>GET CODE</Button>
-                                                                    {/* </a> */}
-                                                                </div>
-                                                                <div className={`text-[0.625rem] text-center font-normal`}>{j?.endsAt}</div>
-                                                            </div>
-                                                        </div>
-                                                    </motion.div>
-                                                </motion.div>
-                                            ))}
-                                        </Carousel>
-                                    </div>
-                                </div>
-                            </div>
-                        ))
-                ) : null}
-
-            </div>
+            </section>
         </>
     );
 }
 
-export default Coupons
-
+export default CouponsPage;
