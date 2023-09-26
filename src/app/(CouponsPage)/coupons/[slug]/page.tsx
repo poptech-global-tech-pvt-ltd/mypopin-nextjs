@@ -28,7 +28,8 @@ function BrandCouponPage({ params, searchParams }: any) {
     useEffect(() => {
         const result = fetch(`https://mypop-dashboard.popclub.co.in/api/coupons?filters[storeuuid][$eq]=${pathname.split("/")[2]}`).then((res) => res.json()).then((result) => {
             const modifiedArray = result.data.map((itm: any) => ({ ...itm, isFlipped: false, isCopied: false }));
-            setCouponData(modifiedArray);
+            const filteredResult = modifiedArray.filter((i: any) => !(i?.attributes?.summary.includes("For ")));          
+            setCouponData(filteredResult);
         })
     }, [])
 
