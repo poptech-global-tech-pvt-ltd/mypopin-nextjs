@@ -19,6 +19,9 @@ import {
 } from "@/components/ui/sheet"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ScrollArea } from '@/components/ui/scroll-area';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
+
 
 
 const manrope = Manrope({
@@ -28,7 +31,7 @@ const manrope = Manrope({
 
 const khand = Khand({
     weight: '700',
-    subsets: ['latin'],
+    subsets: ['latin']
 })
 
 function CouponsPage() {
@@ -52,13 +55,15 @@ function CouponsPage() {
                 try {
                     const response = await fetch(`https://mypop-dashboard.popclub.co.in/api/coupons?sort[0]=storeuuid:asc&pagination[page]=${page}`);
                     const result = await response.json();
+                    const filteredResult = result.data.filter((i: any) => !(i?.attributes?.summary.includes("For ")))
+                    console.log({ filteredResult })
                     // Check if there's more data to load
-                    if (result.data.length === 0) {
+                    if (filteredResult.length === 0) {
                         setHasMore(false);
                     } else {
-                        setCouponData(prevData => [...prevData, ...result.data]);
+                        setCouponData(prevData => [...prevData, ...filteredResult]);
                         // Initialize card flipping state when new data is fetched
-                        const newIsFlippedRows = new Array(result.data.length).fill(false);
+                        const newIsFlippedRows = new Array(filteredResult?.length).fill(false);
                         setIsFlippedRows(prevIsFlippedRows => [...prevIsFlippedRows, newIsFlippedRows]);
                     }
                 } catch (error) {
@@ -98,7 +103,7 @@ function CouponsPage() {
         }
     }, [page, hasMore, selectedStoreUuids]);
 
-    console.log({filterUrl})
+    console.log({ filterUrl })
 
     // fetch for brand name table
     useEffect(() => {
@@ -209,7 +214,7 @@ function CouponsPage() {
         // Update the state with the selected storeuuid values
         setSelectedStoreUuids(newSelectedStoreUuids);
 
-       
+
     };
 
 
@@ -219,18 +224,22 @@ function CouponsPage() {
         const finalUrl = `${apiUrl}?${queryParams}`;
         setFilterUrl(finalUrl)
         console.log({ finalUrl })
-    },  [selectedStoreUuids])
+    }, [selectedStoreUuids])
 
 
     console.log({ brandData })
     console.log({ couponData })
     console.log({ filterCouponData })
 
+    const handleCopyClick = (event: any, discountCode: string) => {
+        event.stopPropagation()
+        navigator.clipboard.writeText(discountCode);
+    }
+
     return (
         <>
-            <section className="py-24 max-w-7xl mx-auto">
-                <div className={`text-[60px] text-center font-[700]`}>Coupons</div>
-
+            <section className="py-24 max-w-[1400px] mx-auto">
+                <div className={`${khand.className} text-center text-6xl text-[#F46651] py-6 font-bold`}><span className={`text-slate-500 ${khand.className}`}>Coupons</span></div>
                 {/* <div className='flex items-end justify-end'>
                     <Sheet>
                         <SheetTrigger asChild>
@@ -258,119 +267,136 @@ function CouponsPage() {
                     </Sheet>
                 </div> */}
                 <div ref={containerRef} style={{ overflowY: 'scroll', maxHeight: '700px' }}>
-                    {Object.keys(groupedCouponData).map((storeuuid, rowIndex) => (
-                        <div key={rowIndex}>
-                            <h2 className='font-bold py-4 text-2xl'>{storeuuid}</h2>
-                            {/* <div className="flex flex-wrap"> */}
-                            <Carousel
-                                responsive={responsive}
-                                className="z-[50] px-4">
-                                {groupedCouponData[storeuuid].map((coupon: any, couponIndex: number) => {
-                                    const brand = brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid);
-                                    return (
-                                        <ReactCardFlip
-                                            isFlipped={isFlippedRows[rowIndex] && isFlippedRows[rowIndex][couponIndex]}
-                                            key={couponIndex} flipDirection="horizontal">
-                                            <div
-                                                onClick={() => toggleCardFlip(rowIndex, couponIndex)}
-                                                className="w-[300px] h-[300px] bg-white rounded-md shadow-md flex items-center justify-center border-[0.3px]">
-                                                <div
-                                                    // onClick={() => handleClick(itm.id)} 
-                                                    style={{ borderColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black" }} className="w-[270px] h-[270px] border-[2px] mx-auto my-auto rounded-md cursor-pointer">
-                                                    <div className='text-center flex items-center justify-center py-1'>
-                                                        {brand?.attributes?.round_logo?.data?.attributes?.url ? <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full bg-white shadow-sm" src={brand?.attributes?.round_logo?.data?.attributes?.url} /> : <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
-                                                    </div>
-
-                                                    <div className="text-center">
-                                                        <div className="font-extrabold text-[1.6rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.value}&nbsp;<span>{coupon?.attributes?.shortSummary ? <span>off</span> : null}</span></div>
-                                                        <div className="font-normal text-[0.8rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.rest?.split("off")[1]}</div>
-                                                    </div>
-                                                    {brand?.attributes?.isDoubleDiscount && (
-                                                        <>
-                                                            <br />
-                                                            <div className="flex items-center justify-center text-[10px]">
-                                                                <div>
-                                                                    <img width="30" height="30" src="/popcoin-icon.svg" />
-                                                                </div>
-                                                                {brandData?.length > 0 ? (
-                                                                    <>
-                                                                        <div className="px-2 py-[3px] rounded-tr-full rounded-br-full font-bold border-t-[1.2px] border-b-[1.2px] border-r-[1.2px] border-[#F5664B]">{`Plus extra ${brand?.attributes?.discount_percentage ? brand?.attributes?.discount_percentage : "30"}% off with popcoins`}</div>
-                                                                    </>
-                                                                ) : null}
-                                                            </div>
-                                                        </>
-                                                    )}
-                                                    <br />
-                                                    <div className="flex items-center justify-center">
-                                                        <Button style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: brand?.attributes?.text_color ? brand?.attributes?.text_color : "white" }} className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>GET CODE</Button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {/* // BACK SIDE */}
-                                            <div>
-                                                <div
-                                                    onClick={() => toggleCardFlip(rowIndex, couponIndex)}
-                                                    style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white" }} className="w-[300px] h-[300px] rounded-md shadow-md flex items-center justify-center border-[0.3px]">
+                    {Object.keys(groupedCouponData).map((storeuuid, rowIndex) => {
+                        const brand = brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid);
+                        console.log({ brand })
+                        return (
+                            <div key={rowIndex}>
+                                <h2 className='font-bold py-4 text-2xl'>{brand?.attributes?.brand_name}</h2>
+                                {/* <div className="flex flex-wrap"> */}
+                                <Carousel
+                                    responsive={responsive}
+                                    className="z-[50] px-4">
+                                    {groupedCouponData[storeuuid].map((coupon: any, couponIndex: number) => {
+                                        return (
+                                            <>
+                                                {/* <div>hello</div> */}
+                                                <ReactCardFlip
+                                                    isFlipped={isFlippedRows[rowIndex] && isFlippedRows[rowIndex][couponIndex]}
+                                                    key={couponIndex} flipDirection="horizontal">
                                                     <div
-                                                        // onClick={() => handleClick(itm.id)} 
-                                                        className="w-[270px] h-[270px] mx-auto my-auto rounded-md cursor-pointer">
-                                                        <div className='text-center flex items-center justify-center py-1'>
-                                                            {
-                                                                brand?.attributes?.round_logo?.data?.attributes?.url
-                                                                    ?
-                                                                    <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full bg-white"
-                                                                        src={brand?.attributes?.round_logo?.data?.attributes?.url}
-                                                                    />
-                                                                    :
-                                                                    <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white">
+                                                        onClick={() => toggleCardFlip(rowIndex, couponIndex)}
+                                                        className="w-[300px] h-[300px] bg-white rounded-md shadow-md flex items-center justify-center border-[0.3px]">
+                                                        <div
+                                                            // onClick={() => handleClick(itm.id)} 
+                                                            style={{ borderColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black" }} className="w-[270px] h-[270px] border-[2px] mx-auto my-auto rounded-md cursor-pointer">
+                                                            <div className='text-center flex items-center justify-center py-1'>
+                                                                {brand?.attributes?.round_logo?.data?.attributes?.url ? <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full bg-white shadow-sm" src={brand?.attributes?.round_logo?.data?.attributes?.url} /> : <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
+                                                            </div>
+
+                                                            <div className="text-center">
+                                                                <div className="font-extrabold text-[1.6rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.value}&nbsp;<span>{coupon?.attributes?.shortSummary ? <span>off</span> : null}</span></div>
+                                                                <div className="font-normal text-[0.8rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.rest?.split("off")[1]}</div>
+                                                            </div>
+                                                            {brand?.attributes?.isDoubleDiscount && (
+                                                                <>
+                                                                    <br />
+                                                                    <div className="flex items-center justify-center text-[10px]">
+                                                                        <div>
+                                                                            <img width="30" height="30" src="/popcoin-icon.svg" />
+                                                                        </div>
+                                                                        {brandData?.length > 0 ? (
+                                                                            <>
+                                                                                <div className="px-2 py-[3px] rounded-tr-full rounded-br-full font-bold border-t-[1.2px] border-b-[1.2px] border-r-[1.2px] border-[#F5664B]">{`Plus extra ${brand?.attributes?.discount_percentage ? brand?.attributes?.discount_percentage : "30"}% off with popcoins`}</div>
+                                                                            </>
+                                                                        ) : null}
                                                                     </div>
-                                                            }
-                                                        </div>
-
-                                                        <div className="flex">
-                                                            <Button
-                                                                // onClick={(event) => handleCopyClick(event, itm?.attributes?.title, itm?.id)}
-                                                                style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white", color: brand?.attributes?.primary_color ? "white" : "black" }} className="text-center mx-auto rounded-lg"> {coupon?.isChecked ? "Copied!" : "Tap to Copy"}</Button>
-                                                        </div>
-
-                                                        <div style={{ borderColor: "white" }} className={`text-center border-[1px] rounded-lg mx-8`}>
+                                                                </>
+                                                            )}
+                                                            <br />
                                                             <div className="flex items-center justify-center">
-                                                                <Button
-                                                                    style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: "white" }}
-                                                                    // onClick={(event) => handleCopyClick(event, itm?.attributes?.title, itm?.id)}
-                                                                    className="h-7 uppercase">{coupon?.attributes?.title?.length > 10 ? coupon?.attributes?.title?.slice(0, 10) + ".." : coupon?.attributes?.title}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
+                                                                <Button style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: brand?.attributes?.text_color ? brand?.attributes?.text_color : "white" }} className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>GET CODE</Button>
                                                             </div>
                                                         </div>
-                                                        <br />
-                                                        <>
-                                                            {coupon?.isChecked ? (
-                                                                <div className="flex items-center justify-center">
-                                                                    <a target="_blank" href={brand?.attributes?.redirection_url}>
-                                                                        <Button
-                                                                            style={{ backgroundColor: brand?.attributes?.primary_color, color: brand?.attributes?.text_color }}
-                                                                            onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3 my-2 shadow-xl border-[0.01px]`}>REDEEM NOW&nbsp;&nbsp;<ArrowRightCircle className="w-4 h-4" /></Button>
-                                                                    </a>
-                                                                </div>
-                                                            ) : null}
-
-                                                        </>
-                                                        <div className="text-center text-white text-[0.825rem]">
-                                                            <div>{coupon?.attributes?.summary?.split("•")[0] ? coupon?.attributes?.summary?.split("•")[0] : null}</div>
-                                                            <div>{coupon?.attributes?.summary?.split("•")[1] ? coupon?.attributes?.summary?.split("•")[1] : null}</div>
-                                                            <div>{coupon?.attributes?.summary?.split("•")[2] ? coupon?.attributes?.summary?.split("•")[2] : null}</div>
-                                                        </div>
                                                     </div>
-                                                </div>
+                                                    {/* // BACK SIDE */}
+                                                    <div>
+                                                        <div
+                                                            onClick={() => toggleCardFlip(rowIndex, couponIndex)}
+                                                            style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white" }} className="w-[300px] h-[300px] rounded-md shadow-md flex items-center justify-center border-[0.3px]">
+                                                            <div
+                                                                // onClick={() => handleClick(itm.id)} 
+                                                                className="w-[270px] h-[270px] mx-auto my-auto rounded-md cursor-pointer">
+                                                                <div className='text-center flex items-center justify-center py-1'>
+                                                                    {
+                                                                        brand?.attributes?.round_logo?.data?.attributes?.url
+                                                                            ?
+                                                                            <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full bg-white"
+                                                                                src={brand?.attributes?.round_logo?.data?.attributes?.url}
+                                                                            />
+                                                                            :
+                                                                            <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white">
+                                                                            </div>
+                                                                    }
+                                                                </div>
 
-                                            </div>
-                                        </ReactCardFlip>
-                                    )
-                                })}
-                            </Carousel>
-                        </div>
-                        // </div>
-                    ))}
-                    {hasMore && <p>Loading more...</p>}
+                                                                <div className="flex">
+                                                                    <Button
+                                                                        onClick={(event) => handleCopyClick(event, coupon?.attributes?.title)}
+                                                                        style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white", color: brand?.attributes?.primary_color ? "white" : "black" }} className="text-center mx-auto rounded-lg"> {coupon?.isChecked ? "Copied!" : "Tap to Copy"}</Button>
+                                                                </div>
+
+                                                                <div style={{ borderColor: "white" }} className={`text-center border-[1px] rounded-lg mx-8`}>
+                                                                    <div className="flex items-center justify-center">
+                                                                        <Button
+                                                                            style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: "white" }}
+                                                                            onClick={(event) => handleCopyClick(event, coupon?.attributes?.title)}
+                                                                            className="h-7 uppercase">{coupon?.attributes?.title?.length > 10 ? coupon?.attributes?.title?.slice(0, 10) + ".." : coupon?.attributes?.title}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
+                                                                    </div>
+                                                                </div>
+                                                                <br />
+                                                                <>
+                                                                    {coupon?.isChecked ? (
+                                                                        <div className="flex items-center justify-center">
+                                                                            <a target="_blank" href={brand?.attributes?.redirection_url}>
+                                                                                <Button
+                                                                                    style={{ backgroundColor: brand?.attributes?.primary_color, color: brand?.attributes?.text_color }}
+                                                                                    onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3 my-2 shadow-xl border-[0.01px]`}>REDEEM NOW&nbsp;&nbsp;<ArrowRightCircle className="w-4 h-4" /></Button>
+                                                                            </a>
+                                                                        </div>
+                                                                    ) : null}
+
+                                                                </>
+                                                                <div className="text-center text-white text-[0.825rem]">
+                                                                    <div>{coupon?.attributes?.summary?.split("•")[0] ? coupon?.attributes?.summary?.split("•")[0] : null}</div>
+                                                                    <div>{coupon?.attributes?.summary?.split("•")[1] ? coupon?.attributes?.summary?.split("•")[1] : null}</div>
+                                                                    <div>{coupon?.attributes?.summary?.split("•")[2] ? coupon?.attributes?.summary?.split("•")[2] : null}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </ReactCardFlip>
+                                            </>
+                                        )
+                                    })}
+                                </Carousel>
+                            </div>
+                            // </div>
+                        )
+                    })}
+                    {hasMore && (
+                        <Carousel
+                            responsive={responsive}
+                            className="z-[50] px-4 py-4">
+                            <Skeleton width={"300px"} height={"300px"} count={1} />
+                            <Skeleton width={"300px"} height={"300px"} count={1} />
+                            <Skeleton width={"300px"} height={"300px"} count={1} />
+                            <Skeleton width={"300px"} height={"300px"} count={1} />
+                            <Skeleton width={"300px"} height={"300px"} count={1} />
+                        </Carousel>
+
+                    )}
                 </div>
             </section>
         </>
