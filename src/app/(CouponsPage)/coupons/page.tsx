@@ -55,26 +55,36 @@ function CouponsPage() {
                 try {
                     const response = await fetch(`https://mypop-dashboard.popclub.co.in/api/coupons?sort[0]=storeuuid:asc&pagination[page]=${page}`);
                     const result = await response.json();
-                    const filteredResult = result.data.filter((i: any) => !(i?.attributes?.summary.includes("For ")))
-                    console.log({ filteredResult })
+                    const filteredResult = result.data.filter((i: any) => !(i?.attributes?.summary.includes("For ")));
+
+                    // Add the 'isChecked' key to each coupon object
+                    const couponsWithChecked = filteredResult.map((coupon: any) => ({
+                        ...coupon,
+                        isChecked: false, // Initialize 'isChecked' to false
+                    }));
+
+                    console.log({ couponsWithChecked });
+
                     // Check if there's more data to load
-                    if (filteredResult.length === 0) {
+                    if (couponsWithChecked.length === 0) {
                         setHasMore(false);
                     } else {
-                        setCouponData(prevData => [...prevData, ...filteredResult]);
+                        setCouponData((prevData) => [...prevData, ...couponsWithChecked]);
                         // Initialize card flipping state when new data is fetched
-                        const newIsFlippedRows = new Array(filteredResult?.length).fill(false);
-                        setIsFlippedRows(prevIsFlippedRows => [...prevIsFlippedRows, newIsFlippedRows]);
+                        const newIsFlippedRows = new Array(couponsWithChecked?.length).fill(false);
+                        setIsFlippedRows((prevIsFlippedRows) => [...prevIsFlippedRows, newIsFlippedRows]);
                     }
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
             };
+
             if (hasMore) {
                 fetchData();
             }
         }
     }, [page, hasMore, selectedStoreUuids]);
+
 
     // fetch for filtered coupon based on filter clicked
     useEffect(() => {
@@ -231,9 +241,24 @@ function CouponsPage() {
     console.log({ couponData })
     console.log({ filterCouponData })
 
-    const handleCopyClick = (event: any, discountCode: string) => {
+    const handleCopyClick = (event: any, discountCode: string, id: number) => {
         event.stopPropagation()
         navigator.clipboard.writeText(discountCode);
+
+        setCouponData((prevData: any) => {
+            // Use map to create a new array with updated isChecked values
+            return prevData.map((coupon: any) => {
+                if (coupon.id === id) {
+                    // Update the isChecked value to true for the matching coupon
+                    return {
+                        ...coupon,
+                        isChecked: true,
+                    };
+                }
+                return coupon; // Return other coupons as they are
+            });
+        });
+
     }
 
     return (
@@ -342,7 +367,7 @@ function CouponsPage() {
 
                                                                 <div className="flex">
                                                                     <Button
-                                                                        onClick={(event) => handleCopyClick(event, coupon?.attributes?.title)}
+                                                                        onClick={(event) => handleCopyClick(event, coupon?.attributes?.title, coupon?.id)}
                                                                         style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white", color: brand?.attributes?.primary_color ? "white" : "black" }} className="text-center mx-auto rounded-lg"> {coupon?.isChecked ? "Copied!" : "Tap to Copy"}</Button>
                                                                 </div>
 
@@ -350,7 +375,7 @@ function CouponsPage() {
                                                                     <div className="flex items-center justify-center">
                                                                         <Button
                                                                             style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: "white" }}
-                                                                            onClick={(event) => handleCopyClick(event, coupon?.attributes?.title)}
+                                                                            onClick={(event) => handleCopyClick(event, coupon?.attributes?.title, coupon?.id)}
                                                                             className="h-7 uppercase">{coupon?.attributes?.title?.length > 10 ? coupon?.attributes?.title?.slice(0, 10) + ".." : coupon?.attributes?.title}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
                                                                     </div>
                                                                 </div>
@@ -361,7 +386,7 @@ function CouponsPage() {
                                                                             <a target="_blank" href={brand?.attributes?.redirection_url}>
                                                                                 <Button
                                                                                     style={{ backgroundColor: brand?.attributes?.primary_color, color: brand?.attributes?.text_color }}
-                                                                                    onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3 my-2 shadow-xl border-[0.01px]`}>REDEEM NOW&nbsp;&nbsp;<ArrowRightCircle className="w-4 h-4" /></Button>
+                                                                                    onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3 mb-1 shadow-xl border-[0.01px]`}>REDEEM NOW&nbsp;&nbsp;<ArrowRightCircle className="w-4 h-4" /></Button>
                                                                             </a>
                                                                         </div>
                                                                     ) : null}
