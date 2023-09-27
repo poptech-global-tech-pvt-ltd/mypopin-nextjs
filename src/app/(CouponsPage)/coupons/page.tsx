@@ -261,6 +261,9 @@ function CouponsPage() {
 
     }
 
+    console.log(extractNumbersAndRest("₹3000.00 off entire order"))
+    console.log({ couponData })
+
     return (
         <>
             <section className="py-24 max-w-[1400px] mx-auto">
@@ -291,7 +294,7 @@ function CouponsPage() {
                         </SheetContent>
                     </Sheet>
                 </div> */}
-                <div ref={containerRef} style={{ overflowY: 'scroll', maxHeight: '700px' }}>
+                <div ref={containerRef} style={{ overflowY: 'scroll', maxHeight: '1000px' }}>
                     {Object.keys(groupedCouponData).map((storeuuid, rowIndex) => {
                         const brand = brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid);
                         console.log({ brand })
@@ -305,7 +308,6 @@ function CouponsPage() {
                                     {groupedCouponData[storeuuid].map((coupon: any, couponIndex: number) => {
                                         return (
                                             <>
-                                                {/* <div>hello</div> */}
                                                 <ReactCardFlip
                                                     isFlipped={isFlippedRows[rowIndex] && isFlippedRows[rowIndex][couponIndex]}
                                                     key={couponIndex} flipDirection="horizontal">
@@ -313,34 +315,26 @@ function CouponsPage() {
                                                         onClick={() => toggleCardFlip(rowIndex, couponIndex)}
                                                         className="w-[300px] h-[300px] bg-white rounded-md shadow-md flex items-center justify-center border-[0.3px]">
                                                         <div
-                                                            // onClick={() => handleClick(itm.id)} 
                                                             style={{ borderColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black" }} className="w-[270px] h-[270px] border-[2px] mx-auto my-auto rounded-md cursor-pointer">
-                                                            <div className='text-center flex items-center justify-center py-1'>
+                                                            <div className='text-center flex items-center justify-center py-3'>
                                                                 {brand?.attributes?.round_logo?.data?.attributes?.url ? <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full bg-white shadow-sm" src={brand?.attributes?.round_logo?.data?.attributes?.url} /> : <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
                                                             </div>
-
                                                             <div className="text-center">
                                                                 <div className="font-extrabold text-[1.6rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.value}&nbsp;<span>{coupon?.attributes?.shortSummary ? <span>off</span> : null}</span></div>
                                                                 <div className="font-normal text-[0.8rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.rest?.split("off")[1]}</div>
                                                             </div>
                                                             {brand?.attributes?.isDoubleDiscount && (
                                                                 <>
-                                                                    <br />
-                                                                    <div className="flex items-center justify-center text-[10px]">
+                                                                    <div className="flex items-center justify-center text-[10px] py-2">
                                                                         <div>
                                                                             <img width="30" height="30" src="/popcoin-icon.svg" />
                                                                         </div>
-                                                                        {brandData?.length > 0 ? (
-                                                                            <>
-                                                                                <div className="px-2 py-[3px] rounded-tr-full rounded-br-full font-bold border-t-[1.2px] border-b-[1.2px] border-r-[1.2px] border-[#F5664B]">{`Plus extra ${brand?.attributes?.discount_percentage ? brand?.attributes?.discount_percentage : "30"}% off with popcoins`}</div>
-                                                                            </>
-                                                                        ) : null}
+                                                                        <div className="px-2 py-[3px] rounded-tr-full rounded-br-full font-bold border-t-[1.2px] border-b-[1.2px] border-r-[1.2px] border-[#F5664B]">{`Plus extra ${brand?.attributes?.discount_percentage ? brand?.attributes?.discount_percentage : "30"}% off with popcoins`}</div>
                                                                     </div>
                                                                 </>
                                                             )}
-                                                            <br />
-                                                            <div className="flex items-center justify-center">
-                                                                <Button style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: brand?.attributes?.text_color ? brand?.attributes?.text_color : "white" }} className={`text-[0.67069rem] rounded-full h-0 px-4 py-3`}>GET CODE</Button>
+                                                            <div className="flex items-center justify-center py-6">
+                                                                <Button style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: brand?.attributes?.text_color ? brand?.attributes?.text_color : "white" }} className={`text-[0.67069rem] rounded-full h-0 px-5 py-4`}>GET CODE</Button>
                                                             </div>
                                                         </div>
                                                     </div>

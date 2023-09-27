@@ -1,6 +1,6 @@
 function extractNumbersAndRest(inputString : any) {
   // Use regular expression to find numbers with currency symbols or percentages
-  const regex = /([₹$€£¥]?\d+\.\d+|%?\d+\%?)\s+(.*)/; // This regex captures numbers with currency symbols or percentages and trailing space, along with the rest of the string
+  const regex = /([₹$€£¥]?[\d,]+(\.\d+)?|%?\d+\%?)\s+(.*)/; // This regex captures numbers with currency symbols or percentages and trailing space, along with the rest of the string
 
   // Use match to find the first match in the input string
   const match = inputString?.match(regex);
@@ -9,7 +9,7 @@ function extractNumbersAndRest(inputString : any) {
     const [fullMatch, number, rest] = match;
     return {
       value: number,
-      rest: rest.trim(), // Trim the whitespace from the rest of the string
+      rest: rest?.trim(), // Trim the whitespace from the rest of the string
     };
   }
 
