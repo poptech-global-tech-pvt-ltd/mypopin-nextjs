@@ -55,7 +55,7 @@ function CouponsPage() {
                 try {
                     const response = await fetch(`https://mypop-dashboard.popclub.co.in/api/coupons?sort[0]=storeuuid:asc&pagination[page]=${page}`);
                     const result = await response.json();
-                    const filteredResult = result.data.filter((i: any) => !(i?.attributes?.summary.includes("For ")));
+                    const filteredResult = result.data.filter((i: any) => !(i?.attributes?.summary.includes("For "))).filter((j: any) => !(j?.attributes?.title.includes("REF"))).filter((j: any) => !(j?.attributes?.title.includes("Ref"))).filter((j: any) => !(j?.attributes?.title.includes("ref")))
 
                     // Add the 'isChecked' key to each coupon object
                     const couponsWithChecked = filteredResult.map((coupon: any) => ({
