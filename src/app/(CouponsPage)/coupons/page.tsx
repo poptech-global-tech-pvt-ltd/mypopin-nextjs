@@ -297,9 +297,12 @@ function CouponsPage() {
                         {Object.keys(groupedCouponData).map((storeuuid, rowIndex) => {
                             const brand = brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid);
                             return (
+                                <>
+                                <br />
+                                <br />
                                 <div key={rowIndex}>
                                     {/* <h2 className='font-bold py-4 text-2xl'>{brand?.attributes?.brand_name}</h2> */}
-                                    <h2 className='font-bold py-4 text-2xl'>{(brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid))?.attributes?.brand_name}</h2>
+                                    <h2 className={`${manrope.className} font-extrabold py-4 text-3xl`}>{(brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid))?.attributes?.brand_name}</h2>
                                     {/* <div className="flex flex-wrap"> */}
                                     <Carousel
                                         responsive={responsive}
@@ -400,7 +403,7 @@ function CouponsPage() {
                                         })}
                                     </Carousel>
                                 </div>
-                                // </div>
+                                </>
                             )
                         })}
                         {hasMore && (
