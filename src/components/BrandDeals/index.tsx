@@ -129,8 +129,10 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                                                     </div>)
                                                     : <div>
                                                         {Math.trunc((((itm?.attributes?.product_mrp - itm?.attributes?.product_price) + (itm?.attributes?.product_price * discountPercentage / 100)) / itm?.attributes?.product_mrp) * 100)}% off
-                                                    </div>}
-                                            </div>}
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
                                     </div>
                                     <div style={{ backgroundColor: secondaryColor, transform: "translateY(-8%)" }} className={`w-11/12 rounded-bl-3xl rounded-br-3xl font-bold ${manrope.className} z-5 max-w-[243px] min-h-[120px] text-[10px]`}>
                                         <div className="text-center pt-6 px-2">{itm?.attributes?.product_name.length > 50 ? itm?.attributes?.product_name.slice(0, 50) + ".." : itm?.attributes?.product_name}</div>
@@ -149,8 +151,8 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                         </div>
                     ))}
                 </section>
-                <div className="py-4"/>
-                
+                <div className="py-4" />
+
                 {/* // desktop */}
                 <div className="mx-auto hidden lg:block">
                     <Carousel
@@ -193,7 +195,9 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
                                                             {(Math.trunc((((itm?.attributes?.product_price * discountPercentage) / itm?.attributes?.product_price)))).toString()}% off
                                                         </div>)
                                                         : <div>
-                                                            {Math.trunc((((itm?.attributes?.product_mrp - itm?.attributes?.product_price) + (itm?.attributes?.product_price * discountPercentage / 100)) / itm?.attributes?.product_mrp) * 100)}% off
+                                                            {(((itm?.attributes?.product_mrp - itm?.attributes?.product_price) + (itm?.attributes?.product_price * discountPercentage / 100)) / itm?.attributes?.product_mrp) * 100 === -Infinity ? <div>{null}</div> : <div>                                                            {Math.trunc((((itm?.attributes?.product_mrp - itm?.attributes?.product_price) + (itm?.attributes?.product_price * discountPercentage / 100)) / itm?.attributes?.product_mrp) * 100)}% off
+                                                            </div>}
+                                                            {/* {Math.trunc((((itm?.attributes?.product_mrp - itm?.attributes?.product_price) + (itm?.attributes?.product_price * discountPercentage / 100)) / itm?.attributes?.product_mrp) * 100)}% off */}
                                                         </div>}
                                                 </div>}
                                         </div>
