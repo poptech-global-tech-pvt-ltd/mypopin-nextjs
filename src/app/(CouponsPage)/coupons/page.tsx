@@ -246,12 +246,12 @@ function CouponsPage() {
 
     return (
         <>
-            <section className="pt-24 pb-2 max-w-[1400px] mx-auto">
-                <div className={`${khand.className} text-center text-6xl text-[#F46651] py-6 font-bold`}><span className={`text-slate-600 ${khand.className}`}>Coupons</span></div>
+            <section className="pt-8 lg:pt-24 pb-2 max-w-[1400px] mx-auto">
+                <div className={`${khand.className} text-center text-6xl text-[#F46651] py-2 lg:py-6 font-bold`}><span className={`text-slate-600 ${khand.className}`}>Coupons</span></div>
                 <div className='flex items-end justify-end'>
                     <Sheet>
                         <SheetTrigger asChild>
-                            <Button variant="secondary">Filters</Button>
+                            <Button className='mx-4 lg:mx-0' variant="secondary">Filters</Button>
                         </SheetTrigger>
                         <SheetContent>
                             <div className='mt-[10vh]'>
@@ -279,7 +279,7 @@ function CouponsPage() {
                 </div>
                 {(selectedStoreUuids?.length > 0) ?
                     <>
-                        <FilteredCouponDataComponent data={filteredCouponData} />
+                        <FilteredCouponDataComponent data={filteredCouponData} setFilteredCouponData={setFilteredCouponData}  />
                     </>
                     :
                     (
@@ -293,7 +293,7 @@ function CouponsPage() {
                                                 <br />
                                                 <br />
                                                 <div key={rowIndex}>
-                                                    <h2 className={`${manrope.className} font-extrabold py-4 text-3xl text-slate-700`}>{(brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid))?.attributes?.brand_name}</h2>
+                                                    <h2 className={`${manrope.className} px-4 font-extrabold py-4 text-3xl text-slate-700`}>{(brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid))?.attributes?.brand_name}</h2>
                                                     <Carousel
                                                         responsive={responsive}
                                                         className="z-[50] px-4">

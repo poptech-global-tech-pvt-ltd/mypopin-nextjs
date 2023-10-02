@@ -17,7 +17,7 @@ const khand = Khand({
     subsets: ['latin']
 })
 
-function FilteredCouponDataComponent({ data }: any) {
+function FilteredCouponDataComponent({ data, setFilteredCouponData }: any) {
     const [brandData, setBrandData] = useState<any>([]);
     const [isFlippedRows, setIsFlippedRows] = useState<boolean[][]>([]);
 
@@ -90,6 +90,26 @@ function FilteredCouponDataComponent({ data }: any) {
     }, []); // Add an empty dependency array to run this effect only once
 
 
+    const handleCopyClick = (event: any, discountCode: string, id: number) => {
+        event.stopPropagation()
+        navigator.clipboard.writeText(discountCode);
+
+        setFilteredCouponData((prevData: any) => {
+            // Use map to create a new array with updated isChecked values
+            return prevData.map((coupon: any) => {
+                if (coupon.id === id) {
+                    // Update the isChecked value to true for the matching coupon
+                    return {
+                        ...coupon,
+                        isChecked: true,
+                    };
+                }
+                return coupon; // Return other coupons as they are
+            });
+        });
+    }
+
+
     return (
         <>
             <section>
@@ -100,7 +120,7 @@ function FilteredCouponDataComponent({ data }: any) {
                             <br />
                             <br />
                             <div key={rowIndex}>
-                                <h2 className={`${manrope.className} font-extrabold py-4 text-3xl text-slate-700`}>{(brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid))?.attributes?.brand_name}</h2>
+                                <h2 className={`${manrope.className} font-extrabold px-4 py-4 text-3xl text-slate-700`}>{(brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid))?.attributes?.brand_name}</h2>
                                 <Carousel
                                     responsive={responsive}
                                     className="z-[50] px-4">
@@ -141,10 +161,9 @@ function FilteredCouponDataComponent({ data }: any) {
                                                     {/* // BACK SIDE */}
                                                     <div>
                                                         <div
-                                                            // onClick={() => toggleCardFlip(rowIndex, couponIndex)}
+                                                            onClick={() => toggleCardFlip(rowIndex, couponIndex)}
                                                             style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white" }} className="w-[300px] h-[300px] rounded-md shadow-md flex items-center justify-center border-[0.3px]">
                                                             <div
-                                                                // onClick={() => handleClick(itm.id)} 
                                                                 className="w-[270px] h-[270px] mx-auto my-auto rounded-md cursor-pointer">
                                                                 <div className='text-center flex items-center justify-center py-1'>
                                                                     {
@@ -161,7 +180,7 @@ function FilteredCouponDataComponent({ data }: any) {
 
                                                                 <div className="flex">
                                                                     <Button
-                                                                        // onClick={(event) => handleCopyClick(event, coupon?.attributes?.title, coupon?.id)}
+                                                                        onClick={(event) => handleCopyClick(event, coupon?.attributes?.title, coupon?.id)}
                                                                         style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white", color: brand?.attributes?.primary_color ? "white" : "black" }} className="text-center mx-auto rounded-lg"> {coupon?.isChecked ? "Copied!" : "Tap to Copy"}</Button>
                                                                 </div>
 
@@ -169,7 +188,7 @@ function FilteredCouponDataComponent({ data }: any) {
                                                                     <div className="flex items-center justify-center">
                                                                         <Button
                                                                             style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: "white" }}
-                                                                            // onClick={(event) => handleCopyClick(event, coupon?.attributes?.title, coupon?.id)}
+                                                                            onClick={(event) => handleCopyClick(event, coupon?.attributes?.title, coupon?.id)}
                                                                             className="h-7 uppercase">{coupon?.attributes?.title?.length > 10 ? coupon?.attributes?.title?.slice(0, 10) + ".." : coupon?.attributes?.title}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
                                                                     </div>
                                                                 </div>
