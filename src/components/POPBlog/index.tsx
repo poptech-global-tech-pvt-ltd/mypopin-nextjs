@@ -4,6 +4,9 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from '../ui/button'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
+
+
 
 const khand = Khand({
     weight: ['700', '400', '500'],
@@ -18,6 +21,8 @@ const manrope = Manrope({
 
 function POPBlog() {
     const [blogData, setBlogData] = useState<any>();
+    const pathname = usePathname()
+
 
     useEffect(() => {
         fetch(`https://mypop-dashboard.popclub.co.in/api/blog-widgets?populate=*`).then((res) => res.json()).then((data) => setBlogData(data?.data))
@@ -27,7 +32,7 @@ function POPBlog() {
 
     return (
         <>
-        <div className='mt-16'/>
+            <div className='mt-16' />
             <section className="bg-[#F7F7F9] max-w-[70rem] mx-auto rounded-3xl p-8 lg:pb-0 lg:mt-0 -mt-[60px]">
                 <br />
                 <div className={`${khand.className} flex flex-col lg:flex-row leading-6 lg:leading-0`}>
@@ -59,7 +64,7 @@ function POPBlog() {
                                     <div>
                                         <div className='pb-4'><Badge className='bg-[#DFE7FF] hover:bg-[#DFE7FF] text-[#3730A3]'>{blogData[1]?.attributes.category}</Badge></div>
                                         <div className={`${manrope.className} text-[14px] font-bold`}>
-                                        <Link target="_blank" href={`/blogs/${blogData[1]?.attributes?.uuid}`}>
+                                            <Link target="_blank" href={`/blogs/${blogData[1]?.attributes?.uuid}`}>
                                                 {blogData[1]?.attributes.title}
                                             </Link>
                                         </div>
@@ -75,13 +80,13 @@ function POPBlog() {
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div className='blog-grid-itm-3 px-2 hidden md:block lg:block'>
                                 <div className='grid grid-cols-[2fr_1fr] items-center lg:items-start'>
                                     <div>
                                         <div className='pb-4'><Badge className='bg-[#FEF9C3] hover:bg-[#FEF9C3] text-[#844D0F]'>{blogData[2]?.attributes.category}</Badge></div>
                                         <div className={`${manrope.className} text-[14px] font-bold`}>
-                                        <Link target="_blank" href={`/blogs/${blogData[2]?.attributes?.uuid}`}>
+                                            <Link target="_blank" href={`/blogs/${blogData[2]?.attributes?.uuid}`}>
                                                 {blogData[2]?.attributes.title}
                                             </Link>
                                         </div>
@@ -102,7 +107,7 @@ function POPBlog() {
                                     <div>
                                         <div className='pb-4'><Badge className='text-[#6B21A8] bg-[#F3E7FF] hover:bg-[#F3E7FF]'>{blogData[3]?.attributes.category}</Badge></div>
                                         <div className={`${manrope.className} text-[14px] font-bold`}>
-                                        <Link target="_blank" href={`/blogs/${blogData[3]?.attributes?.uuid}`}>
+                                            <Link target="_blank" href={`/blogs/${blogData[3]?.attributes?.uuid}`}>
                                                 {blogData[3]?.attributes.title}
                                             </Link>
                                         </div>
@@ -122,9 +127,26 @@ function POPBlog() {
                     )}
                 </section>
                 <div className='flex justify-center py-4'>
-                    <Link href="/blogs">
-                        <Button className='rounded-full bg-white hover:text-white drop-shadow text-black'>Show all blog articles</Button>
-                    </Link>
+                    {pathname === "/" ? (
+                        <Link
+                            href={{
+                                pathname: '/blogs',
+                                query: { search: 'b2c' }
+                            }}
+                        >
+                            <Button className='rounded-full bg-white hover:text-white drop-shadow text-black'>Show all blog articles</Button>
+                        </Link>
+                    ) :
+                        (
+                            <Link
+                                href={{
+                                    pathname: '/blogs',
+                                    query: { search: 'b2b' }
+                                }}
+                            >
+                                <Button className='rounded-full bg-white hover:text-white drop-shadow text-black'>Show all blog articles</Button>
+                            </Link>
+                        )}
                 </div>
             </section>
             <div className='my-12 lg:my-0' />

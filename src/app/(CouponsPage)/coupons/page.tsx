@@ -21,6 +21,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { ScrollArea } from '@/components/ui/scroll-area';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
+import { FilteredCouponDataComponent } from '@/components/FilteredCouponDataComponent';
+import { Input } from "@/components/ui/input"
 
 
 
@@ -45,6 +47,8 @@ function CouponsPage() {
     const [isFlippedRows, setIsFlippedRows] = useState<boolean[][]>([]);
     const [selectedStoreUuids, setSelectedStoreUuids] = useState<any>()
     const [filterUrl, setFilterUrl] = useState("");
+    const [filteredCouponData, setFilteredCouponData] = useState<any[]>()
+    const [search, setSearch] = useState<string>("");
 
     // https://mypop-dashboard.popclub.co.in/api/coupons?filters[storeuuid][$in][0]=bodytales&filters[storeuuid][$in][1]=anveshan
 
@@ -81,41 +85,40 @@ function CouponsPage() {
         }
     }, [page, hasMore, selectedStoreUuids]);
 
-    console.log({ couponData })
-
-
     // fetch for filtered coupon based on filter clicked
     useEffect(() => {
-        if (selectedStoreUuids?.length > 0 && filterUrl != undefined) {
+        if (selectedStoreUuids?.length > 0) {
+            const apiUrl = 'https://mypop-dashboard.popclub.co.in/api/coupons';
+            const queryParams = selectedStoreUuids?.map((storeuuid: any, index: number) => `filters[storeuuid][$in][${index}]=${storeuuid}`).join('&');
+            const finalUrl = `${apiUrl}?${queryParams}`;
+            setFilterUrl(finalUrl)
             const fetchData = async () => {
                 try {
-                    const response = await fetch(`${filterUrl}&sort[0]=storeuuid:asc&pagination[page]=${page}`);
+                    const response = await fetch(`${finalUrl}&sort[0]=storeuuid&pagination[page]=1&pagination[pageSize]=400`);
                     const result = await response.json();
-                    // Check if there's more data to load
-                    if (result.data.length === 0) {
-                        setHasMore(false);
-                    } else {
-                        // setFilterCouponData(prevData => [...prevData, ...result.data])
-                        setCouponData(prevData => [...prevData, ...result.data]);
-                        // Initialize card flipping state when new data is fetched
-                        const newIsFlippedRows = new Array(result.data.length).fill(false);
-                        setIsFlippedRows(prevIsFlippedRows => [...prevIsFlippedRows, newIsFlippedRows]);
-                    }
+                    const filteredResult = result.data.filter((i: any) => !(i?.attributes?.summary.includes("For "))).filter((j: any) => !(j?.attributes?.title.includes("REF"))).filter((j: any) => !(j?.attributes?.title.includes("Ref"))).filter((j: any) => !(j?.attributes?.title.includes("ref")))
+                    // Add the 'isChecked' key to each coupon object
+                    const couponsWithChecked = filteredResult.map((coupon: any) => ({
+                        ...coupon,
+                        isChecked: false, // Initialize 'isChecked' to false
+                    }));
+                    console.log({couponsWithChecked})
+                    // Initialize card flipping state when new data is fetched
+                    const newIsFlippedRows = new Array(couponsWithChecked?.length).fill(false);
+                    setIsFlippedRows((prevIsFlippedRows) => [...prevIsFlippedRows, newIsFlippedRows]);
+                    setCouponData([]);
+                    setFilteredCouponData(couponsWithChecked)
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
             };
-            if (hasMore) {
-                fetchData();
-            }
+            fetchData()
         }
-    }, [page, hasMore, selectedStoreUuids]);
-
-    console.log({ filterUrl })
+    }, [selectedStoreUuids]);
 
     // fetch for brand name table
     useEffect(() => {
-        fetch('https://mypop-dashboard.popclub.co.in/api/brand-names?pagination[page]=1&pagination[pageSize]=200&populate=*').then((res) => res.json()).then((data) => {
+        fetch('https://mypop-dashboard.popclub.co.in/api/brand-names?sort[0]=brand_name:asc&pagination[page]=1&pagination[pageSize]=200&populate=*').then((res) => res.json()).then((data) => {
             // Add the 'isChecked' key to each item in the data array
             const newData = data.data.map((item: any) => ({
                 ...item,
@@ -124,7 +127,6 @@ function CouponsPage() {
             // Set the modified data in the state
             setBrandData({ ...data, data: newData });
         })
-
     }, [])
 
 
@@ -221,23 +223,7 @@ function CouponsPage() {
 
         // Update the state with the selected storeuuid values
         setSelectedStoreUuids(newSelectedStoreUuids);
-
-
     };
-
-
-    useEffect(() => {
-        const apiUrl = 'https://mypop-dashboard.popclub.co.in/api/coupons';
-        const queryParams = selectedStoreUuids?.map((storeuuid: any, index: number) => `filters[storeuuid][$in][${index}]=${storeuuid}`).join('&');
-        const finalUrl = `${apiUrl}?${queryParams}`;
-        setFilterUrl(finalUrl)
-        console.log({ finalUrl })
-    }, [selectedStoreUuids])
-
-
-    console.log({ brandData })
-    console.log({ couponData })
-    console.log({ filterCouponData })
 
     const handleCopyClick = (event: any, discountCode: string, id: number) => {
         event.stopPropagation()
@@ -256,169 +242,178 @@ function CouponsPage() {
                 return coupon; // Return other coupons as they are
             });
         });
-
     }
-
-    console.log(extractNumbersAndRest("₹3000.00 off entire order"))
-    console.log({ couponData })
 
     return (
         <>
             <section className="pt-24 pb-2 max-w-[1400px] mx-auto">
                 <div className={`${khand.className} text-center text-6xl text-[#F46651] py-6 font-bold`}><span className={`text-slate-600 ${khand.className}`}>Coupons</span></div>
-                {/* <div className='flex items-end justify-end'>
+                <div className='flex items-end justify-end'>
                     <Sheet>
                         <SheetTrigger asChild>
-                            <Button variant="default">Filters</Button>
+                            <Button variant="secondary">Filters</Button>
                         </SheetTrigger>
                         <SheetContent>
-                            <ScrollArea className="h-[100vh] w-full">
-                                <div className='mt-[10vh]'>
-                                    <div className='text-2xl py-4'>Brands</div>
-                                    {brandData?.data?.map((itm: any, index: number) => (
-                                        <>
-                                            <Checkbox checked={itm?.isChecked} onClick={() => handleClick(itm)} id={itm?.attributes?.url} />
-                                            <label
-                                                htmlFor={itm?.attributes?.url}
-                                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                            >
-                                                &nbsp;&nbsp;{itm?.attributes?.brand_name}
-                                            </label>
-                                            <br />
-                                        </>
-                                    ))}
-                                </div>
-                            </ScrollArea>
+                            <div className='mt-[10vh]'>
+                                <div className={`${khand.className} text-2xl pb-1 font-normal`}>Brands</div>
+                                <Input onChange={(e) => setSearch(e.target.value)} value={search} placeholder='Search brands' className='h-[30px] w-full my-3' />
+                                <ScrollArea className="h-[70vh] w-full">
+                                    {brandData?.data
+                                        ?.filter((i: any) => i?.attributes?.brand_name.toLowerCase().includes(search.toLowerCase()))
+                                        ?.map((itm: any, index: number) => (
+                                            <div key={index} className='flex items-center py-[1.5px]'>
+                                                <Checkbox className='text-slate-600' checked={itm?.isChecked} onClick={() => handleClick(itm)} id={itm?.attributes?.url} />
+                                                <label
+                                                    htmlFor={itm?.attributes?.url}
+                                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-slate-500"
+                                                >
+                                                    &nbsp;&nbsp;{itm?.attributes?.brand_name}
+                                                </label>
+                                                <br />
+                                            </div>
+                                        ))}
+                                </ScrollArea>
+                            </div>
                         </SheetContent>
                     </Sheet>
-                </div> */}
-                {brandData?.data?.length > 0 && (
-                    <div ref={containerRef} style={{ overflowY: 'scroll', maxHeight: '1000px' }}>
-                        {Object.keys(groupedCouponData).map((storeuuid, rowIndex) => {
-                            const brand = brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid);
-                            return (
-                                <>
-                                    <br />
-                                    <br />
-                                    <div key={rowIndex}>
-                                        <h2 className={`${manrope.className} font-extrabold py-4 text-3xl text-slate-700`}>{(brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid))?.attributes?.brand_name}</h2>
+                </div>
+                {(selectedStoreUuids?.length > 0) ?
+                    <>
+                        <FilteredCouponDataComponent data={filteredCouponData} />
+                    </>
+                    :
+                    (
+                        <>
+                            {brandData?.data?.length > 0 && (
+                                <div ref={containerRef} style={{ overflowY: 'scroll', maxHeight: '1000px' }}>
+                                    {Object.keys(groupedCouponData).map((storeuuid, rowIndex) => {
+                                        const brand = brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid);
+                                        return (
+                                            <>
+                                                <br />
+                                                <br />
+                                                <div key={rowIndex}>
+                                                    <h2 className={`${manrope.className} font-extrabold py-4 text-3xl text-slate-700`}>{(brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid))?.attributes?.brand_name}</h2>
+                                                    <Carousel
+                                                        responsive={responsive}
+                                                        className="z-[50] px-4">
+                                                        {groupedCouponData[storeuuid].map((coupon: any, couponIndex: number) => {
+                                                            return (
+                                                                <>
+                                                                    <ReactCardFlip
+                                                                        isFlipped={isFlippedRows[rowIndex] && isFlippedRows[rowIndex][couponIndex]}
+                                                                        key={couponIndex} flipDirection="horizontal">
+                                                                        {/* // FRONT SIDE */}
+                                                                        <div
+                                                                            onClick={() => toggleCardFlip(rowIndex, couponIndex)}
+                                                                            className="w-[300px] h-[300px] bg-white rounded-md shadow-md flex items-center justify-center border-[0.3px]">
+                                                                            <div
+                                                                                style={{ borderColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black" }} className="w-[270px] h-[270px] border-[2px] mx-auto my-auto rounded-md cursor-pointer">
+                                                                                <div className='text-center flex items-center justify-center py-3'>
+                                                                                    {brand?.attributes?.round_logo?.data?.attributes?.url ? <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full bg-white shadow-sm" src={brand?.attributes?.round_logo?.data?.attributes?.url} /> : <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
+                                                                                </div>
+                                                                                <div className="text-center">
+                                                                                    <div className="font-extrabold text-[1.6rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.value}&nbsp;<span>{coupon?.attributes?.shortSummary ? <span>off</span> : null}</span></div>
+                                                                                    <div className="font-normal text-[0.8rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.rest?.split("off")[1]}</div>
+                                                                                </div>
+                                                                                {brand?.attributes?.isDoubleDiscount && (
+                                                                                    <>
+                                                                                        <div className="flex items-center justify-center text-[10px] py-2">
+                                                                                            <div>
+                                                                                                <img width="30" height="30" src="/popcoin-icon.svg" />
+                                                                                            </div>
+                                                                                            <div className="px-2 py-[3px] rounded-tr-full rounded-br-full font-bold border-t-[1.2px] border-b-[1.2px] border-r-[1.2px] border-[#F5664B]">{`Plus extra ${brand?.attributes?.discount_percentage ? brand?.attributes?.discount_percentage : "30"}% off with popcoins`}</div>
+                                                                                        </div>
+                                                                                    </>
+                                                                                )}
+                                                                                <div className="flex items-center justify-center py-6">
+                                                                                    <Button style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: brand?.attributes?.text_color ? brand?.attributes?.text_color : "white" }} className={`text-[0.67069rem] rounded-full h-0 px-5 py-4`}>GET CODE</Button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        {/* // BACK SIDE */}
+                                                                        <div>
+                                                                            <div
+                                                                                onClick={() => toggleCardFlip(rowIndex, couponIndex)}
+                                                                                style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white" }} className="w-[300px] h-[300px] rounded-md shadow-md flex items-center justify-center border-[0.3px]">
+                                                                                <div
+                                                                                    // onClick={() => handleClick(itm.id)} 
+                                                                                    className="w-[270px] h-[270px] mx-auto my-auto rounded-md cursor-pointer">
+                                                                                    <div className='text-center flex items-center justify-center py-1'>
+                                                                                        {
+                                                                                            brand?.attributes?.round_logo?.data?.attributes?.url
+                                                                                                ?
+                                                                                                <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full bg-white"
+                                                                                                    src={brand?.attributes?.round_logo?.data?.attributes?.url}
+                                                                                                />
+                                                                                                :
+                                                                                                <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white">
+                                                                                                </div>
+                                                                                        }
+                                                                                    </div>
+
+                                                                                    <div className="flex">
+                                                                                        <Button
+                                                                                            onClick={(event) => handleCopyClick(event, coupon?.attributes?.title, coupon?.id)}
+                                                                                            style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white", color: brand?.attributes?.primary_color ? "white" : "black" }} className="text-center mx-auto rounded-lg"> {coupon?.isChecked ? "Copied!" : "Tap to Copy"}</Button>
+                                                                                    </div>
+
+                                                                                    <div style={{ borderColor: "white" }} className={`text-center border-[1px] rounded-lg mx-8`}>
+                                                                                        <div className="flex items-center justify-center">
+                                                                                            <Button
+                                                                                                style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: "white" }}
+                                                                                                onClick={(event) => handleCopyClick(event, coupon?.attributes?.title, coupon?.id)}
+                                                                                                className="h-7 uppercase">{coupon?.attributes?.title?.length > 10 ? coupon?.attributes?.title?.slice(0, 10) + ".." : coupon?.attributes?.title}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <br />
+                                                                                    <>
+                                                                                        {coupon?.isChecked ? (
+                                                                                            <div className="flex items-center justify-center">
+                                                                                                <a target="_blank" href={brand?.attributes?.redirection_url}>
+                                                                                                    <Button
+                                                                                                        style={{ backgroundColor: brand?.attributes?.primary_color, color: brand?.attributes?.text_color }}
+                                                                                                        onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3 mb-1 shadow-xl border-[0.01px]`}>REDEEM NOW&nbsp;&nbsp;<ArrowRightCircle className="w-4 h-4" /></Button>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        ) : null}
+
+                                                                                    </>
+                                                                                    <div className="text-center text-white text-[0.825rem]">
+                                                                                        <div>{coupon?.attributes?.summary?.split("•")[0] ? coupon?.attributes?.summary?.split("•")[0] : null}</div>
+                                                                                        <div>{coupon?.attributes?.summary?.split("•")[1] ? coupon?.attributes?.summary?.split("•")[1] : null}</div>
+                                                                                        <div>{coupon?.attributes?.summary?.split("•")[2] ? coupon?.attributes?.summary?.split("•")[2] : null}</div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </ReactCardFlip>
+                                                                </>
+                                                            )
+                                                        })}
+                                                    </Carousel>
+                                                </div>
+                                            </>
+                                        )
+                                    })}
+                                    {hasMore && (
                                         <Carousel
                                             responsive={responsive}
-                                            className="z-[50] px-4">
-                                            {groupedCouponData[storeuuid].map((coupon: any, couponIndex: number) => {
-                                                return (
-                                                    <>
-                                                        <ReactCardFlip
-                                                            isFlipped={isFlippedRows[rowIndex] && isFlippedRows[rowIndex][couponIndex]}
-                                                            key={couponIndex} flipDirection="horizontal">
-                                                            {/* // FRONT SIDE */}
-                                                            <div
-                                                                onClick={() => toggleCardFlip(rowIndex, couponIndex)}
-                                                                className="w-[300px] h-[300px] bg-white rounded-md shadow-md flex items-center justify-center border-[0.3px]">
-                                                                <div
-                                                                    style={{ borderColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black" }} className="w-[270px] h-[270px] border-[2px] mx-auto my-auto rounded-md cursor-pointer">
-                                                                    <div className='text-center flex items-center justify-center py-3'>
-                                                                        {brand?.attributes?.round_logo?.data?.attributes?.url ? <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full bg-white shadow-sm" src={brand?.attributes?.round_logo?.data?.attributes?.url} /> : <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white"></div>}
-                                                                    </div>
-                                                                    <div className="text-center">
-                                                                        <div className="font-extrabold text-[1.6rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.value}&nbsp;<span>{coupon?.attributes?.shortSummary ? <span>off</span> : null}</span></div>
-                                                                        <div className="font-normal text-[0.8rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.rest?.split("off")[1]}</div>
-                                                                    </div>
-                                                                    {brand?.attributes?.isDoubleDiscount && (
-                                                                        <>
-                                                                            <div className="flex items-center justify-center text-[10px] py-2">
-                                                                                <div>
-                                                                                    <img width="30" height="30" src="/popcoin-icon.svg" />
-                                                                                </div>
-                                                                                <div className="px-2 py-[3px] rounded-tr-full rounded-br-full font-bold border-t-[1.2px] border-b-[1.2px] border-r-[1.2px] border-[#F5664B]">{`Plus extra ${brand?.attributes?.discount_percentage ? brand?.attributes?.discount_percentage : "30"}% off with popcoins`}</div>
-                                                                            </div>
-                                                                        </>
-                                                                    )}
-                                                                    <div className="flex items-center justify-center py-6">
-                                                                        <Button style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: brand?.attributes?.text_color ? brand?.attributes?.text_color : "white" }} className={`text-[0.67069rem] rounded-full h-0 px-5 py-4`}>GET CODE</Button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            {/* // BACK SIDE */}
-                                                            <div>
-                                                                <div
-                                                                    onClick={() => toggleCardFlip(rowIndex, couponIndex)}
-                                                                    style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white" }} className="w-[300px] h-[300px] rounded-md shadow-md flex items-center justify-center border-[0.3px]">
-                                                                    <div
-                                                                        // onClick={() => handleClick(itm.id)} 
-                                                                        className="w-[270px] h-[270px] mx-auto my-auto rounded-md cursor-pointer">
-                                                                        <div className='text-center flex items-center justify-center py-1'>
-                                                                            {
-                                                                                brand?.attributes?.round_logo?.data?.attributes?.url
-                                                                                    ?
-                                                                                    <img className="border-[1px] w-[80px] h-[80px] object-contain rounded-full bg-white"
-                                                                                        src={brand?.attributes?.round_logo?.data?.attributes?.url}
-                                                                                    />
-                                                                                    :
-                                                                                    <div className="border-[0px] w-[90px] h-[90px] rounded-full bg-white">
-                                                                                    </div>
-                                                                            }
-                                                                        </div>
-
-                                                                        <div className="flex">
-                                                                            <Button
-                                                                                onClick={(event) => handleCopyClick(event, coupon?.attributes?.title, coupon?.id)}
-                                                                                style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white", color: brand?.attributes?.primary_color ? "white" : "black" }} className="text-center mx-auto rounded-lg"> {coupon?.isChecked ? "Copied!" : "Tap to Copy"}</Button>
-                                                                        </div>
-
-                                                                        <div style={{ borderColor: "white" }} className={`text-center border-[1px] rounded-lg mx-8`}>
-                                                                            <div className="flex items-center justify-center">
-                                                                                <Button
-                                                                                    style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: "white" }}
-                                                                                    onClick={(event) => handleCopyClick(event, coupon?.attributes?.title, coupon?.id)}
-                                                                                    className="h-7 uppercase">{coupon?.attributes?.title?.length > 10 ? coupon?.attributes?.title?.slice(0, 10) + ".." : coupon?.attributes?.title}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
-                                                                            </div>
-                                                                        </div>
-                                                                        <br />
-                                                                        <>
-                                                                            {coupon?.isChecked ? (
-                                                                                <div className="flex items-center justify-center">
-                                                                                    <a target="_blank" href={brand?.attributes?.redirection_url}>
-                                                                                        <Button
-                                                                                            style={{ backgroundColor: brand?.attributes?.primary_color, color: brand?.attributes?.text_color }}
-                                                                                            onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3 mb-1 shadow-xl border-[0.01px]`}>REDEEM NOW&nbsp;&nbsp;<ArrowRightCircle className="w-4 h-4" /></Button>
-                                                                                    </a>
-                                                                                </div>
-                                                                            ) : null}
-
-                                                                        </>
-                                                                        <div className="text-center text-white text-[0.825rem]">
-                                                                            <div>{coupon?.attributes?.summary?.split("•")[0] ? coupon?.attributes?.summary?.split("•")[0] : null}</div>
-                                                                            <div>{coupon?.attributes?.summary?.split("•")[1] ? coupon?.attributes?.summary?.split("•")[1] : null}</div>
-                                                                            <div>{coupon?.attributes?.summary?.split("•")[2] ? coupon?.attributes?.summary?.split("•")[2] : null}</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </ReactCardFlip>
-                                                    </>
-                                                )
-                                            })}
+                                            className="z-[50] px-4 py-4">
+                                            <Skeleton width={"300px"} height={"300px"} count={1} />
+                                            <Skeleton width={"300px"} height={"300px"} count={1} />
+                                            <Skeleton width={"300px"} height={"300px"} count={1} />
+                                            <Skeleton width={"300px"} height={"300px"} count={1} />
+                                            <Skeleton width={"300px"} height={"300px"} count={1} />
                                         </Carousel>
-                                    </div>
-                                </>
-                            )
-                        })}
-                        {hasMore && (
-                            <Carousel
-                                responsive={responsive}
-                                className="z-[50] px-4 py-4">
-                                <Skeleton width={"300px"} height={"300px"} count={1} />
-                                <Skeleton width={"300px"} height={"300px"} count={1} />
-                                <Skeleton width={"300px"} height={"300px"} count={1} />
-                                <Skeleton width={"300px"} height={"300px"} count={1} />
-                                <Skeleton width={"300px"} height={"300px"} count={1} />
-                            </Carousel>
 
-                        )}
-                    </div>
-                )}
+                                    )}
+                                </div>
+                            )}
+                        </>
+                    )}
+
 
             </section>
         </>

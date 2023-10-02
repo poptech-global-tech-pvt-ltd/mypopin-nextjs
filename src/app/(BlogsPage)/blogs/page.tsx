@@ -3,6 +3,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { Khand, Manrope } from 'next/font/google'
 import { useState, useEffect } from "react"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
 const manrope = Manrope({
     subsets: ['latin'],
@@ -14,8 +21,9 @@ const khand = Khand({
     subsets: ['latin'],
 })
 
-function Blogs() {
+function Blogs({params, searchParams} : any) {
     const [blogData, setBlogData] = useState<any>();
+    console.log({params, searchParams})
 
     useEffect(() => {
         fetch(`https://mypop-dashboard.popclub.co.in/api/blog-widgets?populate=*`).then((res) => res.json()).then((data) => setBlogData(data?.data))
@@ -29,6 +37,18 @@ function Blogs() {
                 <div className="py-10">
                     <div className={`${khand.className}  text-left text-6xl `}>POP Circle</div>
                     <div className={`${khand.className}  text-left text-6xl  text-[#6b7280]`}>Curated Reads for you</div>
+                </div>
+                <div className="flex items-center justify-end pb-8">
+                    <Select defaultValue={searchParams.search ? searchParams.search : "all"} >
+                        <SelectTrigger className="w-[180px]">
+                            <SelectValue placeholder="Filter" />
+                        </SelectTrigger>
+                        <SelectContent >
+                            <SelectItem value="b2b">B2B</SelectItem>
+                            <SelectItem value="b2c">B2C</SelectItem>
+                            <SelectItem value="all">All Blogs</SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
                 <div className="">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
