@@ -102,7 +102,7 @@ function CouponsPage() {
                         ...coupon,
                         isChecked: false, // Initialize 'isChecked' to false
                     }));
-                    console.log({couponsWithChecked})
+                    console.log({ couponsWithChecked })
                     // Initialize card flipping state when new data is fetched
                     const newIsFlippedRows = new Array(couponsWithChecked?.length).fill(false);
                     setIsFlippedRows((prevIsFlippedRows) => [...prevIsFlippedRows, newIsFlippedRows]);
@@ -247,39 +247,42 @@ function CouponsPage() {
     return (
         <>
             <section className="pt-8 lg:pt-24 pb-2 max-w-[1400px] mx-auto">
-                <div className={`${khand.className} text-center text-6xl text-[#F46651] py-2 lg:py-6 font-bold`}><span className={`text-slate-600 ${khand.className}`}>Coupons</span></div>
-                <div className='flex items-end justify-end'>
-                    <Sheet>
-                        <SheetTrigger asChild>
-                            <Button className='mx-4 lg:mx-0' variant="secondary">Filters</Button>
-                        </SheetTrigger>
-                        <SheetContent>
-                            <div className='mt-[10vh]'>
-                                <div className={`${khand.className} text-2xl pb-1 font-normal`}>Brands</div>
-                                <Input onChange={(e) => setSearch(e.target.value)} value={search} placeholder='Search brands' className='h-[30px] w-full my-3' />
-                                <ScrollArea className="h-[70vh] w-full">
-                                    {brandData?.data
-                                        ?.filter((i: any) => i?.attributes?.brand_name.toLowerCase().includes(search.toLowerCase()))
-                                        ?.map((itm: any, index: number) => (
-                                            <div key={index} className='flex items-center py-[1.5px]'>
-                                                <Checkbox className='text-slate-600' checked={itm?.isChecked} onClick={() => handleClick(itm)} id={itm?.attributes?.url} />
-                                                <label
-                                                    htmlFor={itm?.attributes?.url}
-                                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-slate-500"
-                                                >
-                                                    &nbsp;&nbsp;{itm?.attributes?.brand_name}
-                                                </label>
-                                                <br />
-                                            </div>
-                                        ))}
-                                </ScrollArea>
-                            </div>
-                        </SheetContent>
-                    </Sheet>
+                <div className='grid grid-cols-3 items-center'>
+                    <div></div>
+                    <div className={`${khand.className} text-center text-6xl text-[#F46651] py-2 lg:py-2 font-bold`}><span className={`text-slate-600 ${khand.className}`}>Coupons</span></div>
+                    <div className='flex items-end justify-end'>
+                        <Sheet>
+                            <SheetTrigger asChild>
+                                <Button className='mx-4 lg:mx-0' variant="secondary">Filters</Button>
+                            </SheetTrigger>
+                            <SheetContent>
+                                <div className='mt-[10vh]'>
+                                    <div className={`${khand.className} text-2xl pb-1 font-normal`}>Brands</div>
+                                    <Input onChange={(e) => setSearch(e.target.value)} value={search} placeholder='Search brands' className='h-[30px] w-full my-3' />
+                                    <ScrollArea className="h-[70vh] w-full">
+                                        {brandData?.data
+                                            ?.filter((i: any) => i?.attributes?.brand_name.toLowerCase().includes(search.toLowerCase()))
+                                            ?.map((itm: any, index: number) => (
+                                                <div key={index} className='flex items-center py-[1.5px]'>
+                                                    <Checkbox className='text-slate-600' checked={itm?.isChecked} onClick={() => handleClick(itm)} id={itm?.attributes?.url} />
+                                                    <label
+                                                        htmlFor={itm?.attributes?.url}
+                                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-slate-500"
+                                                    >
+                                                        &nbsp;&nbsp;{itm?.attributes?.brand_name}
+                                                    </label>
+                                                    <br />
+                                                </div>
+                                            ))}
+                                    </ScrollArea>
+                                </div>
+                            </SheetContent>
+                        </Sheet>
+                    </div>
                 </div>
                 {(selectedStoreUuids?.length > 0) ?
                     <>
-                        <FilteredCouponDataComponent data={filteredCouponData} setFilteredCouponData={setFilteredCouponData}  />
+                        <FilteredCouponDataComponent data={filteredCouponData} setFilteredCouponData={setFilteredCouponData} />
                     </>
                     :
                     (
@@ -288,6 +291,7 @@ function CouponsPage() {
                                 <div ref={containerRef} style={{ overflowY: 'scroll', maxHeight: '1000px' }}>
                                     {Object.keys(groupedCouponData).map((storeuuid, rowIndex) => {
                                         const brand = brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid);
+                                        console.log({ brand })
                                         return (
                                             <>
                                                 <br />
@@ -327,7 +331,7 @@ function CouponsPage() {
                                                                                     </>
                                                                                 )}
                                                                                 <div className="flex items-center justify-center py-6">
-                                                                                    <Button style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: brand?.attributes?.text_color ? brand?.attributes?.text_color : "white" }} className={`text-[0.67069rem] rounded-full h-0 px-5 py-4`}>GET CODE</Button>
+                                                                                    <Button style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: coupon?.attributes?.custom_getcode_btn_text_color ? coupon?.attributes?.custom_getcode_btn_text_color : brand?.attributes?.text_color }} className={`text-[0.67069rem] rounded-full h-0 px-5 py-4`}>GET CODE</Button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -355,13 +359,13 @@ function CouponsPage() {
                                                                                     <div className="flex">
                                                                                         <Button
                                                                                             onClick={(event) => handleCopyClick(event, coupon?.attributes?.title, coupon?.id)}
-                                                                                            style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white", color: brand?.attributes?.primary_color ? "white" : "black" }} className="text-center mx-auto rounded-lg"> {coupon?.isChecked ? "Copied!" : "Tap to Copy"}</Button>
+                                                                                            style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white", color: coupon?.attributes?.custom_bg_text_color ? coupon?.attributes?.custom_bg_text_color : "white" }} className="text-center mx-auto rounded-lg"> {coupon?.isChecked ? "Copied!" : "Tap to Copy"}</Button>
                                                                                     </div>
 
-                                                                                    <div style={{ borderColor: "white" }} className={`text-center border-[1px] rounded-lg mx-8`}>
+                                                                                    <div style={{ borderColor: coupon?.attributes?.custom_bg_text_color ? coupon?.attributes?.custom_bg_text_color  : "white" }} className={`text-center border-[1px] rounded-lg mx-8`}>
                                                                                         <div className="flex items-center justify-center">
                                                                                             <Button
-                                                                                                style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: "white" }}
+                                                                                                style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: coupon?.attributes?.custom_bg_text_color ? coupon?.attributes?.custom_bg_text_color : "white" }}
                                                                                                 onClick={(event) => handleCopyClick(event, coupon?.attributes?.title, coupon?.id)}
                                                                                                 className="h-7 uppercase">{coupon?.attributes?.title?.length > 10 ? coupon?.attributes?.title?.slice(0, 10) + ".." : coupon?.attributes?.title}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
                                                                                         </div>
@@ -379,7 +383,7 @@ function CouponsPage() {
                                                                                         ) : null}
 
                                                                                     </>
-                                                                                    <div className="text-center text-white text-[0.825rem]">
+                                                                                    <div style={{ color: coupon?.attributes?.custom_bg_text_color ? coupon?.attributes?.custom_bg_text_color : "white" }} className="text-center text-[0.825rem]">
                                                                                         <div>{coupon?.attributes?.summary?.split("•")[0] ? coupon?.attributes?.summary?.split("•")[0] : null}</div>
                                                                                         <div>{coupon?.attributes?.summary?.split("•")[1] ? coupon?.attributes?.summary?.split("•")[1] : null}</div>
                                                                                         <div>{coupon?.attributes?.summary?.split("•")[2] ? coupon?.attributes?.summary?.split("•")[2] : null}</div>
