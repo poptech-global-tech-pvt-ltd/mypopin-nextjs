@@ -247,7 +247,7 @@ function CouponsPage() {
     return (
         <>
             <section className="pt-8 lg:pt-24 pb-2 max-w-[1400px] mx-auto">
-                <div className='grid grid-cols-3 items-center'>
+                <div className='lg:grid lg:grid-cols-3 items-center'>
                     <div></div>
                     <div className={`${khand.className} text-center text-6xl text-[#F46651] py-2 lg:py-2 font-bold`}><span className={`text-slate-600 ${khand.className}`}>Coupons</span></div>
                     <div className='flex items-end justify-end'>
