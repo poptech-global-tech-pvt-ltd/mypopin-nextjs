@@ -294,8 +294,6 @@ function CouponsPage() {
                                         console.log({ brand })
                                         return (
                                             <>
-                                                <br />
-                                                <br />
                                                 <div key={rowIndex}>
                                                     <h2 className={`${manrope.className} px-4 font-extrabold py-4 text-3xl text-slate-700`}>{(brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid))?.attributes?.brand_name}</h2>
                                                     <Carousel
