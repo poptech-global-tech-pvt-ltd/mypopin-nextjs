@@ -14,6 +14,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import { Linkedin, Twitter, Instagram, Facebook } from 'lucide-react';
 import { B2BFooterSEO } from "../B2BFooterSEO"
 import { B2CFooterSEO } from "../B2CFooterSEO"
+import { CouponFooterSEO } from "../CouponFooterSEO"
 
 
 function Footer() {
@@ -36,6 +37,7 @@ function Footer() {
                 <section style={pathname.split("/")[1] === "brands" ? { display: "none" } : { display: "block" }}>
                     {pathname === "/" && <B2CFooterSEO />}
                     {pathname === "/partner-with-pop" && <B2BFooterSEO />}
+                    {pathname === "/coupons" && <CouponFooterSEO />}
                 </section>
             </div>
             <hr />
