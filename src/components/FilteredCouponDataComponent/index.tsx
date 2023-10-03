@@ -72,8 +72,8 @@ function FilteredCouponDataComponent({ data, setFilteredCouponData }: any) {
         })
     }, [])
 
-       // Toggle card flip
-       const toggleCardFlip = (rowIndex: number, couponIndex: number) => {
+    // Toggle card flip
+    const toggleCardFlip = (rowIndex: number, couponIndex: number) => {
         setIsFlippedRows(prevIsFlippedRows => {
             const newIsFlippedRows = [...prevIsFlippedRows];
             newIsFlippedRows[rowIndex] = newIsFlippedRows[rowIndex] || [];
@@ -154,8 +154,7 @@ function FilteredCouponDataComponent({ data, setFilteredCouponData }: any) {
                                                                 </>
                                                             )}
                                                             <div className="flex items-center justify-center py-6">
-                                                                <Button style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: brand?.attributes?.text_color ? brand?.attributes?.text_color : "white" }} className={`text-[0.67069rem] rounded-full h-0 px-5 py-4`}>GET CODE</Button>
-                                                            </div>
+                                                                <Button style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: coupon?.attributes?.custom_getcode_btn_text_color ? coupon?.attributes?.custom_getcode_btn_text_color : brand?.attributes?.text_color }} className={`text-[0.67069rem] rounded-full h-0 px-5 py-4`}>GET CODE</Button>                                                            </div>
                                                         </div>
                                                     </div>
                                                     {/* // BACK SIDE */}
@@ -181,16 +180,13 @@ function FilteredCouponDataComponent({ data, setFilteredCouponData }: any) {
                                                                 <div className="flex">
                                                                     <Button
                                                                         onClick={(event) => handleCopyClick(event, coupon?.attributes?.title, coupon?.id)}
-                                                                        style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white", color: brand?.attributes?.primary_color ? "white" : "black" }} className="text-center mx-auto rounded-lg"> {coupon?.isChecked ? "Copied!" : "Tap to Copy"}</Button>
-                                                                </div>
+                                                                        style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white", color: coupon?.attributes?.custom_bg_text_color ? coupon?.attributes?.custom_bg_text_color : "white" }} className="text-center mx-auto rounded-lg"> {coupon?.isChecked ? "Copied!" : "Tap to Copy"}</Button>                                                                </div>
 
-                                                                <div style={{ borderColor: "white" }} className={`text-center border-[1px] rounded-lg mx-8`}>
-                                                                    <div className="flex items-center justify-center">
-                                                                        <Button
-                                                                            style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: "white" }}
-                                                                            onClick={(event) => handleCopyClick(event, coupon?.attributes?.title, coupon?.id)}
-                                                                            className="h-7 uppercase">{coupon?.attributes?.title?.length > 10 ? coupon?.attributes?.title?.slice(0, 10) + ".." : coupon?.attributes?.title}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
-                                                                    </div>
+                                                                <div style={{ borderColor: coupon?.attributes?.custom_bg_text_color ? coupon?.attributes?.custom_bg_text_color : "white" }} className={`text-center border-[1px] rounded-lg mx-8`}>                                                                    <div className="flex items-center justify-center">
+                                                                    <Button
+                                                                        style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: coupon?.attributes?.custom_bg_text_color ? coupon?.attributes?.custom_bg_text_color : "white" }} onClick={(event) => handleCopyClick(event, coupon?.attributes?.title, coupon?.id)}
+                                                                        className="h-7 uppercase">{coupon?.attributes?.title?.length > 10 ? coupon?.attributes?.title?.slice(0, 10) + ".." : coupon?.attributes?.title}&nbsp;&nbsp;<Copy className="w-[15px] h-[15px]" /></Button>
+                                                                </div>
                                                                 </div>
                                                                 <br />
                                                                 <>
@@ -205,7 +201,7 @@ function FilteredCouponDataComponent({ data, setFilteredCouponData }: any) {
                                                                     ) : null}
 
                                                                 </>
-                                                                <div className="text-center text-white text-[0.825rem]">
+                                                                <div style={{ color: coupon?.attributes?.custom_bg_text_color ? coupon?.attributes?.custom_bg_text_color : "white" }} className="text-center text-[0.825rem]">
                                                                     <div>{coupon?.attributes?.summary?.split("•")[0] ? coupon?.attributes?.summary?.split("•")[0] : null}</div>
                                                                     <div>{coupon?.attributes?.summary?.split("•")[1] ? coupon?.attributes?.summary?.split("•")[1] : null}</div>
                                                                     <div>{coupon?.attributes?.summary?.split("•")[2] ? coupon?.attributes?.summary?.split("•")[2] : null}</div>
