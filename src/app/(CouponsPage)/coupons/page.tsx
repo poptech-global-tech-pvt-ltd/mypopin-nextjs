@@ -370,7 +370,7 @@ function CouponsPage() {
                                                                                     </div>
                                                                                     <br />
                                                                                     <>
-                                                                                        {coupon?.isChecked ? (
+                                                                                        {coupon?.isChecked ? (           
                                                                                             <div className="flex items-center justify-center">
                                                                                                 <a target="_blank" href={brand?.attributes?.redirection_url}>
                                                                                                     <Button
