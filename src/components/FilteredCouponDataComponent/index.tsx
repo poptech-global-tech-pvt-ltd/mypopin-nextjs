@@ -141,7 +141,7 @@ function FilteredCouponDataComponent({ data, setFilteredCouponData }: any) {
                                                             </div>
                                                             <div className="text-center">
                                                                 <div className="font-extrabold text-[1.6rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.value}&nbsp;<span>{coupon?.attributes?.shortSummary ? <span>off</span> : null}</span></div>
-                                                                <div className="font-normal text-[0.8rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.rest?.split("off")[1]}</div>
+                                                                {/* <div className="font-normal text-[0.8rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.rest?.split("off")[1]}</div> */}
                                                             </div>
                                                             {brand?.attributes?.isDoubleDiscount && (
                                                                 <>

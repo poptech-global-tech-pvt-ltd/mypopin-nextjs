@@ -49,6 +49,9 @@ function CouponsPage() {
     const [filterUrl, setFilterUrl] = useState("");
     const [filteredCouponData, setFilteredCouponData] = useState<any[]>()
     const [search, setSearch] = useState<string>("");
+    const [rankOnlyBrandUrls, setRankOnlyBrandUrls] = useState<any>();
+    const [rankedUrl, setRankedUrl] = useState<string>("");
+    const [rankedCouponData, setRankedCouponData] = useState<any>();
 
     // https://mypop-dashboard.popclub.co.in/api/coupons?filters[storeuuid][$in][0]=bodytales&filters[storeuuid][$in][1]=anveshan
 
@@ -244,6 +247,33 @@ function CouponsPage() {
         });
     }
 
+    useEffect(() => {
+        fetch(`https://mypop-dashboard.popclub.co.in/api/brand-names?sort=rank_for_coupon:ASC&filters[$and][0][rank_for_coupon][$notNull]=true`).then((res) => res.json()).then((data) => {
+            const temp = data?.data?.map((i: any) => i?.attributes?.url);
+            setRankOnlyBrandUrls(temp)
+        })
+    }, [])
+
+    useEffect(() => {
+        if (rankOnlyBrandUrls?.length > 0) {
+            const apiUrl = 'https://mypop-dashboard.popclub.co.in/api/coupons';
+            const queryParams = rankOnlyBrandUrls?.map((storeuuid: any, index: number) => `filters[storeuuid][$in][${index}]=${storeuuid}`).join('&');
+            const finalUrl = `${apiUrl}?${queryParams}`;
+            setRankedUrl(finalUrl)
+        }
+    }, [rankOnlyBrandUrls])
+
+    useEffect(() => {
+        if (rankedUrl) {
+            fetch(rankedUrl).then((res) => res.json()).then((data) => setRankedCouponData(data))
+        }
+    }, [rankedUrl])
+
+    console.log({ rankOnlyBrandUrls })
+    console.log({ rankedUrl })
+    console.log({ rankedCouponData })
+    console.log(extractNumbersAndRest("₹100.00 off"))
+
     return (
         <>
             <section className="pt-8 lg:pt-24 pb-2 max-w-[1400px] mx-auto">
@@ -287,6 +317,7 @@ function CouponsPage() {
                     :
                     (
                         <>
+                            {/* {rankedCouponData?.data?.map((i: any, index: number) => <p>{i?.attributes?.storeuuid}</p>)} */}
                             {brandData?.data?.length > 0 && (
                                 <div ref={containerRef} style={{ overflowY: 'scroll', maxHeight: '1000px' }}>
                                     {Object.keys(groupedCouponData).map((storeuuid, rowIndex) => {
@@ -316,7 +347,7 @@ function CouponsPage() {
                                                                                 </div>
                                                                                 <div className="text-center">
                                                                                     <div className="font-extrabold text-[1.6rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.value}&nbsp;<span>{coupon?.attributes?.shortSummary ? <span>off</span> : null}</span></div>
-                                                                                    <div className="font-normal text-[0.8rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.rest?.split("off")[1]}</div>
+                                                                                    {/* <div className="font-normal text-[0.8rem]">{extractNumbersAndRest(coupon?.attributes?.shortSummary)?.rest?.split("off")[1]}</div> */}
                                                                                 </div>
                                                                                 {brand?.attributes?.isDoubleDiscount && (
                                                                                     <>
@@ -337,7 +368,9 @@ function CouponsPage() {
                                                                         <div>
                                                                             <div
                                                                                 onClick={() => toggleCardFlip(rowIndex, couponIndex)}
-                                                                                style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white" }} className="w-[300px] h-[300px] rounded-md shadow-md flex items-center justify-center border-[0.3px]">
+                                                                                style={{ backgroundColor: coupon?.attributes?.custom_bg_color ? coupon?.attributes?.custom_bg_color : brand?.attributes?.primary_color }}
+                                                                                className="w-[300px] h-[300px] rounded-md shadow-md flex items-center justify-center border-[0.3px]"
+                                                                            >
                                                                                 <div
                                                                                     // onClick={() => handleClick(itm.id)} 
                                                                                     className="w-[270px] h-[270px] mx-auto my-auto rounded-md cursor-pointer">
@@ -360,7 +393,7 @@ function CouponsPage() {
                                                                                             style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "white", color: coupon?.attributes?.custom_bg_text_color ? coupon?.attributes?.custom_bg_text_color : "white" }} className="text-center mx-auto rounded-lg"> {coupon?.isChecked ? "Copied!" : "Tap to Copy"}</Button>
                                                                                     </div>
 
-                                                                                    <div style={{ borderColor: coupon?.attributes?.custom_bg_text_color ? coupon?.attributes?.custom_bg_text_color  : "white" }} className={`text-center border-[1px] rounded-lg mx-8`}>
+                                                                                    <div style={{ borderColor: coupon?.attributes?.custom_bg_text_color ? coupon?.attributes?.custom_bg_text_color : "white" }} className={`text-center border-[1px] rounded-lg mx-8`}>
                                                                                         <div className="flex items-center justify-center">
                                                                                             <Button
                                                                                                 style={{ backgroundColor: brand?.attributes?.primary_color ? brand?.attributes?.primary_color : "black", color: coupon?.attributes?.custom_bg_text_color ? coupon?.attributes?.custom_bg_text_color : "white" }}
@@ -370,7 +403,7 @@ function CouponsPage() {
                                                                                     </div>
                                                                                     <br />
                                                                                     <>
-                                                                                        {coupon?.isChecked ? (           
+                                                                                        {coupon?.isChecked ? (
                                                                                             <div className="flex items-center justify-center">
                                                                                                 <a target="_blank" href={brand?.attributes?.redirection_url}>
                                                                                                     <Button

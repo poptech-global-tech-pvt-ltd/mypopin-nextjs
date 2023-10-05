@@ -102,7 +102,6 @@ function Blogs({ params, searchParams }: any) {
                                                     <div className="font-normal">{itm?.attributes?.author}</div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </Link>
@@ -110,7 +109,6 @@ function Blogs({ params, searchParams }: any) {
                         ))
                     )}
                 </Carousel>
-
                 <br />
                 <br />
                 <div className="">
