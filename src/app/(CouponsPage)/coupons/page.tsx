@@ -407,7 +407,7 @@ function CouponsPage() {
                                                                                             <div className="flex items-center justify-center">
                                                                                                 <a target="_blank" href={brand?.attributes?.redirection_url}>
                                                                                                     <Button
-                                                                                                        style={{ backgroundColor: brand?.attributes?.primary_color, color: brand?.attributes?.text_color }}
+                                                                                                        style={{ backgroundColor: brand?.attributes?.primary_color, color: coupon?.attributes?.custom_bg_text_color ? coupon?.attributes?.custom_bg_text_color : "white" }}
                                                                                                         onClick={(event) => event.stopPropagation()} className={`text-[0.67069rem] rounded-full h-0 px-3 py-3 mb-1 shadow-xl border-[0.01px]`}>REDEEM NOW&nbsp;&nbsp;<ArrowRightCircle className="w-4 h-4" /></Button>
                                                                                                 </a>
                                                                                             </div>
