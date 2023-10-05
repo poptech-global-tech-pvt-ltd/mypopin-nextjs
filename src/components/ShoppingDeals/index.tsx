@@ -96,7 +96,7 @@ function ShoppingDeals() {
                     </Swiper>
                     <div className='flex items-center justify-center -mt-[50px] lg:-mt-[100px]'>
                         <Link href={`/allbrands`}>
-                            <Button variant="outline">View All</Button>
+                            <Button className='mb-6' variant="outline">View All</Button>
                         </Link>
                     </div>
                 </div>
