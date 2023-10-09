@@ -182,13 +182,13 @@ export async function generateMetadata(
             openGraph: {
                 type: "website",
                 locale: "en_US",
-                url: `https://mypop.in/brands/${brandData?.brand_name?.toLowerCase()}`,
+                url: `https://mypop.in/brands/${brandData?.url?.toLowerCase()}`,
                 title: `${brandData?.brand_name} X POPcoins: Get Discounts & Rewards on ${brandData?.brand_name} using POPcoins | POP`,
                 description: `Shop your Favorite Brand ${brandData?.brand_name} using POP to Earn Additional Rewards, Discounts and POPcoins. Click here to learn more about POPcoins X ${brandData?.brand_name}`,
                 images: `POPcoins for ${brandData?.brand_name}`,
             },
             alternates: {
-                canonical: `https://mypop.in/brands/${brandData?.brand_name?.toLowerCase()}`,
+                canonical: `https://mypop.in/brands/${brandData?.url?.toLowerCase()}`,
                 languages: {
                     'en-US': '/en-US',
                 },

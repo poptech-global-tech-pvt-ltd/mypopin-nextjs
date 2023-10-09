@@ -31,8 +31,8 @@ function AllBrands() {
                 <meta property="og:description" content="Discover diverse brands across various categories on POP's All Brands page. Shop seamlessly & unlock exclusive discounts on your favorite brands using POPcoins." />
                 <meta property="og:image" content="https://mypop.in/public/pc-logo.png" />
                 <meta property="og:image:alt" content="All Brands Collection on POP" />
-                <meta property="og:url" content="https://mypop.in/allbrands/" />
-                <link rel="canonical" href="https://mypop.in/allbrands/" />
+                <meta property="og:url" content="https://mypop.in/allbrands" />
+                <link rel="canonical" href="https://mypop.in/allbrands" />
                 {/* // schema org */}
                 <Script id="schema-track" strategy="lazyOnload" type="application/ld+json" dangerouslySetInnerHTML={{
                     __html: JSON.stringify(

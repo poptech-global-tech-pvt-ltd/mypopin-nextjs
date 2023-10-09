@@ -19,8 +19,8 @@ function FAQ() {
         <meta property="og:description" content="Become our Customer and Shop from Brands integrated with POPcoins and Earn Rewards & Discounts. Partner with us and revolutionize your Business Journey with our Growth Solutions at POP." />
         <meta property="og:image" content="https://mypop.in/public/pc-logo.png" />
         <meta property="og:image:alt" content="India's New Currency POPcoins" />
-        <meta property="og:url" content="https://mypop.in" />
-        <link rel="canonical" href="https://mypop.in" />
+        <meta property="og:url" content="https://mypop.in/faq" />
+        <link rel="canonical" href="https://mypop.in/faq" />
         {/* // faq schema org */}
         <Script id="schema-track-3" strategy="lazyOnload" type="application/ld+json" dangerouslySetInnerHTML={{
           __html: JSON.stringify(
