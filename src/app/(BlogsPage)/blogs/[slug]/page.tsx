@@ -139,7 +139,15 @@ export async function generateMetadata(
     return {
         title: `${blogDetailData[0].attributes?.meta_title}`,
         description: `${blogDetailData[0].attributes?.meta_desc}`,
+        openGraph: {
+            type: "website",
+            locale: "en_US",
+            url: `https://mypop.in/brands/${blogDetailData[0].attributes?.uuid}`,
+            title: `POPcoins: Get Discounts & Rewards using POPcoins | POP`,
+            description: `Shop your Favorite Brand using POP to Earn Additional Rewards, Discounts and POPcoins. Click here to learn more about POPcoins`,
+        },
         alternates: {
+            canonical: `https://mypop.in/brands/${blogDetailData[0].attributes?.uuid}`,
             languages: {
                 'en-US': '/en-US',
             },
