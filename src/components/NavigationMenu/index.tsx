@@ -73,8 +73,9 @@ export function NavigationMenuDemo() {
               {/* // if data is in STRAPI */}
               {isBrandDataAvailable && Object.keys(brandData).map((category: string) => (
                 <div key={category} className="pr-2">
-                  <div className="font-bold text-lg pt-3 text-[14px]">{category}</div>
-                  <div className="font-medium">
+                  <div className="font-bold pt-3 text-[15px] uppercase text-slate-900">{category}</div>
+                  <div className="py-1"/>
+                  <div className="font-medium text-slate-700">
                     {brandData[category].map((brand: string, index: number) => (
                       <div key={index}>
                         <Link prefetch={false} href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
