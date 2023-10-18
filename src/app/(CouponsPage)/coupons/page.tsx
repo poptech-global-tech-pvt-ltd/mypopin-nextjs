@@ -270,11 +270,6 @@ function CouponsPage() {
         }
     }, [rankedUrl])
 
-    console.log({ rankOnlyBrandUrls })
-    console.log({ rankedUrl })
-    console.log({ rankedCouponData })
-    console.log(extractNumbersAndRest("₹100.00 off"))
-
     return (
         <>
             <section className="pt-8 lg:pt-24 pb-2 max-w-[1400px] mx-auto">

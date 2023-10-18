@@ -20,7 +20,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
           {children}
           {pathname !== '/coupons' ? <Footer /> : null}
-          {/* <Footer /> */}
         </Transition>
       </body>
     </html>
