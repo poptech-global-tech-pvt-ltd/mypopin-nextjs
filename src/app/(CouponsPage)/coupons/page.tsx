@@ -23,6 +23,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 import { FilteredCouponDataComponent } from '@/components/FilteredCouponDataComponent';
 import { Input } from "@/components/ui/input"
+import { Footer } from '@/components';
 
 
 
@@ -317,9 +318,22 @@ function CouponsPage() {
                     :
                     (
                         <>
+                            {brandData?.data?.length === undefined && <div>
+                                <Carousel
+                                    responsive={responsive}
+                                    className="z-[50] px-4 py-4">
+                                    <Skeleton width={"300px"} height={"300px"} count={1} />
+                                    <Skeleton width={"300px"} height={"300px"} count={1} />
+                                    <Skeleton width={"300px"} height={"300px"} count={1} />
+                                    <Skeleton width={"300px"} height={"300px"} count={1} />
+                                    <Skeleton width={"300px"} height={"300px"} count={1} />
+                                </Carousel>
+                            </div>
+                            }
                             {/* {rankedCouponData?.data?.map((i: any, index: number) => <p>{i?.attributes?.storeuuid}</p>)} */}
                             {brandData?.data?.length > 0 && (
-                                <div ref={containerRef} style={{ overflowY: 'scroll', maxHeight: '1000px' }}>
+                                // FIX - removed maxHeight : '1000px' from style below
+                                <div ref={containerRef} style={{ overflowY: 'scroll'}}>
                                     {Object.keys(groupedCouponData).map((storeuuid, rowIndex) => {
                                         const brand = brandData.data?.find((brand: any) => brand?.attributes?.url === storeuuid);
                                         console.log({ brand })
@@ -444,12 +458,15 @@ function CouponsPage() {
                                         </Carousel>
 
                                     )}
+                                    <div>
+                                        <Footer />
+                                    </div>
                                 </div>
                             )}
                         </>
                     )}
-
-
+                <br />
+                <br />
             </section>
         </>
     );
