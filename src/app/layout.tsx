@@ -10,6 +10,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const pathname = usePathname()
   return (
     <html lang="en">
+      <head>
+        <meta name="google-site-verification" content="XC5RlrclbQpKLhiUOTkFoJH_ltqE4rU6G--LiV9WLeI" />
+      </head>
       <body>
         <Transition>
           <div className="hidden lg:block">
