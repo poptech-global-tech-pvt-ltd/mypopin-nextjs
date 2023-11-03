@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {searchParam !== "?ref=app" ? <Header /> : null}
           </div>
           <div className="block lg:hidden">
-            <MobileHeader />
+            {searchParam !== "?ref=app" ? <MobileHeader /> : null}
           </div>
           {children}
           {(pathname !== '/coupons' && searchParam !== "?ref=app") ? <Footer /> : null}
