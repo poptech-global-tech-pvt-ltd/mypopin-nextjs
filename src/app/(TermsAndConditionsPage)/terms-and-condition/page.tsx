@@ -6,7 +6,7 @@ const manrope = Manrope({
     weight: ['400', '500', '600', '700']
 })
 
-function TermsAndConditions() {
+function TermsAndConditions({ searchParams }: any) {
     return (
         <>
             <head>
@@ -90,8 +90,7 @@ function TermsAndConditions() {
           `}
                 </Script>
             </head>
-
-            <section className="py-24 max-w-6xl mx-auto">
+            <section style={searchParams.ref === "app" ? { backgroundColor: "black", color: "#e5e5e5", padding: "0px 10px" } : { backgroundColor: "white", color: "black" }} className="py-24 max-w-6xl mx-auto">
                 <h3 className={`text-[28px] ${manrope.className} font-[700] pb-2 pt-10`} >Terms & Conditions</h3>
                 <h4 className={`text-[28px] ${manrope.className} font-[700] pb-2 pt-10`}>GENERAL:</h4>
                 <p className={` text-[20px] pb-4 ${manrope.className} font-[500] `}>These Terms & Conditions apply to products purchased via POPclub placed through social media, or offline on the phone or on chat or through our Customer Delight Team which are all assets managed by POPclub Vision Tech Pvt. Ltd a company incorporated under the Companies Act, 1956, (“Company” or “POPclub Vision Tech Pvt. Ltd” and its successors and assigns).</p>

@@ -10,8 +10,6 @@ import { useEffect, useState } from 'react'
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [searchParam, setSearchParam] = useState<string>();
   const pathname = usePathname()
-  console.log("-->", window.location.search)
-
   useEffect(() => {
     if (window.location.search != null) {
       setSearchParam(window.location.search)
