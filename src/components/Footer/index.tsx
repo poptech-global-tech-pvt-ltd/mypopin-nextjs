@@ -34,15 +34,15 @@ function Footer() {
     return (
         <>
             <div className="max-w-[1350px] md:px-4 pt-2 lg:pt-0 pb-4 lg:pb-0 mx-auto">
-                <section style={pathname.split("/")[1] === "brands" ? { display: "none" } : { display: "block" }}>
+                <section style={pathname?.split("/")[1] === "brands" ? { display: "none" } : { display: "block" }}>
                     {pathname === "/" && <B2CFooterSEO />}
                     {pathname === "/partner-with-pop" && <B2BFooterSEO />}
                     {pathname === "/coupons" && <CouponFooterSEO />}
                 </section>
             </div>
             <hr />
-            <section style={pathname.split("/")[1] === "brands" ? { backgroundColor: "#F46651", color: "white" } : { backgroundColor: "white", color: "black" }}>
-                <footer style={pathname.split("/")[1] === "brands" ? { backgroundColor: "#F46651", color: "white" } : { backgroundColor: "white", color: "black" }} className="max-w-5xl mx-auto">
+            <section style={pathname?.split("/")[1] === "brands" ? { backgroundColor: "#F46651", color: "white" } : { backgroundColor: "white", color: "black" }}>
+                <footer style={pathname?.split("/")[1] === "brands" ? { backgroundColor: "#F46651", color: "white" } : { backgroundColor: "white", color: "black" }} className="max-w-5xl mx-auto">
                     <div style={{ margin: "0 auto" }} className="max-w-[1350px] md:px-0 pt-10 lg:pt-4 pb-4">
                         <div className="grid px-2 lg:px-0 md:grid-cols-[1fr] lg:grid-cols-[1fr_1fr_1fr_1fr]">
                             <div className="pr-2">
@@ -114,27 +114,27 @@ function Footer() {
                                 <div className="flex my-2 items-center space-x-2">
                                     <Link href={`https://www.facebook.com/getpopclub`}>
                                         <div>
-                                            <div style={pathname.split("/")[1] === "brands" ? { color: "white", border: "1.5px solid white" } : { color: "black", border: "1.5px solid black" }} className="rounded-full p-2">
-                                                <Facebook style={pathname.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[20px] h-[20px]" />
+                                            <div style={pathname?.split("/")[1] === "brands" ? { color: "white", border: "1.5px solid white" } : { color: "black", border: "1.5px solid black" }} className="rounded-full p-2">
+                                                <Facebook style={pathname?.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[20px] h-[20px]" />
                                             </div>
                                         </div>
 
                                     </Link>
                                     <Link href={`https://www.instagram.com/shoponpop/`}>
                                         <div>
-                                            <div style={pathname.split("/")[1] === "brands" ? { color: "white", border: "1.5px solid white" } : { color: "black", border: "1.5px solid black" }} className="rounded-full p-2">
-                                                <Instagram style={pathname.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[20px] h-[20px]" />
+                                            <div style={pathname?.split("/")[1] === "brands" ? { color: "white", border: "1.5px solid white" } : { color: "black", border: "1.5px solid black" }} className="rounded-full p-2">
+                                                <Instagram style={pathname?.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[20px] h-[20px]" />
                                             </div>
                                         </div>
                                     </Link>
                                     <Link href={`https://twitter.com/getpopclub`}>
-                                        <div style={pathname.split("/")[1] === "brands" ? { color: "white", border: "1.5px solid white" } : { color: "black", border: "1.5px solid black" }} className="rounded-full p-2">
-                                            <Twitter style={pathname.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[20px] h-[20px]" />
+                                        <div style={pathname?.split("/")[1] === "brands" ? { color: "white", border: "1.5px solid white" } : { color: "black", border: "1.5px solid black" }} className="rounded-full p-2">
+                                            <Twitter style={pathname?.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[20px] h-[20px]" />
                                         </div>
                                     </Link>
                                     <Link href={`https://www.linkedin.com/company/getpopcoins`}>
-                                        <div style={pathname.split("/")[1] === "brands" ? { color: "white", border: "1.5px solid white" } : { color: "black", border: "1.5px solid black" }} className="rounded-full p-2">
-                                            <Linkedin style={pathname.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[20px] h-[20px]" />
+                                        <div style={pathname?.split("/")[1] === "brands" ? { color: "white", border: "1.5px solid white" } : { color: "black", border: "1.5px solid black" }} className="rounded-full p-2">
+                                            <Linkedin style={pathname?.split("/")[1] === "brands" ? { color: "white" } : { color: "black" }} className="w-[20px] h-[20px]" />
                                         </div>
                                     </Link>
                                 </div>
@@ -143,8 +143,8 @@ function Footer() {
                     </div>
                 </footer>
             </section>
-            <footer id="footer-contact-us" style={pathname.split("/")[1] === "brands" ? { backgroundColor: "#F46651", color: "white" } : { backgroundColor: "#F8F8F8", color: "black" }}>
-                <div style={pathname.split("/")[1] === "brands" ? { backgroundColor: "#F46651", color: "white", margin: "0 auto" } : { backgroundColor: "white", color: "black", margin: "0 auto" }} className="max-w-[1350px] md:px-4">
+            <footer id="footer-contact-us" style={pathname?.split("/")[1] === "brands" ? { backgroundColor: "#F46651", color: "white" } : { backgroundColor: "#F8F8F8", color: "black" }}>
+                <div style={pathname?.split("/")[1] === "brands" ? { backgroundColor: "#F46651", color: "white", margin: "0 auto" } : { backgroundColor: "white", color: "black", margin: "0 auto" }} className="max-w-[1350px] md:px-4">
                     <div className="grid py-4 h-[214px] lg:h-[68px] items-center px-2 md:grid-cols-[1fr] lg:grid-cols-[1fr_1fr_1fr]">
                         <div className="text-center sm:text-center md:text-center lg:text-left xl:text-left">Copyright © {new Date().getFullYear()} POPclub Vision Tech Pvt. Ltd.</div>
                         <div className="text-center">

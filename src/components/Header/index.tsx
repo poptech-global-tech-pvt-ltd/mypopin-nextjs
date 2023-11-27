@@ -215,8 +215,10 @@ function Header() {
                                     </Dialog>
                                 </div>
                             )}
+                            {/* @ts-ignore */}
                             <Tabs value={pathName} className="navbar-container" defaultValue="customer">
                                 <TabsList className="tabslist h-[45px] p-2">
+                                    {/* @ts-ignore */}
                                     <TabsTrigger data-state={(pathName.split('/')[1] === "brands") || (pathName === "/allbrands") || (pathName === "/") || (pathName === "/blogs") || (pathName.split('/')[1] === "blogs") || (pathName.split('/')[1] === "coupons") ? "active" : "inactive" } className="tabstrigger h-[35px]" value="/"><Link href="/">I am a Customer</Link></TabsTrigger>
                                     <TabsTrigger data-state={(pathName === '/features') || (pathName === "/partner-with-pop") || (pathName === "/integrations") || (pathName === "/features") ? "active" : "inactive"} className="tabstrigger h-[35px]" value="/partner-with-pop"> <Link href="/partner-with-pop">I am a Brand</Link></TabsTrigger>
                                 </TabsList>

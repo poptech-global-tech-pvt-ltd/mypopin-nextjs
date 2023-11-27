@@ -46,7 +46,7 @@ function BrandDeals({ primaryColor, secondaryColor, textColor, discountPercentag
     };
 
     useEffect(() => {
-        fetch(`https://mypop-dashboard.popclub.co.in/api/new-product-images?filters[storeuuid][$eq]=${pathname.split("/")[2]}`).then((res) => res.json()).then((data) => setProductImagesData(data?.data))
+        fetch(`https://mypop-dashboard.popclub.co.in/api/new-product-images?filters[storeuuid][$eq]=${pathname?.split("/")[2]}`).then((res) => res.json()).then((data) => setProductImagesData(data?.data))
     }, [])
 
     // const handleProductLink = (itm: any) => {

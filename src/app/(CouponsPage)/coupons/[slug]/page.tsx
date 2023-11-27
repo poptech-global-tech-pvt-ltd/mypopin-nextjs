@@ -26,16 +26,18 @@ function BrandCouponPage({ params, searchParams }: any) {
 
 
     useEffect(() => {
-        const result = fetch(`https://mypop-dashboard.popclub.co.in/api/coupons?filters[storeuuid][$eq]=${pathname.split("/")[2]}`).then((res) => res.json()).then((result) => {
-            const modifiedArray = result.data.map((itm: any) => ({ ...itm, isFlipped: false, isCopied: false }));
-            const filteredResult = modifiedArray.filter((i: any) => !(i?.attributes?.summary.includes("For ")));          
-            setCouponData(filteredResult);
-        })
+        if (pathname != null) {
+            fetch(`https://mypop-dashboard.popclub.co.in/api/coupons?filters[storeuuid][$eq]=${pathname?.split("/")[2]}`).then((res) => res.json()).then((result) => {
+                const modifiedArray = result.data.map((itm: any) => ({ ...itm, isFlipped: false, isCopied: false }));
+                const filteredResult = modifiedArray.filter((i: any) => !(i?.attributes?.summary.includes("For ")));
+                setCouponData(filteredResult);
+            })
+        }
     }, [])
 
 
     useEffect(() => {
-        fetch(`https://mypop-dashboard.popclub.co.in/api/brand-names?filters[url][$eq]=${pathname.split("/")[2]}&populate=*`).then((res) => res.json()).then((result) => setBrandData(result.data))
+        fetch(`https://mypop-dashboard.popclub.co.in/api/brand-names?filters[url][$eq]=${pathname?.split("/")[2]}&populate=*`).then((res) => res.json()).then((result) => setBrandData(result.data))
     }, [])
 
     console.log({ couponData })
