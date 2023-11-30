@@ -20,8 +20,8 @@ const manrope = Manrope({
 const benefits = [
     { iconRelativePath: "/percent-icon.svg", title: "Offers", description: "Enjoy exciting savings on partner brands with irresistible discounts", extraFooter: true },
     { iconRelativePath: "/popminis-icon.svg", title: "POPminis", description: "Explore Free Trial Samples from your favourite D2C brands", extraFooter: false },
-    { iconRelativePath: "travel-deal-icon.svg", title: "Travel Deals", description: "Simplified travel experience with exclusive ClearTrip & Lohono coupons", extraFooter: false },
-    { iconRelativePath: "/reward-icon.svg", title: "Rewards", description: "Claim enticing rewards across OTT streaming platforms, Swiggy, Lenskart & more", extraFooter: false }
+    // { iconRelativePath: "travel-deal-icon.svg", title: "Travel Deals", description: "Simplified travel experience with exclusive ClearTrip & Lohono coupons", extraFooter: false },
+    // { iconRelativePath: "/reward-icon.svg", title: "Rewards", description: "Claim enticing rewards across OTT streaming platforms, Swiggy, Lenskart & more", extraFooter: false }
 ]
 
 export const ExtraFooter = () => {
@@ -49,7 +49,7 @@ export const ExtraFooter = () => {
 
 function PopBenefits() {
     return (
-        <div className='bg-[#F9F9F9]'>
+        <div className='bg-[rgb(249,249,249)]'>
             <div className="py-10 max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr]">
                     {/* <div className={`text-6xl ${khand.className} flex items-center font-bold`}>Optimise Your Shopping Benefits With POPCoins</div> */}
@@ -57,7 +57,7 @@ function PopBenefits() {
                     {/* // card container */}
                     <div className='grid grid-cols-2 lg:grid-cols-2 gap-2 lg:gap-4 px-2 lg:px-14'>
                         {benefits?.map((itm, index) => (
-                            <div key={index}>
+                            <div className='max-h-[250px]' key={index}>
                                 <div className='bg-white p-[10px] lg:p-10 rounded-lg drop-shadow-sm h-full cursor-pointer transition-transform hover:scale-105'>
                                     <div className='text-3xl font-bold flex items-center justify-center'>
                                         <img
