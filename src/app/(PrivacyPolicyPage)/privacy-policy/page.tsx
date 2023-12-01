@@ -91,7 +91,7 @@ function PrivacyPolicy({ searchParams }: any) {
           `}
                 </Script>
             </head>
-            <section style={searchParams.ref === "app" ? { backgroundColor: "black", color: "#e5e5e5", padding : "0px 10px" } : { backgroundColor: "white", color: "black" }} className="py-24 max-w-6xl mx-auto">
+            <section style={searchParams.ref === "app" ? { backgroundColor: "black", color: "#e5e5e5", padding: "0px 10px" } : { backgroundColor: "white", color: "black" }} className="py-24 max-w-6xl mx-auto">
                 <div className={`sm:text-[24px] md:text-[24px] lg:text-[28px] ${manrope.className} font-[700] pb-2 pt-10`}>Privacy Policy</div>
                 <p className={` sm:text-[18px] md:text-[18px] lg:text-[20px] pb-4 ${manrope.className} font-[500] `}>This section pertains to the Privacy Policy of POPclub owned by Popclub Vision Tech Pvt Limited. We would like to inform you that our Privacy Policy is subject to change without intimation and you shall be required to review the same regularly</p>
                 <p className={` sm:text-[18px] md:text-[18px] lg:text-[20px] pb-4 ${manrope.className} font-[500] `}>
@@ -152,6 +152,17 @@ function PrivacyPolicy({ searchParams }: any) {
                 </p>
                 <p className={` sm:text-[18px] md:text-[18px] lg:text-[20px] pb-4 ${manrope.className} font-[500] `}>
                     POPclub may share collective information such as demographics and website usage statistics with our sponsors, advertisers or other third parties (such third parties do not include POPclub’s marketing partners and network providers). When this type of information is shared, such parties do not have access to your personal information. When you contact POPclub through any means such as chat/email, POPclub reserves the right to include your email ID for marketing communications. You can unsubscribe from such communications anytime you wish to do so.</p>
+
+                <p className={` sm:text-[14px] md:text-[16px] lg:text-[18px] pb-4 ${manrope.className} font-[500] `}>
+                    <div>Contact us/Grievance Officer</div>
+                    <div>In accordance with the Information Technology Act 2000 and rules made there under, the name and contact details of the Grievance Officer are provided below:</div>
+                    <div>Name:</div>
+                    <div>Ritika Balvalli</div>
+                    <div>Popclub Vision Tech Pvt Limited</div>
+                    <div>Urban Vault, HSR Layout 6/A-16, 18th Cross Rd, Sector 3, HSR Layout, Bengaluru, Karnataka - 560102</div>
+                    <div>E-mail:</div>
+                    <div>ritika@popclub.co</div>
+                </p>
 
             </section>
         </>
