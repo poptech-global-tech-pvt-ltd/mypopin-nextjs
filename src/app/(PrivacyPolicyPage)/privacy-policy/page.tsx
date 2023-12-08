@@ -157,7 +157,7 @@ function PrivacyPolicy({ searchParams }: any) {
                     <div className='font-bold pb-2'>Contact us/Grievance Officer</div>
                     <div className='pb-2'>In accordance with the Information Technology Act 2000 and rules made there under, the name and contact details of the Grievance Officer are provided below:</div>
                     <div>Name:<span> Ritika Balvalli</span></div>
-                    <div>Popclub Vision Tech Pvt Limited</div>
+                    <div>Poptech Growth Private Limited</div>
                     <div className='pb-2'>Urban Vault, HSR Layout 6/A-16, 18th Cross Rd, Sector 3, HSR Layout, Bengaluru, Karnataka - 560102</div>
                     <div>E-mail:<span> ritika@popclub.co</span></div>
                 </p>
