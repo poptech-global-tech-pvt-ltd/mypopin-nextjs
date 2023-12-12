@@ -101,9 +101,9 @@ function Footer() {
                             </div>
                             <div className="pr-2">
                                 <div className="font-bold text-lg pt-3">Contact Us</div>
-                                <Link href={`mailto:hello@popclub.co`}>
-                                    <div>hello@popclub.co</div>
-                                </Link>
+                                <div>
+                                    <a href="mailto:hello@popclub.co">hello@popclub.co</a>
+                                </div>
                                 <div className="font-bold text-lg pt-3">Address</div>
                                 <div className="py-1">
                                     Urban Vault, HSR Layout 6/A-16, 18th Cross Rd, Sector 3, HSR Layout, Bengaluru, Karnataka - 560102
