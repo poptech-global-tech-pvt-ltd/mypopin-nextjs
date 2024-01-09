@@ -15,6 +15,7 @@ import { Linkedin, Twitter, Instagram, Facebook } from 'lucide-react';
 import { B2BFooterSEO } from "../B2BFooterSEO"
 import { B2CFooterSEO } from "../B2CFooterSEO"
 import { CouponFooterSEO } from "../CouponFooterSEO"
+import Head from 'next/head';
 
 
 function Footer() {
@@ -33,6 +34,10 @@ function Footer() {
 
     return (
         <>
+            <Head>
+                <script async src="https://assets.calendly.com/assets/external/widget.js"></script>
+            </Head>
+
             <div className="max-w-[1350px] md:px-4 pt-2 lg:pt-0 pb-4 lg:pb-0 mx-auto">
                 <section style={pathname?.split("/")[1] === "brands" ? { display: "none" } : { display: "block" }}>
                     {pathname === "/" && <B2CFooterSEO />}
@@ -92,7 +97,7 @@ function Footer() {
                                         <DialogContent className="p-0 z-[110]">
                                             <DialogDescription>
                                                 <div className="">
-                                                    <iframe className="mx-auto h-[80vh]" width="100%" height="600px" src={`https://form.jotform.com/231904966805464`}></iframe>
+                                                    <iframe className="mx-auto h-[80vh]" width="100%" height="600px" src={`https://calendly.com/d/49r-kvg-5r2`}></iframe>
                                                 </div>
                                             </DialogDescription>
                                         </DialogContent>

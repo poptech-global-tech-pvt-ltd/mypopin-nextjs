@@ -5,6 +5,8 @@ import { Inter } from 'next/font/google'
 import { Button } from '../ui/button'
 import Image from 'next/image'
 import { Dialog, DialogContent, DialogDescription, DialogTrigger } from '../ui/dialog'
+import Head from 'next/head';
+
 
 const khand = Khand({
     weight: '700',
@@ -21,6 +23,9 @@ const inter = Inter({
 function B2BHero() {
     return (
         <>
+            <Head>
+                <script async src="https://assets.calendly.com/assets/external/widget.js"></script>
+            </Head>
             <div>
                 <div className="h-[85vh] grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] max-w-7xl mx-auto">
                     <section className='mx-auto my-auto px-2'>
@@ -39,7 +44,7 @@ function B2BHero() {
                                 <DialogContent className="p-0 z-[110]">
                                     <DialogDescription>
                                         <div className="">
-                                            <iframe className="mx-auto h-[80vh]" width="100%" height="600px" src={`https://form.jotform.com/231904966805464`}></iframe>
+                                            <iframe className="mx-auto h-[80vh]" width="100%" height="600px" src={`https://calendly.com/d/49r-kvg-5r2`}></iframe>
                                         </div>
                                     </DialogDescription>
                                 </DialogContent>
