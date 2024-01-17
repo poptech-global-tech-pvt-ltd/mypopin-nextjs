@@ -42,14 +42,14 @@ function B2BPopInNumbers() {
                 <div className=' py-4 lg:py-0'>
                     <div className='lg:pt-10'>
                         {/* <div className={`text-[#F56651] text-center ${khand.className} text-5xl text-center`}>{formatNumberWithCommas(Number(numbersData?.total_users ? numbersData?.total_users : 0))}</div> */}
-                        <div className={`text-[#F56651] text-center ${khand.className} text-5xl text-center`}>1,896,256</div>
+                        <div className={`text-[#F56651] text-center ${khand.className} text-5xl text-center`}>1,956,356</div>
                         <div className={`text-center ${manrope.className} text-xl lg:text-2xl`}>POP Ecosystem Customers</div>
                     </div>
                 </div>
                 <div className=' py-4 lg:py-0'>
                     <div className='lg:pt-10'>
                         {/* <div className={`text-[#F56651] text-center ${khand.className} text-5xl text-center`}>{formatNumberWithCommas(Number(numbersData?.coins_circulation ? numbersData?.coins_circulation : 0))}</div> */}
-                        <div className={`text-[#F56651] text-center ${khand.className} text-5xl text-center`}>177,316,87</div>
+                        <div className={`text-[#F56651] text-center ${khand.className} text-5xl text-center`}>177,426,870</div>
                         <div className={`text-center ${manrope.className} text-xl lg:text-2xl`}>Coins In Circulation</div>
                     </div>
                 </div>
