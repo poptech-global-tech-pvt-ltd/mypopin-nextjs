@@ -38,13 +38,16 @@ export function NavigationMenuDemo() {
         // TODO - not a good solution, heavy paginated request
         const response = await fetch('https://mypop-dashboard.popclub.co.in/api/brand-names?sort[0]=brand_name:asc&pagination[page]=1&pagination[pageSize]=100&populate=*');
         const data = await response?.json();
+        console.log({data})
         // Transform the data to group brands by category
         const transformedData = data?.data?.reduce((acc: any, item: any) => {
           const category = item?.attributes?.brand_categories.data[0]?.attributes?.categoryname;
+          const brandUrl =  item?.attributes?.url;
           if (!acc[category]) {
             acc[category] = [];
           }
-          acc[category]?.push(item?.attributes?.brand_name);
+          // acc[category]?.push(item?.attributes?.brand_name);
+          acc[category]?.push({ name: item?.attributes?.brand_name, url: brandUrl });
           return acc;
         }, {});
         console.log({ transformedData })
@@ -59,6 +62,8 @@ export function NavigationMenuDemo() {
 
 
   const isBrandDataAvailable = Object.keys(brandData)?.length !== 0
+
+  console.log({brandData})
 
   return (
     <NavigationMenu>
@@ -78,11 +83,13 @@ export function NavigationMenuDemo() {
                   <div className="font-medium text-slate-700">
                     {brandData[category].map((brand: string, index: number) => (
                       <div key={index}>
-                        <Link prefetch={false} href={`/brands/${brand.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
+                        {/* @ts-ignore */}
+                        <Link prefetch={false} href={`/brands/${brand?.url?.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
                           <div key={index} className={`py-1 text-[14px]`}>
-                            {brand}
+                            {/* @ts-ignore */}
+                            {brand?.name}
                           </div>
-                        </Link>
+                        </Link> 
                       </div>
                     ))}
                   </div>
