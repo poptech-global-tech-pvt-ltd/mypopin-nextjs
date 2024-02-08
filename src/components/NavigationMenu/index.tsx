@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/navigation-menu"
 import { Manrope } from 'next/font/google'
 import ScrollLink from "@/utils/ScrollLink"
+import { ScrollArea } from "@/components/ui/scroll-area"
+
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -38,11 +40,11 @@ export function NavigationMenuDemo() {
         // TODO - not a good solution, heavy paginated request
         const response = await fetch('https://mypop-dashboard.popclub.co.in/api/brand-names?sort[0]=brand_name:asc&pagination[page]=1&pagination[pageSize]=100&populate=*');
         const data = await response?.json();
-        console.log({data})
+        console.log({ data })
         // Transform the data to group brands by category
         const transformedData = data?.data?.reduce((acc: any, item: any) => {
           const category = item?.attributes?.brand_categories.data[0]?.attributes?.categoryname;
-          const brandUrl =  item?.attributes?.url;
+          const brandUrl = item?.attributes?.url;
           if (!acc[category]) {
             acc[category] = [];
           }
@@ -63,7 +65,7 @@ export function NavigationMenuDemo() {
 
   const isBrandDataAvailable = Object.keys(brandData)?.length !== 0
 
-  console.log({brandData})
+  console.log({ brandData })
 
   return (
     <NavigationMenu>
@@ -74,31 +76,33 @@ export function NavigationMenuDemo() {
             style={{ all: "unset", display: "flex", cursor: "pointer", alignItems: "center" }}
           >POP Partners</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <div className="grid gap-3 pb-6 pt-2 pl-6 pr-6 md:w-[400px] lg:w-[1100px] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr]">
-              {/* // if data is in STRAPI */}
-              {isBrandDataAvailable && Object.keys(brandData).map((category: string) => (
-                <div key={category} className="pr-2">
-                  <div className="font-bold pt-3 text-[15px] uppercase text-slate-900">{category}</div>
-                  <div className="py-1"/>
-                  <div className="font-medium text-slate-700">
-                    {brandData[category].map((brand: string, index: number) => (
-                      <div key={index}>
-                        {/* @ts-ignore */}
-                        <Link prefetch={false} href={`/brands/${brand?.url?.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
-                          <div key={index} className={`py-1 text-[14px]`}>
-                            {/* @ts-ignore */}
-                            {brand?.name}
-                          </div>
-                        </Link> 
-                      </div>
-                    ))}
+            <ScrollArea className="h-[80vh]">
+              <div className="grid gap-3 pb-6 pt-2 pl-6 pr-6 md:w-[400px] lg:w-[1100px] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr]">
+                {/* // if data is in STRAPI */}
+                {isBrandDataAvailable && Object.keys(brandData).map((category: string) => (
+                  <div key={category} className="pr-2">
+                    <div className="font-bold pt-3 text-[15px] uppercase text-slate-900">{category}</div>
+                    <div className="py-1" />
+                    <div className="font-medium text-slate-700">
+                      {brandData[category].map((brand: string, index: number) => (
+                        <div key={index}>
+                          {/* @ts-ignore */}
+                          <Link prefetch={false} href={`/brands/${brand?.url?.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "")}`}>
+                            <div key={index} className={`py-1 text-[14px]`}>
+                              {/* @ts-ignore */}
+                              {brand?.name}
+                            </div>
+                          </Link>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-            <Link prefetch={false} href="/allbrands">
-              <div className="text-right pb-4 pr-4 underline underline-offset-2">See All</div>
-            </Link>
+                ))}
+              </div>
+              <Link prefetch={false} href="/allbrands">
+                <div className="text-right pb-4 pr-4 underline underline-offset-2">See All</div>
+              </Link>
+            </ScrollArea>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <div className="px-1" />

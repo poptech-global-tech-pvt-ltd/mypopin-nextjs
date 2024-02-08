@@ -4,6 +4,8 @@ import Link from "next/link"
 import { Manrope } from 'next/font/google'
 import { useEffect, useState } from "react"
 import Script from "next/script"
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const manrope = Manrope({
     subsets: ['latin'],
@@ -14,10 +16,35 @@ function AllBrands() {
 
     const [allBrandsData, setAllBrandsData] = useState<any>();
     useEffect(() => {
-        fetch(`https://mypop-dashboard.popclub.co.in/api/brand-names?populate=*`).then((res) => res.json()).then((data) => setAllBrandsData(data?.data))
+        fetch(`https://mypop-dashboard.popclub.co.in/api/brand-names?sort[0]=brand_name:asc&pagination[page]=1&pagination[pageSize]=500&populate=*`).then((res) => res.json()).then((data) => setAllBrandsData(data?.data))
     }, [])
 
-    console.log({allBrandsData})
+    console.log({ allBrandsData })
+
+    const shimmer = (w: number, h: number) => `
+<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="g">
+      <stop stop-color="#333" offset="20%" />
+      <stop stop-color="#222" offset="50%" />
+      <stop stop-color="#333" offset="70%" />
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="#333" />
+  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+</svg>`;
+
+    const toBase64 = (str: string) =>
+        typeof window === "undefined"
+            ? Buffer.from(str).toString("base64")
+            : window.btoa(str);
+
+
+
+
+
+
 
     return (
         <>
@@ -105,23 +132,40 @@ function AllBrands() {
             <div className="pt-0 lg:pt-24">
                 <div className="py-6">
                     <h1 className={`text-center text-3xl ${manrope.className} font-bold py-10`}>Unmatched Offers & Discount Highlights</h1>
-                    <div className="grid grid-cols-1 lg:grid-cols-3 max-w-6xl mx-auto gap-14 justify-items-center">
-                        {allBrandsData && allBrandsData
-                            ?.filter((i: any) => i?.attributes?.brand_offer_card?.data?.attributes?.url)
-                            ?.map((i: any, index: number) => (
-                                <div key={index} className="drop-shadow-xl transition-transform hover:scale-105">
-                                    <Link href={`/brands/${i?.attributes?.url}`}>
-                                        <Image
-                                            src={i?.attributes?.brand_offer_card?.data?.attributes?.url}
-                                            width={362}
-                                            height={256}
-                                            alt={i?.attributes?.brand_offer_card?.data?.attributes?.brand_name}
-                                            className="cursor-pointer"
-                                        />
-                                    </Link>
+                    {!allBrandsData ?
+                        (
+                            <>
+                                <SkeletonTheme baseColor="#f0f0f0" highlightColor="#dedede">
+                                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                        <Skeleton style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", margin: "10px", gap: "3.5rem", justifyItems: "center", width : "362px", height: "256px", borderRadius : "12px" }} count={1} />
+                                        <Skeleton style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", margin: "10px", gap: "3.5rem", justifyItems: "center", width : "362px", height: "256px", borderRadius : "12px" }} count={1} />
+                                        <Skeleton style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", margin: "10px", gap: "3.5rem", justifyItems: "center", width : "362px", height: "256px", borderRadius : "12px"}} count={1} />
+                                    </div>
+                                </SkeletonTheme>
+                            </>
+                        )
+                        : (
+                            <div>
+                                <div className="grid grid-cols-1 lg:grid-cols-3 max-w-6xl mx-auto gap-14 justify-items-center">
+                                    {allBrandsData && allBrandsData
+                                        ?.filter((i: any) => i?.attributes?.brand_offer_card?.data?.attributes?.url)
+                                        ?.map((i: any, index: number) => (
+                                            <div key={index} className="drop-shadow-xl transition-transform hover:scale-105">
+                                                <Link href={`/brands/${i?.attributes?.url}`}>
+                                                    <Image
+                                                        src={i?.attributes?.brand_offer_card?.data?.attributes?.url}
+                                                        width={362}
+                                                        height={256}
+                                                        alt={i?.attributes?.brand_offer_card?.data?.attributes?.brand_name}
+                                                        className="cursor-pointer"
+                                                    />
+                                                </Link>
+                                            </div>
+                                        ))}
                                 </div>
-                            ))}
-                    </div>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </>
